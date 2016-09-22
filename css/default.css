@@ -1,79 +1,79 @@
 .center{
-	margin: 10px;
-	text-align: center;
+    margin: 10px;
+    text-align: center;
 }
 .left{
-	margin: 10px;
-	text-align: left;
+    margin: 10px;
+    text-align: left;
 }
 .right{
-	text-align: right;
+    text-align: right;
 }
 .monospace{
-	font-family: monospace;
+    font-family: monospace;
 }
 .sans{
-	font-family: sans-serif;
+    font-family: sans-serif;
 }
 .p1-text{
-	color: rgb(0, 255, 0);
-	text-shadow: 0 0 12px rgb(0, 128, 0);
+    color: rgb(0, 255, 0);
+    text-shadow: 0 0 12px rgb(0, 128, 0);
 }
 html{
-	background: black url("../img/background.png") no-repeat center center fixed;
-	text-align: center; 
+    background: black url("../img/background.png") no-repeat center center fixed;
+    text-align: center; 
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
 }
 div.transbox{
-	display: inline-block;
-	margin: 30px;
-	background: rgb(0, 0, 0);
-	background: rgba(0, 0, 0, 0.5);
+    display: inline-block;
+    margin: 30px;
+    background: rgb(0, 0, 0);
+    background: rgba(0, 0, 0, 0.5);
 }
 p{
-	margin: 10px
+    margin: 10px
 }
 img.center{
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 img.small{
-	width: 20%;
-	height: 20%;
+    width: 20%;
+    height: 20%;
 }
 a:link{
-	color: rgb(0, 255, 0);
-	text-shadow: 0 0 12px rgb(0, 128, 0);
+    color: rgb(0, 255, 0);
+    text-shadow: 0 0 12px rgb(0, 128, 0);
 }
 a:visited{
-	color: rgb(0, 128, 0);
-	text-shadow: 0 0 12px rgb(0, 64, 0);
+    color: rgb(0, 128, 0);
+    text-shadow: 0 0 12px rgb(0, 64, 0);
 }
 a:hover{
-	color: rgb(0, 128, 0);
-	text-shadow: 0 0 12px rgb(0, 64, 0);
+    color: rgb(0, 128, 0);
+    text-shadow: 0 0 12px rgb(0, 64, 0);
 }
 a:active{
-	color: rgb(0, 128, 0);
-	text-shadow: 0 0 12px rgb(0, 255, 0);
+    color: rgb(0, 128, 0);
+    text-shadow: 0 0 12px rgb(0, 255, 0);
 }
 a.hidden:link{
-	color: rgb(0, 255, 0);
-	text-shadow: 0 0 12px rgb(0, 128, 0);
-	text-decoration: none;
+    color: rgb(0, 255, 0);
+    text-shadow: 0 0 12px rgb(0, 128, 0);
+    text-decoration: none;
 }
 a.hideen:hover{
-	color: rgb(0, 255, 0);
-	text-shadow: 0 0 12px rgb(0, 128, 0);
-	text-decoration: none;
+    color: rgb(0, 255, 0);
+    text-shadow: 0 0 12px rgb(0, 128, 0);
+    text-decoration: none;
 }
 input.transbox{
-	display: inline-block;
-	border: 3px double rgb(0, 128, 0);
-	background: rgb(0, 0, 0);
-	background: rgba(0, 0, 0, 0);
+    display: inline-block;
+    border: 3px double rgb(0, 128, 0);
+    background: rgb(0, 0, 0);
+    background: rgba(0, 0, 0, 0);
 }
