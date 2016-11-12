@@ -57,8 +57,8 @@
             alarm.load();
             setInterval(function(){
                 var date = new Date();
-                var hours = document.getElementById("hour").value;
-                var minutes = document.getElementById("minute").value;
+                var hours = new Number(document.getElementById("hour").value);
+                var minutes = new Number(document.getElementById("minute").value);
                 var alarmDate = new Date();
                 if(document.getElementById("ampm").value === "pm"){
                     hours = (hours + 12) % 24;
