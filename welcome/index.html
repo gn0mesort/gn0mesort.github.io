@@ -25,15 +25,15 @@
         <div id="choice" class="center monospace">
             <div class="transbox glow">
                 <h3>Now tell me. Are you using Windows? Or are you using Linux?</h3>
-                <button onclick="$('#windows')[0].attributes['hidden'].value = false;">Windows</button>
-                <button onclick="$('#linux')[0].attributes['hidden'].value = false;">Linux</button>
+                <button class="green glow" onclick="$('#windows')[0].removeAttribute('hidden');">Windows</button>
+                <button class="green glow" onclick="$('#linux')[0].removeAttribute('hidden');">Linux</button>
             </div>
         </div>
         <div id="output" class="center monospace">
-            <div id="windows" class="transbox glow" hidden="true">
+            <div id="windows" class="transbox glow" hidden>
                 <h1>Windows</h1>
             </div>
-            <div id="linux" class="transbox glow" hidden="true">
+            <div id="linux" class="transbox glow" hidden>
                 <h1>Linux</h1>
             </div>
         </div>
