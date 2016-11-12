@@ -131,14 +131,14 @@ a:link{
     color: #00FF00;
     text-decoration-style: dotted; 
 }
-a:visited, a:hover{
+a:visited{
+    color: #008800;
+}
+a:hover{
     color: #008800;
 }
 a.navlink{
     text-decoration: none;
-}
-a.navlink:hover{
-    color: #008800;
 }
 a.navlink:visited{
     color: #00FF00;
