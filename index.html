@@ -31,8 +31,10 @@
         <script src="../js/megatech.js"></script>
         <script>
             var navbar = {};
-            $("#navbar").load("../html/navbar.html", function(){navbar = $("#navigation")[0]});
-            megatech.handleNavBar(navbar);
+            $("#navbar").load("../html/navbar.html", function(){
+                navbar = $("#navigation")[0]; 
+                megatech.handleNavBar(navbar);
+            });
         </script>
     </body>
 </html>
