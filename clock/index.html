@@ -17,10 +17,13 @@
         </div>
         <div id="input" class="center monospace">
             <div class="transbox glow">
-                <label>Hour:</label>
-                <input type="number" name="hour" min="1" max="12" />
-                <label>Minute:</label>
-                <input type="number" name="minute" min="0" max="59" />
+                <label>Time:</label>
+                <input id="hour" type="number" name="hour" min="1" max="12" />
+                <input id="minute" type="number" name="minute" min="0" max="59" />
+                <select id="ampm">
+                    <option value="am">AM</option>
+                    <option value="pm">PM</option>
+                </select>
                 <br />
                 <br />
                 <label>Alarm:</label>
@@ -53,8 +56,21 @@
             alarm.children[0].src = "../media/" + document.getElementsByTagName("select")[0].value;
             alarm.load();
             setInterval(function(){
-                $("#date").text(new Date().toLocaleDateString());
-                $("#clock").text(new Date().toLocaleTimeString());
+                var date = new Date();
+                var hours = document.getElementById("hour").value;
+                var minutes = document.getElementById("minute").value;
+                var alarmDate = new Date();
+                if(document.getElementById("ampm").value === "pm"){
+                    hours = (hours + 12) % 24;
+                }
+                alarmDate = new Date(0);
+                alarmDate.setHours(hours);
+                alarmDate.setMinutes(minutes);
+                $("#date").text(date.toLocaleDateString());
+                $("#clock").text(date.toLocaleTimeString());
+                if(date.getHours() === alarmDate.getHours() && date.getMinutes() === alarmDate.getMinutes()){
+                    alarm.play();
+                }
             }, 1000);
         </script>
     </body>
