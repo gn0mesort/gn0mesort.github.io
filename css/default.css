@@ -130,6 +130,14 @@ button.dropdownbtn:hover{
     text-decoration: underline;
     text-decoration-style: dotted;
 }
+input{
+    background: transparent;
+    border: double;
+}
+select{
+    background: transparent;
+    border: double;
+}
 
 
 /*Link Styles*/
