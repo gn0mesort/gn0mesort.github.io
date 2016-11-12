@@ -49,7 +49,7 @@
             });
 
             var alarm = document.getElementById('alarm');
-            alarm.src = "../media/" + document.getElementsByTagName("select")[0].value;
+            alarm.children[0].src = "../media/" + document.getElementsByTagName("select")[0].value;
             alarm.load();
             setInterval(function(){
                 $("#date").text(new Date().toDateString());
