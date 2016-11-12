@@ -63,6 +63,9 @@
                 if(document.getElementById("ampm").value === "pm"){
                     hours = (hours + 12) % 24;
                 }
+                else if(document.getElementById("ampm").value === "am" && hours === 12){
+                    hours = 0;
+                }
                 alarmDate = new Date(0);
                 alarmDate.setHours(hours);
                 alarmDate.setMinutes(minutes);
