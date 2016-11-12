@@ -11,7 +11,8 @@
         <div class="space"></div>
         <div class="center monospace">
             <div class="transbox glow">
-                <h1 id="clock"></h1>
+                <h1 id="date" class="pixel"></h1>
+                <h1 id="clock" class="pixel"></h1>
             </div>
         </div>
         <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
@@ -23,7 +24,8 @@
             });
 
             setInterval(function(){
-                $("#clock").text(new Date().toLocaleString());
+                $("date").text(new Date().toDateString());
+                $("#clock").text(new Date().toTimeString());
             }, 1000);
         </script>
     </body>
