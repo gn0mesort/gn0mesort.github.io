@@ -30,7 +30,8 @@
         <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
         <script src="../js/megatech.js"></script>
         <script>
-            $("#navbar").load("../html/navbar.html", megatech.handleNavBar($("#navigation")[0]));
+            $("#navbar").load("../html/navbar.html");
+            document.onload = megatech.handleNavBar($("#navigation")[0]);
         </script>
     </body>
 </html>
