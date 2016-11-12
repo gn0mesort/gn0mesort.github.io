@@ -140,6 +140,9 @@ a:hover{
 a.navlink{
     text-decoration: none;
 }
+a.navlink:hover{
+    color: #008800;
+}
 a.navlink:visited{
     color: #00FF00;
 }
