@@ -137,6 +137,6 @@ a:visited, a:hover{
 a.navlink{
     text-decoration: none;
 }
-a.navlink::visited{
+a.navlink:visited{
     color: #00FF00;
 }
