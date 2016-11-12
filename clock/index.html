@@ -23,7 +23,7 @@
                 <input type="number" name="minute" min="0" max="59" />
                 <br />
                 <label>Alarm:</label>
-                <select onchange="document.getElementById('alarm-source').src='../media/'+this.value;">
+                <select onchange="document.getElementById('alarm-source').src='../media/'+this.value;document.getElementById('alarm').load();">
                     <option value="Alarm01.wav" selected="">Alarm 1</option>
                     <option value="Alarm02.wav">Alarm 2</option>
                     <option value="Alarm03.wav">Alarm 3</option>
@@ -35,7 +35,7 @@
                     <option value="Alarm09.wav">Alarm 9</option>
                     <option value="Alarm10.wav">Alarm 10</option>
                 </select>
-                <audio id="alarm" loop="" controls="">
+                <audio id="alarm" loop="" controls="" style="vertical-align: middle;">
                     <source id="alarm-source" src="../media/Alarm01.wav" type="audio/wav" />
                 </audio>
             </div>
@@ -48,6 +48,9 @@
                 megatech.handleNavBar(navbar);
             });
 
+            var alarm = document.getElementById('alarm');
+            alarm.src = "../media/" + document.getElementByTagName("select")[0].value;
+            alarm.load();
             setInterval(function(){
                 $("#date").text(new Date().toDateString());
                 $("#clock").text(new Date().toTimeString());
