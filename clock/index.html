@@ -75,7 +75,7 @@
                 if(date.getHours() === alarmDate.getHours() && date.getMinutes() === alarmDate.getMinutes() && !stopped){
                     alarm.play();
                 }
-                else if((date.getHours() < alarmDate.getHours() && stopped) || (date.getHours() === alarmDate.getHours()&& date.getMinutes() < alarmDate.getMinutes() && stopped){
+                else if((date.getHours() < alarmDate.getHours() && stopped) || (date.getHours() === alarmDate.getHours()&& date.getMinutes() < alarmDate.getMinutes() && stopped)){
                     stopped = false;
                 }
             }, 1000);
