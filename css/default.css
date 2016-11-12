@@ -30,6 +30,9 @@
 .green{
     color: #00FF00;
 }
+.small{
+    font-size: small;
+}
 
 /*Image Styles*/
 img.small{
@@ -118,6 +121,9 @@ button.dropdownbtn{
     background: inherit;
     display: inline;
 }
+button.dropdownbtn:hover{
+    color: #008800;
+}
 
 
 /*Link Styles*/
@@ -130,4 +136,7 @@ a:visited, a:hover{
 }
 a.navlink{
     text-decoration: none;
+}
+a.navlink::visited{
+    color: #00FF00;
 }
