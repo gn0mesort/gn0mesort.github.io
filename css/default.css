@@ -129,19 +129,14 @@ button.dropdownbtn:hover{
 /*Link Styles*/
 a:link{
     color: #00FF00;
+    text-decoration: none;
     text-decoration-style: dotted; 
 }
 a:visited{
     color: #008800;
 }
 a:hover{
-    color: #008800;
-}
-a.navlink{
-    text-decoration: none;
-}
-a.navlink:hover{
-    color: #008800;
+    text-decoration: underline;
 }
 a.navlink:visited{
     color: #00FF00;
