@@ -21,6 +21,23 @@
                 <input type="number" name="hour" min="1" max="12" />
                 <label>Minute:</label>
                 <input type="number" name="minute" min="0" max="59" />
+                <br />
+                <label>Alarm:</label>
+                <select onchange="document.getElementById('alarm-source').src='../media/'+this.value;">
+                    <option value="Alarm01.wav" selected="">Alarm 1</option>
+                    <option value="Alarm02.wav">Alarm 2</option>
+                    <option value="Alarm03.wav">Alarm 3</option>
+                    <option value="Alarm04.wav">Alarm 4</option>
+                    <option value="Alarm05.wav">Alarm 5</option>
+                    <option value="Alarm06.wav">Alarm 6</option>
+                    <option value="Alarm07.wav">Alarm 7</option>
+                    <option value="Alarm08.wav">Alarm 8</option>
+                    <option value="Alarm09.wav">Alarm 9</option>
+                    <option value="Alarm10.wav">Alarm 10</option>
+                </select>
+                <audio id="alarm" preload="" loop="" controls="">
+                    <source id="alarm-source" src="../media/Alarm01.wav" type="audio/wav" />
+                </audio>
             </div>
         </div>
         <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
