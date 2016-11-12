@@ -12,7 +12,10 @@
         <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
         <script src="../js/megatech.js"></script>
         <script>
-            $("#navbar").load("../html/navbar.html");
+            $("#navbar").load("../html/navbar.html", function(){
+                var navbar = $("#navigation")[0]; 
+                megatech.handleNavBar(navbar);
+            });
         </script>
     </body>
 </html>
