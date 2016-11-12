@@ -2,26 +2,29 @@
 <html lang="en">
     <head>
         <meta charset="utf-8" />
-        <title>メガテクボディ合同会社</title>
-        <link type="text/css" rel="stylesheet" href="css/default.css" />
+        <link rel="stylesheet" href="css/default.css" type="text/css" />
         <link rel="icon" href="img/favicon.ico" />
+        <title>メガテクボディ合同会社</title>
     </head>
-    <body>
-        <div id="header" class="transbox">
-            <h1 class="center p1-text">メガテクボディ合同会社</h1>
-            <img class="center small" src="img/megatechlogobig.png" alt="Megatech Body LLC" />
-            <h2 class="center p1-text monospace">Megatech Body LLC.</h2>
+    <body style="background-image:url('img/background.jpg')">
+        <div id="navbar" class="navbar monospace"></div>
+        <div class="space"></div>
+        <div id="header" class="center monospace">
+            <div class="transbox">
+                <h1 class="glow">メガテクボディ合同会社</h1>
+                <img class="small center" src="img/logo.png" />
+                <h3 class="center glow">MEGATECH BODY LLC.</h3>
+            </div>
         </div>
-        <br />
-        <div id="contact" class="transbox">
-            <p class="center p1-text monospace">Megatech Body LLC is the world's premier provider of high performance cybernetic components and implants.</p>
-            <h3 class="center p1-text monospace">Contact</h3>
-            <p class="center p1-text monospace">Email: <a href="mailto:gnomesort@megate.ch">gnomesort@megate.ch</a></p>
-            <p class="center p1-text monospace">Github: <a href="https://github.com/gn0mesort">gn0mesort</a></p>
+        <div id="body" class="center monospace">
+            <div class="transbox glow">
+                <p>Megatech Body the world's leading manufacturer of high performance and military grade prosthetics.</p>
+            </div>
         </div>
-        <br />
-        <div id="footer" class="transbox">
-            <p class="center p1-text monospace"><a href="https://github.com/gn0mesort/gn0mesort.github.io">Source</a></p>
-        </div>
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+        <script src="js/megatech.js"></script>
+        <script>
+            $("#navbar").load("html/navbar.html");
+        </script>
     </body>
 </html>

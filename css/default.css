@@ -1,79 +1,133 @@
+/*Fonts*/
+@font-face{
+    font-family: "Pixel LCD";
+    src: url("../font/pixellcd7.ttf");
+}
+
+@font-face{
+    font-family: "TechMono";
+    src: url("../font/techmono.ttf");
+}
+
+/*Effects*/
+.glow{
+    text-shadow: 0 0 12px currentColor;
+}
+
+/*Text Styles*/
 .center{
-    margin: 10px;
     text-align: center;
 }
-.left{
-    margin: 10px;
-    text-align: left;
-}
-.right{
-    text-align: right;
-}
 .monospace{
-    font-family: monospace;
+    font-family: "TechMono", monospace;
 }
 .sans{
-    font-family: sans-serif;
+    font-family: sans;
 }
-.p1-text{
-    color: rgb(0, 255, 0);
-    text-shadow: 0 0 12px rgb(0, 128, 0);
+.pixel{
+    font-family: "Pixel LCD";
 }
-html{
-    background: black url("../img/background.png") no-repeat center center fixed;
-    text-align: center; 
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
+.green{
+    color: #00FF00;
 }
-div.transbox{
-    display: inline-block;
-    margin: 30px;
-    background: rgb(0, 0, 0);
-    background: rgba(0, 0, 0, 0.5);
+
+/*Image Styles*/
+img.small{
+    height: 25%;
+    width: 25%;
 }
-p{
-    margin: 10px
+img.icon{
+    vertical-align: middle;
+    padding: 0px 10px 0px 0px;
+    height: 32px;
+    width: 32px;
 }
 img.center{
     display: block;
-    margin-left: auto;
-    margin-right: auto;
+    margin: auto;
 }
-img.small{
-    width: 20%;
-    height: 20%;
+
+/*Placement*/
+.left{
+    float: left;
 }
-a:link{
-    color: rgb(0, 255, 0);
-    text-shadow: 0 0 12px rgb(0, 128, 0);
+.right{
+    float: right;
 }
-a:visited{
-    color: rgb(0, 128, 0);
-    text-shadow: 0 0 12px rgb(0, 64, 0);
+.clear{
+    clear: both;
 }
-a:hover{
-    color: rgb(0, 128, 0);
-    text-shadow: 0 0 12px rgb(0, 64, 0);
+
+/*Element Styles*/
+body{
+    background: black no-repeat fixed;
+    color: #00FF00;
 }
-a:active{
-    color: rgb(0, 128, 0);
-    text-shadow: 0 0 12px rgb(0, 255, 0);
+div.navbar{
+    position: fixed;
+    background: inherit;
+    clear: both;
+    top: 0;
+    left: 0;
+    font-size: small;
+    z-index: 1000;
+    width: 100%;
 }
-a.hidden:link{
-    color: rgb(0, 255, 0);
-    text-shadow: 0 0 12px rgb(0, 128, 0);
-    text-decoration: none;
-}
-a.hidden:hover{
-    color: rgb(0, 255, 0);
-    text-shadow: 0 0 12px rgb(0, 128, 0);
-    text-decoration: none;
-}
-input.transbox{
+div.transbox{
     display: inline-block;
-    border: 3px double rgb(0, 128, 0);
-    background: rgb(0, 0, 0);
-    background: rgba(0, 0, 0, 0);
+    padding: 30px;
+    margin: 15px;
+    background: rgba(0, 0, 0, 0.75);
+}
+div.space{
+    width: 100%;
+    height: 35px;
+}
+div.dropdowncont{
+    position: fixed;
+    margin: 0;
+    padding: 0;
+    display: none;
+}
+div.dropdowncont a{
+    padding: 10px 10px 10px 10px;
+    min-width: 75px;
+    display: block;
+}
+div.dropdowncont a:hover{
+    background: rgba(0, 64, 0, 0.75);
+}
+nav.dropdown{
+    display: inline-block;
+}
+nav.dropdown:hover div.dropdowncont{
+    display: block;
+}
+nav ul li{
+    list-style: none;
+    display: inline;
+}
+hr{ 
+    background: rgba(0, 0, 0, 0) !important;
+    height: 10px; 
+    border: 0;
+    box-shadow: inset 0 12px 12px -12px rgba(0, 0, 0, 0.5); 
+}
+button.dropdownbtn{
+    border: 0;
+    background: inherit;
+    display: inline;
+}
+
+
+/*Link Styles*/
+a:link{
+    color: #00FF00;
+    text-decoration-style: dotted; 
+}
+a:visited, a:hover{
+    color: #008800;
+}
+a.navlink{
+    text-decoration: none;
 }
