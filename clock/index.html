@@ -27,7 +27,7 @@
                 <br />
                 <br />
                 <label>Alarm:</label>
-                <select onchange="document.getElementById('alarm-source').src='../media/'+this.value;document.getElementById('alarm').load();">
+                <select id="track" onchange="document.getElementById('alarm-source').src='../media/'+this.value;document.getElementById('alarm').load();">
                     <option value="Alarm01.wav" selected="">Alarm 1</option>
                     <option value="Alarm02.wav">Alarm 2</option>
                     <option value="Alarm03.wav">Alarm 3</option>
@@ -53,7 +53,7 @@
             });
 
             var alarm = document.getElementById('alarm');
-            alarm.children[0].src = "../media/" + document.getElementsByTagName("select")[0].value;
+            alarm.children[0].src = "../media/" + document.getElementById("track").value;
             alarm.load();
             setInterval(function(){
                 var date = new Date();
