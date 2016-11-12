@@ -122,7 +122,8 @@ button.dropdownbtn{
     display: inline;
 }
 button.dropdownbtn:hover{
-    color: #008800;
+    text-decoration: underline;
+    text-decoration-style: dotted;
 }
 
 
@@ -130,13 +131,13 @@ button.dropdownbtn:hover{
 a:link{
     color: #00FF00;
     text-decoration: none;
-    text-decoration-style: dotted; 
 }
 a:visited{
     color: #008800;
 }
 a:hover{
     text-decoration: underline;
+    text-decoration-style: dotted;
 }
 a.navlink:visited{
     color: #00FF00;
