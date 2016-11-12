@@ -139,7 +139,8 @@ select{
     border: double;
 }
 ul{
-    list-style: square initial;
+    list-style-type: square;
+    text-align: initial;
 }
 
 /*Link Styles*/
