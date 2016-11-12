@@ -6,7 +6,6 @@ megatech = function(){
     };
 
     handleNavBar = function(navbar){
-        var currentLocation = document.location;
         var navLinks = navbar.getElementsByTagName("a");
 
         for(var i = 0; i < navLinks.length; ++i){
