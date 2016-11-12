@@ -25,8 +25,8 @@
         <div id="choice" class="center monospace">
             <div class="transbox glow">
                 <h3>Now tell me. Are you using Windows? Or are you using Linux?</h3>
-                <button onclick="">Windows</button>
-                <button onclick="">Linux</button>
+                <button onclick="$('#windows')[0].attributes['hidden'].value = false;">Windows</button>
+                <button onclick="$('#linux')[0].attributes['hidden'].value = false;">Linux</button>
             </div>
         </div>
         <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
