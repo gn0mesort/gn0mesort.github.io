@@ -9,10 +9,16 @@
     <body style="background-image:url('../img/background.jpg')">
         <div id="navbar" class="navbar monospace"></div>
         <div class="space"></div>
-        <div class="center monospace">
+        <div id="output" class="center monospace">
             <div class="transbox glow">
                 <h1 id="date" class="pixel"></h1>
                 <h1 id="clock" class="pixel"></h1>
+            </div>
+        </div>
+        <div id="input">
+            <div class="transbox glow">
+                <input type="number" name="hour" min="1" max="12" />
+                <input type="number" name="minute" min="0" max="59" />
             </div>
         </div>
         <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
