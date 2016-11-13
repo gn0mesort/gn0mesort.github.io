@@ -9,6 +9,11 @@
     src: url("../font/techmono.ttf");
 }
 
+@font-face{
+    font-family: "VeraMono";
+    src: url("../font/veramono.ttf")
+}
+
 /*Effects*/
 .glow{
     text-shadow: 0 0 12px currentColor;
@@ -19,7 +24,7 @@
     text-align: center;
 }
 .monospace{
-    font-family: "Lucida Console", monospace;
+    font-family: "VeraMono", "Lucida Console", monospace;
 }
 .sans{
     font-family: sans;
