@@ -36,7 +36,7 @@
     color: #00FF00;
 }
 .small{
-    font-size: small;
+    font-size: x-small;
 }
 
 /*Image Styles*/
@@ -69,6 +69,7 @@ img.center{
 /*Element Styles*/
 body{
     background: black no-repeat fixed;
+    font-size: small;
     color: #00FF00;
 }
 div.navbar{
