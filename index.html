@@ -10,9 +10,17 @@
         <div id="navbar" class="navbar monospace"></div>
         <div class="space"></div>
         <div id="header" class="center monospace">
-            <div class="transbox">
+            <div class="transbox container">
                 <h1 class="glow">メガテクボディ合同会社</h1>
-                <img class="small center" src="../img/logo.png" />
+                <div>
+                    <img class="small center" src="../img/hpspinner1.jpg" />
+                </div>
+                <div>
+                    <img class="small center" src="../img/hpspinner2.jpg" />
+                </div>
+                <div>
+                    <img class="small center" src="../img/hpspinner3.jpg" />
+                </div>
                 <h3 class="center glow">MEGATECH BODY LLC.</h3>
             </div>
         </div>
@@ -30,10 +38,23 @@
         <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
         <script src="../js/megatech.js"></script>
         <script>
+            var currentIndex = 0;
+            var items = $(".container div");
+            var count = items.length;
+
             $("#navbar").load("../html/navbar.html", function(){
                 var navbar = $("#navigation")[0]; 
                 megatech.handleNavBar(navbar);
             });
+
+            var autoSlide = setInterval(function(){
+                currentIndex += 1;
+                if(currentIndex > count - 1){
+                    currentIndex = 0;
+                }
+                megatech.cycleSpinner(items, currentIndex);
+            }, 3000);
+
         </script>
     </body>
 </html>

@@ -5,6 +5,12 @@ megatech = function(){
         }
     };
 
+    cycleSpinner = function(items, currentIndex){
+        var item = $(".container div").eq(currentIndex);
+        items.hide();
+        item.css("display", "inline-block");
+    };
+
     handleNavBar = function(navbar){
         var navLinks = navbar.getElementsByTagName("a");
 
@@ -18,6 +24,7 @@ megatech = function(){
 
     return {
         navigate,
-        handleNavBar
+        handleNavBar,
+        cycleSpinner
     };
 }();

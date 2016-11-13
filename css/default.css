@@ -18,6 +18,19 @@
 .glow{
     text-shadow: 0 0 12px currentColor;
 }
+.container{
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+}
+.container div{
+    width: 100%;
+    display: none;
+}
+
+.container img{
+    z-index: -1;
+}
 
 /*Text Styles*/
 .center{
