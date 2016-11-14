@@ -6,8 +6,9 @@ megatech = function(){
     };
 
     cycleSpinner = function(items, currentIndex){
-        items.eq(currentIndex - 1).fadeToggle();
-        items.eq(currentIndex).fadeToggle();        
+        var item = items.eq(currentIndex);
+        items.hide();
+        item.fadeToggle();        
     };
 
     handleNavBar = function(navbar){
