@@ -18,21 +18,10 @@
 .glow{
     text-shadow: 0 0 12px currentColor;
 }
-.container{
+
+.spinner{
+    display: block;
     position: relative;
-    margin: 0 auto;
-    text-align: center;
-}
-
-.container div{
-    position: absolute;
-    z-index: 10;
-}
-
-.container img{
-    z-index: 9;
-    width: 100%;
-    height: auto;
 }
 
 /*Text Styles*/

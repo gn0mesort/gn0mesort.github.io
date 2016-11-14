@@ -10,18 +10,15 @@
         <div id="navbar" class="navbar monospace"></div>
         <div class="space"></div>
         <div id="header" class="center monospace">
-            <div class="transbox container">
-                <div>
-                    <h1>メガテクボディ合同会社</h1>
-                    <img src="../img/hpspinner1.jpg" />
+            <div class="transbox">
+                <div class="spinner">
+                    <div>
+                        <img src="../img/hpspinner1.jpg" />
+                    </div>
+                    <div>
+                        <img src="../img/hpspinner2.jpg" />
+                    </div>
                 </div>
-                <div>
-                    <img src="../img/hpspinner2.jpg" />
-                </div>
-                <div>
-                    <img src="../img/hpspinner3.jpg" />
-                </div>
-                <h3 class="center glow">MEGATECH BODY LLC.</h3>
             </div>
         </div>
         <div id="body" class="center monospace">
@@ -40,7 +37,7 @@
         <script src="../js/megatech.js"></script>
         <script>
             var currentIndex = 0;
-            var items = $(".container div");
+            var items = $(".spinner");
             var count = items.length;
 
             $("#navbar").load("../html/navbar.html", function(){
