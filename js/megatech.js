@@ -8,7 +8,7 @@ megatech = function(){
     cycleSpinner = function(items, currentIndex){
         var item = items.eq(currentIndex);
         items.hide();
-        item.fadeToggle();        
+        item.fadeToggle(1000);        
     };
 
     handleNavBar = function(navbar){
