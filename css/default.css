@@ -172,6 +172,7 @@ button{
 button.dropdownbtn{
     border: 0;
     background: inherit;
+    font-weight: bold;
     display: inline;
 }
 button.dropdownbtn:hover{
@@ -195,6 +196,7 @@ ul{
 a:link{
     color: #00FF00;
     text-decoration: none;
+    font-weight: bold;
 }
 a:visited{
     color: #008800;
