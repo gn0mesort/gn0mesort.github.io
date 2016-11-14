@@ -33,8 +33,17 @@
     z-index: 10;
 }
 
-.spinner-text{
-    position: relative;
+.spinner-text-top{
+    position: absolute;
+    margin: 0;
+    top: 1vw;
+    left: 30vw;
+}
+.spinner-text-bottom{
+    position: absolute;
+    margin: 0;
+    top: 25vw;
+    left: 30vw;
 }
 
 .spinner div img{
