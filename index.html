@@ -88,7 +88,7 @@
 
                 curDate.setYear(2034);
                 for(var i = 0; i < dates.length; ++i){
-                    curDate.setDate(curDate.getDay() + 1);
+                    curDate.setDate(curDate.getDate() - 1);
                     dates[i].innerText = curDate.toLocaleDateString();
                 }
             }
