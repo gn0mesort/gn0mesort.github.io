@@ -20,8 +20,26 @@
 }
 
 .spinner{
+    height: 30vw;
+    width: 75vw;
     display: block;
+}
+
+.spinner div{
     position: relative;
+}
+
+.spinner *{
+    z-index: 10;
+}
+
+.spinner div img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 30vw;
+    width: 100%;
+    z-index: 9;
 }
 
 /*Text Styles*/
