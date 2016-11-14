@@ -50,7 +50,7 @@
                 <p>Megatech is committed to creating value for all its shareholders. We provide an easy to use interface for managing your shareholding</p>
                 <p><a href="../investor">Investment Management</a></p>
                 <p><a href="../investor/events">Upcoming Events</a></p>
-                <p>Our <a href="../investor/2033.pdf">2033 Financial Report</a></p>
+                <p>Our <a href="../investor/2033.pdf"><span class="currentYear">2034</span> Financial Report</a></p>
             </div>
             <div class="center">
                 <div class="transbox glow" style="max-width: 25%; min-width: 25%;">
@@ -62,7 +62,7 @@
         </div>
         <div id="footer" class="center monospace">
             <div class="transbox glow">
-                <p class="small">Copyright © 2015-<span id="currentYear">2034</span> Megatech Body LLC</p>
+                <p class="small">Copyright © 2015-<span class="currentYear">2034</span> Megatech Body LLC</p>
                 <p class="small">All Rights Reserved</p>
             </div>
         </div>
@@ -92,7 +92,7 @@
                 var dates = $(".date");
 
                 curDate.setFullYear(year);
-                $("#currentYear").text(year);
+                $(".currentYear").text(year);
                 for(var i = 0; i < dates.length; ++i){
                     curDate.setDate(curDate.getDate() - 1);
                     dates[i].innerText = curDate.toLocaleDateString();
