@@ -39,6 +39,8 @@
     top: 1vw;
     left: 0;
     width: 100%;
+    background-color: rgba(0, 0 , 0, 0.25);
+    background-size: 50%;
 }
 .spinner-text-bottom{
     position: absolute;
@@ -46,6 +48,8 @@
     top: 25vw;
     left: 0;
     width: 100%;
+    background-color: rgba(0, 0 , 0, 0.25);
+    background-size: 50%;
 }
 
 .spinner div img{
