@@ -37,13 +37,15 @@
     position: absolute;
     margin: 0;
     top: 1vw;
-    left: 30vw;
+    left: 0;
+    width: 100%;
 }
 .spinner-text-bottom{
     position: absolute;
     margin: 0;
     top: 25vw;
-    left: 30vw;
+    left: 0;
+    width: 100%;
 }
 
 .spinner div img{
