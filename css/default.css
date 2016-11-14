@@ -25,7 +25,8 @@
 }
 .container div{
     width: 100%;
-    opacity: 0;
+    display: none;
+    transition: display 2s ease-in;
 }
 
 .container img{
