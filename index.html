@@ -18,6 +18,9 @@
                     <div>
                         <img src="../img/hpspinner2.jpg" />
                     </div>
+                    <div>
+                        <img src="../img/hpspinner3.jpg" />
+                    </div>
                 </div>
             </div>
         </div>
@@ -37,7 +40,7 @@
         <script src="../js/megatech.js"></script>
         <script>
             var currentIndex = 0;
-            var items = $(".spinner");
+            var items = $(".spinner").children();
             var count = items.length;
 
             $("#navbar").load("../html/navbar.html", function(){
