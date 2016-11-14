@@ -86,9 +86,9 @@
                 var curDate = new Date();
                 var dates = $(".date");
 
-                curDate.setYear("2034");
+                curDate.setYear(2034);
                 for(var i = 0; i < dates.length; ++i){
-                    curDate.setDay(curDate.getDay() + 1)
+                    curDate.setDate(curDate.getDay() + 1);
                     dates[i].text(curDate.toLocaleDateString());
                 }
             }();
