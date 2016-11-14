@@ -19,22 +19,20 @@
     text-shadow: 0 0 12px currentColor;
 }
 .container{
+    position: relative;
     margin: 0 auto;
     text-align: center;
-    position: relative;
 }
+
 .container div{
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    display: inline-block;
+    z-index: 10;
 }
 
 .container img{
+    z-index: 9;
     width: 100%;
     height: auto;
-    z-index: -1;
 }
 
 /*Text Styles*/
