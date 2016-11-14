@@ -33,6 +33,15 @@
         <div id="body" class="monospace">
             <div class="transbox glow left" style="max-width: 33%;">
                 <h1 class="center">NEWS</h1>
+                <div>
+                    <h6 class="date"></h6>
+                </div>
+                <div>
+                    <h6 class="date"></h6>
+                </div>
+                <div>
+                    <h6 class="date"></h6>
+                </div>
             </div>
             <div class="transbox glow" style="max-width: 33%">
                 <h1 class="center">MEGATECH INTERNATIONAL</h1>
@@ -72,6 +81,17 @@
                 }
                 megatech.cycleSpinner(items, currentIndex);
             }, 10000);
+
+            function(){
+                var curDate = new Date();
+                var dates = $(".date");
+
+                curDate.setYear("2034");
+                for(var i = 0; i < dates.length; ++i){
+                    curDate.setDay(curDate.getDay() + 1)
+                    dates[i].text(curDate.toLocaleDateString());
+                }
+            }();
 
         </script>
     </body>
