@@ -7,8 +7,9 @@ megatech = function(){
 
     cycleSpinner = function(items, currentIndex){
         var item = $(".container div").eq(currentIndex);
-        items.hide();
+        items.css("opacity", "0");
         item.css("opacity", "1");
+
     };
 
     handleNavBar = function(navbar){
