@@ -7,8 +7,7 @@ megatech = function(){
 
     cycleSpinner = function(items, currentIndex){
         var item = $(".container div").eq(currentIndex);
-        items.hide();
-        item.css("display", "inline-block");
+        item.fadeToggle();
 
     };
 
