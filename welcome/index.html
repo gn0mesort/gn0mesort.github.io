@@ -27,6 +27,7 @@
                 <h3>Now tell me. Are you using Windows? Or are you using Linux?</h3>
                 <button class="green glow" onclick="$('#windows')[0].removeAttribute('style');$('#linux')[0].setAttribute('style', 'display: none;');">Windows</button>
                 <button class="green glow" onclick="$('#linux')[0].removeAttribute('style');$('#windows')[0].setAttribute('style', 'display: none;');">Linux</button>
+                <button class="green glow" onclick="playHorns();">Mac</button>
             </div>
         </div>
         <div id="output" class="center monospace">
@@ -160,6 +161,16 @@
                 var navbar = $("#navigation")[0]; 
                 megatech.handleNavBar(navbar);
             });
+
+            var audio = null;
+            function playHorns(){
+                if(!audio){
+                    audio = document.createElement("audio");
+                    audio.setAttribute("src", "../media/horns.mp3");
+                    audio.volume = 0.15;
+                }
+                audio.play();
+            };
         </script>
     </body>
 </html>
