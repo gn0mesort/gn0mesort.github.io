@@ -6,7 +6,6 @@ var Navbar = function (logo, elements) {
     let linkList = $('ul', navbar)
     for (let element of this.elements) {
       let link = $('<li></li>').appendTo(linkList)
-      console.dir(element.toElement())
       element.toElement().appendTo(link)
       $('<span>&nbsp;/&nbsp;</span>').appendTo(linkList)
     }
@@ -37,15 +36,13 @@ var DropDown = function (text, links) {
   this.text = text || ''
   this.links = links || []
   this.toElement = function () {
-    var nav = $('<nav class="dropdown></nav>')
+    let nav = $('<nav class="dropdown></nav>')
     $(`<button class="dropdownbtn" disabled="true">${this.text}</button>`).appendTo(nav)
     let navLinks = $('<div class="dropdowncont"></div>')
     for (let link of this.links) {
-      console.log(link.toElement())
       link.toElement().appendTo(navLinks)
     }
     navLinks.appendTo(nav)
-    console.log(nav)
     return nav
   }
 }

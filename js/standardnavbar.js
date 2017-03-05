@@ -17,9 +17,9 @@ $.getScript('../js/navbar.js', function () {
   navbar.elements.push(about)
   navbar.elements.push(contact)
 
-  $('ul', navbar).attr('class', 'glow')
-  console.log($('ul', navbar).attr('class'))
+  console.dir(navbar)
 
   navbar.appendNavbar($('#navbar'))
   navbar.handleNavbar($('#navbar'))
+  $('#navbar > ul').attr('class', 'glow')
 })
