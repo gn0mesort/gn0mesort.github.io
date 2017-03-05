@@ -17,7 +17,7 @@ $.getScript('../js/navbar.js', function () {
   navbar.elements.push(about)
   navbar.elements.push(contact)
 
-  console.dir(navbar)
+  console.log(navbar)
 
   navbar.appendNavbar($('#navbar'))
   navbar.handleNavbar($('#navbar'))
