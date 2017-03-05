@@ -1,7 +1,7 @@
 var Navbar = function (logo, elements) {
   this.logo = logo || ''
   this.elements = elements || []
-  this.appendNavBar = function (element) {
+  this.appendNavbar = function (element) {
     let navbar = $(`<div><ul><li><a href="/"><img class="icon" src="${this.logo}" alt="home" /></a></li></ul><hr /></div>`)
     let linkList = $('ul', navbar)
     for (let element of this.elements) {
@@ -12,7 +12,7 @@ var Navbar = function (logo, elements) {
 
     navbar.appendTo(element)
   }
-  this.handleNavBar = function (navbar) {
+  this.handleNavbar = function (navbar) {
     let navLinks = navbar.getElementsByTagName('a')
     for (let link of navLinks) {
       console.log(link.href)
