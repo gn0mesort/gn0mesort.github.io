@@ -45,6 +45,7 @@ var DropDown = function (text, links) {
       link.toElement().appendTo(navLinks)
     }
     navLinks.appendTo(nav)
+    console.log(nav)
     return nav
   }
 }
