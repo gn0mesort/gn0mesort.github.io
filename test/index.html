@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="../css/default.css" type="text/css" />
+        <link rel="icon" href="../img/favicon.ico" />
+        <title>メガテクボディ合同会社</title>
+    </head>
+    <body style="background-image:url('../img/background.jpg')">
+        <div id="navbar" class="navbar monospace"></div>
+        <div class="space"></div>
+        <div id="header" class="center monospace">
+            <div class="transbox">
+                <div class="spinner">
+                    <div>
+                        <h1 class="glow spinner-text-top">メガテクボディ合同会社</h1>
+                        <img src="../img/hpspinner1.jpg" />
+                        <h1 class="glow spinner-text-bottom">MEGATECH BODY LLC.</h1>
+                    </div>
+                    <div>
+                        <h1 class="glow spinner-text-top">Building Better Bodies</h1>
+                        <img src="../img/hpspinner2.jpg" />
+                        <p class="glow spinner-text-bottom">Since 2015 Megatech has been the world's leading manufacturer of high performance prosthetics. Megatech hardware supports the world's toughest athlethes and bravest soldiers.</p>
+                    </div>
+                    <div>
+                        <h1 class="glow spinner-text-top">Building Better Minds</h1>
+                        <img src="../img/hpspinner3.jpg" />
+                        <p class="glow spinner-text-bottom">Megatech Cyberbrains enchance creativity, memory, and cognition speed.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="body" class="monospace">
+            <div class="transbox glow left" style="max-width: 25%; min-width: 25%;">
+                <h1 class="center">NEWS</h1>
+                <div>
+                    <h6 class="date"></h6>
+                    <h4><a href="http://forbes.com/japan/megatech-g7-seeking-approval">Megatech's 7th Generation Cyberbrain Submitted to Health Authorities Seeking Approval</a></h4>
+                    <p>Regulatory submissions in the U.S., American-Russo Alliance, American Empire, and Japan were completed based on data from Phase III studies, in which the Megatech g7 Cyberbrain demonstrated significant improvements over the previous model...</p>
+                </div>
+                <div>
+                    <h6 class="date"></h6>
+                    <h4><a href="http://nytimes.com/world/megatech-opens-first-rd-division.html">Megatech Open's First R&D Division Outside of Japan</a></h4>
+                    <p>A Megatech research and development base in Berlin has started operations as the Japanese prosthetics firm aims to strengthen cooperation with European manufacturers. The launch reflects Megatech's efforts to deliver high quality products while cutting costs...</p>
+                </div>
+                <p><a href="../news">More</a></p>
+            </div>
+            <div class="transbox glow right" style="max-width: 25%; min-width: 25%;">
+                <h1 class="center">INVESTING</h1>
+                <p>Megatech is committed to creating value for all its shareholders. We provide an easy to use interface for managing your shareholding</p>
+                <p><a href="../investor">Investment Management</a></p>
+                <p><a href="../investor/events">Upcoming Events</a></p>
+                <p>Our <a href="../investor/2033.pdf"><span class="currentYear">2034</span> Financial Report</a></p>
+            </div>
+            <div class="center">
+                <div class="transbox glow" style="max-width: 25%; min-width: 25%;">
+                    <h1 class="center">MEGATECH INTERNATIONAL</h1>
+                    <p>With operations worldwide, chances are that Megatech operates where you are. Megatech is committed to building a stronger, more sustainable future. <a href="../international">Find out how you can be a part of that future today</a>.</p>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div id="footer" class="center monospace">
+            <div class="transbox glow">
+                <p class="small">Copyright © 2015-<span class="currentYear">2034</span> Megatech Body LLC</p>
+                <p class="small">All Rights Reserved</p>
+            </div>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+        <script src="../js/standardnavbar.js"></script>
+        <script>
+            let currentIndex = 0;
+            let items = $('.spinner').children();
+            let count = items.length;
+
+            var autoSlide = setInterval(function(){
+                currentIndex += 1;
+                if(currentIndex > count - 1){
+                    currentIndex = 0;
+                }
+                megatech.cycleSpinner(items, currentIndex);
+            }, 10000);
+
+            function handleDates(){
+                var curDate = new Date();
+                var year = curDate.getFullYear() + 19;
+                var dates = $(".date");
+
+                curDate.setFullYear(year);
+                $(".currentYear").text(year);
+                for(var i = 0; i < dates.length; ++i){
+                    curDate.setDate(curDate.getDate() - 1);
+                    dates[i].innerText = curDate.toLocaleDateString();
+                }
+
+            }
+
+            handleDates();
+
+        </script>
+    </body>
+</html>
