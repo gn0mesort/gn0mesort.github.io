@@ -21,6 +21,6 @@ $.getScript('../js/navbar.js', function () {
   navbar.appendNavbar($('#navbar'))
   navbar.handleNavbar($('#navbar'))
   $('#navbar ul').attr('class', 'glow')
-  $('#navbar button').attr('class', 'monospace green glow')
-  $('#navbar div[class="dropdowncont]"').attr('class', 'dropdowncont transbox')
+  $('#navbar button').attr('class', 'dropdownbtn monospace green glow')
+  $('#navbar div[class="dropdowncont"]').attr('class', 'dropdowncont transbox')
 })
