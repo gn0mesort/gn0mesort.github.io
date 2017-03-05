@@ -17,9 +17,10 @@ $.getScript('../js/navbar.js', function () {
   navbar.elements.push(about)
   navbar.elements.push(contact)
 
-  console.log(navbar)
 
   navbar.appendNavbar($('#navbar'))
   navbar.handleNavbar($('#navbar'))
   $('#navbar ul').attr('class', 'glow')
+  $('#navbar button').attr('class', 'monospace green glow')
+  $('#navbar div[class="dropdowncont]"').attr('class', 'dropdowncont transbox')
 })
