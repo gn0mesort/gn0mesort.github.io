@@ -2,7 +2,7 @@ var Navbar = function (logo, elements) {
   this.logo = logo || ''
   this.elements = elements || []
   this.appendNavbar = function (element) {
-    let navbar = $(`<div><nav id="navigation"><ul><li><a href="/"><img class="icon" src="${this.logo}" alt="home" /></a><span>&nbsp;/&nbsp;</span></li></ul></nav><hr /></div>`)
+    let navbar = $(`<div><nav id="navigation"><ul><li><a href="/"><img class="icon" src="${this.logo}" alt="home" /></a></li><span>&nbsp;/&nbsp;</span></ul></nav><hr /></div>`)
     let linkList = $('ul', navbar)
     for (let element of this.elements) {
       let link = $('<li></li>').appendTo(linkList)
