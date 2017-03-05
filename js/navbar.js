@@ -13,7 +13,7 @@ var Navbar = function (logo, elements) {
     navbar.appendTo(element)
   }
   this.handleNavbar = function (navbar) {
-    let navLinks = navbar.getElementsByTagName('a')
+    let navLinks = $('a', navbar)
     for (let link of navLinks) {
       console.log(link.href)
       if (document.localName.href === link.href) {
