@@ -21,11 +21,11 @@ navbar.handleNavbar($('#navbar'))
 $('#navbar ul').attr('class', 'glow')
 $('#navbar button').attr('class', 'dropdownbtn monospace green glow')
 $('#navbar div[class="dropdowncont"]').attr('class', 'dropdowncont transbox')
-$('#navbar button').on('focus.navbar', function () {
+$('#navbar nav[class="dropdown"]').on('focus.navbar', function () {
   $('#navbar #navigation').css('height', '15vw')
   console.log('focus')
 })
-$('#navbar button').on('blur.navbar', function () {
+$('#navbar nav[class="dropdown"]').on('blur.navbar', function () {
   $('#navbar #navigation').css('height', '2vw')
   console.log('blur')
 })
