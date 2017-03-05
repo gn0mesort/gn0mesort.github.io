@@ -6,6 +6,7 @@ var Navbar = function (logo, elements) {
     let linkList = $('ul', navbar)
     for (let element of this.elements) {
       let link = $('<li></li>').appendTo(linkList)
+      console.dir(element.toElement())
       element.toElement().appendTo(link)
       $('<span>&nbsp;/&nbsp;</span>').appendTo(linkList)
     }
