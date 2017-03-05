@@ -39,7 +39,7 @@ var DropDown = function (text, links) {
     let nav = $('<nav class="dropdown></nav>')
     $(`<button class="dropdownbtn" disabled="true">${this.text}</button>`).appendTo(nav)
     let navLinks = $('<div class="dropdowncont"></div>')
-    for (let link of links) {
+    for (let link of this.links) {
       link.toElement().appendTo(navLinks)
     }
     navLinks.appendTo(nav)
