@@ -4,9 +4,9 @@ var Navbar = function (logo, elements) {
   this.appendNavbar = function (element) {
     var navbar = $(`<div><nav id="navigation"><ul><li><a href="/"><img class="icon" src="${this.logo}" alt="home" /></a></li><span>&nbsp;/&nbsp;</span></ul></nav><hr /></div>`)
     var linkList = $('ul', navbar)
-    for (var element of this.elements) {
+    for (var elem of this.elements) {
       var link = $('<li></li>').appendTo(linkList)
-      element.toElement().appendTo(link)
+      elem.toElement().appendTo(link)
       $('<span>&nbsp;/&nbsp;</span>').appendTo(linkList)
     }
 
