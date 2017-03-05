@@ -1,5 +1,5 @@
-let navbar = new Navbar('../img/logo.png')
-let projects = new DropDown('Projects')
+var navbar = new Navbar('../img/logo.png')
+var projects = new DropDown('Projects')
 projects.links.push(new NavLink(
   '../welcome',
   'A page containing useful links for getting up to speed after getting a new computer.',
@@ -10,8 +10,8 @@ projects.links.push(new NavLink(
   'A simple alarm clock',
   'Clock'
 ))
-let about = new NavLink('../about', '', 'About')
-let contact = new NavLink('../contact', '', 'Contact')
+var about = new NavLink('../about', '', 'About')
+var contact = new NavLink('../contact', '', 'Contact')
 navbar.elements.push(projects)
 navbar.elements.push(about)
 navbar.elements.push(contact)

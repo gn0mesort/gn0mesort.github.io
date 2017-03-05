@@ -2,10 +2,10 @@ var Navbar = function (logo, elements) {
   this.logo = logo || ''
   this.elements = elements || []
   this.appendNavbar = function (element) {
-    let navbar = $(`<div><nav id="navigation"><ul><li><a href="/"><img class="icon" src="${this.logo}" alt="home" /></a></li><span>&nbsp;/&nbsp;</span></ul></nav><hr /></div>`)
-    let linkList = $('ul', navbar)
-    for (let element of this.elements) {
-      let link = $('<li></li>').appendTo(linkList)
+    var navbar = $(`<div><nav id="navigation"><ul><li><a href="/"><img class="icon" src="${this.logo}" alt="home" /></a></li><span>&nbsp;/&nbsp;</span></ul></nav><hr /></div>`)
+    var linkList = $('ul', navbar)
+    for (var element of this.elements) {
+      var link = $('<li></li>').appendTo(linkList)
       element.toElement().appendTo(link)
       $('<span>&nbsp;/&nbsp;</span>').appendTo(linkList)
     }
@@ -13,8 +13,8 @@ var Navbar = function (logo, elements) {
     navbar.appendTo(element)
   }
   this.handleNavbar = function (navbar) {
-    let navLinks = $('a', navbar)
-    for (let link of navLinks) {
+    var navLinks = $('a', navbar)
+    for (var link of navLinks) {
       console.log(link.href)
       if (document.location.href === link.href) {
         link.href = '#'
@@ -36,10 +36,10 @@ var DropDown = function (text, links) {
   this.text = text || ''
   this.links = links || []
   this.toElement = function () {
-    let nav = $('<nav class="dropdown"></nav>')
+    var nav = $('<nav class="dropdown"></nav>')
     $(`<button class="dropdownbtn" disabled="true">${this.text}</button>`).appendTo(nav)
-    let navLinks = $('<div class="dropdowncont"></div>')
-    for (let link of this.links) {
+    var navLinks = $('<div class="dropdowncont"></div>')
+    for (var link of this.links) {
       link.toElement().appendTo(navLinks)
     }
     navLinks.appendTo(nav)
