@@ -16,7 +16,7 @@ var Navbar = function (logo, elements) {
     let navLinks = $('a', navbar)
     for (let link of navLinks) {
       console.log(link.href)
-      if (document.localName.href === link.href) {
+      if (document.location.href === link.href) {
         link.href = '#'
       }
     }
