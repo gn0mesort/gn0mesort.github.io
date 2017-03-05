@@ -1,4 +1,4 @@
-$.getScript('../js/navbar.js', function () {
+$.getScript('navbar.js', function () {
   let navbar = new Navbar('../img/logo.png')
   let projects = new DropDown('Projects')
   projects.links.push(new NavLink(
