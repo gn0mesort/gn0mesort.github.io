@@ -21,5 +21,5 @@ $.getScript('../js/navbar.js', function () {
 
   navbar.appendNavbar($('#navbar'))
   navbar.handleNavbar($('#navbar'))
-  $('#navbar > ul').attr('class', 'glow')
+  $('#navbar ul').attr('class', 'glow')
 })
