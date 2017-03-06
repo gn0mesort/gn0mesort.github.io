@@ -21,7 +21,7 @@ navbar.handleNavbar($('#navbar'))
 $('#navbar ul').attr('class', 'glow')
 $('#navbar button').attr('class', 'dropdownbtn monospace green glow')
 // $('#navbar div[class="dropdowncont"]').attr('class', 'dropdowncont transbox')
-$('#navbar nav[class="dropdown"]').on('mouseenter.navbar', function () {
+$('#navbar nav[class="dropdown"]').on('mouseover.navbar', function () {
   $('#navbar #navigation').css('height', '5vw')
   console.log('Expand Navigation Bar')
 })
