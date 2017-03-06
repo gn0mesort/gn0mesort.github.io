@@ -23,9 +23,9 @@ $('#navbar button').attr('class', 'dropdownbtn monospace green glow')
 // $('#navbar div[class="dropdowncont"]').attr('class', 'dropdowncont transbox')
 $('#navbar nav[class="dropdown"]').on('mouseenter.navbar', function () {
   $('#navbar #navigation').css('height', '5vw')
-  console.log('focus')
+  console.log('Expand Navigation Bar')
 })
 $('#navbar nav[class="dropdown"]').on('mouseleave.navbar', function () {
   $('#navbar #navigation').css('height', '2vw')
-  console.log('focus')
+  console.log('Contract Navigation Bar')
 })
