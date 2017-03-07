@@ -190,13 +190,13 @@ select{
 ul{
     list-style-type: square;
     text-align: initial;
-    height: 800px;
-    width: 600px;
 }
 
 iframe{
     border: double;
     padding: 10px;
+    height: 800px;
+    width: 600px;
 }
 
 /*Link Styles*/
