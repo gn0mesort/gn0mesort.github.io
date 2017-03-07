@@ -192,6 +192,11 @@ ul{
     text-align: initial;
 }
 
+iframe{
+    border: double;
+    padding: 10
+}
+
 /*Link Styles*/
 a:link{
     color: #00FF00;
