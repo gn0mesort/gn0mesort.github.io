@@ -9,6 +9,8 @@
     <body style="background-image:url('../img/background.jpg')">
         <div id="navbar" class="navbar monospace"></div>
         <div class="space"></div>
+        <div class="left"></div>
+        <div class="right"></div>
         <div id="game" style="width: 100%; text-align: center;"></div>
         <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
         <script src="../js/megatech.js"></script>
@@ -20,9 +22,6 @@
                 var navbar = $("#navigation")[0]; 
                 megatech.handleNavBar(navbar);
             });
-
-            $('canvas').appendTo('#game')
-            $('canvas').attr('style', $('canvas').attr('style') + 'margin: auto;')
         </script>
     </body>
 </html>
