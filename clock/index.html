@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
     <head>
         <meta charset="utf-8" />
         <link rel="stylesheet" href="../css/default.css" type="text/css" />
+        <link rel="stylesheet" href="../css/navbar.css" type="text/css" />
         <link rel="icon" href="../img/favicon.ico" />
         <title>Clock - メガテクボディ合同会社</title>
     </head>
+
     <body style="background-image:url('../img/background.jpg')">
         <div id="navbar" class="navbar monospace"></div>
         <div class="space"></div>
@@ -18,8 +21,10 @@
         <div id="input" class="center monospace">
             <div class="transbox glow">
                 <label>Time:</label>
-                <input id="hour" class="glow green" type="text" size="2" pattern="[0-1][0-9]" name="hour" min="1" max="12" onchange="stopped = false;if(this.value > 12 || this.value == 0){this.value = 12;}if(this.value < 10 && this.value.length < 2){this.value = '0' + this.value;}" value="1" />&nbsp;:&nbsp;
-                <input id="minute" class="glow green" type="text" size="2" pattern="[0-5][0-9]" name="minute" min="0" max="59" onchange="stopped = false;if(this.value > 59){this.value = 59;}if(this.value < 10 && this.value.length < 2){this.value = '0' + this.value;}" value="00" />
+                <input id="hour" class="glow green" type="text" size="2" pattern="[0-1][0-9]" name="hour" min="1" max="12" onchange="stopped = false;if(this.value > 12 || this.value == 0){this.value = 12;}if(this.value < 10 && this.value.length < 2){this.value = '0' + this.value;}"
+                    value="1" />&nbsp;:&nbsp;
+                <input id="minute" class="glow green" type="text" size="2" pattern="[0-5][0-9]" name="minute" min="0" max="59" onchange="stopped = false;if(this.value > 59){this.value = 59;}if(this.value < 10 && this.value.length < 2){this.value = '0' + this.value;}"
+                    value="00" />
                 <select class="glow green" id="ampm" onchange="stopped = false">
                     <option value="am">AM</option>
                     <option value="pm">PM</option>
@@ -47,8 +52,8 @@
         <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
         <script src="../js/megatech.js"></script>
         <script>
-            $("#navbar").load("../html/navbar.html", function(){
-                var navbar = $("#navigation")[0]; 
+            $("#navbar").load("../html/navbar.html", function() {
+                var navbar = $("#navigation")[0];
                 megatech.handleNavBar(navbar);
             });
 
@@ -56,15 +61,14 @@
             var alarm = document.getElementById('alarm');
             alarm.children[0].src = "../media/" + document.getElementById("track").value;
             alarm.load();
-            setInterval(function(){
+            setInterval(function() {
                 var date = new Date();
                 var hours = new Number(document.getElementById("hour").value);
                 var minutes = new Number(document.getElementById("minute").value);
                 var alarmDate = new Date();
-                if(document.getElementById("ampm").value === "pm"){
+                if (document.getElementById("ampm").value === "pm") {
                     hours = (hours + 12) % 24;
-                }
-                else if(document.getElementById("ampm").value === "am" && hours == 12){
+                } else if (document.getElementById("ampm").value === "am" && hours == 12) {
                     hours = 0;
                 }
                 alarmDate = new Date(0);
@@ -72,13 +76,13 @@
                 alarmDate.setMinutes(minutes);
                 $("#date").text(date.toLocaleDateString());
                 $("#clock").text(date.toLocaleTimeString());
-                if(date.getHours() === alarmDate.getHours() && date.getMinutes() === alarmDate.getMinutes() && !stopped){
+                if (date.getHours() === alarmDate.getHours() && date.getMinutes() === alarmDate.getMinutes() && !stopped) {
                     alarm.play();
-                }
-                else if((date.getHours() < alarmDate.getHours() && stopped) || (date.getHours() === alarmDate.getHours()&& date.getMinutes() < alarmDate.getMinutes() && stopped)){
+                } else if ((date.getHours() < alarmDate.getHours() && stopped) || (date.getHours() === alarmDate.getHours() && date.getMinutes() < alarmDate.getMinutes() && stopped)) {
                     stopped = false;
                 }
             }, 1000);
         </script>
     </body>
+
 </html>

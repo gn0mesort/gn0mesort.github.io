@@ -1,58 +1,62 @@
 /*Fonts*/
-@font-face{
+
+@font-face {
     font-family: "Pixel LCD";
     src: url("../font/pixellcd7.ttf");
 }
 
-@font-face{
+@font-face {
     font-family: "TechMono";
     src: url("../font/techmono.ttf");
 }
 
-@font-face{
+@font-face {
     font-family: "VeraMono";
     src: url("../font/veramono.ttf")
 }
 
+
 /*Effects*/
-.glow{
+
+.glow {
     text-shadow: 0 0 12px currentColor;
 }
 
-.spinner{
+.spinner {
     height: 30vw;
     width: 75vw;
     display: block;
 }
 
-.spinner div{
+.spinner div {
     position: relative;
 }
 
-.spinner *{
+.spinner * {
     z-index: 10;
 }
 
-.spinner-text-top{
+.spinner-text-top {
     position: absolute;
     margin: 0;
     top: 1vw;
     left: 0;
     width: 100%;
-    background-color: rgba(0, 0 , 0, 0.25);
+    background-color: rgba(0, 0, 0, 0.25);
     background-size: 50%;
 }
-.spinner-text-bottom{
+
+.spinner-text-bottom {
     position: absolute;
     margin: 0;
     top: 25vw;
     left: 0;
     width: 100%;
-    background-color: rgba(0, 0 , 0, 0.25);
+    background-color: rgba(0, 0, 0, 0.25);
     background-size: 50%;
 }
 
-.spinner div img{
+.spinner div img {
     position: absolute;
     top: 0;
     left: 0;
@@ -61,157 +65,135 @@
     z-index: 9;
 }
 
+
 /*Text Styles*/
-.center{
+
+.center {
     text-align: center;
 }
-.monospace{
+
+.monospace {
     font-family: "VeraMono", "Lucida Console", monospace;
 }
-.sans{
+
+.sans {
     font-family: sans;
 }
-.pixel{
+
+.pixel {
     font-family: "Pixel LCD";
 }
-.green{
+
+.green {
     color: #00FF00;
 }
-.small{
+
+.small {
     font-size: x-small;
 }
 
+
 /*Image Styles*/
-img.small{
+
+img.small {
     height: 25%;
     width: 25%;
 }
-img.icon{
+
+img.icon {
     vertical-align: middle;
     padding: 0px 10px 0px 0px;
     height: 32px;
     width: 32px;
 }
-img.center{
+
+img.center {
     display: block;
     margin: auto;
 }
 
+
 /*Placement*/
-.left{
+
+.left {
     float: left;
 }
-.right{
+
+.right {
     float: right;
 }
-.clear{
+
+.clear {
     clear: both;
 }
 
+
 /*Element Styles*/
-body{
+
+body {
     background: black no-repeat fixed;
     font-size: small;
     color: #00FF00;
 }
-div.navbar{
-    position: fixed;
-    background: inherit;
-    clear: both;
-    top: 0;
-    left: 0;
-    font-size: small;
-    z-index: 1000;
-    width: 100%;
-}
-div.transbox{
+
+div.transbox {
     display: inline-block;
     padding: 30px;
     margin: 15px;
     background: rgba(0, 0, 0, 0.75);
 }
-div.space{
+
+div.space {
     width: 100%;
     height: 5em;
 }
-div.dropdowncont{
-    position: fixed;
-    margin: 0;
-    padding: 0;
-    display: none;
-}
-div.dropdowncont a{
-    padding: 10px 10px 10px 10px;
-    min-width: 75px;
-    display: block;
-}
-div.dropdowncont a:hover{
-    background: rgba(0, 64, 0, 0.75);
-}
-nav.dropdown{
-    display: inline-block;
-}
-nav.dropdown:hover div.dropdowncont{
-    display: block;
-}
-nav ul li{
-    list-style: none;
-    display: inline;
-}
-hr{ 
+
+hr {
     background: rgba(0, 0, 0, 0) !important;
-    height: 10px; 
+    height: 10px;
     border: 0;
-    box-shadow: inset 0 12px 12px -12px rgba(0, 0, 0, 0.5); 
+    box-shadow: inset 0 12px 12px -12px rgba(0, 0, 0, 0.5);
 }
-button{
+
+button {
     min-width: 100px;
     background: transparent;
     border: double;
 }
-button.dropdownbtn{
-    border: 0;
-    background: inherit;
-    font-weight: bold;
-    display: inline;
-}
-button.dropdownbtn:hover{
-    text-decoration: underline;
-    text-decoration-style: dotted;
-}
-input{
+
+input {
     background: transparent;
     border: double;
 }
-select{
+
+select {
     background: transparent;
     border: double;
 }
-ul{
+
+ul {
     list-style-type: square;
     text-align: initial;
 }
 
-iframe{
-    border: double;
-    padding: 0 0 0 0;
-    width: 800px;
-    height: 600px;
-}
 
 /*Link Styles*/
-a:link{
+
+a:link {
     color: #00FF00;
     text-decoration: none;
     font-weight: bold;
 }
-a:visited{
+
+a:visited {
     color: #008800;
 }
-a:hover{
+
+a:hover {
     text-decoration: underline;
     text-decoration-style: dotted;
 }
-a.navlink:visited{
+
+a.navlink:visited {
     color: #00FF00;
 }

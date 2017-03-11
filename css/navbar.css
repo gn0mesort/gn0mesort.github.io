@@ -1,0 +1,56 @@
+div.navbar {
+    position: fixed;
+    background: inherit;
+    clear: both;
+    top: 0;
+    left: 0;
+    font-size: small;
+    z-index: 1000;
+    width: 100%;
+}
+
+div.dropdowncont {
+    position: fixed;
+    margin: 0;
+    padding: 0;
+    display: none;
+}
+
+div.dropdowncont a {
+    padding: 10px 10px 10px 10px;
+    min-width: 75px;
+    display: block;
+}
+
+div.dropdowncont a:hover {
+    background: rgba(0, 64, 0, 0.75);
+}
+
+nav.dropdown {
+    display: inline-block;
+}
+
+nav.dropdown:hover div.dropdowncont {
+    display: block;
+}
+
+nav.dropdown:hover {
+    height: 30vh;
+}
+
+nav ul li {
+    list-style: none;
+    display: inline;
+}
+
+button.dropdownbtn {
+    border: 0;
+    background: inherit;
+    font-weight: bold;
+    display: inline;
+}
+
+button.dropdownbtn:hover {
+    text-decoration: underline;
+    text-decoration-style: dotted;
+}

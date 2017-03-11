@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
     <head>
         <meta charset="utf-8" />
         <link rel="stylesheet" href="../css/default.css" type="text/css" />
+        <link rel="stylesheet" href="../css/navbar.css" type="text/css" />
         <link rel="icon" href="../img/favicon.ico" />
         <title>Welcome - メガテクボディ合同会社</title>
     </head>
+
     <body style="background-image:url('../img/background.jpg')">
         <div id="navbar" class="navbar monospace"></div>
         <div class="space"></div>
@@ -19,7 +22,8 @@
             </div>
             <br />
             <div class="transbox glow">
-                <p>My name is Oak! People call me the Computer Prof! This world is inhabited by machines called Computers! For some Computers are for porn. Others use them for shitposting. Myself...I study Computers as a profession! Your very own Computer legend is about to unfold! A world of dreams and adventures awaits! Let's go!</p>
+                <p>My name is Oak! People call me the Computer Prof! This world is inhabited by machines called Computers! For some Computers are for porn. Others use them for shitposting. Myself...I study Computers as a profession! Your very own Computer
+                    legend is about to unfold! A world of dreams and adventures awaits! Let's go!</p>
             </div>
         </div>
         <div id="choice" class="center monospace">
@@ -183,14 +187,15 @@
         <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
         <script src="../js/megatech.js"></script>
         <script>
-            $("#navbar").load("../html/navbar.html", function(){
-                var navbar = $("#navigation")[0]; 
+            $("#navbar").load("../html/navbar.html", function() {
+                var navbar = $("#navigation")[0];
                 megatech.handleNavBar(navbar);
             });
 
             var audio = null;
-            function playHorns(){
-                if(!audio){
+
+            function playHorns() {
+                if (!audio) {
                     audio = document.createElement("audio");
                     audio.setAttribute("src", "../media/horns.mp3");
                     audio.volume = 0.15;
@@ -199,4 +204,5 @@
             };
         </script>
     </body>
+
 </html>

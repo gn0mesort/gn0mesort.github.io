@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
     <head>
         <meta charset="utf-8" />
         <link rel="stylesheet" href="../css/default.css" type="text/css" />
+        <link rel="stylesheet" href="../css/navbar.css" type="text/css" />
         <link rel="icon" href="../img/favicon.ico" />
         <title>メガテクボディ合同会社</title>
     </head>
+
     <body style="background-image:url('../img/background.jpg')">
         <div id="navbar" class="navbar monospace"></div>
         <div class="space"></div>
@@ -36,12 +39,14 @@
                 <div>
                     <h6 class="date"></h6>
                     <h4><a href="http://forbes.com/japan/megatech-g7-seeking-approval">Megatech's 7th Generation Cyberbrain Submitted to Health Authorities Seeking Approval</a></h4>
-                    <p>Regulatory submissions in the U.S., American-Russo Alliance, American Empire, and Japan were completed based on data from Phase III studies, in which the Megatech g7 Cyberbrain demonstrated significant improvements over the previous model...</p>
+                    <p>Regulatory submissions in the U.S., American-Russo Alliance, American Empire, and Japan were completed based on data from Phase III studies, in which the Megatech g7 Cyberbrain demonstrated significant improvements over the previous
+                        model...</p>
                 </div>
                 <div>
                     <h6 class="date"></h6>
                     <h4><a href="http://nytimes.com/world/megatech-opens-first-rd-division.html">Megatech Open's First R&D Division Outside of Japan</a></h4>
-                    <p>A Megatech research and development base in Berlin has started operations as the Japanese prosthetics firm aims to strengthen cooperation with European manufacturers. The launch reflects Megatech's efforts to deliver high quality products while cutting costs...</p>
+                    <p>A Megatech research and development base in Berlin has started operations as the Japanese prosthetics firm aims to strengthen cooperation with European manufacturers. The launch reflects Megatech's efforts to deliver high quality products
+                        while cutting costs...</p>
                 </div>
                 <p><a href="../news">More</a></p>
             </div>
@@ -73,27 +78,27 @@
             var items = $(".spinner").children();
             var count = items.length;
 
-            $("#navbar").load("../html/navbar.html", function(){
-                var navbar = $("#navigation")[0]; 
+            $("#navbar").load("../html/navbar.html", function() {
+                var navbar = $("#navigation")[0];
                 megatech.handleNavBar(navbar);
             });
 
-            var autoSlide = setInterval(function(){
+            var autoSlide = setInterval(function() {
                 currentIndex += 1;
-                if(currentIndex > count - 1){
+                if (currentIndex > count - 1) {
                     currentIndex = 0;
                 }
                 megatech.cycleSpinner(items, currentIndex);
             }, 10000);
 
-            function handleDates(){
+            function handleDates() {
                 var curDate = new Date();
                 var year = curDate.getFullYear() + 19;
                 var dates = $(".date");
 
                 curDate.setFullYear(year);
                 $(".currentYear").text(year);
-                for(var i = 0; i < dates.length; ++i){
+                for (var i = 0; i < dates.length; ++i) {
                     curDate.setDate(curDate.getDate() - 1);
                     dates[i].innerText = curDate.toLocaleDateString();
                 }
@@ -101,7 +106,7 @@
             }
 
             handleDates();
-
         </script>
     </body>
+
 </html>
