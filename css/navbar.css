@@ -45,7 +45,7 @@ nav ul li {
 
 button.dropdownbtn {
     border: 0;
-    background: inherit;
+    background: rgba(0, 0, 0, 0.5);
     font-weight: bold;
     display: inline;
 }
