@@ -3,12 +3,21 @@
   <head>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../css/default.css" type="text/css" />
-    <link rel="icon" href="../img/favicon.ico" />
-    <title>メガテクボディ合同会社</title>
+    <link rel="stylesheet" href="../css/megatech.css" type="text/css" />
+    <link rel="icon" href="../img/favicon.png" />
+    <title>メガテクボディ合同会社<</title>
   </head>
   <body>
-        <div id="navbar" class="navbar monospace"></div>
-        <div class="space"></div>
-        <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <div class="navbar"></div>
+    <div class="space"></div>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="../js/index.js"></script>
+    <script>
+      var m = new Megatech()
+      $('div[class="navbar"]').load('../html/navbar.html', function() {
+        var navbar = $('div[class="navbar"]')[0];
+        m.handleNavBar(navbar);
+      });
+    </script>
   </body>
 </html>
