@@ -100,6 +100,10 @@ div.navbar hr {
   box-shadow: inset 0 12px 12px -12px rgba(0, 0, 0, 0.5);
 }
 
+ul {
+  padding: 0;
+}
+
 ul li {
   list-style: none;
   list-style-position: inside;
