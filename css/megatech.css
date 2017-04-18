@@ -1,0 +1,101 @@
+@import url('https://fonts.googleapis.com/css?family=Ubuntu+Mono|VT323');
+
+.green {
+  color: #00FF00;
+}
+
+.magenta {
+  color: #AA00AA;
+}
+
+.cyan {
+  color: #00AAAA;
+}
+
+.gray {
+  color: #AAAAAA;
+}
+
+.glow {
+  text-shadow: 0 0 6px currentColor;
+}
+
+.fancy {
+  font-family: 'VT323', monospace;
+}
+
+.content-box {
+  border: double;
+  padding: 3%;
+  background: rgba(0, 0, 0, 0.75);
+  display: inline-block;
+}
+
+.column-one {
+  order: 1;
+}
+
+.column-two {
+  order: 2;
+}
+
+.column-three {
+  order: 3;
+}
+
+body {
+  font-family: 'Ubuntu Mono', monospace;
+  background: black no-repeat fixed;
+  font-size: small;
+}
+
+a:link {
+  color: #00FF00;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+a:visited {
+  color: #008800;
+}
+
+a:hover {
+  text-decoration: underline;
+  text-decoration-style: dotted;
+}
+
+a.navlink:visited {
+  color: #00FF00;
+}
+
+div.navbar {
+  position: fixed;
+  display: inline-block;
+  background: inherit;
+  clear: both;
+  top: 0;
+  left: 0;
+  font-size: small;
+  z-index: 1000;
+  width: 100%;
+}
+
+div.navbar ul {
+  padding:0 10px;
+}
+
+div.navbar ul li {
+  list-style: none;
+  display: inline;
+}
+
+div.navbar img {
+  vertical-align: middle;
+}
+
+div.navbar hr {
+  background: rgba(0, 0, 0, 0) !important;
+  height: 10px;
+  border: 0;
+  box-shadow: inset 0 12px 12px -12px rgba(0, 0, 0, 0.5);
+}
