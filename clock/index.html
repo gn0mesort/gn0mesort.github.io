@@ -32,7 +32,10 @@
         var navbar = $('div[class="navbar"]')[0]
         m.handleNavBar(navbar)
       })
-      setInterval(function () { $('#clock').text(new Date().toLocaleDateString()) }, 1000)
+      setInterval(function () {
+        var date = new Date()
+        $('#clock').text(date.toLocaleDateString() + '\n' + date.toLocaleTimeString())
+      }, 1000)
     </script>
   </body>
 </html>
