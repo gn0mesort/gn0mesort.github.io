@@ -63,6 +63,7 @@
       }
 
       var stopped = function(stop) {
+        if(this._stopped === undefined) { this._stopped = false }
         if(stop !== undefined) { this._stopped = stop }
         return this._stopped
       }
