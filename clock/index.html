@@ -59,6 +59,7 @@
 
       var setAlarm = function (option) {
         document.getElementById('alarm-source').src = '../media/audio/' + option.value
+        document.getElementById('alarm').load()
       }
 
       setInterval(function () {
