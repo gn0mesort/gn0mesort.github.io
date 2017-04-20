@@ -34,7 +34,7 @@
       })
       setInterval(function () {
         var date = new Date()
-        $('#clock').text(date.toLocaleDateString() + '<br />' + date.toLocaleTimeString())
+        $('#clock').html(date.toLocaleDateString() + '<br />' + date.toLocaleTimeString())
       }, 1000)
     </script>
   </body>
