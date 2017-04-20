@@ -69,14 +69,15 @@
       }
 
       setInterval(function () {
+        if(this._alarmDate === undefined) { this._alarmDate = new Date() }
         var date = new Date()
-        var hours = Number(document.getElementById('hour').value)
-        var minutes = Number(document.getElementById('minute').value)
+        this._alarmDate.setHours(Number(document.getElementById('hour').value))
+        this._alarmDate.setMinutes(Number(document.getElementById('minute').value))
         var ampm = document.getElementById('ampm').value === 'am' ? true : false
-        if (!ampm) { hours = (hours + 12) % 24 }
-        else if (ampm && hours === 12) { hours = 0 }
+        if (!ampm) {  this._alarmDate.setHours(this._alarmDate.getHours() + 12) % 24 }
+        else if (ampm && hours === 12) { this._alarmDate.setHours(0) }
         $('#clock').html(date.toLocaleDateString() + '<br />' + date.toLocaleTimeString())
-        if (!stopped() && date.getHours() === hours && date.getMinutes() === minutes) { document.getElementById('alarm').play() }
+        if (!stopped() && date >= this._alarmDate) { document.getElementById('alarm').play() }
       }, 1000)
     </script>
   </body>
