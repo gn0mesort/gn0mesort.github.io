@@ -113,4 +113,5 @@ ul li {
 input.green {
   border: double #00FF00;
   color: #00FF00;
+  background: rgba(0, 0, 0, 0.75);
 }
