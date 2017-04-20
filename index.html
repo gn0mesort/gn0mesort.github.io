@@ -25,12 +25,12 @@
         <div class="content-box">
           <h1 class="green ">NEWS</h1>
           <div>
-            <h6 class="green align-left">4/16/2036</h6>
+            <h6 class="green align-left">4/16/<span class="date"></span></h6>
             <h4 class="green align-left"><a href="http://forbes.com/japan/megatech-g7-seeking-approval">Megatech's 7th Generation Cyberbrain Submitted to Health Authorities Seeking Approval</a></h4>
             <p class="green align-left">Regulatory submissions in the U.S., American-Russo Alliance, American Empire, and Japan were completed based on data from Phase III studies, in which the Megatech g7 Cyberbrain demonstrated significant improvements over the previous model...</p>
           </div>
           <div>
-            <h6 class="green align-left">4/15/2036</h6>
+            <h6 class="green align-left">4/15/<span class="date"></span>/h6>
             <h4 class="green align-left"><a href="http://nytimes.com/world/megatech-opens-first-rd-division.html">Megatech Open's First R&amp;D Division Outside of Japan</a></h4>
             <p class="green  align-left">A Megatech research and development base in Berlin has started operations as the Japanese prosthetics firm aims to strengthen cooperation with European manufacturers. The launch reflects Megatech's efforts to deliver high quality products while cutting costs...</p>
           </div>
@@ -49,7 +49,7 @@
           <p class="green align-left">Megatech is committed to creating value for all its shareholders. We provide an easy to use interface for managing your shareholding</p>
           <p class="green align-left"><a href="../investor">Investment Management</a></p>
           <p class="green align-left"><a href="../investor/events">Upcoming Events</a></p>
-          <p class="green align-left">Our <a href="../investor/2033.pdf"><span class="currentYear">2036</span> Financial Report</a></p>
+          <p class="green align-left">Our <a href="../investor/2033.pdf"><span class="date"></span> Financial Report</a></p>
         </div>
       </div>
     </div>
@@ -57,7 +57,7 @@
     <div class="container green">
       <div class="column column-one">
         <div class="content-box">
-          <p>Copyright © Megatech Co., Ltd. 2015-2036</p>
+          <p>Copyright © Megatech Co., Ltd. 2015-<span class="date"></span></p>
           <p>All Rights Reserved</p>
         </div>
       </div>
@@ -67,9 +67,12 @@
     <script>
       var m = new Megatech()
       $('div[class="navbar"]').load('../html/navbar.html', function() {
-        var navbar = $('div[class="navbar"]')[0];
-        m.handleNavBar(navbar);
-      });
+        var navbar = $('div[class="navbar"]')[0]
+        m.handleNavBar(navbar)
+      })
+      for(var elem of $('span[class="date"]')) {
+        elem.text(new Date().getFullYear() + 10)
+      }
     </script>
   </body>
 </html>
