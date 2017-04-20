@@ -45,6 +45,8 @@
           <audio id="alarm" loop="" controls="" style="vertical-align: middle;" onpause="stopped(true)">
             <source id="alarm-source" src="../media/audio/Alarm01.wav" type="audio/wav" />
           </audio>
+          <label>Active:</label>
+          <input id="active" type="checkbox" value="true" onchange="stopped(!this.checked)"></input>
         </div>
       </div>
     </div>
@@ -65,6 +67,7 @@
       var stopped = function(stop) {
         if(this._stopped === undefined) { this._stopped = false }
         if(stop !== undefined) { this._stopped = stop }
+        document.getElementById('active').checked = !this._stopped
         return this._stopped
       }
 
