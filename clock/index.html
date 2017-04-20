@@ -28,6 +28,7 @@
             <option value="am">AM</option>
             <option value="pm">PM</option>
           </select>
+          <br />
           <label>Alarm:</label>
           <select id="track" class="green">
             <option value="Alarm01.wav" selected="">Alarm 1</option>
@@ -41,10 +42,10 @@
             <option value="Alarm09.wav">Alarm 9</option>
             <option value="Alarm10.wav">Alarm 10</option>
           </select>
+          <audio id="alarm" loop="" controls="" style="vertical-align: middle;">
+            <source id="alarm-source" src="../media/Alarm01.wav" type="audio/wav" />
+          </audio>
         </div>
-        <audio id="alarm" loop="" controls="" style="vertical-align: middle;">
-          <source id="alarm-source" src="../media/Alarm01.wav" type="audio/wav" />
-        </audio>
       </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
