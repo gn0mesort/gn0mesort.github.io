@@ -70,9 +70,7 @@
         var navbar = $('div[class="navbar"]')[0]
         m.handleNavBar(navbar)
       })
-      for(var elem of $('span[class="date"]')) {
-        elem.text(new Date().getFullYear() + 10)
-      }
+        $('span[class="date"]').text(new Date().getFullYear() + 10)
     </script>
   </body>
 </html>
