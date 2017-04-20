@@ -30,7 +30,7 @@
           </select>
           <br />
           <label>Alarm:</label>
-          <select id="track" class="green">
+          <select id="track" class="green" onchange="setAlarm(this.selectedOptions[this.selectedIndex])">
             <option value="Alarm01.wav" selected="">Alarm 1</option>
             <option value="Alarm02.wav">Alarm 2</option>
             <option value="Alarm03.wav">Alarm 3</option>
@@ -56,6 +56,11 @@
         var navbar = $('div[class="navbar"]')[0]
         m.handleNavBar(navbar)
       })
+
+      var setAlarm = function (option) {
+        document.getElementById('alarm-source').src = '../media/audio' + option.value
+      }
+
       setInterval(function () {
         var date = new Date()
         $('#clock').html(date.toLocaleDateString() + '<br />' + date.toLocaleTimeString())
