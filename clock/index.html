@@ -22,15 +22,15 @@
       <div class="column column-one">
         <div class="content-box">
           <label>Time:</label>
-          <input id="hour" class="green" type="text" size="2" pattern="[0-1][0-9]" name="hour" min="1" max="12" value="1" onchange="stopped = false"></input>
-          <input id="minute" class="green" type="text" size="2" pattern="[0-5][0-9]" name="minute" min="0" max="59" value="00" onchange="stopped = false"></input>
+          <input id="hour" class="green" type="text" size="2" pattern="[0-1][0-9]" name="hour" min="1" max="12" value="1" onchange="stopped(false)"></input>
+          <input id="minute" class="green" type="text" size="2" pattern="[0-5][0-9]" name="minute" min="0" max="59" value="00" onchange="stopped(false)"></input>
           <select id="ampm" class="green">
             <option value="am">AM</option>
             <option value="pm">PM</option>
           </select>
           <br />
           <label>Alarm:</label>
-          <select id="track" class="green" onchange="setAlarm(this.options[this.selectedIndex])" onload="setAlarm(this.options[this.selectedIndex])">
+          <select id="track" class="green" onchange="setAlarm(this.options[this.selectedIndex])" onload="setAlarm(this.options[this.selectedIndex]);stopped(false)">
             <option value="Alarm01.wav" selected="">Alarm 1</option>
             <option value="Alarm02.wav">Alarm 2</option>
             <option value="Alarm03.wav">Alarm 3</option>
@@ -42,7 +42,7 @@
             <option value="Alarm09.wav">Alarm 9</option>
             <option value="Alarm10.wav">Alarm 10</option>
           </select>
-          <audio id="alarm" loop="" controls="" style="vertical-align: middle;" onpause="stopped = true">
+          <audio id="alarm" loop="" controls="" style="vertical-align: middle;" onpause="stopped(true)">
             <source id="alarm-source" src="../media/audio/Alarm01.wav" type="audio/wav" />
           </audio>
         </div>
@@ -62,7 +62,10 @@
         document.getElementById('alarm').load()
       }
 
-      var stopped = false
+      var stopped = function(stop) {
+        if(stop !== undefined) { this._stopped = stop }
+        return this._stopped
+      }
 
       setInterval(function () {
         var date = new Date()
@@ -70,7 +73,7 @@
         var minutes = Number(document.getElementById('minute').value)
         var ampm = document.getElementById('ampm').value === 'am' ? true : false
         $('#clock').html(date.toLocaleDateString() + '<br />' + date.toLocaleTimeString())
-        if (!stopped && date.getHours() === hours && date.getMinutes() === minutes) { document.getElementById('alarm').play() }
+        if (!stopped() && date.getHours() === hours && date.getMinutes() === minutes) { document.getElementById('alarm').play() }
       }, 1000)
     </script>
   </body>
