@@ -109,3 +109,8 @@ ul li {
   list-style-position: inside;
   display: inline-block;
 }
+
+input.green {
+  border: double #00FF00;
+  color: #00FF00;
+}
