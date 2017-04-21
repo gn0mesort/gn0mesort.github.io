@@ -42,7 +42,7 @@
             <option value="Alarm09.wav">Alarm 9</option>
             <option value="Alarm10.wav">Alarm 10</option>
           </select>
-          <audio id="alarm" loop="" controls="" style="vertical-align: middle;" onpause="stopped(true)">
+          <audio id="alarm" loop="" controls="" style="vertical-align: middle;" onpause="stopped(true)" onplay="stopped(false)">
             <source id="alarm-source" src="../media/audio/Alarm01.wav" type="audio/wav" />
           </audio>
           <label>Active:</label>
