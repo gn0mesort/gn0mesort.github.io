@@ -93,7 +93,7 @@
         $('#clock').html(date.toLocaleDateString() + '<br />' + date.toLocaleTimeString())
         if (!stopped() && date >= this._alarmDate) { alarm.play() }
         else if (stopped()) { alarm.pause() }
-        else { 
+        else if (date < this._alarmDate) { 
           alarm.pause()
           stopped(false)
         }
