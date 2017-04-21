@@ -107,7 +107,7 @@ ul {
 ul li {
   list-style: none;
   list-style-position: inside;
-  display: inline;
+  display: block;
 }
 
 input.green {
