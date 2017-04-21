@@ -74,13 +74,15 @@
       setInterval(function () {
         if(this._alarmDate === undefined) { this._alarmDate = new Date() }
         var date = new Date()
+        var alarm = document.getElementById('alarm')
         this._alarmDate.setHours(Number(document.getElementById('hour').value))
         this._alarmDate.setMinutes(Number(document.getElementById('minute').value))
         var ampm = document.getElementById('ampm').value === 'am' ? true : false
         if (!ampm) {  this._alarmDate.setHours(this._alarmDate.getHours() + 12) % 24 }
         else if (ampm && hours === 12) { this._alarmDate.setHours(0) }
         $('#clock').html(date.toLocaleDateString() + '<br />' + date.toLocaleTimeString())
-        if (!stopped() && date >= this._alarmDate) { document.getElementById('alarm').play() }
+        if (!stopped() && date >= this._alarmDate) { alarm.play() }
+        else if (stopped()) { alarm.pause() }
       }, 1000)
     </script>
   </body>
