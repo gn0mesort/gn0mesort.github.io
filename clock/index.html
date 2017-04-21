@@ -80,6 +80,7 @@
         var ampm = document.getElementById('ampm').value === 'am' ? true : false
         if (!ampm) {  this._alarmDate.setHours(this._alarmDate.getHours() + 12) % 24 }
         else if (ampm && this._alarmDate.getHours() === 12) { this._alarmDate.setHours(0) }
+        if(ampm && this._alarmDate.getHours() < 12) { this._alarmDate.setDay(this._alarmDate.getDay() + 1) }
         $('#clock').html(date.toLocaleDateString() + '<br />' + date.toLocaleTimeString())
         if (!stopped() && date >= this._alarmDate) { alarm.play() }
         else if (stopped()) { alarm.pause() }
