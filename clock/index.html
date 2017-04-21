@@ -71,6 +71,8 @@
         return this._stopped
       }
 
+      setAlarm(document.getElementById("track").selectedOptions[0])
+
       setInterval(function () {
         this._alarmDate = new Date()
         var date = new Date()
