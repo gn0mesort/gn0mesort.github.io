@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="../css/default.css" type="text/css" />
     <link rel="stylesheet" href="../css/megatech.css" type="text/css" />
     <link rel="icon" href="../img/favicon.png" />
-    <title>Projects - メガテクボディ合同会社</title>
+    <title>Pong - メガテクボディ合同会社</title>
   </head>
   <body style="background-image:url('../img/background.jpg')">
     <div class="navbar"></div>
@@ -13,11 +13,7 @@
     <div class="container green">
       <div class="column column-one">
         <div class="content-box">
-          <h1>Projects</h1>
-          <ul class="center">
-            <li><a href="../clock/">clock</a></li>
-            <li><a href="../pong/">pong</a></li>
-          </ul>
+          <iframe seamless="seamless" scrolling="no" id="pong" src="game.html" allowfullscreen="true"></iframe>
         </div>
       </div>
     </div>
@@ -26,9 +22,9 @@
     <script>
       var m = new Megatech()
       $('div[class="navbar"]').load('../html/navbar.html', function() {
-        var navbar = $('div[class="navbar"]')[0];
-        m.handleNavBar(navbar);
-      });
+        var navbar = $('div[class="navbar"]')[0]
+        m.handleNavBar(navbar)
+      })
     </script>
   </body>
 </html>
