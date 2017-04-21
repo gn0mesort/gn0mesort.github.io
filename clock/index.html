@@ -22,9 +22,9 @@
       <div class="column column-one">
         <div class="content-box">
           <label>Time:</label>
-          <input id="hour" class="green" type="text" size="2" pattern="[0-1][0-9]" name="hour" min="1" max="12" value="1" onchange="stopped(false)"></input>
-          <input id="minute" class="green" type="text" size="2" pattern="[0-5][0-9]" name="minute" min="0" max="59" value="00" onchange="stopped(false)"></input>
-          <select id="ampm" class="green">
+          <input id="hour" class="green" type="text" size="2" pattern="[0-1][0-9]" name="hour" min="1" max="12" value="1" onchange="stopped(false);setAlarmDate()"></input>
+          <input id="minute" class="green" type="text" size="2" pattern="[0-5][0-9]" name="minute" min="0" max="59" value="00" onchange="stopped(false);setAlarmDate()"></input>
+          <select id="ampm" class="green" onchange="stopped(false);setAlarmDate();">
             <option value="am">AM</option>
             <option value="pm">PM</option>
           </select>
@@ -71,18 +71,22 @@
         return this._stopped
       }
 
+      var setAlarmDate = function () {
+        this._alarmDate = new Date()
+        var ampm = document.getElementById('ampm').value === 'am' ? true : false
+        this._alarmDate.setHours(Number(document.getElementById('hour').value))
+        this._alarmDate.setMinutes(Number(document.getElementById('minute').value))
+         if (!ampm) {  this._alarmDate.setHours(this._alarmDate.getHours() + 12) % 24 }
+        else if (ampm && this._alarmDate.getHours() === 12) { this._alarmDate.setHours(0) }
+        if(ampm && this._alarmDate.getHours() > date.getHours()) { this._alarmDate.setDate(this._alarmDate.getDate() + 1) }
+      }
+
       setAlarm(document.getElementById("track").selectedOptions[0])
 
       setInterval(function () {
         this._alarmDate = new Date()
         var date = new Date()
         var alarm = document.getElementById('alarm')
-        this._alarmDate.setHours(Number(document.getElementById('hour').value))
-        this._alarmDate.setMinutes(Number(document.getElementById('minute').value))
-        var ampm = document.getElementById('ampm').value === 'am' ? true : false
-        if (!ampm) {  this._alarmDate.setHours(this._alarmDate.getHours() + 12) % 24 }
-        else if (ampm && this._alarmDate.getHours() === 12) { this._alarmDate.setHours(0) }
-        if(ampm && this._alarmDate.getHours() > 12) { this._alarmDate.setDate(this._alarmDate.getDate() + 1) }
         $('#clock').html(date.toLocaleDateString() + '<br />' + date.toLocaleTimeString())
         if (!stopped() && date >= this._alarmDate) { alarm.play() }
         else if (stopped()) { alarm.pause() }
