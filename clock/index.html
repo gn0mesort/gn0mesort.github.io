@@ -92,7 +92,11 @@
         var alarm = document.getElementById('alarm')
         $('#clock').html(date.toLocaleDateString() + '<br />' + date.toLocaleTimeString())
         if (!stopped() && date >= this._alarmDate) { alarm.play() }
-        else if (stopped() || date <= this._alarmDate) { alarm.pause() }
+        else if (stopped()) { alarm.pause() }
+        else { 
+          alarm.pause()
+          stopped(true)
+        }
       }, 1000)
     </script>
   </body>
