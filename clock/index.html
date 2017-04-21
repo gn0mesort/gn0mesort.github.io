@@ -84,7 +84,6 @@
       setAlarm(document.getElementById("track").selectedOptions[0])
 
       setInterval(function () {
-        this._alarmDate = new Date()
         var date = new Date()
         var alarm = document.getElementById('alarm')
         $('#clock').html(date.toLocaleDateString() + '<br />' + date.toLocaleTimeString())
