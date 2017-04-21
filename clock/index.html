@@ -67,6 +67,7 @@
       var stopped = function(stop) {
         if(this._stopped === undefined) { this._stopped = false }
         if(stop !== undefined) { this._stopped = stop }
+        if(stop) { document.getElementById('alarm').pause() }
         document.getElementById('active').checked = !this._stopped
         return this._stopped
       }
