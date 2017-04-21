@@ -67,7 +67,6 @@
       var stopped = function(stop) {
         if(this._stopped === undefined) { this._stopped = false }
         if(stop !== undefined) { this._stopped = stop }
-        if(stop) { document.getElementById('alarm').pause() }
         document.getElementById('active').checked = !this._stopped
         return this._stopped
       }
@@ -93,7 +92,7 @@
         var alarm = document.getElementById('alarm')
         $('#clock').html(date.toLocaleDateString() + '<br />' + date.toLocaleTimeString())
         if (!stopped() && date >= this._alarmDate) { alarm.play() }
-        else if (stopped()) { alarm.pause() }
+        else if (stopped() || date <= this._alarmDate) { alarm.pause() }
       }, 1000)
     </script>
   </body>
