@@ -74,14 +74,14 @@
       var setAlarmDate = function () {
         var date = new Date()
         this._alarmDate = new Date()
-        var ampm = document.getElementById('ampm').value === 'am' ? true : false
+        var ampm = document.getElementById('ampm').value === 'am'
         this._alarmDate.setHours(Number(document.getElementById('hour').value))
         this._alarmDate.setMinutes(Number(document.getElementById('minute').value))
         this._alarmDate.setSeconds(0)
         this._alarmDate.setMilliseconds(0)
          if (!ampm) {  this._alarmDate.setHours(this._alarmDate.getHours() + 12) % 24 }
         else if (ampm && this._alarmDate.getHours() === 12) { this._alarmDate.setHours(0) }
-        if(ampm && this._alarmDate.getHours() > date.getHours()) { this._alarmDate.setDate(this._alarmDate.getDate() + 1) }
+        if(ampm && this._alarmDate.getHours() < date.getHours()) { this._alarmDate.setDate(this._alarmDate.getDate() + 1) }
       }
 
       setAlarm(document.getElementById("track").selectedOptions[0])
