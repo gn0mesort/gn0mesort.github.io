@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../css/default.css" type="text/css" />
+    <link rel="icon" href="../img/favicon.png" />
+    <title>Magic 8-Ball</title>
+  </head>
+  <body>
+    <div id="container">
+        <img src="../img/frame.png" />
+    </div>
+    <form id="input">
+        <span>Question</span><br /><br />
+        <textarea></textarea><br /><br />
+        <button type="button" onclick="buttonClick()">Ask</button>
+    </form>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script>
+        function rand (low, high) {
+            if (!low || low < 0) { // If low is undefined or less than 0
+                low = 0 // Set low to 0
+            }
+            if (!high || high > Number.MAX_SAFE_INTEGER) { // If high is undefined or greater than Number.MAX_SAFE_INTEGER
+                high = Number.MAX_SAFE_INTEGER // Set high to Number.MAX_SAFE_INTEGER
+            }
+            return Math.floor(Math.random() * (high - low) + low) // Return a random value between low and high
+        }
+
+        function buttonClick () {
+            $('#input > textarea').val('')
+            for (let i = 0; i < 20; ++i) {
+                $(`#triangle${i}`).fadeOut(1000)
+            }
+            $(`#triangle${rand(0, 20)}`).fadeIn(7000)
+        }
+
+        for (let i = 0; i < 20; ++i) {
+            $('#container').append(`<img id="triangle${i}" src="../img/triangle${i}.png" style="display: none" />`)
+        }
+        $(document).on('keyup', (event) => {
+            if (event.which === 13) {
+                buttonClick()
+            }
+        })
+    </script>
+  </body>
+</html>
