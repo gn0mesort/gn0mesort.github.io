@@ -2,13 +2,13 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="../css/default.css" type="text/css" />
-    <link rel="icon" href="../img/favicon.png" />
+    <link rel="stylesheet" href="./css/default.css" type="text/css" />
+    <link rel="icon" href="./img/favicon.png" />
     <title>Magic 8-Ball</title>
   </head>
   <body>
     <div id="container">
-        <img src="../img/frame.png" />
+        <img src="./img/frame.png" />
     </div>
     <form id="input">
         <span>Question</span><br /><br />
@@ -36,7 +36,7 @@
         }
 
         for (let i = 0; i < 20; ++i) {
-            $('#container').append(`<img id="triangle${i}" src="../img/triangle${i}.png" style="display: none" />`)
+            $('#container').append(`<img id="triangle${i}" src="./img/triangle${i}.png" style="display: none" />`)
         }
         $(document).on('keyup', (event) => {
             if (event.which === 13) {
