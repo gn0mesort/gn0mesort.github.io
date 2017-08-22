@@ -60,10 +60,13 @@ function loadBlog(count = 0, startAt = 0) {
 				for (let element of resp) {
 					authors[element.commit.committer.email] = element.commit.committer.name;
 				}
-				sessionStorage[PRIVATE] = {};
-				sessionStorage[PRIVATE][`blogs-${i}`] = { authors: authors, lastCommit: lastCommit, firstCommit: firstCommit };
+				sessionStorage[`blogs-${i}`] = JSON.stringify({
+					authors: authors,
+					lastCommit: lastCommit,
+					firstCommit: firstCommit
+				});
 			}).always(() => {
-				let data = sessionStorage[PRIVATE][`blogs-${i}`]
+				let data = JSON.parse(sessionStorage[`blogs-${i}`]);
 				let byline = 'by&nbsp;';
 
 				for (let author in data.authors) {
