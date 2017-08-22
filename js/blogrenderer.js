@@ -1,4 +1,6 @@
 const PRIVATE = Symbol('private');
+const BLOG_HTML_URL = 'https://github.com/gn0mesort/blog/blob/master';
+const BLOG_API_URL = 'https://api.github.com/repos/gn0mesort/blog';
 
 class Extension {
 	constructor(type = 'lang', regex = /.*/g, replace = '', filter = undefined) {

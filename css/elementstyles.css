@@ -11,6 +11,25 @@ div.space {
 	height: 2vh;
 }
 
+div.blog-post {
+	border-style: double;
+	padding: 1vw 1vh;
+	display: inline-block;
+	text-align: justify;
+}
+
+div.date {
+	font-size: xx-small;
+}
+
+div.title {
+	font-size: large;
+}
+
+div.author {
+	font-size: x-small;
+}
+
 nav.element {
 	display: inline;
 }
