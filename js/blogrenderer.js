@@ -37,15 +37,15 @@ class Renderer {
 	}
 }
 
-function generateBlogMetaData() {
-	let data = JSON.parse(sessionStorage[`blogs-${i}`]);
+function generateBlogMetaData(index, blogs) {
+	let data = JSON.parse(sessionStorage[`blogs-${index}`]);
 	let byline = 'by&nbsp;';
 
 	for (let author in data.authors) {
 		byline += `<a href="mailto:${author}">${data.authors[author]}</a>&nbsp;`
 	}
 	$(`#blogs-${i}-metadata`).append(`
-	<div class="title"><a href="${BLOG_HTML_URL}/${blogs[i]}">${blogs[i]}</a></div>
+	<div class="title"><a href="${BLOG_HTML_URL}/${blogs[index]}">${blogs[index]}</a></div>
 	<div class="space"></div>
 	<div class="author">${byline}</div>
 	<div id="commit-time" class="date">last commit:&nbsp;<a href="${data.lastCommit.url}">${new Date(data.lastCommit.date).toLocaleString()}</a></div>
@@ -87,7 +87,7 @@ function loadBlog(count = 0, startAt = 0) {
 					});
 				}
 			}).always(() => {
-				generateBlogMetaData();
+				generateBlogMetaData(i, blogs);
 			});
 			renderer.load(`../blog/${blogs[i]}`).then((markdown) => {
 				$(`#blogs-${i}`).append(renderer.make(markdown));
