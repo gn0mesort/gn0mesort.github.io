@@ -37,7 +37,7 @@ class Renderer {
 	}
 }
 
-function loadBlog(count = 0) {
+function loadBlog(count = 0, startAt = 0) {
 	let renderer = new Renderer('github', {
 		customizedHeaderId: true,
 		ghCompatibleHeaderId: true,
@@ -45,7 +45,7 @@ function loadBlog(count = 0) {
 	});
 	$.get('../blog/latest.txt').done((resp) => {
 		let blogs = resp.split(/\n|\r|(?:\r\n)/g);
-		for (let i = 0; i < (count < blogs.length && count !== 0 ? count : blogs.length); ++i) {
+		for (let i = startAt; i < (count < blogs.length && count !== 0 ? count : blogs.length); ++i) {
 			$('#blog').append(`
 			<div id="blogs-${i}" class="blog-post">
 			<div id="blogs-${i}-metadata"></div>
