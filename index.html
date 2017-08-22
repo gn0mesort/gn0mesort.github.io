@@ -32,7 +32,7 @@
 					ghCompatibleHeaderId: true,
 					parseImgDimensions: true
 				});
-				$.get('../blog/latest.blog').done((resp) => {
+				$.get('../blog/latest.txt').done((resp) => {
 					renderer.load(resp).then((markdown) => {
 						$('#blog').append(renderer.make(markdown));
 					});
