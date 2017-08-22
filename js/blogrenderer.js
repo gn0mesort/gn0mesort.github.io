@@ -44,7 +44,7 @@ function generateBlogMetaData(index, blogs) {
 	for (let author in data.authors) {
 		byline += `<a href="mailto:${author}">${data.authors[author]}</a>&nbsp;`
 	}
-	$(`#blogs-${i}-metadata`).append(`
+	$(`#blogs-${index}-metadata`).append(`
 	<div class="title"><a href="${BLOG_HTML_URL}/${blogs[index]}">${blogs[index]}</a></div>
 	<div class="space"></div>
 	<div class="author">${byline}</div>
