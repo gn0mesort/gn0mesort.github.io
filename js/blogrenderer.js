@@ -53,23 +53,28 @@ function loadBlog(count = 0, startAt = 0) {
 			</div>
 			<div class="space"></div>
 			`);
-			$.get(`${BLOG_API_URL}/commits?path=${blogs[i]}`).done((resp) => {
+			$.get(`${BLOG_API_URL}/commits?path=${blogs[i]}`).done((resp) => { 
 				let authors = {};
-				let byline = 'by&nbsp;';
+				let lastCommit = { url: resp[0].html_url, date: resp[0].commit.committer.date };
+				let firstCommit = { url: resp[resp.length - 1].html_url, date: resp[resp.length - 1].commit.committer.date };
 				for (let element of resp) {
 					authors[element.commit.committer.email] = element.commit.committer.name;
 				}
-				console.log(authors)
-				for (let author in authors) {
+				sessionStorage[PRIVATE][`blogs-${i}`] = { authors: authors, lastCommit: lastCommit, firstCommit: firstCommit };
+			}).always(() => {
+				let data = sessionStorage[PRIVATE][`blogs-${i}`]
+				let byline = 'by&nbsp;';
+
+				for (let author in data.authors) {
 					byline += `<a href="mailto:${author}">${authors[author]}</a>&nbsp;`
 				}
 				$(`#blogs-${i}-metadata`).append(`
 				<div class="title"><a href="${BLOG_HTML_URL}/${blogs[i]}">${blogs[i]}</a></div>
 				<div class="space"></div>
 				<div class="author">${byline}</div>
-				<div id="commit-time" class="date">last commit:&nbsp;<a href="${resp[0].html_url}">${new Date(resp[0].commit.committer.date).toLocaleString()}</a></div>
-				<div id="author-time" class="date">created at:&nbsp;<a href="${resp[resp.length - 1].html_url}">${new Date(resp[resp.length - 1].commit.committer.date).toLocaleString()}</a></div>
-				`)
+				<div id="commit-time" class="date">last commit:&nbsp;<a href="${data.lastCommit.url}">${new Date(data.lastCommit.date).toLocaleString()}</a></div>
+				<div id="author-time" class="date">created at:&nbsp;<a href="${data.firstCommit.url}">${new Date(data.firstCommit.date).toLocaleString()}</a></div>
+				`);
 			});
 			renderer.load(`../blog/${blogs[i]}`).then((markdown) => {
 				$(`#blogs-${i}`).append(renderer.make(markdown));
