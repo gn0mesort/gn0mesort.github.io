@@ -37,15 +37,15 @@ class Renderer {
 	}
 }
 
-function loadBlog() {
+function loadBlog(count = 0) {
 	let renderer = new Renderer('github', {
 		customizedHeaderId: true,
 		ghCompatibleHeaderId: true,
 		parseImgDimensions: true
 	});
-	$.get('../blog/latest.txt').done((resp) => {
+	$.get('http://megate.ch/blog/latest.txt').done((resp) => {
 		let blogs = resp.split(/\n|\r|(?:\r\n)/g);
-		for (let i = 0; i < blogs.length; ++i) {
+		for (let i = 0; i < (count < blogs.length && count !== 0 ? count : blogs.length); ++i) {
 			$('#blog').append(`
 			<div id="blogs-${i}" class="blog-post">
 			<div id="blogs-${i}-metadata"></div>
@@ -71,7 +71,7 @@ function loadBlog() {
 				<div id="author-time" class="date">created at:&nbsp;<a href="${resp[resp.length - 1].html_url}">${new Date(resp[resp.length - 1].commit.committer.date).toLocaleString()}</a></div>
 				`)
 			});
-			renderer.load(`../blog/${blogs[i]}`).then((markdown) => {
+			renderer.load(`http://megate.ch/blog/${blogs[i]}`).then((markdown) => {
 				$(`#blogs-${i}`).append(renderer.make(markdown));
 			});
 		}
