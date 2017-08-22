@@ -70,6 +70,9 @@ function loadBlog(count = 0, startAt = 0) {
 			<div class="space"></div>
 			`);
 			$.get(`https://api.github.com/rate_limit`).done((resp) => {
+				if (!sessionStorage[`blogs-${i}`]) {
+					sessionStorage[`blogs-${i}`] = JSON.stringify({ cacheTime: 0 });
+				}
 				if (resp.rate.remaining && JSON.parse(sessionStorage[`blogs-${i}`]).cacheTime + 60000 < Date.now()) {
 					$.get(`${BLOG_API_URL}/commits?path=${blogs[i]}`).done((resp) => { 
 						let authors = {};
