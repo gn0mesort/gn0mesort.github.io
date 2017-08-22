@@ -86,10 +86,10 @@ function loadBlog(count = 0, startAt = 0) {
 							lastCommit: lastCommit,
 							firstCommit: firstCommit,
 							cacheTime: Date.now()
-						}).always(() => {
-							generateBlogMetaData(i, blogs);
 						})
-					});
+					}).always(() => {
+						generateBlogMetaData(i, blogs);
+					})
 				} else {
 					generateBlogMetaData(i, blogs);
 				}
