@@ -60,6 +60,7 @@ function loadBlog(count = 0, startAt = 0) {
 				for (let element of resp) {
 					authors[element.commit.committer.email] = element.commit.committer.name;
 				}
+				sessionStorage[PRIVATE] = {};
 				sessionStorage[PRIVATE][`blogs-${i}`] = { authors: authors, lastCommit: lastCommit, firstCommit: firstCommit };
 			}).always(() => {
 				let data = sessionStorage[PRIVATE][`blogs-${i}`]
