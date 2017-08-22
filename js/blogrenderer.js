@@ -70,7 +70,7 @@ function loadBlog(count = 0, startAt = 0) {
 				let byline = 'by&nbsp;';
 
 				for (let author in data.authors) {
-					byline += `<a href="mailto:${author}">${authors[author]}</a>&nbsp;`
+					byline += `<a href="mailto:${author}">${data.authors[author]}</a>&nbsp;`
 				}
 				$(`#blogs-${i}-metadata`).append(`
 				<div class="title"><a href="${BLOG_HTML_URL}/${blogs[i]}">${blogs[i]}</a></div>
