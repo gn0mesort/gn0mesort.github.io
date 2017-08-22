@@ -50,6 +50,7 @@
 							<div class="author">by <a href="mailto:${resp[0].commit.committer.email}">${resp[0].commit.committer.name}</a></div>
 							<div id="commit-time" class="date">last commit:&nbsp;<a href="${resp[0].html_url}">${new Date(resp[0].commit.committer.date).toLocaleString()}</a></div>
 							<div id="author-time" class="date">created at:&nbsp;<a href=${resp[resp.length - 1].html_url_url}">${new Date(resp[resp.length - 1].commit.committer.date).toLocaleString()}</a></div>
+							<div class="space"></div>
 							`)
 						});
 						renderer.load(`../blog/${blogs[i]}`).then((markdown) => {
