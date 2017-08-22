@@ -37,6 +37,22 @@ class Renderer {
 	}
 }
 
+function generateBlogMetaData() {
+	let data = JSON.parse(sessionStorage[`blogs-${i}`]);
+	let byline = 'by&nbsp;';
+
+	for (let author in data.authors) {
+		byline += `<a href="mailto:${author}">${data.authors[author]}</a>&nbsp;`
+	}
+	$(`#blogs-${i}-metadata`).append(`
+	<div class="title"><a href="${BLOG_HTML_URL}/${blogs[i]}">${blogs[i]}</a></div>
+	<div class="space"></div>
+	<div class="author">${byline}</div>
+	<div id="commit-time" class="date">last commit:&nbsp;<a href="${data.lastCommit.url}">${new Date(data.lastCommit.date).toLocaleString()}</a></div>
+	<div id="author-time" class="date">created at:&nbsp;<a href="${data.firstCommit.url}">${new Date(data.firstCommit.date).toLocaleString()}</a></div>
+	`);
+}
+
 function loadBlog(count = 0, startAt = 0) {
 	let renderer = new Renderer('github', {
 		customizedHeaderId: true,
@@ -53,32 +69,25 @@ function loadBlog(count = 0, startAt = 0) {
 			</div>
 			<div class="space"></div>
 			`);
-			$.get(`${BLOG_API_URL}/commits?path=${blogs[i]}`).done((resp) => { 
-				let authors = {};
-				let lastCommit = { url: resp[0].html_url, date: resp[0].commit.committer.date };
-				let firstCommit = { url: resp[resp.length - 1].html_url, date: resp[resp.length - 1].commit.committer.date };
-				for (let element of resp) {
-					authors[element.commit.committer.email] = element.commit.committer.name;
+			$.get(`https://api.github.com/rate_limit`).done((resp) => {
+				if (resp.rate.remaining && JSON.parse(sessionStorage[`blogs-${i}`]).cacheTime + 60000 < Date.now()) {
+					$.get(`${BLOG_API_URL}/commits?path=${blogs[i]}`).done((resp) => { 
+						let authors = {};
+						let lastCommit = { url: resp[0].html_url, date: resp[0].commit.committer.date };
+						let firstCommit = { url: resp[resp.length - 1].html_url, date: resp[resp.length - 1].commit.committer.date };
+						for (let element of resp) {
+							authors[element.commit.committer.email] = element.commit.committer.name;
+						}
+						sessionStorage[`blogs-${i}`] = JSON.stringify({
+							authors: authors,
+							lastCommit: lastCommit,
+							firstCommit: firstCommit,
+							cacheTime: Date.now()
+						});
+					});
 				}
-				sessionStorage[`blogs-${i}`] = JSON.stringify({
-					authors: authors,
-					lastCommit: lastCommit,
-					firstCommit: firstCommit
-				});
 			}).always(() => {
-				let data = JSON.parse(sessionStorage[`blogs-${i}`]);
-				let byline = 'by&nbsp;';
-
-				for (let author in data.authors) {
-					byline += `<a href="mailto:${author}">${data.authors[author]}</a>&nbsp;`
-				}
-				$(`#blogs-${i}-metadata`).append(`
-				<div class="title"><a href="${BLOG_HTML_URL}/${blogs[i]}">${blogs[i]}</a></div>
-				<div class="space"></div>
-				<div class="author">${byline}</div>
-				<div id="commit-time" class="date">last commit:&nbsp;<a href="${data.lastCommit.url}">${new Date(data.lastCommit.date).toLocaleString()}</a></div>
-				<div id="author-time" class="date">created at:&nbsp;<a href="${data.firstCommit.url}">${new Date(data.firstCommit.date).toLocaleString()}</a></div>
-				`);
+				generateBlogMetaData();
 			});
 			renderer.load(`../blog/${blogs[i]}`).then((markdown) => {
 				$(`#blogs-${i}`).append(renderer.make(markdown));
