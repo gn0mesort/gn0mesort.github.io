@@ -86,11 +86,13 @@ function loadBlog(count = 0, startAt = 0) {
 							lastCommit: lastCommit,
 							firstCommit: firstCommit,
 							cacheTime: Date.now()
-						});
+						}).always(() => {
+							generateBlogMetaData(i, blogs);
+						})
 					});
+				} else {
+					generateBlogMetaData(i, blogs);
 				}
-			}).always(() => {
-				generateBlogMetaData(i, blogs);
 			});
 			renderer.load(`../blog/${blogs[i]}`).then((markdown) => {
 				$(`#blogs-${i}`).append(renderer.make(markdown));
