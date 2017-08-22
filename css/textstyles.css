@@ -1,0 +1,54 @@
+@charset "utf8";
+@import url("https://fonts.googleapis.com/css?family=Aladin|Redressed");
+@font-face {
+	font-family: "DejaVu Sans Mono";
+	src: local("DejaVu Sans Mono"), url("../font/dejavusansmono.ttf");
+}
+@font-face {
+	font-family: "DejaVu Sans";
+	src: local("DejaVu Sans"), url("../font/dejavusans.ttf");
+}
+@font-face {
+	font-family: "DejaVu Serif";
+	src: local("DejaVu Serif"), url("../font/dejavuserif.ttf");
+}
+
+
+.cursive {
+	font-family: "Redressed", cursive;
+}
+
+.fantasy {
+	font-family: "Aladin", fantasy;
+}
+
+.monospace {
+	font-family: "DejaVu Sans Mono", monospace;
+	font-size: small;
+}
+
+.sans-serif {
+	font-family: "DejaVu Sans", sans-serif;
+	font-size: small;
+}
+
+.serif {
+	font-family: "DejaVu Serif", serif;
+	font-size: small;
+}
+
+.align-center {
+	text-align: center;
+}
+
+.align-left {
+	text-align: left;
+}
+
+.align-right {
+	text-align: right;
+}
+
+.justify {
+	text-align: justify;
+}

@@ -1,0 +1,33 @@
+<hr />
+<form id="theme">
+	Text Color:&nbsp;
+	<select id="text" onchange="handleTheme()">
+		<option value="amber">Amber</option>
+		<option value="black">Black</option>
+		<option value="cyan">Cyan</option>
+		<option value="gray">Gray</option>
+		<option value="green">Green</option>
+		<option value="magenta">Magenta</option>
+		<option value="white" selected="true">White</option>
+	</select>
+	Background Color:&nbsp;
+	<select id="background" onchange="handleTheme()">
+		<option value="amber">Amber</option>
+		<option value="black" selected="true">Black</option>
+		<option value="cyan">Cyan</option>
+		<option value="gray">Gray</option>
+		<option value="green">Green</option>
+		<option value="magenta">Magenta</option>
+		<option value="white">White</option>
+	</select>
+	Font-Family:&nbsp;
+	<select id="font" onchange="handleTheme()">
+		<option value="cursive">Cursive</option>
+		<option value="fantasy">Fantasy</option>
+		<option value="monospace" selected="true">Monospace</option>
+		<option value="sans-serif">Sans-Serif</option>
+		<option value="serif">Serif</option>
+	</select>
+	&nbsp;
+	<button type="button" onclick="defaultTheme()">Default</button>
+</form>

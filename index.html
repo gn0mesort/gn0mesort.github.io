@@ -1,76 +1,43 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <link rel="stylesheet" href="../css/default.css" type="text/css" />
-    <link rel="stylesheet" href="../css/megatech.css" type="text/css" />
-    <link rel="icon" href="../img/favicon.png" />
-    <title>メガテクボディ合同会社</title>
-  </head>
-  <body style="background-image:url('../img/background.jpg')">
-    <div class="navbar"></div>
-    <div class="space"></div>
-    <div class="container green">
-      <div class="column column-one">
-        <div class="content-box">
-          <h1>メガテクボディ合同会社</h1>
-          <img src="../img/megatechlogotext.png" height="200vh" />
-          <h1>Manufacturing Better Minds</h1>
-        </div>
-      </div>
-    </div>
-    <div class="space"></div>
-    <div class="container green">
-      <div class="column column-one">
-        <div class="content-box">
-          <h1 class="green ">NEWS</h1>
-          <div>
-            <h6 class="green align-left">4/16/<span class="date"></span></h6>
-            <h4 class="green align-left"><a href="http://forbes.com/japan/megatech-g7-seeking-approval">Megatech's 7th Generation Cyberbrain Submitted to Health Authorities Seeking Approval</a></h4>
-            <p class="green align-left">Regulatory submissions in the U.S., American-Russo Alliance, American Empire, and Japan were completed based on data from Phase III studies, in which the Megatech g7 Cyberbrain demonstrated significant improvements over the previous model...</p>
-          </div>
-          <div>
-            <h6 class="green align-left">4/15/<span class="date"></span></h6>
-            <h4 class="green align-left"><a href="http://nytimes.com/world/megatech-opens-first-rd-division.html">Megatech Open's First R&amp;D Division Outside of Japan</a></h4>
-            <p class="green  align-left">A Megatech research and development base in Berlin has started operations as the Japanese prosthetics firm aims to strengthen cooperation with European manufacturers. The launch reflects Megatech's efforts to deliver high quality products while cutting costs...</p>
-          </div>
-          <p class="align-left"><a href="../news">More</a></p>
-        </div>
-      </div>
-      <div class="column column-two">
-        <div class="content-box">
-          <h1 class="green ">MEGATECH INTERNATIONAL</h1>
-          <p class="green align-left">With operations worldwide, chances are that Megatech operates where you are. Megatech is committed to building a stronger, more sustainable future. <a href="../international">Find out how you can be a part of that future today</a>.</p>
-        </div>
-      </div>
-      <div class="column column-three">
-        <div class="content-box">
-          <h1 class="green ">INVESTING</h1>
-          <p class="green align-left">Megatech is committed to creating value for all its shareholders. We provide an easy to use interface for managing your shareholding</p>
-          <p class="green align-left"><a href="../investor">Investment Management</a></p>
-          <p class="green align-left"><a href="../investor/events">Upcoming Events</a></p>
-          <p class="green align-left">Our <a href="../investor/financialreport.pdf"><span class="date"></span> Financial Report</a></p>
-        </div>
-      </div>
-    </div>
-    <div class="space"></div>
-    <div class="container green">
-      <div class="column column-one">
-        <div class="content-box">
-          <p>Copyright © Megatech Co., Ltd. 2015-<span class="date"></span></p>
-          <p>All Rights Reserved</p>
-        </div>
-      </div>
-    </div>
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script src="../js/index.js"></script>
-    <script>
-      var m = new Megatech()
-      $('div[class="navbar"]').load('../html/navbar.html', function() {
-        var navbar = $('div[class="navbar"]')[0]
-        m.handleNavBar(navbar)
-      })
-        $('span[class="date"]').text(new Date().getFullYear() + 10)
-    </script>
-  </body>
+	<head>
+		<meta charset="utf-8" />
+		<link rel="stylesheet" href="../css/default.css" type="text/css" />
+		<link rel="icon" href="../img/favicon.png" />
+		<title>Megatech</title>
+	</head>
+	<body class="black-background white monospace" onload="loadBlog()">
+		<div id="header" class="bar fixed" style="top: 0;"></div>
+		<div class="space"></div>
+		<div class="space"></div>
+		<div id="body" class="align-center">
+			<h1>MEGATECH</h1>
+			<hr />
+			<h3>Tea, Games, and Code</h3>
+			<div id="blog" class="align-left"></div>
+		</div>
+		<div id="footer" class="bar align-center"></div>
+		<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+		<script src="../js/showdown.min.js"></script>
+		<script src="../js/blogrenderer.js"></script>
+		<script src="../js/themebar.js"></script>
+		<script src="../js/navbar.js"></script>
+		<script>
+			$('#header').load('../html/navbar.html', handleNavbar);
+			$('#footer').load('../html/themebar.html');
+
+			function loadBlog() {
+				let renderer = new Renderer('github', {
+					customizedHeaderId: true,
+					ghCompatibleHeaderId: true,
+					parseImgDimensions: true
+				});
+				$.get('../blog/latest.blog').done((resp) => {
+					renderer.load(resp).then((markdown) => {
+						$('#blog').append(renderer.make(markdown));
+					});
+				})
+			}
+		</script>
+	</body>
 </html>

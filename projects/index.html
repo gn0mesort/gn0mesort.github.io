@@ -1,34 +1,32 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <link rel="stylesheet" href="../css/default.css" type="text/css" />
-    <link rel="stylesheet" href="../css/megatech.css" type="text/css" />
-    <link rel="icon" href="../img/favicon.png" />
-    <title>Projects - メガテクボディ合同会社</title>
-  </head>
-  <body style="background-image:url('../img/background.jpg')">
-    <div class="navbar"></div>
-    <div class="space"></div>
-    <div class="container green">
-      <div class="column column-one">
-        <div class="content-box">
-          <h1>Projects</h1>
-          <ul class="center">
-            <li><a href="../clock/">clock</a></li>
-            <li><a href="../pong/">pong</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-    <script src="../js/index.js"></script>
-    <script>
-      var m = new Megatech()
-      $('div[class="navbar"]').load('../html/navbar.html', function() {
-        var navbar = $('div[class="navbar"]')[0];
-        m.handleNavBar(navbar);
-      });
-    </script>
-  </body>
+	<head>
+		<meta charset="utf-8" />
+		<link rel="stylesheet" href="../css/default.css" type="text/css" />
+		<link rel="icon" href="../img/favicon.png" />
+		<title>Projects - Megatech</title>
+	</head>
+	<body class="black-background white monospace">
+		<div id="header" class="bar fixed" style="top: 0;"></div>
+		<div class="space"></div>
+		<div class="space"></div>
+		<div id="body" class="align-center">
+			<h1>Projects</h1>
+			<hr />
+			<div class="justify" style="display: inline-block;">
+				<p><a href="https://github.com/gn0mesort/engage-bot">engage-bot</a><p>
+				<p><a href="https://github.com/gn0mesort/BetterDiscordPlugins">BetterDiscordPlugins</a></p>
+				<p><a href="https://github.com/gn0mesort/discord-reposter">discord-reposter</a></p>
+				<p><a href="../8ball/">Magic 8-Ball</a></p>
+			</div>
+		</div>
+		<div id="footer" class="bar align-center"></div>
+		<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+		<script src="../js/themebar.js"></script>
+		<script src="../js/navbar.js"></script>
+		<script>
+			$('#header').load('../html/navbar.html', handleNavbar);
+			$('#footer').load('../html/themebar.html');
+		</script>
+	</body>
 </html>

@@ -1,0 +1,29 @@
+@charset "utf8";
+
+.amber {
+	color: #FF7E00;
+}
+
+.black {
+	color: #000000;
+}
+
+.cyan {
+	color: #00AAAA;
+}
+
+.gray {
+	color: #AAAAAA;
+}
+
+.green {
+	color: #00FF00;
+}
+
+.magenta {
+	color: #AA00AA;
+}
+
+.white {
+	color: #FFFFFF;
+}

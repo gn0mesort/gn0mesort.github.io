@@ -1,32 +1,37 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <link rel="stylesheet" href="../css/default.css" type="text/css" />
-    <link rel="stylesheet" href="../css/megatech.css" type="text/css" />
-    <link rel="icon" href="../img/favicon.png" />
-    <title>Contact Me - メガテクボディ合同会社</title>
-  </head>
-  <body style="background-image:url('../img/background.jpg')">
-    <div class="navbar"></div>
-    <div class="space"></div>
-    <div  class="container green">
-      <div class="column column-one">
-        <div class="content-box">
-          <h1>Contact Me:</h1>
-          <p>Github: <a href="https://github.com/gn0mesort">gn0mesort</a></p>
-          <p>Email: <a href="mailto:gnomesort@megate.ch">gnomesort@megate.ch</a></p>
-        </div>
-      </div>
-    </div>
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-    <script src="../js/index.js"></script>
-    <script>
-      var m = new Megatech()
-      $('div[class="navbar"]').load('../html/navbar.html', function() {
-        var navbar = $('div[class="navbar"]')[0];
-        m.handleNavBar(navbar);
-      });
-    </script>
-  </body>
+	<head>
+		<meta charset="utf-8" />
+		<link rel="stylesheet" href="../css/default.css" type="text/css" />
+		<link rel="icon" href="../img/favicon.png" />
+		<title>Contact - Megatech</title>
+	</head>
+	<body class="black-background white monospace">
+		<div id="header" class="bar fixed" style="top: 0;"></div>
+		<div class="space"></div>
+		<div class="space"></div>
+		<div id="body" class="align-center">
+			<h1>Contact Information</h1>
+			<hr />
+			<div class="justify" style="display:inline-block;">
+				<p>&nbsp;&nbsp;email: <a href="mailto:gnomesort@megate.ch">gnomesort@megate.ch</a></p>
+				<p>&nbsp;github: <a href="https://github.com/gn0mesort/">gn0mesort</a></p>
+				<p>discord: <a id="discord-invite" href="#"></a></p>
+				<p>youtube: <a href="https://www.youtube.com/channel/UCoTnqqRNoD5bxjopfVoypbg">gnomesort</a></p>
+			</div>
+		</div>
+		<div id="footer" class="bar align-center"></div>
+		<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+		<script src="../js/themebar.js"></script>
+		<script src="../js/navbar.js"></script>
+		<script>
+			$('#header').load('../html/navbar.html', handleNavbar);
+			$('#footer').load('../html/themebar.html');
+			$.getJSON('https://discordapp.com/api/guilds/330575790729330688/widget.json', (data) => {
+				let link = $('#discord-invite');
+				link.attr('href', data.instant_invite);
+				link.text(`${data.name} (${data.members.length} users online)`);
+			});
+		</script>
+	</body>
 </html>

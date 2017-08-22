@@ -1,55 +1,6 @@
-/* Placement */
-.right {
-  float: right;
-}
-
-.left {
-  float: left;
-}
-
-.clear {
-  clear: both;
-}
-
-.clear-left {
-  clear: left;
-}
-
-.clear-right {
-  clear: right;
-}
-
-.container {
-  display: flex;
-  text-align: center;
-}
-
-.column {
-  flex: 1;
-  margin: 1%;
-  padding: 1%;
-  box-sizing: border-box;
-}
-
-.navbar {
-  position: fixed;
-  display: flex;
-}
-
-div.space {
-    width: 100%;
-    height: 10vh;
-}
-
-/* Text Alightment */
-.center {
-  text-align: center
-}
-
-.align-left {
-  text-align: left;
-}
-
-.align-right {
-  text-align: right;
-}
+@charset "utf8";
+@import url("backgroundcolors.css");
+@import url("textcolors.css");
+@import url("textstyles.css");
+@import url("elementstyles.css");
+@import url("position.css");

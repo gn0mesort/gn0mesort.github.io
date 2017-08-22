@@ -1,0 +1,54 @@
+@charset "utf8";
+
+div.bar {
+	padding: 2px;
+	width: 100%;
+	background: inherit;
+}
+
+div.space {
+	width: 100%;
+	height: 2vh;
+}
+
+nav.element {
+	display: inline;
+}
+
+nav.element::after {
+	content: ' / ';
+}
+
+a:link {
+	color: inherit;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+	text-decoration-style: dotted;
+}
+
+a:visited {
+	color: inherit;
+}
+
+button {
+	color: inherit;
+	background-color: inherit;
+	border-style: double;
+}
+
+select {
+	color: inherit;
+	background-color: inherit;
+	border-style: double;
+}
+
+hr {
+	color: inherit;
+}
+
+ul {
+	list-style-type: circle;
+}
