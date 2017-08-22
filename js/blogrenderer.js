@@ -36,3 +36,44 @@ class Renderer {
 		return this[PRIVATE].engine.makeHtml(markdown);
 	}
 }
+
+function loadBlog() {
+	let renderer = new Renderer('github', {
+		customizedHeaderId: true,
+		ghCompatibleHeaderId: true,
+		parseImgDimensions: true
+	});
+	$.get('../blog/latest.txt').done((resp) => {
+		let blogs = resp.split(/\n|\r|(?:\r\n)/g);
+		for (let i = 0; i < blogs.length; ++i) {
+			$('#blog').append(`
+			<div id="blogs-${i}" class="blog-post">
+			<div id="blogs-${i}-metadata"></div>
+			<div class="space"></div>
+			</div>
+			<div class="space"></div>
+			`);
+			$.get(`${BLOG_API_URL}/commits?path=${blogs[i]}`).done((resp) => {
+				let authors = {};
+				let byline = 'by&nbsp;';
+				for (let element of resp) {
+					authors[element.commit.committer.email] = element.commit.committer.name;
+				}
+				console.log(authors)
+				for (let author in authors) {
+					byline += `<a href="mailto:${author}">${authors[author]}</a>&nbsp;`
+				}
+				$(`#blogs-${i}-metadata`).append(`
+				<div class="title"><a href="${BLOG_HTML_URL}/${blogs[i]}">${blogs[i]}</a></div>
+				<div class="space"></div>
+				<div class="author">${byline}</div>
+				<div id="commit-time" class="date">last commit:&nbsp;<a href="${resp[0].html_url}">${new Date(resp[0].commit.committer.date).toLocaleString()}</a></div>
+				<div id="author-time" class="date">created at:&nbsp;<a href="${resp[resp.length - 1].html_url}">${new Date(resp[resp.length - 1].commit.committer.date).toLocaleString()}</a></div>
+				`)
+			});
+			renderer.load(`../blog/${blogs[i]}`).then((markdown) => {
+				$(`#blogs-${i}`).append(renderer.make(markdown));
+			});
+		}
+	})
+}
