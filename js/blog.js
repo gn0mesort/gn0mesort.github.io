@@ -22,7 +22,7 @@ class Blog {
 	}
 
 	get byLine() {
-		return authors.reduce((acc, elem) => {
+		return this.authors.reduce((acc, elem) => {
 			acc += `<a href="mailto:${elem.email}">${elem.name}</a>&nbsp;`;
 		}, '');
 	}
