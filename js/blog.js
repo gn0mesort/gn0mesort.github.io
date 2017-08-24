@@ -56,6 +56,7 @@ class Blog {
 				</div>
 				<div id="blog-${this.safeFilename}-content">${this.markdown}</div>
 			</div>
+			<div class="space"></div>
 		`;
 	}
 }
