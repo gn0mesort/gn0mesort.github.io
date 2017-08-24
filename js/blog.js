@@ -1,7 +1,7 @@
 const BLOG_JS_PRIVATE = Symbol('blog.js');
 
 class Blog {
-	constructor(markdown, filename = '', created = {}, updated = {}, authors = [], cacheDuration = 60000, cacheTime = 0) {
+	constructor(markdown, filename = '', created = {}, updated = {}, authors = {}, cacheDuration = 60000, cacheTime = 0) {
 		this[BLOG_JS_PRIVATE] = {};
 		this[BLOG_JS_PRIVATE].cacheTime = cacheTime;
 		this[BLOG_JS_PRIVATE].cacheDuration = cacheDuration;
@@ -22,9 +22,11 @@ class Blog {
 	}
 
 	get byLine() {
-		return this.authors.reduce((acc, elem) => {
-			return (acc += `<a href="mailto:${elem.email}">${elem.name}</a>&nbsp;`);
-		}, '');
+		let r = '';
+		for (let author in this.authors) {
+			r += `<a href="mailto:${author}">${authors[author]}</a>&nbsp;`
+		}
+		return r;
 	}
 
 	get safeFilename() {
@@ -47,10 +49,10 @@ class Blog {
 		return `
 			<div id="blog-${this.safeFilename}" class="blog-post">
 				<div id="blog-${this.safeFilename}-metadata">
-					<p><a href="${baseUrl}/blob/master/${this.filename}"><span class="filename">${this.filename}</span></a></p>
-					<p><span class=author>by&nbsp;${this.byLine}</span></p>
-					<p><span class=date>last update:&nbsp;<a href="${this.updated.url}">${new Date(this.updated.date).toLocaleString() || 'API ERROR'}</a></span></p>
-					<p><span class=date>last update:&nbsp;<a href="${this.created.url}">${new Date(this.created.date).toLocaleString() || 'API ERROR'}</a></span></p>
+					<div><a href="${baseUrl}/blob/master/${this.filename}"><span class="filename">${this.filename}</span></a></div>
+					<div><span class=author>by&nbsp;${this.byLine}</span></div>
+					<div><span class=date>last update:&nbsp;<a href="${this.updated.url}">${new Date(this.updated.date).toLocaleString() || 'API ERROR'}</a></span></div>
+					<div><span class=date>last update:&nbsp;<a href="${this.created.url}">${new Date(this.created.date).toLocaleString() || 'API ERROR'}</a></span></div>
 				</div>
 				<div id="blog-${this.safeFilename}-content">${this.markdown}</div>
 			</div>
@@ -119,9 +121,8 @@ class BlogEngine {
 					date: commits[0].commit.committer.date
 				},
 				authors = commits.reduce((acc, elem) => {
-					acc.push({ name: elem.commit.committer.name, email: elem.commit.committer.email });
-					return acc;
-				}, []);
+					return (acc[elem.commit.committer.email] =  elem.commit.committer.name);
+				}, {});
 				parsedBlog = new Blog(await $.get(`${path}/${blogs[i]}`), blogs[i], created, updated, authors, 120000, Date.now());
 			}
 			else {
