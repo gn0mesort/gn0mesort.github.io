@@ -1,6 +1,4 @@
 const PRIVATE = Symbol('private');
-const BLOG_HTML_URL = 'https://github.com/gn0mesort/blog/blob/master';
-const BLOG_API_URL = 'https://api.github.com/repos/gn0mesort/blog';
 
 class Extension {
 	constructor(type = 'lang', regex = /.*/g, replace = '', filter = undefined) {
@@ -12,10 +10,12 @@ class Extension {
 }
 
 class Renderer {
-	constructor(flavor = 'github', settings = {}) {
+	constructor(repo, flavor = 'github', settings = {}) {
 		this[PRIVATE] = {};
 		this[PRIVATE].engine = new showdown.Converter();
 		
+		this.blogUrls = { html: `https://github.com/${repo}/blob/master`, api: `https://api.github.com/repos/${repo}` };
+
 		this[PRIVATE].engine.setFlavor(flavor);
 		for (let setting in settings) {
 			this[PRIVATE].engine.setOption(setting, settings[setting]);
@@ -37,7 +37,7 @@ class Renderer {
 	}
 }
 
-function generateBlogMetaData(index, blogs) {
+function generateBlogMetaData(index, blogs, blogUrls) {
 	let data = JSON.parse(sessionStorage[`blogs-${index}`]);
 	let byline = 'by&nbsp;';
 
@@ -45,7 +45,7 @@ function generateBlogMetaData(index, blogs) {
 		byline += `<a href="mailto:${author}">${data.authors[author]}</a>&nbsp;`
 	}
 	$(`#blogs-${index}-metadata`).append(`
-	<div class="title"><a href="${BLOG_HTML_URL}/${blogs[index]}">${blogs[index]}</a></div>
+	<div class="title"><a href="${blogUrls.html}/${blogs[index]}">${blogs[index]}</a></div>
 	<div class="space"></div>
 	<div class="author">${byline}</div>
 	<div id="commit-time" class="date">last commit:&nbsp;<a href="${data.lastCommit.url}">${new Date(data.lastCommit.date).toLocaleString()}</a></div>
@@ -53,16 +53,16 @@ function generateBlogMetaData(index, blogs) {
 	`);
 }
 
-function loadBlog(count = 0, startAt = 0) {
-	let renderer = new Renderer('github', {
+function loadBlog(repo, blogPath, target, count = 0, startAt = 0) {
+	let renderer = new Renderer(repo, 'github', {
 		customizedHeaderId: true,
 		ghCompatibleHeaderId: true,
 		parseImgDimensions: true
 	});
-	$.get('../blog/latest.txt').done((resp) => {
+	$.get(`${blogPath}/latest.txt`).done((resp) => {
 		let blogs = resp.split(/\n|\r|(?:\r\n)/g);
 		for (let i = startAt; i < (count < blogs.length && count !== 0 ? count : blogs.length); ++i) {
-			$('#blog').append(`
+			$(target).append(`
 			<div id="blogs-${i}" class="blog-post">
 			<div id="blogs-${i}-metadata"></div>
 			<div class="space"></div>
@@ -74,7 +74,7 @@ function loadBlog(count = 0, startAt = 0) {
 					sessionStorage[`blogs-${i}`] = JSON.stringify({ cacheTime: 0 });
 				}
 				if (resp.rate.remaining && JSON.parse(sessionStorage[`blogs-${i}`]).cacheTime + 60000 < Date.now()) {
-					$.get(`${BLOG_API_URL}/commits?path=${blogs[i]}`).done((resp) => { 
+					$.get(`${renderer.blogUrls.api}/commits?path=${blogs[i]}`).done((resp) => { 
 						let authors = {};
 						let lastCommit = { url: resp[0].html_url, date: resp[0].commit.committer.date };
 						let firstCommit = { url: resp[resp.length - 1].html_url, date: resp[resp.length - 1].commit.committer.date };
@@ -88,13 +88,13 @@ function loadBlog(count = 0, startAt = 0) {
 							cacheTime: Date.now()
 						})
 					}).always(() => {
-						generateBlogMetaData(i, blogs);
-					})
+						generateBlogMetaData(i, blogs, renderer.blogUrls);
+					});
 				} else {
-					generateBlogMetaData(i, blogs);
+					generateBlogMetaData(i, blogs, renderer.blogUrls);
 				}
 			});
-			renderer.load(`../blog/${blogs[i]}`).then((markdown) => {
+			renderer.load(`${blogPath}/${blogs[i]}`).then((markdown) => {
 				$(`#blogs-${i}`).append(renderer.make(markdown));
 			});
 		}

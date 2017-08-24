@@ -1,5 +1,5 @@
 <hr />
-<form id="theme">
+<form id="theme" class="monospace">
 	Text Color:&nbsp;
 	<select id="text" onchange="handleTheme()">
 		<option value="amber">Amber</option>
@@ -8,26 +8,27 @@
 		<option value="gray">Gray</option>
 		<option value="green">Green</option>
 		<option value="magenta">Magenta</option>
-		<option value="white" selected="true">White</option>
+		<option value="white">White</option>
 	</select>
 	Background Color:&nbsp;
 	<select id="background" onchange="handleTheme()">
-		<option value="amber">Amber</option>
-		<option value="black" selected="true">Black</option>
-		<option value="cyan">Cyan</option>
-		<option value="gray">Gray</option>
-		<option value="green">Green</option>
-		<option value="magenta">Magenta</option>
-		<option value="white">White</option>
+		<option value="amber-background">Amber</option>
+		<option value="black-background">Black</option>
+		<option value="cyan-background">Cyan</option>
+		<option value="gray-background">Gray</option>
+		<option value="green-background">Green</option>
+		<option value="magenta-background">Magenta</option>
+		<option value="white-background">White</option>
 	</select>
 	Font-Family:&nbsp;
 	<select id="font" onchange="handleTheme()">
 		<option value="cursive">Cursive</option>
 		<option value="fantasy">Fantasy</option>
-		<option value="monospace" selected="true">Monospace</option>
+		<option value="monospace">Monospace</option>
 		<option value="sans-serif">Sans-Serif</option>
 		<option value="serif">Serif</option>
 	</select>
 	&nbsp;
 	<button type="button" onclick="defaultTheme()">Default</button>
+	<script>defaultTheme();</script>
 </form>

@@ -1,5 +1,4 @@
 @charset "utf8";
-@import url("https://fonts.googleapis.com/css?family=Aladin|Redressed");
 @font-face {
 	font-family: "DejaVu Sans Mono";
 	src: local("DejaVu Sans Mono"), url("../font/dejavusansmono.ttf");
@@ -12,14 +11,21 @@
 	font-family: "DejaVu Serif";
 	src: local("DejaVu Serif"), url("../font/dejavuserif.ttf");
 }
-
+@font-face {
+	font-family: "Arabella";
+	src: local("Arabella"), url("../font/arabella.ttf");
+}
+@font-face {
+	src: local("Alagard"), url("../font/alagard.ttf");
+	font-family: "Alagard";
+}
 
 .cursive {
-	font-family: "Redressed", cursive;
+	font-family: "Arabella", cursive;
 }
 
 .fantasy {
-	font-family: "Aladin", fantasy;
+	font-family: "Alagard", fantasy;
 }
 
 .monospace {
@@ -51,4 +57,20 @@
 
 .justify {
 	text-align: justify;
+}
+
+.underline {
+	text-decoration: underline;
+}
+
+.bold {
+	font-weight: bold;
+}
+
+.italic {
+	font-style: italic;
+}
+
+.strikethrough {
+	text-decoration-color: line-through;
 }

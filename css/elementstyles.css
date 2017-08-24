@@ -71,3 +71,7 @@ hr {
 ul {
 	list-style-type: circle;
 }
+
+#logo {
+	font-size: x-large;
+}
