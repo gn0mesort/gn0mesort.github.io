@@ -74,7 +74,7 @@ function loadBlog(repo, blogPath, target, count = 0, startAt = 0) {
 				if (!sessionStorage[`${repo}-blogs-${i}`]) {
 					sessionStorage[`${repo}-blogs-${i}`] = JSON.stringify({ cacheTime: 0 });
 				}
-				if (resp.rate.remaining && JSON.parse(sessionStorage[`blogs-${i}`]).cacheTime + 60000 < Date.now()) {
+				if (resp.rate.remaining && JSON.parse(sessionStorage[`${repo}-blogs-${i}`]).cacheTime + 60000 < Date.now()) {
 					$.get(`${renderer.blogUrls.api}/commits?path=${blogs[i]}`).done((resp) => { 
 						let authors = {};
 						let lastCommit = { url: resp[0].html_url, date: resp[0].commit.committer.date };
@@ -82,7 +82,7 @@ function loadBlog(repo, blogPath, target, count = 0, startAt = 0) {
 						for (let element of resp) {
 							authors[element.commit.committer.email] = element.commit.committer.name;
 						}
-						sessionStorage[`blogs-${i}`] = JSON.stringify({
+						sessionStorage[`${repo}-blogs-${i}`] = JSON.stringify({
 							authors: authors,
 							lastCommit: lastCommit,
 							firstCommit: firstCommit,
