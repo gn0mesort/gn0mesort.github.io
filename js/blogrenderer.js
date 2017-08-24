@@ -37,8 +37,8 @@ class Renderer {
 	}
 }
 
-function generateBlogMetaData(index, blogs, blogUrls) {
-	let data = JSON.parse(sessionStorage[`blogs-${index}`]);
+function generateBlogMetaData(index, blogs, blogUrls, repo) {
+	let data = JSON.parse(sessionStorage[`${repo}-blogs-${index}`]);
 	let byline = 'by&nbsp;';
 
 	for (let author in data.authors) {
@@ -71,8 +71,8 @@ function loadBlog(repo, blogPath, target, count = 0, startAt = 0) {
 			<div class="space"></div>
 			`);
 			$.get(`https://api.github.com/rate_limit`).done((resp) => {
-				if (!sessionStorage[`blogs-${i}`]) {
-					sessionStorage[`blogs-${i}`] = JSON.stringify({ cacheTime: 0 });
+				if (!sessionStorage[`${repo}-blogs-${i}`]) {
+					sessionStorage[`${repo}-blogs-${i}`] = JSON.stringify({ cacheTime: 0 });
 				}
 				if (resp.rate.remaining && JSON.parse(sessionStorage[`blogs-${i}`]).cacheTime + 60000 < Date.now()) {
 					$.get(`${renderer.blogUrls.api}/commits?path=${blogs[i]}`).done((resp) => { 
@@ -89,10 +89,10 @@ function loadBlog(repo, blogPath, target, count = 0, startAt = 0) {
 							cacheTime: Date.now()
 						})
 					}).always(() => {
-						generateBlogMetaData(i, blogs, renderer.blogUrls);
+						generateBlogMetaData(i, blogs, renderer.blogUrls, repo);
 					});
 				} else {
-					generateBlogMetaData(i, blogs, renderer.blogUrls);
+					generateBlogMetaData(i, blogs, renderer.blogUrls, repo);
 				}
 			});
 			renderer.load(`${blogPath}/${blogs[i]}`).then((markdown) => {
