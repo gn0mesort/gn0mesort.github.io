@@ -6,7 +6,7 @@
 		<link rel="icon" href="../img/favicon.png" />
 		<title>Megatech</title>
 	</head>
-	<body onload="loadBlog('gn0mesort/blog', '../blog', '#blog', 3)">
+	<body onload="init();">
 		<div id="header" class="bar fixed" style="top: 0;"></div>
 		<div class="space"></div>
 		<div class="space"></div>
@@ -21,9 +21,13 @@
 		<div id="footer" class="bar align-center"></div>
 		<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 		<script src="../js/showdown.min.js"></script>
-		<script src="../js/blogrenderer.js"></script>
-		<script src="../js/themebar.js"></script>
+		<script src="../js/blog.js"></script>
+		<script src="../js/theme.js"></script>
 		<script>
+			function init() {
+				BlogEngine.loadBlog('../blog', 'gn0mesort/blog', '#blog', 0, 3);
+			}
+
 			let theme = new Theme('white', 'black-background', 'monospace');
 			$('#header').load('../html/navbar.html');
 			$('#footer').load('../html/themebar.html');

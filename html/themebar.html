@@ -33,16 +33,16 @@
 	<button type="button" onclick="invertTheme();">Invert</button>
 	<script>
 		function updateSelection() {
-			let currentTheme = $('body').attr('class').split(/\s+/g);
+			let currentTheme = theme.currentTheme;
 			$('#text > option[selected]').removeAttr('selected');
-			$(`#text > option[value="${currentTheme[0]}"]`).attr('selected', true);
+			$(`#text > option[value="${currentTheme.text}"]`).attr('selected', true);
 			$('#background > option[selected]').removeAttr('selected');
-			$(`#background > option[value="${currentTheme[1]}"]`).attr('selected', true);
+			$(`#background > option[value="${currentTheme.background}"]`).attr('selected', true);
 			$('#font > option[selected]').removeAttr('selected');
-			$(`#font > option[value="${currentTheme[2]}"]`).attr('selected', true);
-			$('#text').val(currentTheme[0]);
-			$('#background').val(currentTheme[1]);
-			$('#font').val(currentTheme[2]);
+			$(`#font > option[value="${currentTheme.font}"]`).attr('selected', true);
+			$('#text').val(currentTheme.text);
+			$('#background').val(currentTheme.background);
+			$('#font').val(currentTheme.font);
 		}
 
 		function onThemeChange() {

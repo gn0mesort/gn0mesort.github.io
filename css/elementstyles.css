@@ -30,15 +30,15 @@ div.blog-post {
 	text-align: justify;
 }
 
-div.date {
+span.date {
 	font-size: xx-small;
 }
 
-div.title {
-	font-size: large;
+span.filename {
+	font-size: x-small;
 }
 
-div.author {
+span.author {
 	font-size: x-small;
 }
 
@@ -86,4 +86,10 @@ ul {
 
 #logo {
 	font-size: x-large;
+}
+
+hr {
+	position: relative;
+	left: -1vw;
+	width: 101vw;
 }
