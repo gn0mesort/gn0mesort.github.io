@@ -55,8 +55,8 @@ class Blog {
 					<div><span class=date>&nbsp;created at:&nbsp;<a href="${this.created.url}">${new Date(this.created.date).toLocaleString() || 'API ERROR'}</a></span></div>
 				</div>
 				<div id="blog-${this.safeFilename}-content">${this.markdown}</div>
+				<div class="space"></div>
 			</div>
-			<div class="space"></div>
 		`;
 	}
 }
