@@ -87,7 +87,7 @@ class BlogEngine {
 		$(target).append(this.makeHtml(blog));
 	}
 
-	async static loadBlog(path, repo, target, startAt = 0, count = 0) {
+	static async loadBlog(path, repo, target, startAt = 0, count = 0) {
 		let engine = new BlogEngine(repo, 'github', {
 			customizedHeaderId: true,
 			ghCompatibleHeaderId: true,
