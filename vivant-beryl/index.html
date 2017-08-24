@@ -3,11 +3,10 @@
 	<head>
 		<meta charset="utf-8" />
 		<link rel="stylesheet" href="../css/default.css" type="text/css" />
-		<link rel="stylesheet" href="../css/vivant-beryl.css" type="text/css" />
 		<link rel="icon" href="../img/vbco.png" />
 		<title>Vivant-Beryl Company - Megatech</title>
 	</head>
-	<body onload="loadBlog('gn0mesort/vbco-news', '../vbco-news', '#news', 10)">
+	<body onload="init();">
 		<div id="header" class="bar fixed" style="top: 0;"></div>
 		<div class="space"></div>
 		<div class="space"></div>
@@ -35,10 +34,14 @@
 		<div id="footer" class="bar align-center"></div>
 		<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 		<script src="../js/showdown.min.js"></script>
-		<script src="../js/blogrenderer.js"></script>
+		<script src="../js/blog.js"></script>
 		<script src="../js/theme.js"></script>
 		<script src="js/membershowcase.js"></script>
 		<script>
+			function init() {
+				BlogEngine.loadBlog('../vbco-news', 'gn0mesort/vbco-news', , '#news', 0, 10);
+			}
+
 			let theme = new Theme('magenta', 'black-background', 'monospace');
 			$('#header').load('../html/navbar.html');
 			$('#footer').load('../html/themebar.html');
