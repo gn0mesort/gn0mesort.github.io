@@ -23,7 +23,7 @@ class Blog {
 
 	get byLine() {
 		return this.authors.reduce((acc, elem) => {
-			acc += `<a href="mailto:${elem.email}">${elem.name}</a>&nbsp;`;
+			return (acc += `<a href="mailto:${elem.email}">${elem.name}</a>&nbsp;`);
 		}, '');
 	}
 
@@ -115,6 +115,7 @@ class BlogEngine {
 				},
 				authors = commits.reduce((acc, elem) => {
 					acc.push({ name: elem.commit.committer.name, email: elem.commit.committer.email });
+					return acc;
 				}, []);
 				parsedBlog = new Blog(`${path}/${blogs[i]}`, blogs[i], created, updated, authors, 120000, Date.now());
 			}
