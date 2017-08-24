@@ -61,6 +61,7 @@ function loadBlog(repo, blogPath, target, count = 0, startAt = 0) {
 	});
 	$.get(`${blogPath}/latest.txt`).done((resp) => {
 		let blogs = resp.split(/\n|\r|(?:\r\n)/g);
+		$(target).text('');
 		for (let i = startAt; i < (count < blogs.length && count !== 0 ? count : blogs.length); ++i) {
 			$(target).append(`
 			<div id="blogs-${i}" class="blog-post">

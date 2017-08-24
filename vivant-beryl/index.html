@@ -12,16 +12,23 @@
 		<div class="space"></div>
 		<div class="space"></div>
 		<div id="body" class="align-center">
-			<h1 class="fantasy bold">Vivant-Beryl Company</h1>
+			<h1 class="fantasy">Vivant-Beryl Company</h1>
+			<h4 class="fantasy">Midgardsormr</h4>
 			<hr />
 			<img src="../img/vbco.png" alt="&#x300a;VBCO&#x300b;" title="&#x300a;VBCO&#x300b;" />
 			<h3>Providing quality products to all of Eorzea since the 7th Umbral Era</h3>
 			<h4>Plot 52, Ward 9, The Goblet</h4>
 			<hr />
-			<h1 class="fantasy bold">News</h1>
+			<h1 class="fantasy">News</h1>
+			<div id="news">Nothing Currently</div>
 			<hr />
-			<div id="news"></div>
+			<h1 class="fantasy">Member Showcase</h1>
+			<div id="showcase">Nothing Currently</div>
 			<hr />
+			<h1 class="fantasy">Contact</h1>
+			<div class="justify" style="display: inline-block;">
+				<p>discord: <a id="discord-invite" href="https://discord.gg/K38WmtF">Faded Glory (Discord API Unavailable)</a>
+			</div>
 		</div>
 		<div id="footer" class="bar align-center"></div>
 		<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
@@ -29,9 +36,16 @@
 		<script src="../js/blogrenderer.js"></script>
 		<script src="../js/themebar.js"></script>
 		<script src="../js/navbar.js"></script>
+		<script src="js/membershowcase.js"></script>
 		<script>
 			$('#header').load('../html/navbar.html', handleNavbar);
 			$('#footer').load('../html/themebar.html');
+			generateShowcase();
+			$.getJSON('https://discordapp.com/api/guilds/175067961705496594/widget.json', (data) => {
+				let link = $('#discord-invite');
+				link.attr('href', data.instant_invite);
+				link.text(`${data.name} (${data.members.length} users online)`);
+			});
 		</script>
 	</body>
 </html>
