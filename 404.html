@@ -6,7 +6,7 @@
 		<link rel="icon" href="../img/favicon.png" />
 		<title>Page Not Found - Megatech</title>
 	</head>
-	<body class="black-background white monospace">
+	<body>
 		<div id="header" class="bar fixed" style="top: 0;"></div>
 		<div class="space"></div>
 		<div class="space"></div>
@@ -18,9 +18,9 @@
 		<div id="footer" class="bar align-center"></div>
 		<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 		<script src="../js/themebar.js"></script>
-		<script src="../js/navbar.js"></script>
 		<script>
-			$('#header').load('../html/navbar.html', handleNavbar);
+			let theme = new Theme('white', 'black-background', 'monospace');
+			$('#header').load('../html/navbar.html');
 			$('#footer').load('../html/themebar.html');
 		</script>
 	</body>

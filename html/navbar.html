@@ -6,4 +6,15 @@
 	<nav class="element" title="Personal Blog"><a href="../blog/">BLOG</a></nav>
 	<nav class="element" title="Contact Information"><a href="../contact/">CONTACT</a></nav>
 	<hr />
+	<script>
+		(() => {
+			console.log(`CURRENT: ${document.location.href}`);
+			$('#navbar a').each((index, elem) => {
+				console.log(`${index}: ${elem.href}`);
+				if(elem.href === document.location.href) {
+					elem.href = '#';
+				}
+			});
+		})();
+	</script>
 </div>

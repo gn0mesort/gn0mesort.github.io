@@ -1,7 +1,7 @@
 <hr />
 <form id="theme" class="monospace">
 	Text Color:&nbsp;
-	<select id="text" onchange="handleTheme()">
+	<select id="text" onchange="onThemeChange();">
 		<option value="amber">Amber</option>
 		<option value="black">Black</option>
 		<option value="cyan">Cyan</option>
@@ -11,7 +11,7 @@
 		<option value="white">White</option>
 	</select>
 	Background Color:&nbsp;
-	<select id="background" onchange="handleTheme()">
+	<select id="background" onchange="onThemeChange();">
 		<option value="amber-background">Amber</option>
 		<option value="black-background">Black</option>
 		<option value="cyan-background">Cyan</option>
@@ -21,7 +21,7 @@
 		<option value="white-background">White</option>
 	</select>
 	Font-Family:&nbsp;
-	<select id="font" onchange="handleTheme()">
+	<select id="font" onchange="onThemeChange();">
 		<option value="cursive">Cursive</option>
 		<option value="fantasy">Fantasy</option>
 		<option value="monospace">Monospace</option>
@@ -29,6 +29,45 @@
 		<option value="serif">Serif</option>
 	</select>
 	&nbsp;
-	<button type="button" onclick="defaultTheme()">Default</button>
-	<script>defaultTheme();</script>
+	<button type="button" onclick="defaultTheme();">Default</button>
+	<button type="button" onclick="invertTheme();">Invert</button>
+	<script>
+		function updateSelection() {
+			let currentTheme = $('body').attr('class').split(/\s+/g);
+			$('#text > option[selected]').removeAttr('selected');
+			$(`#text > option[value="${currentTheme[0]}"]`).attr('selected', true);
+			$('#background > option[selected]').removeAttr('selected');
+			$(`#background > option[value="${currentTheme[1]}"]`).attr('selected', true);
+			$('#font > option[selected]').removeAttr('selected');
+			$(`#font > option[value="${currentTheme[2]}"]`).attr('selected', true);
+			$('#text').val(currentTheme[0]);
+			$('#background').val(currentTheme[1]);
+			$('#font').val(currentTheme[2]);
+		}
+
+		function onThemeChange() {
+			let textVal = $('#text').val(), 
+			backgroundVal = $('#background').val();
+
+			if(`${textVal}-background` !== backgroundVal) {
+				theme.applyTheme('body', textVal, backgroundVal, $('#font').val());
+				updateSelection();
+			}
+			else {
+				defaultTheme();
+			}
+		}
+
+		function defaultTheme() {
+			theme.applyDefault('body');
+			updateSelection();
+		}
+
+		function invertTheme() {
+			theme.applyTheme('body', $('#background').val().split('-')[0], `${$('#text').val()}-background`, $('#font').val());
+			updateSelection();
+		}
+
+		defaultTheme();
+	</script>
 </form>

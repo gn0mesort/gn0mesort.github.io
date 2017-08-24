@@ -1,46 +1,16 @@
-let initialTheme = $('body').attr('class').split(/\s+/g);
-
-function defaultTheme() {
-	function generateValues(selector) {
-		let targetObject = {};
-		$(selector).each((index, element) => {
-			targetObject[element.value] = element.value;
-		});
-		return targetObject;
+class Theme {
+	constructor(text = '', background = '', font = '') {
+		this.text = text;
+		this.background = background;
+		this.font = font;
 	}
 
-	function selectValue(id, value) {
-		$(id).val(value);
-		$(`${id} > option[value="${value}"]`).attr('selected', 'true');
+	applyTheme(target, text = '', background = '', font = '') {
+		$(target).removeClass();
+		$(target).addClass(`${text || this.text} ${background || this.background} ${font || this.font}`);
 	}
 
-	let textValues = generateValues('#text > option'),
-		backgroundValues = generateValues('#background > option'),
-		fontValues = generateValues('#font > option');
-
-	$('#theme option[selected]').removeAttr('selected');
-	for (let cssClass of initialTheme) {
-		if (cssClass in textValues) {
-			selectValue('#text', cssClass);
-		}
-		else if (cssClass in backgroundValues) {
-			selectValue('#background', cssClass);
-		}
-		else if (cssClass in fontValues) {
-			selectValue('#font', cssClass)
-		}
-	}
-	handleTheme();
-}
-
-function handleTheme() {
-	let textColor = $('#text').val(), backgroundColor = $('#background').val(), fontFamily = $('#font').val();
-	console.log(`TEXT: ${textColor} BACKGROUND: ${backgroundColor} FONT-FAMILY: ${fontFamily}`)
-	if (`${textColor}-background` !== backgroundColor) {
-		$('body').removeClass($('body').attr('class'));
-		$('body').addClass(`${textColor} ${backgroundColor} ${fontFamily}`);
-	} else {
-		console.log('CONFLICTING THEME');
-		defaultTheme();
+	applyDefault(target) {
+		this.applyTheme(target);
 	}
 }
