@@ -24,7 +24,7 @@ class Blog {
 	get byLine() {
 		let r = '';
 		for (let author in this.authors) {
-			r += `<a href="mailto:${author}">${authors[author]}</a>&nbsp;`
+			r += `<a href="mailto:${author}">${this.authors[author]}</a>&nbsp;`
 		}
 		return r;
 	}
