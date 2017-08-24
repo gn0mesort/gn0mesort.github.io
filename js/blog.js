@@ -76,7 +76,8 @@ class BlogEngine {
 	}
 
 	makeHtml(blog) {
-		let html = $(blog.toHtml(this.htmlUrl)).find(`#blog-${blog.filename}-content`);
+		let data = $(blog.toHtml(this.htmlUrl));
+		let html = data.find(`#blog-${blog.filename}-content`);
 		let markdown = html.text();
 		html.text('');
 		html.html(this[BLOG_JS_PRIVATE].converter.makeHtml(markdown));
