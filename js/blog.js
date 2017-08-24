@@ -55,7 +55,6 @@ class Blog {
 					<div><span class=date>&nbsp;created at:&nbsp;<a href="${this.created.url}">${new Date(this.created.date).toLocaleString() || 'API ERROR'}</a></span></div>
 				</div>
 				<div id="blog-${this.safeFilename}-content">${this.markdown}</div>
-				<div class="space"></div>
 			</div>
 		`;
 	}
@@ -87,7 +86,7 @@ class BlogEngine {
 		let markdownLocation = html.find(`#blog-${blog.safeFilename}-content`);
 		let markdown = markdownLocation.text();
 		markdownLocation.text('');
-		html.html(html.html() + this[BLOG_JS_PRIVATE].converter.makeHtml(markdown));
+		html.html(`${html.html()}${this[BLOG_JS_PRIVATE].converter.makeHtml(markdown)}<div class="space"></div>`);
 		return html;
 	}
 
