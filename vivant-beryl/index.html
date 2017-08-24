@@ -7,7 +7,7 @@
 		<link rel="icon" href="../img/vbco.png" />
 		<title>Vivant-Beryl Company - Megatech</title>
 	</head>
-	<body class="monospace magenta black-background">
+	<body class="monospace magenta black-background" onload="loadBlog('gn0mesort/vbco-news', '../vbco-news', '#news', 10)">
 		<div id="header" class="bar fixed" style="top: 0;"></div>
 		<div class="space"></div>
 		<div class="space"></div>
@@ -20,9 +20,13 @@
 			<hr />
 			<h1 class="fantasy bold">News</h1>
 			<hr />
+			<div id="news"></div>
+			<hr />
 		</div>
 		<div id="footer" class="bar align-center"></div>
 		<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+		<script src="../js/showdown.min.js"></script>
+		<script src="../js/blogrenderer.js"></script>
 		<script src="../js/themebar.js"></script>
 		<script src="../js/navbar.js"></script>
 		<script>
