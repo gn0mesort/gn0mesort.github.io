@@ -117,7 +117,7 @@ class BlogEngine {
 					acc.push({ name: elem.commit.committer.name, email: elem.commit.committer.email });
 					return acc;
 				}, []);
-				parsedBlog = new Blog(`${path}/${blogs[i]}`, blogs[i], created, updated, authors, 120000, Date.now());
+				parsedBlog = new Blog(await $.get(`${path}/${blogs[i]}`), blogs[i], created, updated, authors, 120000, Date.now());
 			}
 			else {
 				let cachedBlog = JSON.parse(sessionStorage[`${repo}-blogs-${i}`]);
