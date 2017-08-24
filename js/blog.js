@@ -27,6 +27,10 @@ class Blog {
 		}, '');
 	}
 
+	get safeFilename() {
+		return this.filename.replace('.', '-');
+	}
+
 	toJSON() {
 		return {
 			markdown: this.markdown,
@@ -41,14 +45,14 @@ class Blog {
 
 	toHtml(baseUrl = '') {
 		return `
-			<div id="blog-${this.filename}" class="blog-post">
-				<div id="blog-${this.filename}-metadata">
+			<div id="blog-${this.safeFilename}" class="blog-post">
+				<div id="blog-${this.safeFilename}-metadata">
 					<p><a href="${baseUrl}/blob/master/${this.filename}"><span class="filename">${this.filename}</span></a></p>
 					<p><span class=author>by&nbsp;${this.byLine}</span></p>
 					<p><span class=date>last update:&nbsp;<a href="${this.updated.url}">${new Date(this.updated.date).toLocaleString() || 'API ERROR'}</a></span></p>
 					<p><span class=date>last update:&nbsp;<a href="${this.created.url}">${new Date(this.created.date).toLocaleString() || 'API ERROR'}</a></span></p>
 				</div>
-				<div id="blog-${this.filename}-content">${this.markdown}</div>
+				<div id="blog-${this.safeFilename}-content">${this.markdown}</div>
 			</div>
 		`;
 	}
@@ -76,8 +80,7 @@ class BlogEngine {
 	}
 
 	makeHtml(blog) {
-		let data = $(blog.toHtml(this.htmlUrl));
-		let html = data.find(`#blog-${blog.filename}-content`);
+		let html = $(blog.toHtml(this.htmlUrl)).find(`#blog-${blog.safeFilename}-content`);
 		let markdown = html.text();
 		html.text('');
 		html.html(this[BLOG_JS_PRIVATE].converter.makeHtml(markdown));
