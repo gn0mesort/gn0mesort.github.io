@@ -121,7 +121,8 @@ class BlogEngine {
 					date: commits[0].commit.committer.date
 				},
 				authors = commits.reduce((acc, elem) => {
-					return (acc[elem.commit.committer.email] =  elem.commit.committer.name);
+					acc[elem.commit.committer.email] =  elem.commit.committer.name;
+					return acc;
 				}, {});
 				parsedBlog = new Blog(await $.get(`${path}/${blogs[i]}`), blogs[i], created, updated, authors, 120000, Date.now());
 			}
