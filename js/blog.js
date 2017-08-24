@@ -80,9 +80,10 @@ class BlogEngine {
 	}
 
 	makeHtml(blog) {
-		let html = $(blog.toHtml(this.htmlUrl)).find(`#blog-${blog.safeFilename}-content`);
-		let markdown = html.text();
-		html.text('');
+		let html = $(blog.toHtml(this.htmlUrl));
+		let markdownLocation = html.find(`#blog-${blog.safeFilename}-content`);
+		let markdown = markdownLocation.text();
+		markdownLocation.text('');
 		html.html(this[BLOG_JS_PRIVATE].converter.makeHtml(markdown));
 		return html;
 	}
