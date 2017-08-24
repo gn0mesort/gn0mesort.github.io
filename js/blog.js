@@ -68,11 +68,11 @@ class BlogEngine {
 	}
 
 	get apiUrl() {
-		return `https://api.github.com/repos/${repo}`
+		return `https://api.github.com/repos/${this.repo}`
 	}
 
 	get htmlUrl() {
-		return `https://github.com/${repo}/blob/master`
+		return `https://github.com/${this.repo}/blob/master`
 	}
 
 	makeHtml(blog) {
