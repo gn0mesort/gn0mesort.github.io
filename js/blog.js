@@ -52,7 +52,7 @@ class Blog {
 					<div><a href="${baseUrl}/blob/master/${this.filename}"><span class="filename">${this.filename}</span></a></div>
 					<div><span class=author>by&nbsp;${this.byLine}</span></div>
 					<div><span class=date>last update:&nbsp;<a href="${this.updated.url}">${new Date(this.updated.date).toLocaleString() || 'API ERROR'}</a></span></div>
-					<div><span class=date>last update:&nbsp;<a href="${this.created.url}">${new Date(this.created.date).toLocaleString() || 'API ERROR'}</a></span></div>
+					<div><span class=date>&nbsp;created at:&nbsp;<a href="${this.created.url}">${new Date(this.created.date).toLocaleString() || 'API ERROR'}</a></span></div>
 				</div>
 				<div id="blog-${this.safeFilename}-content">${this.markdown}</div>
 			</div>
