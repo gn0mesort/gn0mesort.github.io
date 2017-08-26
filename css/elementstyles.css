@@ -76,10 +76,6 @@ select {
 	border-style: double;
 }
 
-hr {
-	color: inherit;
-}
-
 ul {
 	list-style-type: circle;
 }
@@ -92,4 +88,5 @@ hr {
 	position: relative;
 	left: -1vw;
 	width: 101vw;
+	border-style: solid;
 }
