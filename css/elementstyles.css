@@ -14,8 +14,14 @@ img.frame {
 
 div.bar {
 	padding: 2px;
-	width: 100%;
+	width: 101vw;
 	background: inherit;
+	z-index: 1000;
+	left: -1vw;
+}
+
+div.bar hr {
+	width: 102vw;
 }
 
 div.space {
