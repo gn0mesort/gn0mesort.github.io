@@ -88,5 +88,6 @@ hr {
 	position: relative;
 	left: -1vw;
 	width: 101vw;
-	border-style: solid;
+	border: none;
+	height: 1px;
 }
