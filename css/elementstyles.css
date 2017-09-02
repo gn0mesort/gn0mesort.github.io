@@ -14,19 +14,13 @@ img.frame {
 
 div.bar {
 	padding: 2px;
-	width: 101vw;
 	background: inherit;
 	z-index: 1000;
-	left: -1vw;
-}
-
-div.bar hr {
-	width: 102vw;
 }
 
 div.space {
 	width: 100%;
-	height: 2vh;
+	height: 3vh;
 }
 
 div.blog-post {
@@ -91,9 +85,9 @@ ul {
 }
 
 hr {
-	position: relative;
-	left: -1vw;
-	width: 101vw;
-	border: none;
+	margin: 0.25vw 0 1vw 0;
+	padding: 0;
+	width: 100%;
+	border: 0;
 	height: 1.5px;
 }
