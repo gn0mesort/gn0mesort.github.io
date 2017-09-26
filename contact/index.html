@@ -16,7 +16,7 @@
 			<div class="justify" style="display: inline-block;">
 				<p>&nbsp;&nbsp;email: <a href="mailto:gnomesort@megate.ch">gnomesort@megate.ch</a></p>
 				<p>&nbsp;github: <a href="https://github.com/gn0mesort/">gn0mesort</a></p>
-				<p>discord: <a id="discord-invite" href="https://discord.gg/SzhS52S">Megatech (Discord API Unavailable)</a></p>
+				<p>discord: <a id="discord-invite" href="https://discord.gg/gXWGZ5K">Megatech (Discord API Unavailable)</a></p>
 				<p>youtube: <a href="https://www.youtube.com/channel/UCoTnqqRNoD5bxjopfVoypbg">gnomesort</a></p>
 			</div>
 		</div>
@@ -27,7 +27,7 @@
 			let theme = new Theme('white', 'black-background', 'monospace');
 			$('#header').load('../html/navbar.html');
 			$('#footer').load('../html/themebar.html');
-			$.getJSON('https://discordapp.com/api/guilds/330575790729330688/widget.json', (data) => {
+			$.getJSON('https://discordapp.com/api/guilds/362284708777689090/widget.json', (data) => {
 				let link = $('#discord-invite');
 				link.attr('href', data.instant_invite);
 				link.text(`${data.name} (${data.members.length} users online)`);
