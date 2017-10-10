@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<link rel="stylesheet" href="../css/default.css" type="text/css" />
+		<link rel="icon" href="../img/favicon.png" />
+		<title>Final Fantasy XIV - Megatech</title>
+	</head>
+	<body onload="init();">
+		<div id="header" class="bar fixed" style="top: 0;"></div>
+		<div class="space"></div>
+		<div class="space"></div>
+		<div id="body" class="align-center">
+			<h1 class="fantasy">Final Fantasy XIV</h1>
+			<hr />
+			<h4 id="showcase"></h4>
+			<h4>Plot 33, 1st Ward, Shirogane, Midgardsormr</h4>
+			<hr />
+			<h1 class="fantasy">Contact</h1>
+			<div class="justify" style="display: inline-block;">
+				<p>lodestone: <a href="https://na.finalfantasyxiv.com/lodestone/character/14262160/">Chrys Beryllium</a></p>
+			</div>
+		</div>
+		<div id="footer" class="bar align-center"></div>
+		<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+		<script src="../js/theme.js"></script>
+		<script>
+			const API_URL = 'https://api.xivdb.com/character';
+
+			let theme = new Theme('magenta', 'black-background', 'monospace');
+			$('#header').load('../html/navbar.html');
+			$('#footer').load('../html/themebar.html');
+
+			$.get(`${API_URL}/14262160`).done((resp) => {
+				$('#showcase').append(`
+				<div class="frame">
+				<img class="frame" src="${resp.avatar}" alt="${resp.name}" title="${resp.name}"/>
+				<p>${resp.data.grand_company.rank}</p>
+				<h3 class="fantasy">
+				<a href="https://xivdb.com/character/${resp.lodestone_id}/${resp.name.toLowerCase().replace(' ', '+')}" title="Level ${resp.data.active_class.progress.level} ${resp.data.active_class.role.name}">${resp.name}<br />${resp.data.title}</a>
+				</h3>
+				<p>&quot;I Know Many Things.&quot;</p>
+				</div>
+				`);
+			});
+		</script>
+	</body>
+</html>
