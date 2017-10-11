@@ -14,7 +14,7 @@ class Renderer {
 		this[PRIVATE] = {};
 		this[PRIVATE].engine = new showdown.Converter();
 		
-		this.blogUrls = { html: `https://github.com/${repo}`, api: `https://api.github.com/repos/${repo}` };
+		this.blogUrls = { html: `https://github.com/${repo}/blob/master`, api: `https://api.github.com/repos/${repo}` };
 
 		this[PRIVATE].engine.setFlavor(flavor);
 		for (let setting in settings) {
