@@ -84,8 +84,8 @@ class BlogEngine {
 	makeHtml(blog) {
 		let html = $(blog.toHtml(this.htmlUrl));
 		let markdownLocation = html.find(`#blog-${blog.safeFilename}-content`);
-		let markdown = markdownLocation.text();
-		markdownLocation.text('');
+		let markdown = markdownLocation.html();
+		markdownLocation.html('');
 		html.html(`${html.html()}${this[BLOG_JS_PRIVATE].converter.makeHtml(markdown)}`);
 		return html;
 	}
@@ -100,9 +100,9 @@ class BlogEngine {
 			ghCompatibleHeaderId: true,
 			parseImgDimensions: true
 		}),
-		blogs = (await $.get(`${path}/latest.txt`)).split(/\n|\r|(?:\r\n)/g),
+		blogs = (await $.get(`${path}/latest.txt`)).trim().split(/\n|\r|(?:\r\n)/g),
 		rateLimit = (await $.get('https://api.github.com/rate_limit')).rate;
-			
+
 		$(target).text('');
 		for (let i = startAt; i < (count < blogs.length && count !== 0 ? count : blogs.length); ++i) {
 			let parsedBlog = null,
