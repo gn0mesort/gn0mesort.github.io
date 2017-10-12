@@ -86,7 +86,7 @@ class BlogEngine {
 		let markdownLocation = html.find(`#blog-${blog.safeFilename}-content`);
 		let markdown = markdownLocation.html();
 		markdownLocation.html('');
-		markdownLocation.html(`${html.html()}${this[BLOG_JS_PRIVATE].converter.makeHtml(markdown)}`);
+		markdownLocation.html(`${this[BLOG_JS_PRIVATE].converter.makeHtml(markdown)}`);
 		return html;
 	}
 
