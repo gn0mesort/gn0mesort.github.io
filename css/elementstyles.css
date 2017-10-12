@@ -30,6 +30,11 @@ div.blog-post {
 	text-align: justify;
 }
 
+div.blog-post img {
+	width: 50vw;
+	height: 50vh;
+}
+
 span.date {
 	font-size: xx-small;
 }
