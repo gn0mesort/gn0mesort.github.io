@@ -103,6 +103,12 @@ class BlogEngine {
 		blogs = (await $.get(`${path}/latest.txt`)).trim().split(/\n|\r|(?:\r\n)/g),
 		rateLimit = (await $.get('https://api.github.com/rate_limit')).rate;
 
+		if(!sessionStorage['latest'] || sessionStorage['latest'] !== JSON.stringify(blogs)) {
+			for (let key in sessionStorage) {
+				delete sessionStorage[key];
+			}
+			sessionStorage['latest'] = JSON.stringify(blogs);
+		}
 		$(target).text('');
 		for (let i = startAt; i < (count < blogs.length && count !== 0 ? count : blogs.length); ++i) {
 			let parsedBlog = null,
