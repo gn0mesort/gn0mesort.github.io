@@ -85,33 +85,14 @@ class BlogEngine {
 		let html = $(blog.toHtml(this.htmlUrl));
 		let markdownLocation = html.find(`#blog-${blog.safeFilename}-content`);
 		let markdown = markdownLocation.html();
-		let decodeEntities = (function() {
-			// this prevents any overhead from creating the object each time
-			var element = document.createElement('div');
-		
-			function decodeHTMLEntities (str) {
-				if(str && typeof str === 'string') {
-					// strip script/html tags
-					// str = str.replace(/<script[^>]*>([\S\s]*?)<\/script>/gmi, '');
-					// str = str.replace(/<\/?\w(?:[^"'>]|"[^"]*"|'[^']*')*>/gmi, '');
-					element.innerHTML = str;
-					str = element.textContent;
-					element.textContent = '';
-				}
-		
-				return str;
-			}
-		
-			return decodeHTMLEntities;
-		})();
 		markdownLocation.html('');
 		markdownLocation.html(`${this[BLOG_JS_PRIVATE].converter.makeHtml(markdown)}`);
-		$('pre').html(decodeEntities($('pre').html()));
 		return html;
 	}
 
 	appendBlog(target, blog) {
 		$(target).append(this.makeHtml(blog)).append('<div class="space"></div>');
+		$('code').forEach((elem) => { elem.innerHTML = elem.innerText; });
 	}
 
 	static async loadBlog(path, repo, target, startAt = 0, count = 0) {
