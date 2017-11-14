@@ -92,7 +92,7 @@ class BlogEngine {
 
 	appendBlog(target, blog) {
 		$(target).append(this.makeHtml(blog)).append('<div class="space"></div>');
-		$('code').each((elem) => { elem.innerHTML = elem.innerText; });
+		for (let code of $('code')) { code.innerHTML = code.innerHTML.split('&amp;').join('&'); }
 	}
 
 	static async loadBlog(path, repo, target, startAt = 0, count = 0) {
