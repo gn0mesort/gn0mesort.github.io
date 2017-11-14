@@ -93,6 +93,7 @@ class BlogEngine {
 	appendBlog(target, blog) {
 		$(target).append(this.makeHtml(blog)).append('<div class="space"></div>');
 		for (let code of $('code')) { code.innerHTML = code.innerHTML.split('&amp;').join('&'); }
+		for (let code of $('pre code')) {  hljs.highlightBlock(block); }
 	}
 
 	static async loadBlog(path, repo, target, startAt = 0, count = 0) {
