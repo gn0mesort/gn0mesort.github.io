@@ -10,6 +10,7 @@ pre code {
 	border-style: double;
 	display: inline-block !important;
 	padding: 1vw 1vh !important;
+	min-width: 40vw;
 }
 
 img.frame {
