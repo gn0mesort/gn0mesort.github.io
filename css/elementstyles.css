@@ -64,16 +64,19 @@ nav.element::after {
 
 a:link {
 	color: inherit;
+	font-weight: bold;
 	text-decoration: none;
 }
 
 a:hover {
 	text-decoration: underline;
+	font-weight: bold;
 	text-decoration-style: dotted;
 }
 
 a:visited {
 	color: inherit;
+	font-weight: bold;
 }
 
 button {
