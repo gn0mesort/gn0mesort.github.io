@@ -5,7 +5,7 @@
 		<link rel="stylesheet" href="../css/default.css" type="text/css" />
 		<link rel="stylesheet" href="../css/highlight/solarized-dark.css" type="text/css" />
 		<link rel="icon" href="../img/favicon.png" />
-		<title>Megatech</title>
+		<title>Megatech - Visitor Info</title>
 	</head>
 	<body onload="init();">
 		<div id="header" class="bar fixed" style="top: 0;"></div>
@@ -24,7 +24,7 @@
 		<script src="../js/theme.js"></script>
 		<script>
 			function init() {
-				$.getJSON('http://pi.megate.ch:8080/visitor/info' (data) => {
+				$.getJSON('http://pi.megate.ch:8080/visitor/info', (data) => {
 					$('#uniques').text(data.uniques);
 					$('#address').text(data.info.ip);
 					$('#update').text(new Date(data.info.update).toLocaleString());
