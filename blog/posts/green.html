@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<link rel="stylesheet" href="/css/index.css" />
+		
+		<title>Megatech - green</title>
+	</head>
+	<body>
+		<div id="header"><div id="navbar" class="flex-container navbar">
+	<nav class="flex-item"><a href="/">home</a></nav>
+	<nav class="flex-item"><a href="/blog">blog</a></nav>
+	<nav class="flex-item"><a href="/projects">projects</a></nav>
+	<nav class="flex-item"><a href="mailto:gnomesort@megate.ch">contact</a></nav>
+	<span class="flex-item flex-right">
+		&lt;
+		<noscript class="red bold" title="JavaScript is disabled">
+			noscript
+		</noscript>
+		<span id="script-enabled" class="blue bold"
+					title="JavaScript is enabled"></span>
+		<script>
+			document.getElementById('script-enabled').innerText = 'script';
+		</script>
+		&gt;
+	</span>
+	<script>
+		let links = document.querySelectorAll("#navbar a");
+		for (let link of links) {
+			let regex = new RegExp(`^${link.href}/?#?$`, 'g');
+			if (document.location.href.match(regex)) {
+				link.href = '#';
+			}
+		}
+		let xhr = new XMLHttpRequest(),
+				url = 'http://pi.megate.ch:8080/visitor',
+				query = `protocol=${document.location.protocol}&` +
+								`hostname=${document.location.hostname}&` +
+								`port=${document.location.port}&` +
+								`pathname=${document.location.pathname}&` +
+								`hash=${document.location.hash}`;
+		xhr.onload = () => {
+			console.log(JSON.parse(xhr.response));
+		}
+		xhr.open('GET', `${url}?${query}`);
+		xhr.send();
+	</script>
+</div>
+<hr /></div>
+		<div class="flex-container flex-column"><h1 id="green" class="center">Green</h1>
+<p>As promised I've gone out and taken some pictures. It looks like we might be in for a little more rain here but I wanted to make sure and get these pictures. It's really only green like this once a year. I'll start with a short video I took of one of the hills up here. This place is kind of special to me (as you may know).</p>
+<div class="center">
+<iframe class="frame" width="560" height="315" src="https://www.youtube.com/embed/xCAhOImaeUo" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
+</iframe>
+</div>
+<p>I think I'll just dump the pictures. Some of them are kind of blurry, but that's what I get for only have a cell phone camera (and not a very nice one). I hope you can appreciate them nonetheless.</p>
+<p class="center">
+<a href="/blog/img/green/1.jpg"><img class="frame" src="/blog/img/green/1_small.jpg" alt="Image 1" title="Image 1" /></a>
+</p>
+<p class="center">
+<a href="/blog/img/green/2.jpg"><img class="frame" src="/blog/img/green/2_small.jpg" alt="Image 2" title="Image 2" /></a>
+</p>
+<p class="center">
+<a href="/blog/img/green/3.jpg"><img class="frame" src="/blog/img/green/3_small.jpg" alt="Image 3" title="Image 3" /></a>
+</p>
+<p class="center">
+<a href="/blog/img/green/4.jpg"><img class="frame" src="/blog/img/green/4_small.jpg" alt="Image 4" title="Image 4" /></a>
+</p>
+<p class="center">
+<a href="/blog/img/green/5.jpg"><img class="frame" src="/blog/img/green/5_small.jpg" alt="Image 5" title="Image 5" /></a>
+</p>
+<p class="center">
+<a href="/blog/img/green/6.jpg"><img class="frame" src="/blog/img/green/6_small.jpg" alt="Image 6" title="Image 6" /></a>
+</p>
+<p class="center">
+<a href="/blog/img/green/7.jpg"><img class="frame" src="/blog/img/green/7_small.jpg" alt="Image 7" title="Image 7" /></a>
+</p>
+<p class="center">
+<a href="/blog/img/green/8.jpg"><img class="frame" src="/blog/img/green/8_small.jpg" alt="Image 8" title="Image 8" /></a>
+</p>
+<p class="center">
+<a href="/blog/img/green/9.jpg"><img class="frame" src="/blog/img/green/9_small.jpg" alt="Image 9" title="Image 9" /></a>
+</p>
+<p class="center">
+<a href="/blog/img/green/10.jpg"><img class="frame" src="/blog/img/green/10_small.jpg" alt="Image 10" title="Image 10" /></a>
+</p>
+<p class="center">
+<a href="/blog/img/green/11.jpg"><img class="frame" src="/blog/img/green/11_small.jpg" alt="Image 11" title="Image 11" /></a>
+</p>
+<p class="center">
+<a href="/blog/img/green/12.jpg"><img class="frame" src="/blog/img/green/12_small.jpg" alt="Image 12" title="Image 12" /></a>
+</p>
+<p class="center">
+<a href="/blog/img/green/13.jpg"><img class="frame" src="/blog/img/green/13_small.jpg" alt="Image 13" title="Image 13" /></a>
+</p>
+<p class="center">
+<a href="/blog/img/green/14.jpg"><img class="frame" src="/blog/img/green/14_small.jpg" alt="Image 14" title="Image 14" /></a>
+</p>
+<p class="center">
+<a href="/blog/img/green/15.jpg"><img class="frame" src="/blog/img/green/15_small.jpg" alt="Image 15" title="Image 15" /></a>
+</p>
+<p>This last one is especially blurry. I only took it because I thought it was funny that someone was flying a <a href="https://en.wikipedia.org/wiki/Gadsden_flag">Gadsden Flag</a>.</p>
+<p class="center">
+<a href="/blog/img/green/16.jpg"><img class="frame" src="/blog/img/green/16_small.jpg" alt="Image 16" title="Image 16" /></a>
+</p>
+<p>You might have noticed, even though I embeded it first, the video is actually the last place I stopped and took pictures of (on my way back home). I, perhaps obviously, passed it on my way up the hill. There was a unmarked white van idling there though (which made me nervous) so I passed it up till I was headed back. The van was still there when I was coming back (it also had no plates, always a good sign).</p>
+<p>As with my last post, not much has been going on. I'm still taking the same too classes. Systems Analysis still <em>really</em> bothers me. One thing I've noticed about it is that there are <strong>many many</strong> different forms of chart they expect us to memorize. What bugs me about this is that the ones covered so far are all subsets of a flow chart. I don't really like making flow charts, it's not the worst thing in the world but not my favorite. The thing about them though is that they're pretty simple. They're basically made up of just lines and simple polygons (also some text). You don't need fancy software to draw a flow chart. They're pretty easy to do by hand and you can also make them if free software like LibreOffice Draw. LibreOffice Draw does not do DFDs (Data Flow Diagrams). Even though a DFD is just a (simple) flow chart with different symbols. I'd really rather just draw a flow chart. What I ended up having to do (to draw all these charts) was install <a href="https://wiki.gnome.org/Apps/Dia">Dia</a>. Dia is <em>okay</em>.</p>
+<p>In other, not school related, news I added a little feature to this site. Mostly cause I think it's cool. Maybe you've already played with it but I have a little traffic counter page now. It counts how many unique ip addresses visit this site. It also will tell you your current address and when you last visited. That's not so exciting these days, I know. I've been wanting to setup little server-side features like that for a while though. My long term goal is to move all the fancy blog rendering stuff (which I do right here, in your browser) onto a server of its own. I'd really love to be able to write a post, push it to a server using <code>git</code> or <code>sftp</code>, and have it be available ASAP. That's more or less the system now, but through Github. I'd also like to add comments to posts at some point.</p>
+<p>Anyways that's my quick little update to go with the photos. As usual I'm thinking of you wherever you are. 🙇‍ I hope things are alright out there.</p>
+<p><strong>P.S.</strong> I've never actually mentioned what kind of tea I'm drinking here before (despite the heading). Today I had Earl Grey, Peppermint, and (appropriately) Green tea.</p></div>
+		<div id="footer"><hr />
+<div class="flex-container footer">
+	<span class="flex-item flex-center">
+		{&nbsp;
+		<a href="https://github.com/gn0mesort/gn0mesort.github.io/">Source Code</a>
+		&nbsp;}
+	</span>
+</div></div>
+	</body>
+</html>

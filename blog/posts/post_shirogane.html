@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<link rel="stylesheet" href="/css/index.css" />
+		
+		<title>Megatech - post_shirogane</title>
+	</head>
+	<body>
+		<div id="header"><div id="navbar" class="flex-container navbar">
+	<nav class="flex-item"><a href="/">home</a></nav>
+	<nav class="flex-item"><a href="/blog">blog</a></nav>
+	<nav class="flex-item"><a href="/projects">projects</a></nav>
+	<nav class="flex-item"><a href="mailto:gnomesort@megate.ch">contact</a></nav>
+	<span class="flex-item flex-right">
+		&lt;
+		<noscript class="red bold" title="JavaScript is disabled">
+			noscript
+		</noscript>
+		<span id="script-enabled" class="blue bold"
+					title="JavaScript is enabled"></span>
+		<script>
+			document.getElementById('script-enabled').innerText = 'script';
+		</script>
+		&gt;
+	</span>
+	<script>
+		let links = document.querySelectorAll("#navbar a");
+		for (let link of links) {
+			let regex = new RegExp(`^${link.href}/?#?$`, 'g');
+			if (document.location.href.match(regex)) {
+				link.href = '#';
+			}
+		}
+		let xhr = new XMLHttpRequest(),
+				url = 'http://pi.megate.ch:8080/visitor',
+				query = `protocol=${document.location.protocol}&` +
+								`hostname=${document.location.hostname}&` +
+								`port=${document.location.port}&` +
+								`pathname=${document.location.pathname}&` +
+								`hash=${document.location.hash}`;
+		xhr.onload = () => {
+			console.log(JSON.parse(xhr.response));
+		}
+		xhr.open('GET', `${url}?${query}`);
+		xhr.send();
+	</script>
+</div>
+<hr /></div>
+		<div class="flex-container flex-column"><h1 id="post-shirogane" class="center">Post-Shirogane</h1>
+<p>First off, my blog software works! Woo hoo! 🎉 It's taken me a bit to get the kinks worked out (centering images is a bit of a pain) but it works.</p>
+<p>Second, I got a new outfit in Final Fantasy. It's a little bit less &quot;revealing&quot; than my previous pirate coat outfit but I think it's more appropriate for me. The outfit itself (the Strife set) is based on Cloud Strife's Advent Children look. I dyed the top purple (because I require purple) to make it look a little more like the orignal Final Fantasy VII outfit.</p>
+<p class="center">
+<a href="/blog/img/ffxiv_10112017_175153.png"><img class="frame" src="/blog/img/ffxiv_10112017_175153.png" alt="If everything's a dream, don't wake me." title="If everything's a dream, don't wake me." /></a>
+</p>
+<p>I had a few other Shirogane misadventures today. I spent most of my time (after school 😒) picking out new furnishings for the house. I've added a fireplace (with chimney), some porcelain vases (apparently like 8 times larger than I thought), and a fish tank (with goldfish 🐠). On top of that I had a wonderful discussion with one of the FC's new neighbors. We discussed at length the Moogle conspiracy in Eorzea and how to resist their mind control pom-poms. Then I went for a swim on the beach. 😋</p>
+<p class="center">
+<a href="/blog/img/ffxiv_10112017_152848.png"><img class="frame" src="/blog/img/ffxiv_10112017_152848.png" alt="Around Moogles, Watch your noodles." title="Around Moogles, Watch your noodles" /></a>
+</p>
+<p>I also went exploring a bit in the area to see the houses that are set up. The most ridiculous, by far, is the new Carbuncle themed houses. They're both massive and, for some reason, book themed?</p>
+<p class="center">
+<a href="/blog/img/ffxiv_10112017_150359.png"><img class="frame" src="/blog/img/ffxiv_10112017_150359.png" alt="Carbuncle House" title="Carbuncle House" /></a>
+</p>
+<p>Thinking about it maybe the book stuff has to do with the summoner classes in Final Fantasy XIV. They tend to use books/tomes as their weapons. I'm not sure though. Anyways good luck out there! Wherever you are. 🙇🏻</p>
+<p class="center">
+<a href="/blog/img/ffxiv_10112017_152626.png"><img class="frame" src="/blog/img/ffxiv_10112017_152626.png" alt="See you space cowboy." title="See you space cowboy." /></a>
+</p></div>
+		<div id="footer"><hr />
+<div class="flex-container footer">
+	<span class="flex-item flex-center">
+		{&nbsp;
+		<a href="https://github.com/gn0mesort/gn0mesort.github.io/">Source Code</a>
+		&nbsp;}
+	</span>
+</div></div>
+	</body>
+</html>

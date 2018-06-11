@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<link rel="stylesheet" href="/css/index.css" />
+		
+		<title>Megatech - getset</title>
+	</head>
+	<body>
+		<div id="header"><div id="navbar" class="flex-container navbar">
+	<nav class="flex-item"><a href="/">home</a></nav>
+	<nav class="flex-item"><a href="/blog">blog</a></nav>
+	<nav class="flex-item"><a href="/projects">projects</a></nav>
+	<nav class="flex-item"><a href="mailto:gnomesort@megate.ch">contact</a></nav>
+	<span class="flex-item flex-right">
+		&lt;
+		<noscript class="red bold" title="JavaScript is disabled">
+			noscript
+		</noscript>
+		<span id="script-enabled" class="blue bold"
+					title="JavaScript is enabled"></span>
+		<script>
+			document.getElementById('script-enabled').innerText = 'script';
+		</script>
+		&gt;
+	</span>
+	<script>
+		let links = document.querySelectorAll("#navbar a");
+		for (let link of links) {
+			let regex = new RegExp(`^${link.href}/?#?$`, 'g');
+			if (document.location.href.match(regex)) {
+				link.href = '#';
+			}
+		}
+		let xhr = new XMLHttpRequest(),
+				url = 'http://pi.megate.ch:8080/visitor',
+				query = `protocol=${document.location.protocol}&` +
+								`hostname=${document.location.hostname}&` +
+								`port=${document.location.port}&` +
+								`pathname=${document.location.pathname}&` +
+								`hash=${document.location.hash}`;
+		xhr.onload = () => {
+			console.log(JSON.parse(xhr.response));
+		}
+		xhr.open('GET', `${url}?${query}`);
+		xhr.send();
+	</script>
+</div>
+<hr /></div>
+		<div class="flex-container flex-column"><h1 id="get-set" class="center">Get, Set</h1>
+<p>It has been a long time since I've written anything (since November in fact). This is my third draft for this post. 2017 was a hard year for me in many ways (it was also one of the years I think I will remember the most). I, initially, didn't want to post anything because I had nothing to show off. With the exception of my final project for my ARM assembly programming class I haven't been doing much besides sulking. The winter, maybe just because it's winter, has been depressing. The reasons are probably obvious. Coping with the last year has been hard and it's not something I've fully figured out yet.</p>
+<p>My only real response to it has been this consistent feeling that I need to do something. Not something drastic like setting a car on fire or hiring a sky writer. What I'd really like to do is make a video game and not just another little text thing. I've toyed with a whole bunch of ideas, almost since the end of August. My initial idea was to just go with something super simple. I'm still kind of stuck with that because I don't have the resources or the patience to do anything fancy. What I decided on, back in August, was a little text adventure game written in JavaScript. I neither enjoy JavaScript nor text adventures so that was probably a bad idea. It was going to be about a penguin detective (which coincidentally is a recurring thing in <a href="https://en.wikipedia.org/wiki/Paper_Mario:_The_Thousand-Year_Door">Paper Mario: The Thousand-Year Door</a>). This obviously didn't pan out. Classes and just the level at which I hate JavaScript prevented me from pursuing it. My next idea perhaps too ambitious was to stick with the roguelike concept I used in a school project and expand it out into a graphical game. I think I got pretty out of hand with ideas to add to it. Ultimately I've tried to settle on the idea of doing a more limited roguelike design. Maybe something a bit more like <a href="https://en.wikipedia.org/wiki/Mystery_Dungeon">Mystery Dungeon</a>.</p>
+<p>Regardless of what I end up doing, I feel like if I can complete something worthwhile that it's some form of penance. I think this is a habit I've gotten into over the last year or two. Thinking that if I can just <em>do something</em> it will make things better. Really, I'm not sure if working on a project like this will make me feel any better at all. I'm more committed to it than I was at the start of the winter though. I thought I could buckle down and get it done over the break but I ended up reading a lot of software design stuff instead (and sulking as I mentioned).</p>
+<p>Of what I read, <a href="https://www.javaworld.com/article/2073723/core-java/why-getter-and-setter-methods-are-evil.html">Why getter and setter methods are evil</a> is probably the most interesting. I learned Java in 2010 at UC Merced (Java being the most appropriate language to program in while living in Merced, California). After the two mandatory Java courses (CSE 20 and 21 if I recall correctly) I took a class on data structures which focused on C++. That C++ class was, probably, one the factors that motivated me to drop out of school. It was slow, taught late at night, and filled with people I resented. My most irritating memory of the class was the final exam review. The course had covered basic C++ syntax (surprise it's 75% the same as Java) and basic data structures (lists, stacks, queues, trees, and graphs). During our review we were tasked with determining what the following code did:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; <span class="dv">100</span>; i++) {
+  cout &lt;&lt; i + <span class="dv">1</span> &lt;&lt; endl;
+}</code></pre></div>
+<p>For the initiated, it's probably obvious why spending an entire 2 hour lecture period having this explained to me in meticulous detail would set me off. For the uninitiated, all it does is print the sequence of integers <code>1</code> to <code>100</code> (each on their own line) to wherever the program's standard output stream is going (in this case the Eclipse terminal). I really couldn't stand being in that kind of environment and I dropped out not too long afterwards. I also gave up on programming in C++. Between then and now, I also picked up C#. Although I feel like I end up programming in JavaScript, C++, or C most of the time, C# is still my favorite language. I picked C++ back up in 2015. I can't remember the last time I've wrote anything in Java.</p>
+<p>The reason I included that long history is because, as a lover of C# and a hater of Java, I have somewhat conflicting opinions about its conclusions. C# is <strong>full</strong> of getter (accessor) and setter (mutator) methods. The thing is that they take a little bit of a sneaky form. In C# getter and setter methods get hidden inside of a <code>property</code> (which is distinct from a <code>class</code> scoped variable or <code>field</code>). C# properties are what I would describe as comfy. In C# it's common practice to make every public value a property even when there is no get or set logic (as far as I know this is even recommended). It ends up looking something like this:</p>
+<div class="sourceCode"><pre class="sourceCode cs"><code class="sourceCode cs"><span class="kw">public</span> <span class="kw">class</span> Foo {
+  <span class="kw">private</span> <span class="dt">int</span> bar = <span class="dv">0</span>;
+
+  <span class="kw">public</span> <span class="dt">int</span> Bar {
+    <span class="kw">get</span> { <span class="kw">return</span> bar; }
+    <span class="kw">set</span> {
+      <span class="kw">if</span> (value &lt; <span class="dv">10</span>) { bar = <span class="dv">10</span>; }
+      <span class="kw">else</span> { bar = value; }
+    }
+  }
+}</code></pre></div>
+<p>Rather than having to invoke <code>Foo.getBar()</code> or perhaps <code>Foo.Bar.get()</code> <code>Foo.Bar</code> is treated as a value. This is extra comfy (perhaps too comfy for our own good). You can't get this level of comfort in C++ (although you can get damn close with operator overloads) and in Java you're stuck with gunky getter and setter methods like it or not (I've learned from my winter reading that Java programmers consider this to be less ambiguous). As comfortable as it is to just stick properties everywhere, there are some things I think are dangerous about them. Maybe even more dangerous than Java's obvious getters and setters. For instance we can get away with this:</p>
+<div class="sourceCode"><pre class="sourceCode cs"><code class="sourceCode cs"><span class="kw">public</span> <span class="kw">class</span> Foo {
+  <span class="kw">private</span> <span class="dt">int</span> bar = <span class="dv">0</span>;
+
+  <span class="kw">public</span> <span class="dt">int</span> Bar {
+    <span class="kw">get</span> { <span class="kw">return</span> bar; }
+    <span class="kw">set</span> {
+      <span class="kw">if</span> (value == <span class="dv">1</span>) { bar = value; }
+      <span class="kw">else</span> {
+        Bar = (value &amp; <span class="dv">1</span>) == <span class="dv">1</span> ? (<span class="dv">3</span> * value) + <span class="dv">1</span> : value &gt;&gt; <span class="dv">1</span>;
+      }
+    }
+  }
+}</code></pre></div>
+<p>This allows you to recursively calculate the <a href="https://en.wikipedia.org/wiki/Collatz_conjecture">Collatz conjecture</a> for the input <code>value</code> any time we set <code>Foo.Bar</code>. It wouldn't be a big deal if a function in C or C++ did this by itself (especially if it's appropriately named something like <code>collatz()</code>). It wouldn't be a big deal if a <code>static</code> method in Java or C# did this. The danger in the above code is that C#'s comfy property syntax might convince an unwary programmer that <code>Foo.Bar</code> (or even a more appropriately named class and property) was a value and not a recursive method. This was enough to cause some serious run-times:</p>
+<div class="sourceCode"><pre class="sourceCode cs"><code class="sourceCode cs"><span class="kw">public</span> <span class="kw">static</span> <span class="dt">void</span> <span class="fu">Main</span> (<span class="dt">string</span>[] args) {
+  Foo f = <span class="kw">new</span> <span class="fu">Foo</span>();
+
+  <span class="kw">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; <span class="dv">100000000</span>; ++i) { f.<span class="fu">Bar</span> = <span class="bn">0xffffff</span>; }
+}</code></pre></div>
+<p>Obviously that scenario is a bit silly but if you compare it to the behavior of a default getter and setter the performance difference is significant. By sneaking complex method-like behavior into properties we can introduce run-time costs that another programmer might not expect. This is evil (or maybe just considered harmful).</p>
+<p>I still really like properties though. Maybe I just <em>want</em> to like properties. My perspective is that properties are good when you want to have some control that only makes sense in the context of the current object (and maybe derived objects). If the control makes sense in many contexts it might be better to just define a new type. That's my perspective at least.</p>
+<p>Overall I think focusing on the ability to write ambiguous code with properties is unfair. We can definitely do evil things with it. We can do evil things with methods too though. The previous example could just as easily be crammed into a method called <code>Foo.SetBar()</code> and it would still be evil. Maybe slightly less evil because there's no chance you'll confuse <code>Foo.SetBar()</code> with a value. I've seen a good amount of criticism of operator overloads for this reason too. I just can't get over the feeling that complaints about ambiguity are mostly coming from the kind of people who think we should all write everything the same way (the way that's easiest for me to understand clearly).</p>
+<p>I suppose the winter was productive. Not really in the way I would have liked but I did learn a lot.</p>
+<p>Back in December, right after my classes ended, I really wanted to vent about school. Obviously I didn't then but I'm going to now.</p>
+<p>I'm almost done with actual Computer Science classes at this point (after this upcoming semester I have a required class on operating systems left). After that I'll have to take a very fun and exciting course on how to copy text from a web browser to a Microsoft Word document (the idea of teaching people Microsoft Office makes me cringe). The classes I took last semester could probably best be described as <code>alright</code>. JavaScript was by far the worst class. I thought it would be pretty easy (because once you've taken one intro course you've kind of taken them all) and it was. It was an odd class. The teaching I would describe as lazy at best. Almost all of our assignments involved copying directly out of the book. This has got to be the absolute worst kind of programming assignment. For some reason intro books sometimes have these long <code>project</code> style assignments that are mostly just line by line copying of some source code out of the book. To add to the special punishment that is copying out of a book, the code is spread out on 30 or so pages with cute little pictures to keep you engaged. I found the book (<a href="http://shop.oreilly.com/product/0636920027065.do">Head First JavaScript Programming</a>) to be a bit condescending over all. I really don't need a bunch of public domain photos and bad jokes to understand what a variable is. The instructor (who was not a PhD and therefore not a professor) made it considerably worse.</p>
+<p>I'm kind of a C guy (or at least I think of myself as one). I like C and I like C++ (as much as anyone can) too. I, as I've mentioned, especially like C#. I know that people think C and C++ are hard. I know that manual memory management can be difficult to keep up with. Whenever I hear someone say, &quot;C++ doesn't have arrays like in JavaScript,&quot; I start to lose my patience though. If you really want to have an array that can grow or shrink to fit your needs you have <code>std::vector</code>. Not knowing C++ isn't really an excuse for parading JavaScript around as the perfect programming language. It's not that JavaScript is all bad (it has those properties I like so much from C#) but it's kind of terrible for a teacher to present it as the easy language that you should learn instead of some crusty old thing like C++.</p>
+<p>Besides not appreciating the instructor's jabs at languages I like, I also found it unappealing that he complained (fairly often) about wanting to be in other professions. If you don't like programming, and want to be an actor go do it. &quot;I'd rather be an actor or a chef,&quot; is not what I want to hear from a person whose job it is to teach me a professional skill outside of those fields. Can you imagine going to medical school and on the first day of class the instructor tells you, &quot;I'd really rather have been a secretary than a doctor.&quot; To top the experience off he also wrote a final exam that, frankly, had some questions that were not did not make sense in the context of JavaScript. For instance asking:</p>
+<pre class="txt"><code>What does this return?</code></pre>
+<div class="sourceCode"><pre class="sourceCode js"><code class="sourceCode javascript"><span class="cf">if</span> ([]) <span class="op">{</span>
+  <span class="co">// code here</span>
+<span class="op">}</span></code></pre></div>
+<p>doesn't make any sense. A conditional like that in JavaScript doesn't return anything on its own. It might have a return statement in it, or some number of statements like <code>x = 10;</code> that do return something. <code>if (condition)</code> doesn't return though. You can't set something equal to a conditional statement like that either. You're welcome to test it. For what it's worth the intention of the question was probably to ask whether or not the code in the conditional statement would execute. In the case of <code>if ([])</code> the answer is yes. You can also test this out.</p>
+<p>I have to draw the line somewhere for when a class is bad. If your final exam contains questions that show you lack a proper understanding of the subject matter as an instructor, your class is bad.</p>
+<p>My only other observation about JavaScript was that a lot of people dropped the class. I'd say about as many people as had dropped my intro to C++ course just when I'd started to go back to school. It surprised me. I thought if people were going to drop a class it would have been the ARM assembly course I took instead.</p>
+<p>So it's been a bit of a hard winter. I feel like even though I didn't get done what I wanted to I'm better prepared to do it. For the spring I'm going to be taking a Java class for the first time in like 7 years (holy crap). I'm not thrilled about taking Java over C++ but I feel like it will help me have a broader skill set and the only C++ class I could take this time around was on data structures. I'd really rather take a class on SQL or PHP but neither of them would count for anything. I'm also going to be taking a drawing class so maybe I'll scan whatever I end up doing and post it.</p>
+<p>I hope you're doing alright out there. I'm thinking of you, wherever you are. 🙇‍</p>
+<p>P.S. I'll try to write more often. Sometimes I set deadlines for myself and then when I miss them I get super avoidant. That's what happened in December.</p></div>
+		<div id="footer"><hr />
+<div class="flex-container footer">
+	<span class="flex-item flex-center">
+		{&nbsp;
+		<a href="https://github.com/gn0mesort/gn0mesort.github.io/">Source Code</a>
+		&nbsp;}
+	</span>
+</div></div>
+	</body>
+</html>

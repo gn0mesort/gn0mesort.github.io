@@ -1,0 +1,205 @@
+:root {
+	--base03: #002b36;
+	--base02: #073642;
+	--base01: #586e75;
+	--base00: #657b83;
+	--base0: #839496;
+	--base1: #93a1a1;
+	--base2: #eee8d5;
+	--base3: #fdf6e3;
+	--yellow: #b58900;
+	--orange: #cb4b16;
+	--red: #dc322f;
+	--magenta: #d33682;
+	--violet: #6c71c4;
+	--blue: #268bd2;
+	--cyan: #2aa198;
+	--green: #859900;
+}
+
+#header {
+	position: fixed;
+	width: 99%;
+	top: 0;
+	padding: 1vh 0;
+	background-color: inherit;
+}
+
+#footer {
+	padding-top: 1vh;
+}
+
+#msg {
+	max-width: 75vw;
+}
+
+/* Pseudoclasses */
+.green {
+	color: var(--green);
+}
+
+.red {
+	color: var(--red);
+}
+
+.blue {
+	color: var(--blue);
+}
+
+.magenta {
+	color: var(--magenta);
+}
+
+.bold {
+	font-weight: bold;
+}
+
+.flex-container {
+	display: flex;
+}
+
+.flex-item {
+	display: inline-flex;
+}
+
+.flex-right {
+	margin-left: auto;
+}
+
+.flex-left {
+	margin-right: auto;
+}
+
+.flex-center {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.flex-column {
+	flex-direction: column;
+}
+
+.frame {
+	border: double;
+	padding: 1vh 1vw;
+}
+
+.center {
+	text-align: center;
+}
+
+/* Syntax Highlighting */
+
+pre {
+	border: double;
+	max-width: 80ch;
+	padding: 1vh 1vw;
+}
+
+.sourceCode .kw {
+	color: var(--base1);
+	font-weight: bold;
+}
+
+.sourceCode .dt, .sourceCode .bu {
+	color: var(--base1);
+	font-weight: bold;
+}
+
+.sourceCode .pp, .sourceCode .cf, .sourceCode .va  {
+	color: var(--green);
+}
+
+.sourceCode .im, .sourceCode .ch, .sourceCode .st {
+	color: var(--cyan);
+}
+
+.sourceCode .sc {
+	color: var(--orange);
+}
+
+.sourceCode .dv, .sourceCode .bn, .sourceCode .fl {
+	color: var(--magenta);
+}
+
+.sourceCode .co {
+	color: var(--base01);
+}
+
+.sourceCode .ot {
+	color: var(--yellow);
+}
+
+.sourceCode .al {
+	color: var(--orange);
+	font-weight: bold;
+}
+
+.sourceCode .fu {
+	color: var(--blue);
+}
+
+.sourceCode .re {
+	color: var(--base1);
+}
+
+.sourceCode .er {
+	color: var(--red);
+	font-weight: bold;
+}
+
+/* Concrete classes */
+
+div.navbar {
+	font-size: 10pt;
+}
+
+div.footer {
+	font-size: 10pt;
+}
+
+div.blog {
+	max-width: 75vw;
+}
+
+/* Elements */
+
+body {
+	padding-top: 6vh;
+	font-family: "DejaVu Sans Mono", monospace;
+	font-size: 10pt;
+	color: var(--base1);
+	background-color: var(--base03);
+}
+
+hr {
+	border: none;
+	height: 0.5vh;
+	color: var(--base1);
+	background-color: var(--base1);
+}
+
+a {
+	color: var(--base1);
+	font-weight: bold;
+	text-decoration: none;
+}
+
+a:visited {
+	color: var(--base1);
+}
+
+a:hover {
+	color: var(--base3);
+	text-decoration-line: underline;
+	text-decoration-style: dotted;
+	text-decoration-color: var(--base3);
+}
+
+nav {
+	padding: 0 0.5vw 0 0;
+}
+
+nav::after {
+	content: "/"
+}
