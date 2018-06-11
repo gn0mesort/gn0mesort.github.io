@@ -23,17 +23,13 @@
 				link.href = '#';
 			}
 		}
+
 		let xhr = new XMLHttpRequest(),
-				url = 'https://pi.megate.ch:8443/visit',
-				query = `protocol=${document.location.protocol}&` +
-								`hostname=${document.location.hostname}&` +
-								`port=${document.location.port}&` +
-								`pathname=${document.location.pathname}&` +
-								`hash=${document.location.hash}`;
+				url = 'https://pi.megate.ch:8443/visit';
 		xhr.onload = () => {
 			console.log(JSON.parse(xhr.response));
 		}
-		xhr.open('GET', `${url}?${query}`);
+		xhr.open('GET', `${url}`);
 		xhr.send();
 	</script>
 </div>
