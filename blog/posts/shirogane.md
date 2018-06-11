@@ -5,7 +5,7 @@ style: /css/index.css
 
 # Moving to Shirogane { .center }
 
-<p class="center"><a href="/blog/img/ffxiv_10102017_040258.png "><img class="frame" src="/blog/img/ffxiv_10102017_040258.png " title="Welcome Home" alt="Welcome Home" /></a></p>
+<p class="center"><a href="https://pi.megate.ch:8443/blog/img/ffxiv_10102017_040258.png "><img class="frame" src="https://pi.megate.ch:8443/blog/img/ffxiv_10102017_040258.png " title="Welcome Home" alt="Welcome Home" /></a></p>
 
 This is my first real shot at using this blog software so here goes nothing! 😝
 
@@ -17,28 +17,28 @@ The best opportunity I've had to upgrade came in June when the newest expansion 
 
 This morning (at like 3 AM my time) Shirogane opened up for sale! So I had naturally had to have a house. Despite a little difficulty logging in I managed to get a plot of land in the first ward of Shirogane (Plot 33)! All in all it cost about 4,000,000 `Gp` to buy the land and move our house there but I'm pretty excited about it nonetheless! Here are some photos of the new location. Apologies in advance for leaving my FPS counter in the screenshots. I should probably get a better graphics card. 😅
 
-<p class="center"><a href="/blog/img/ffxiv_10102017_082048.png"><img class="frame" src="/blog/img/ffxiv_10102017_082048.png" title="Dark and Stormy Shirogane" alt="Dark and Stormy Shirogane" /></a></p>
+<p class="center"><a href="https://pi.megate.ch:8443/blog/img/ffxiv_10102017_082048.png"><img class="frame" src="https://pi.megate.ch:8443/blog/img/ffxiv_10102017_082048.png" title="Dark and Stormy Shirogane" alt="Dark and Stormy Shirogane" /></a></p>
 
-<p class="center"><a href="/blog/img/ffxiv_10102017_082144.png"><img class="frame" src="/blog/img/ffxiv_10102017_082144.png" title="Side View" alt="Side View" /></a></p>
+<p class="center"><a href="https://pi.megate.ch:8443/blog/img/ffxiv_10102017_082144.png"><img class="frame" src="https://pi.megate.ch:8443/blog/img/ffxiv_10102017_082144.png" title="Side View" alt="Side View" /></a></p>
 
-<p class="center"><a href="/blog/img/ffxiv_10102017_082209.png"><img class="frame" src="/blog/img/ffxiv_10102017_082209.png" title="Beach View" alt="Beach View" /></a></p>
+<p class="center"><a href="https://pi.megate.ch:8443/blog/img/ffxiv_10102017_082209.png"><img class="frame" src="https://pi.megate.ch:8443/blog/img/ffxiv_10102017_082209.png" title="Beach View" alt="Beach View" /></a></p>
 
-<p class="center"><a href="/blog/img/ffxiv_10102017_082257.png"><img class="frame" src="/blog/img/ffxiv_10102017_082257.png" title="Fire Pit" alt="Fire Pit" /></a></p>
+<p class="center"><a href="https://pi.megate.ch:8443/blog/img/ffxiv_10102017_082257.png"><img class="frame" src="https://pi.megate.ch:8443/blog/img/ffxiv_10102017_082257.png" title="Fire Pit" alt="Fire Pit" /></a></p>
 
-<p class="center"><a href="/blog/img/ffxiv_10102017_082319.png"><img class="frame" src="/blog/img/ffxiv_10102017_082319.png" title="Benches" alt="Benches" /></a></p>
+<p class="center"><a href="https://pi.megate.ch:8443/blog/img/ffxiv_10102017_082319.png"><img class="frame" src="https://pi.megate.ch:8443/blog/img/ffxiv_10102017_082319.png" title="Benches" alt="Benches" /></a></p>
 
-<p class="center"><a href="/blog/img/ffxiv_10102017_082401.png"><img class="frame" src="/blog/img/ffxiv_10102017_082401.png" title="Entry" alt="Entry" /></a></p>
+<p class="center"><a href="https://pi.megate.ch:8443/blog/img/ffxiv_10102017_082401.png"><img class="frame" src="https://pi.megate.ch:8443/blog/img/ffxiv_10102017_082401.png" title="Entry" alt="Entry" /></a></p>
 
-<p class="center"><a href="/blog/img/ffxiv_10102017_082409.png"><img class="frame" src="/blog/img/ffxiv_10102017_082409.png" title="Reception" alt="Reception" /></a></p>
+<p class="center"><a href="https://pi.megate.ch:8443/blog/img/ffxiv_10102017_082409.png"><img class="frame" src="https://pi.megate.ch:8443/blog/img/ffxiv_10102017_082409.png" title="Reception" alt="Reception" /></a></p>
 
-<p class="center"><a href="/blog/img/ffxiv_10102017_082420.png"><img class="frame" src="/blog/img/ffxiv_10102017_082420.png" title="Stairs Down" alt="Stairs Down" /></a></p>
+<p class="center"><a href="https://pi.megate.ch:8443/blog/img/ffxiv_10102017_082420.png"><img class="frame" src="https://pi.megate.ch:8443/blog/img/ffxiv_10102017_082420.png" title="Stairs Down" alt="Stairs Down" /></a></p>
 
-<p class="center"><a href="/blog/img/ffxiv_10102017_082427.png"><img class="frame" src="/blog/img/ffxiv_10102017_082427.png" title="Basement Bar" alt="Basement Bar" /></a></p>
+<p class="center"><a href="https://pi.megate.ch:8443/blog/img/ffxiv_10102017_082427.png"><img class="frame" src="https://pi.megate.ch:8443/blog/img/ffxiv_10102017_082427.png" title="Basement Bar" alt="Basement Bar" /></a></p>
 
-<p class="center"><a href="/blog/img/ffxiv_10102017_082437.png"><img class="frame" src="/blog/img/ffxiv_10102017_082437.png" title="Meeting Table" alt="Meeting Table" /></a></p>
+<p class="center"><a href="https://pi.megate.ch:8443/blog/img/ffxiv_10102017_082437.png"><img class="frame" src="https://pi.megate.ch:8443/blog/img/ffxiv_10102017_082437.png" title="Meeting Table" alt="Meeting Table" /></a></p>
 
-<p class="center"><a href="/blog/img/ffxiv_10102017_082500.png"><img class="frame" src="/blog/img/ffxiv_10102017_082500.png" title="Thinking About Shaved Ice" alt="Thinking About Shaved Ice" /></a></p>
+<p class="center"><a href="https://pi.megate.ch:8443/blog/img/ffxiv_10102017_082500.png"><img class="frame" src="https://pi.megate.ch:8443/blog/img/ffxiv_10102017_082500.png" title="Thinking About Shaved Ice" alt="Thinking About Shaved Ice" /></a></p>
 
-<p class="center"><a href="/blog/img/ffxiv_10102017_083253.png"><img class="frame" src="/blog/img/ffxiv_10102017_083253.png" title="Chocobo 1" alt="Chocobo 1" /></a></p>
+<p class="center"><a href="https://pi.megate.ch:8443/blog/img/ffxiv_10102017_083253.png"><img class="frame" src="https://pi.megate.ch:8443/blog/img/ffxiv_10102017_083253.png" title="Chocobo 1" alt="Chocobo 1" /></a></p>
 
-<p class="center"><a href="/blog/img/ffxiv_10102017_083259.png"><img class="frame" src="/blog/img/ffxiv_10102017_083259.png" title="Chocobo 2" alt="Chocobo 2" /></a></p>
+<p class="center"><a href="https://pi.megate.ch:8443/blog/img/ffxiv_10102017_083259.png"><img class="frame" src="https://pi.megate.ch:8443/blog/img/ffxiv_10102017_083259.png" title="Chocobo 2" alt="Chocobo 2" /></a></p>
