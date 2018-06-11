@@ -1,28 +1,7 @@
 ---
-title: Blog
+title: newlook
 style: /css/index.css
 ---
-
-# Blog { .flex-item .flex-center }
-
-## Contents { .flex-item .flex-center }
-
-<div class="flex-item flex-center frame">
-[[2018-06-11T05:47:15.584Z]  newlook](/blog/posts/newlook.html)<br />
-[[2018-04-23T10:36:06.000Z]  xv](/blog/posts/xv.html)<br />
-[[2018-03-18T07:27:59.000Z]  green](/blog/posts/green.html)<br />
-[[2018-03-08T17:14:49.000Z]  systemsanalysis](/blog/posts/systemsanalysis.html)<br />
-[[2018-02-08T07:46:07.000Z]  getset](/blog/posts/getset.html)<br />
-[[2017-11-14T05:46:38.000Z]  beenawhile](/blog/posts/beenawhile.html)<br />
-[[2017-10-18T14:51:46.000Z]  timezone](/blog/posts/timezone.html)<br />
-[[2017-10-12T06:10:41.000Z]  post_shirogane](/blog/posts/post_shirogane.html)<br />
-[[2017-10-11T00:02:44.000Z]  shirogane](/blog/posts/shirogane.html)<br />
-[[2017-08-22T01:06:19.000Z]  helloworld](/blog/posts/helloworld.html)<br />
-</div>
-## Latest Entry { .flex-item .flex-center }
-
-<div class="flex-center frame blog">
-
 
 # newlook { .center }
 
@@ -70,5 +49,4 @@ We did, briefly, cover networking and parallel programming. This took place in t
 
 That's all behind us now though, isn't it? It's the summer now and I've got a new set of goals. What I'd really like to do is do at least 1 programming exercise a week as well as complete 1 concrete step toward making a small computer game each week. My intention is to post the results here. Hopefully, by August I have something worth showing you. I think if I say it here that will make it more real.
 
-Anyways it's time for me to say goodbye for now. I'm thinking of you, wherever you are 🙇 I hope you're alright out there!<p class="center"><a href="/blog/posts/newlook.html">[permalink]</a></p></div>
-
+Anyways it's time for me to say goodbye for now. I'm thinking of you, wherever you are 🙇 I hope you're alright out there!
