@@ -3,7 +3,7 @@ title: newlook
 style: /css/index.css
 ---
 
-# newlook { .center }
+# New Look { .center }
 
 It has taken me, let's call it, a small amount of time to write since my last post. This is for a couple of reasons. First and foremost, I spent most of the intervening time working on stuff for my Java class. I had a project to work on during that time which consumed a pretty significant amount of my attention. Secondarly I also wanted to update the site's look before posting again. If you're reading this now (June 10th or 11th) then that's done. My Java course is also completed so that's no longer an excuse not to write. I still feel a bit guilty about missing my kinda-sorta-deadline in May. If I'm being honest with myself I know that what I write isn't being read, but it still matters to me that I do it.
 

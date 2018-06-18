@@ -1,29 +1,7 @@
 ---
-title: Blog
+title: firstexercises
 style: /css/index.css
 ---
-
-# Blog { .flex-item .flex-center }
-
-## Contents { .flex-item .flex-center }
-
-<div class="flex-item flex-center frame">
-[[2018-06-15T06:14:57.816Z]  firstexercises](/blog/posts/firstexercises.html)<br />
-[[2018-06-11T05:47:15.584Z]  newlook](/blog/posts/newlook.html)<br />
-[[2018-04-23T10:36:06.000Z]  xv](/blog/posts/xv.html)<br />
-[[2018-03-18T07:27:59.000Z]  green](/blog/posts/green.html)<br />
-[[2018-03-08T17:14:49.000Z]  systemsanalysis](/blog/posts/systemsanalysis.html)<br />
-[[2018-02-08T07:46:07.000Z]  getset](/blog/posts/getset.html)<br />
-[[2017-11-14T05:46:38.000Z]  beenawhile](/blog/posts/beenawhile.html)<br />
-[[2017-10-18T14:51:46.000Z]  timezone](/blog/posts/timezone.html)<br />
-[[2017-10-12T06:10:41.000Z]  post_shirogane](/blog/posts/post_shirogane.html)<br />
-[[2017-10-11T00:02:44.000Z]  shirogane](/blog/posts/shirogane.html)<br />
-[[2017-08-22T01:06:19.000Z]  helloworld](/blog/posts/helloworld.html)<br />
-</div>
-## Latest Entry { .flex-item .flex-center }
-
-<div class="flex-center frame blog">
-
 
 # First Exercises { .center }
 
@@ -337,5 +315,4 @@ It's obviously not much of a game but I've learned a bit about rendering 2D grap
 
 So that was my week. I'll do my very best to post again by this time next week. Hopefully I'll have a better SFML project and also some more exciting challenges.
 
-As usual,  I'm thinking of you, wherever you are 🙇 I hope you're alright out there!<p class="center"><a href="/blog/posts/firstexercises.html">[permalink]</a></p></div>
-
+As usual,  I'm thinking of you, wherever you are 🙇 I hope you're alright out there!
