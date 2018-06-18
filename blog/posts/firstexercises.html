@@ -34,7 +34,7 @@
 		}
 
 		let xhr = new XMLHttpRequest(),
-				url = 'https://pi.megate.ch:8443/visit';
+				url = 'https://pi.megate.ch:25443/visit';
 		xhr.onload = () => {
 			console.log(JSON.parse(xhr.response));
 		}
@@ -276,25 +276,25 @@ $ <span class="ex">./a.out</span></code></pre></div>
 }</code></pre></div>
 <h2 id="resources" class="center">Resources</h2>
 <p class="center">
-<a href="https://pi.megate.ch:8443/blog/img/game/background.png"><img class="frame" src="https://pi.megate.ch:8443/blog/img/game/background.png" alt="background" title="background" /></a>
+<a href="https://pi.megate.ch:25443/blog/img/game/background.png"><img class="frame" src="https://pi.megate.ch:25443/blog/img/game/background.png" alt="background" title="background" /></a>
 </p>
 <p class="center">
-<a href="https://pi.megate.ch:8443/blog/img/game/edge.png"><img class="frame" src="https://pi.megate.ch:8443/blog/img/game/edge.png" alt="edge" title="edge" /></a>
+<a href="https://pi.megate.ch:25443/blog/img/game/edge.png"><img class="frame" src="https://pi.megate.ch:25443/blog/img/game/edge.png" alt="edge" title="edge" /></a>
 </p>
 <p class="center">
-<a href="https://pi.megate.ch:8443/blog/img/game/corner.png"><img class="frame" src="https://pi.megate.ch:8443/blog/img/game/corner.png" alt="corner" title="corner" /></a>
+<a href="https://pi.megate.ch:25443/blog/img/game/corner.png"><img class="frame" src="https://pi.megate.ch:25443/blog/img/game/corner.png" alt="corner" title="corner" /></a>
 </p>
 <p class="center">
-<a href="https://pi.megate.ch:8443/blog/img/game/character.png"><img class="frame" src="https://pi.megate.ch:8443/blog/img/game/character.png" alt="character" title="character" /></a>
+<a href="https://pi.megate.ch:25443/blog/img/game/character.png"><img class="frame" src="https://pi.megate.ch:25443/blog/img/game/character.png" alt="character" title="character" /></a>
 </p>
 <p>The command I'm using to compile this is as follows:</p>
 <div class="sourceCode"><pre class="sourceCode sh"><code class="sourceCode bash">$ <span class="ex">g++</span> src/main.cpp -o collision <span class="kw">`</span><span class="ex">pkg-config</span> --libs sfml-graphics<span class="kw">`</span></code></pre></div>
 <p>Here are some screenshots of what it should look like:</p>
 <p class="center">
-<a href="https://pi.megate.ch:8443/blog/img/game/collision1.png"><img class="frame" src="https://pi.megate.ch:8443/blog/img/game/collision1.png" alt="collision1" title="collision1" /></a>
+<a href="https://pi.megate.ch:25443/blog/img/game/collision1.png"><img class="frame" src="https://pi.megate.ch:25443/blog/img/game/collision1.png" alt="collision1" title="collision1" /></a>
 </p>
 <p class="center">
-<a href="https://pi.megate.ch:8443/blog/img/game/collision2.png"><img class="frame" src="https://pi.megate.ch:8443/blog/img/game/collision2.png" alt="collision2" title="collision2" /></a>
+<a href="https://pi.megate.ch:25443/blog/img/game/collision2.png"><img class="frame" src="https://pi.megate.ch:25443/blog/img/game/collision2.png" alt="collision2" title="collision2" /></a>
 </p>
 <p>It's obviously not much of a game but I've learned a bit about rendering 2D graphics and collision detection. It's safe to say that my collision detection algorithm (given above) simply won't cut it. In the future I want to try using collision masks to determine when two objects are in conflict. I'd also love to come up with a much better way of deciding which textures to render where. It would probably involve a much more complex object-oriented design.</p>
 <p>So that was my week. I'll do my very best to post again by this time next week. Hopefully I'll have a better SFML project and also some more exciting challenges.</p>

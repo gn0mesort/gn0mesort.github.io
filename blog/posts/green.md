@@ -13,39 +13,39 @@ As promised I've gone out and taken some pictures. It looks like we might be in 
 
 I think I'll just dump the pictures. Some of them are kind of blurry, but that's what I get for only have a cell phone camera (and not a very nice one). I hope you can appreciate them nonetheless.
 
-<p class="center"><a href="https://pi.megate.ch:8443/blog/img/green/1.jpg"><img class="frame" src="https://pi.megate.ch:8443/blog/img/green/1_small.jpg" alt="Image 1" title="Image 1" /></a></p>
+<p class="center"><a href="https://pi.megate.ch:25443/blog/img/green/1.jpg"><img class="frame" src="https://pi.megate.ch:25443/blog/img/green/1_small.jpg" alt="Image 1" title="Image 1" /></a></p>
 
-<p class="center"><a href="https://pi.megate.ch:8443/blog/img/green/2.jpg"><img class="frame" src="https://pi.megate.ch:8443/blog/img/green/2_small.jpg" alt="Image 2" title="Image 2" /></a></p>
+<p class="center"><a href="https://pi.megate.ch:25443/blog/img/green/2.jpg"><img class="frame" src="https://pi.megate.ch:25443/blog/img/green/2_small.jpg" alt="Image 2" title="Image 2" /></a></p>
 
-<p class="center"><a href="https://pi.megate.ch:8443/blog/img/green/3.jpg"><img class="frame" src="https://pi.megate.ch:8443/blog/img/green/3_small.jpg" alt="Image 3" title="Image 3" /></a></p>
+<p class="center"><a href="https://pi.megate.ch:25443/blog/img/green/3.jpg"><img class="frame" src="https://pi.megate.ch:25443/blog/img/green/3_small.jpg" alt="Image 3" title="Image 3" /></a></p>
 
-<p class="center"><a href="https://pi.megate.ch:8443/blog/img/green/4.jpg"><img class="frame" src="https://pi.megate.ch:8443/blog/img/green/4_small.jpg" alt="Image 4" title="Image 4" /></a></p>
+<p class="center"><a href="https://pi.megate.ch:25443/blog/img/green/4.jpg"><img class="frame" src="https://pi.megate.ch:25443/blog/img/green/4_small.jpg" alt="Image 4" title="Image 4" /></a></p>
 
-<p class="center"><a href="https://pi.megate.ch:8443/blog/img/green/5.jpg"><img class="frame" src="https://pi.megate.ch:8443/blog/img/green/5_small.jpg" alt="Image 5" title="Image 5" /></a></p>
+<p class="center"><a href="https://pi.megate.ch:25443/blog/img/green/5.jpg"><img class="frame" src="https://pi.megate.ch:25443/blog/img/green/5_small.jpg" alt="Image 5" title="Image 5" /></a></p>
 
-<p class="center"><a href="https://pi.megate.ch:8443/blog/img/green/6.jpg"><img class="frame" src="https://pi.megate.ch:8443/blog/img/green/6_small.jpg" alt="Image 6" title="Image 6" /></a></p>
+<p class="center"><a href="https://pi.megate.ch:25443/blog/img/green/6.jpg"><img class="frame" src="https://pi.megate.ch:25443/blog/img/green/6_small.jpg" alt="Image 6" title="Image 6" /></a></p>
 
-<p class="center"><a href="https://pi.megate.ch:8443/blog/img/green/7.jpg"><img class="frame" src="https://pi.megate.ch:8443/blog/img/green/7_small.jpg" alt="Image 7" title="Image 7" /></a></p>
+<p class="center"><a href="https://pi.megate.ch:25443/blog/img/green/7.jpg"><img class="frame" src="https://pi.megate.ch:25443/blog/img/green/7_small.jpg" alt="Image 7" title="Image 7" /></a></p>
 
-<p class="center"><a href="https://pi.megate.ch:8443/blog/img/green/8.jpg"><img class="frame" src="https://pi.megate.ch:8443/blog/img/green/8_small.jpg" alt="Image 8" title="Image 8" /></a></p>
+<p class="center"><a href="https://pi.megate.ch:25443/blog/img/green/8.jpg"><img class="frame" src="https://pi.megate.ch:25443/blog/img/green/8_small.jpg" alt="Image 8" title="Image 8" /></a></p>
 
-<p class="center"><a href="https://pi.megate.ch:8443/blog/img/green/9.jpg"><img class="frame" src="https://pi.megate.ch:8443/blog/img/green/9_small.jpg" alt="Image 9" title="Image 9" /></a></p>
+<p class="center"><a href="https://pi.megate.ch:25443/blog/img/green/9.jpg"><img class="frame" src="https://pi.megate.ch:25443/blog/img/green/9_small.jpg" alt="Image 9" title="Image 9" /></a></p>
 
-<p class="center"><a href="https://pi.megate.ch:8443/blog/img/green/10.jpg"><img class="frame" src="https://pi.megate.ch:8443/blog/img/green/10_small.jpg" alt="Image 10" title="Image 10" /></a></p>
+<p class="center"><a href="https://pi.megate.ch:25443/blog/img/green/10.jpg"><img class="frame" src="https://pi.megate.ch:25443/blog/img/green/10_small.jpg" alt="Image 10" title="Image 10" /></a></p>
 
-<p class="center"><a href="https://pi.megate.ch:8443/blog/img/green/11.jpg"><img class="frame" src="https://pi.megate.ch:8443/blog/img/green/11_small.jpg" alt="Image 11" title="Image 11" /></a></p>
+<p class="center"><a href="https://pi.megate.ch:25443/blog/img/green/11.jpg"><img class="frame" src="https://pi.megate.ch:25443/blog/img/green/11_small.jpg" alt="Image 11" title="Image 11" /></a></p>
 
-<p class="center"><a href="https://pi.megate.ch:8443/blog/img/green/12.jpg"><img class="frame" src="https://pi.megate.ch:8443/blog/img/green/12_small.jpg" alt="Image 12" title="Image 12" /></a></p>
+<p class="center"><a href="https://pi.megate.ch:25443/blog/img/green/12.jpg"><img class="frame" src="https://pi.megate.ch:25443/blog/img/green/12_small.jpg" alt="Image 12" title="Image 12" /></a></p>
 
-<p class="center"><a href="https://pi.megate.ch:8443/blog/img/green/13.jpg"><img class="frame" src="https://pi.megate.ch:8443/blog/img/green/13_small.jpg" alt="Image 13" title="Image 13" /></a></p>
+<p class="center"><a href="https://pi.megate.ch:25443/blog/img/green/13.jpg"><img class="frame" src="https://pi.megate.ch:25443/blog/img/green/13_small.jpg" alt="Image 13" title="Image 13" /></a></p>
 
-<p class="center"><a href="https://pi.megate.ch:8443/blog/img/green/14.jpg"><img class="frame" src="https://pi.megate.ch:8443/blog/img/green/14_small.jpg" alt="Image 14" title="Image 14" /></a></p>
+<p class="center"><a href="https://pi.megate.ch:25443/blog/img/green/14.jpg"><img class="frame" src="https://pi.megate.ch:25443/blog/img/green/14_small.jpg" alt="Image 14" title="Image 14" /></a></p>
 
-<p class="center"><a href="https://pi.megate.ch:8443/blog/img/green/15.jpg"><img class="frame" src="https://pi.megate.ch:8443/blog/img/green/15_small.jpg" alt="Image 15" title="Image 15" /></a></p>
+<p class="center"><a href="https://pi.megate.ch:25443/blog/img/green/15.jpg"><img class="frame" src="https://pi.megate.ch:25443/blog/img/green/15_small.jpg" alt="Image 15" title="Image 15" /></a></p>
 
 This last one is especially blurry. I only took it because I thought it was funny that someone was flying a [Gadsden Flag](https://en.wikipedia.org/wiki/Gadsden_flag).
 
-<p class="center"><a href="https://pi.megate.ch:8443/blog/img/green/16.jpg"><img class="frame" src="https://pi.megate.ch:8443/blog/img/green/16_small.jpg" alt="Image 16" title="Image 16" /></a></p>
+<p class="center"><a href="https://pi.megate.ch:25443/blog/img/green/16.jpg"><img class="frame" src="https://pi.megate.ch:25443/blog/img/green/16_small.jpg" alt="Image 16" title="Image 16" /></a></p>
 
 You might have noticed, even though I embeded it first, the video is actually the last place I stopped and took pictures of (on my way back home). I, perhaps obviously, passed it on my way up the hill. There was a unmarked white van idling there though (which made me nervous) so I passed it up till I was headed back. The van was still there when I was coming back (it also had no plates, always a good sign).
 

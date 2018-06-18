@@ -291,13 +291,13 @@ int main() {
 
 ## Resources { .center }
 
-<p class="center"><a href="https://pi.megate.ch:8443/blog/img/game/background.png"><img class="frame" src="https://pi.megate.ch:8443/blog/img/game/background.png" alt="background" title="background" /></a></p>
+<p class="center"><a href="https://pi.megate.ch:25443/blog/img/game/background.png"><img class="frame" src="https://pi.megate.ch:25443/blog/img/game/background.png" alt="background" title="background" /></a></p>
 
-<p class="center"><a href="https://pi.megate.ch:8443/blog/img/game/edge.png"><img class="frame" src="https://pi.megate.ch:8443/blog/img/game/edge.png" alt="edge" title="edge" /></a></p>
+<p class="center"><a href="https://pi.megate.ch:25443/blog/img/game/edge.png"><img class="frame" src="https://pi.megate.ch:25443/blog/img/game/edge.png" alt="edge" title="edge" /></a></p>
 
-<p class="center"><a href="https://pi.megate.ch:8443/blog/img/game/corner.png"><img class="frame" src="https://pi.megate.ch:8443/blog/img/game/corner.png" alt="corner" title="corner" /></a></p>
+<p class="center"><a href="https://pi.megate.ch:25443/blog/img/game/corner.png"><img class="frame" src="https://pi.megate.ch:25443/blog/img/game/corner.png" alt="corner" title="corner" /></a></p>
 
-<p class="center"><a href="https://pi.megate.ch:8443/blog/img/game/character.png"><img class="frame" src="https://pi.megate.ch:8443/blog/img/game/character.png" alt="character" title="character" /></a></p>
+<p class="center"><a href="https://pi.megate.ch:25443/blog/img/game/character.png"><img class="frame" src="https://pi.megate.ch:25443/blog/img/game/character.png" alt="character" title="character" /></a></p>
 
 The command I'm using to compile this is as follows:
 
@@ -307,9 +307,9 @@ $ g++ src/main.cpp -o collision `pkg-config --libs sfml-graphics`
 
 Here are some screenshots of what it should look like:
 
-<p class="center"><a href="https://pi.megate.ch:8443/blog/img/game/collision1.png"><img class="frame" src="https://pi.megate.ch:8443/blog/img/game/collision1.png" alt="collision1" title="collision1" /></a></p>
+<p class="center"><a href="https://pi.megate.ch:25443/blog/img/game/collision1.png"><img class="frame" src="https://pi.megate.ch:25443/blog/img/game/collision1.png" alt="collision1" title="collision1" /></a></p>
 
-<p class="center"><a href="https://pi.megate.ch:8443/blog/img/game/collision2.png"><img class="frame" src="https://pi.megate.ch:8443/blog/img/game/collision2.png" alt="collision2" title="collision2" /></a></p>
+<p class="center"><a href="https://pi.megate.ch:25443/blog/img/game/collision2.png"><img class="frame" src="https://pi.megate.ch:25443/blog/img/game/collision2.png" alt="collision2" title="collision2" /></a></p>
 
 It's obviously not much of a game but I've learned a bit about rendering 2D graphics and collision detection. It's safe to say that my collision detection algorithm (given above) simply won't cut it. In the future I want to try using collision masks to determine when two objects are in conflict. I'd also love to come up with a much better way of deciding which textures to render where. It would probably involve a much more complex object-oriented design.
 
