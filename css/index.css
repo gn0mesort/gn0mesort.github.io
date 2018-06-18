@@ -92,10 +92,10 @@
 /* Syntax Highlighting */
 
 pre {
-	tab-size: 2ch;
-	-moz-tab-size: 2ch;
-	-webkit-tab-size: 2ch;
-	-o-tab-size: 2ch;
+	tab-size: 2;
+	-moz-tab-size: 2;
+	-webkit-tab-size: 2;
+	-o-tab-size: 2;
 	border: double;
 	max-width: 80ch;
 	overflow: auto;
