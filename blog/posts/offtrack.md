@@ -1,30 +1,7 @@
 ---
-title: Blog
+title: offtrack
 style: /css/index.css
 ---
-
-# Blog { .flex-item .flex-center }
-
-## Contents { .flex-item .flex-center }
-
-<div class="flex-item flex-center frame">
-[[2018-07-02T00:15:15.561Z]  offtrack](/blog/posts/offtrack.html)<br />
-[[2018-06-15T06:14:57.816Z]  firstexercises](/blog/posts/firstexercises.html)<br />
-[[2018-06-11T05:47:15.584Z]  newlook](/blog/posts/newlook.html)<br />
-[[2018-04-23T10:36:06.000Z]  xv](/blog/posts/xv.html)<br />
-[[2018-03-18T07:27:59.000Z]  green](/blog/posts/green.html)<br />
-[[2018-03-08T17:14:49.000Z]  systemsanalysis](/blog/posts/systemsanalysis.html)<br />
-[[2018-02-08T07:46:07.000Z]  getset](/blog/posts/getset.html)<br />
-[[2017-11-14T05:46:38.000Z]  beenawhile](/blog/posts/beenawhile.html)<br />
-[[2017-10-18T14:51:46.000Z]  timezone](/blog/posts/timezone.html)<br />
-[[2017-10-12T06:10:41.000Z]  post_shirogane](/blog/posts/post_shirogane.html)<br />
-[[2017-10-11T00:02:44.000Z]  shirogane](/blog/posts/shirogane.html)<br />
-[[2017-08-22T01:06:19.000Z]  helloworld](/blog/posts/helloworld.html)<br />
-</div>
-## Latest Entry { .flex-item .flex-center }
-
-<div class="flex-center frame blog">
-
 
 # Off Track { .center }
 
@@ -146,5 +123,4 @@ In the first two cases we know there was an error (and where the error is becaus
 
 The final step is output. The output for this is about what you'd expect. You get the input string. If there is an error a line of `~` characters are printed followed by a `^` indicating where the error is. The program will also return an error code if there was an error. If you can't tell something is wrong from all that I'm not sure what to do 😝. 
 
-Anyways that's about all for the last couple weeks. Hopefully I'll have more soon but I don't necessarily think I should commit to a weekly schedule (I end up having very little to say). I felt pretty guilty to miss writing too. Even when I don't write I'm always thinking of you, wherever you are. As always I hope you're alright out there 🙇<p class="center"><a href="/blog/posts/offtrack.html">[permalink]</a></p></div>
-
+Anyways that's about all for the last couple weeks. Hopefully I'll have more soon but I don't necessarily think I should commit to a weekly schedule (I end up having very little to say). I felt pretty guilty to miss writing too. Even when I don't write I'm always thinking of you, wherever you are. As always I hope you're alright out there 🙇
