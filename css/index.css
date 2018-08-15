@@ -209,3 +209,7 @@ nav {
 nav::after {
 	content: "/"
 }
+
+video {
+	max-width: 50vh;
+}
