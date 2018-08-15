@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="keywords" content="megatech, programming, gnomesort, blog" />
+		<meta name="description" content="Megatech" />
+		<link rel="stylesheet" href="/css/index.css" />
+		
+		<title>Megatech - z</title>
+	</head>
+	<body>
+		<div id="header"><div id="navbar" class="flex-container navbar">
+	<nav class="flex-item"><a href="/">home</a></nav>
+	<nav class="flex-item"><a href="/blog">blog</a></nav>
+	<nav class="flex-item"><a href="/projects">projects</a></nav>
+	<nav class="flex-item"><a href="mailto:gnomesort@megate.ch">contact</a></nav>
+	<span class="flex-item flex-right">
+		&lt;
+		<noscript class="red bold" title="JavaScript is disabled">
+			noscript
+		</noscript>
+		<span id="script-enabled" class="blue bold"
+					title="JavaScript is enabled"></span>
+		<script>
+			document.getElementById('script-enabled').innerText = 'script';
+		</script>
+		&gt;
+	</span>
+	<script>
+		let links = document.querySelectorAll("#navbar a");
+		for (let link of links) {
+			let regex = new RegExp(`^${link.href}/?#?$`, 'g');
+			if (document.location.href.match(regex)) {
+				link.href = '#';
+			}
+		}
+
+		let xhr = new XMLHttpRequest(),
+				url = 'https://pi.megate.ch:25443/visit';
+		xhr.onload = () => {
+			console.log(JSON.parse(xhr.response));
+		}
+		xhr.open('GET', `${url}`);
+		xhr.send();
+	</script>
+</div>
+<hr /></div>
+		<div class="flex-container flex-column"><h1 id="z" class="center">Z</h1>
+<p>To the Maiden who Travels the Planet,</p>
+<p>I think this is going to be a long one. It's not only been a while but your birthday is coming up so I have quite a bit to say. I know that generally I don't address these directly (although perhaps my intended audience is obvious) but this time it feels important do away with a level of vagueness. I'm sorry for not writing you directly but I think that right now there would be too much of a fallout to do it. For what it's worth I'm alright and I've obviously not forgotten you (nor am I going to). Hopefully next year I'll be writing a different post. Maybe it will be the same as this year. I've come to accept that maybe I'll be typing out messages like this to essentially no one for the rest of my life. I think someday we'll reconnect though.</p>
+<p>I'm sorry I didn't respond to your message. Not being able to sent me to a fairly dark place for the past month (or a little more now). I hope someday you find your way here and read this so you can know I haven't forgotten you. Being forgotten is worse than dSeath, or so I've heard. It's probably a bit stupid but I've been thinking a lot about a quotation about one of my favorite games:</p>
+<pre class="txt"><code>In the real world things are very different. You just need to look around you.
+Nobody wants to die that way. People die of disease and accident.
+Death comes suddenly and there is no notion of good or bad.
+It leaves, not a dramatic feeling but great empitiness.
+When you lose someone you loved very much you feel this big empty space and
+think, &quot;If I had known this was coming I would have done things differently.&quot;</code></pre>
+<p>I feel like that quotation, in a somewhat odd fashion, describes how a feel much of the time. That isn't to say I'm truly unhappy or consumed totally by regret. I just think, <code>&quot;If I had known this was coming, I would have done things differently.&quot;</code></p>
+<p>Perhaps in a really bizarre way I am exactly what I wanted to be. We don't always have the forethought to analyze who we idolize I suppose. The big difference between the real world and the games I play isn't so much the events but the amount of swordfighting that surrounds those events. The real world has basically zero swordfighting. It's probably a lot safer that way.</p>
+<p>Anyways I hope, as always, that you're well and that things go well for you this next year.</p>
+<p>As always I've been up to some programming stuff that I should share. In keeping with my interest in programming exercises I've gone ahead and done two Euler Problems. The first of these (Problem 10) is as follows:</p>
+<pre class="txt"><code>The sum of the primes below 10 is 2 + 3 + 5 + 7 = 17.
+
+Find the sum of all the primes below two million.
+</code></pre>
+<p>Definitely doesn't seem like a difficult problem on the surface. The problem here is testing if a number is prime. A number, <code>n</code>, is prime if it only has factors of <code>1</code> and <code>n</code>. That means to be sure something is prime we have to factor it (at least enough to determine that it has a factor other than <code>1</code> and <code>n</code>). For, say, <code>4</code> this is easy. <code>4</code> has the factors <code>[ 1, 2, 4 ]</code> so it isn't prime. Doing the same test <code>13039</code> is not so easy (at least not by hand). This problem, <a href="https://en.wikipedia.org/wiki/Integer_factorization">integer factorization</a>, is known to be pretty hard. We could naively implement it as trial division which looks something like this:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">bool</span> is_prime(<span class="at">const</span> <span class="dt">uint32_t</span> n) {
+  <span class="cf">for</span> (<span class="dt">size_t</span> i = <span class="dv">2</span>; i &lt; n; ++i) {
+    <span class="cf">if</span> (i % n == <span class="dv">0</span>) { <span class="cf">return</span> <span class="kw">false</span>; }
+  }
+  <span class="cf">return</span> <span class="kw">true</span>;
+}</code></pre></div>
+<p>Basically we can test whether a number, <code>n</code>, is divisible by any other number in the range of <code>[2, n)</code>. At best the number is even and this fails on the first test. In the worst case the number is an exceptionally large prime and we will have to test everything between <code>2</code> and <code>n</code> to realize this. There are some obvious improvements that can be made on this (such as checking for divisibility by <code>2</code> with <code>if (!(n &amp; 1))</code>. Unfortunately though no matter what we do this strategy is going to suck (at least a little bit).</p>
+<p>It's kind of hard to figure out if any particular integer is prime.</p>
+<p>Luckily we can just ignore figuring out whether or not every number between 1 and 2000000 is prime. We can just grab the prime numbers and ignore the rest. The method I used for doing this is the <a href="https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes">Sieve of Eratosthenes</a>. There are (to my knowledge at least) significantly better prime sieves and my particular implementation is suboptimal. Nonetheless, this is a pretty easy method to understand.</p>
+<p>My code is as follows:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="bu">std::</span>vector&lt;<span class="dt">uint64_t</span>&gt; sieve(<span class="at">const</span> <span class="dt">uint64_t</span> max) {
+  <span class="at">const</span> <span class="dt">uint64_t</span> SIZE = max + <span class="dv">1</span>;
+  <span class="bu">std::</span>vector&lt;<span class="dt">uint64_t</span>&gt; numbers(SIZE);
+
+  numbers[<span class="dv">0</span>] = SIZE;
+  numbers[<span class="dv">1</span>] = SIZE;
+  <span class="cf">for</span> (<span class="dt">uint64_t</span> i = <span class="dv">2</span>; i &lt; SIZE; ++i) { numbers[i] = i; }
+  <span class="cf">for</span> (<span class="dt">uint64_t</span> i = <span class="dv">2</span>; i &lt; SIZE; ++i) {
+    <span class="cf">for</span> (<span class="dt">uint64_t</span> j = i * <span class="dv">2</span>; j &lt; SIZE; j += i) { numbers[j] = SIZE; }
+  }
+  <span class="bu">std::</span>vector&lt;<span class="dt">uint64_t</span>&gt; r;
+  <span class="cf">for</span> (<span class="at">const</span> <span class="kw">auto</span> &amp;number : numbers) {
+    <span class="cf">if</span> (number &lt;= max) { r.push_back(number); }
+  }
+  <span class="cf">return</span> r;
+}</code></pre></div>
+<p>The basic idea here is to find all the numbers that are divisible by each prime we find. We very quickly run out of primes to try this way. To do this by hand we simply create a list of numbers from <code>0</code> to <code>n</code>. For <code>n = 29</code> it would look like this:</p>
+<pre class="txt"><code>  0  1  2  3  4  5  6  7  8  9
+ 10 11 12 13 14 15 16 17 18 19
+ 20 21 22 23 24 25 26 27 28 29</code></pre>
+<p>We can start our search by simply eliminating <code>0</code> and <code>1</code> neither of which may be considered.</p>
+<pre class="txt"><code>        2  3  4  5  6  7  8  9
+ 10 11 12 13 14 15 16 17 18 19
+ 20 21 22 23 24 25 26 27 28 29</code></pre>
+<p>Now starting at <code>2</code> we will eliminate every 2nd number</p>
+<pre class="txt"><code>        2  3     5     7     9
+    11    13    15    17    19
+    21    23    25    27    29</code></pre>
+<p>It's starting to look a lot more sparse. We move on to <code>3</code> and eliminate every 3rd number</p>
+<pre class="txt"><code>        2  3     5     7      
+    11    13          17    19
+          23    25          29</code></pre>
+<p>We've already eliminated <code>4</code> so we move on to <code>5</code> and eliminate every 5th number from there</p>
+<pre class="txt"><code>        2  3     5     7      
+    11    13          17    19
+          23                29</code></pre>
+<p>My program would keep going from there and check all the numbers that are not eliminated in this fashion. We can recognize when we're through ahead of time though. The result here is the first 10 prime numbers <code>[ 2, 3, 5, 7, 11, 13, 17, 19, 23, 29 ]</code>.</p>
+<p>The rest of the problem is obvious fairly simple. We just need the sum of our result. The complete source for my solution to the problem is:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="pp">#include </span><span class="im">&lt;cstdint&gt;</span>
+<span class="pp">#include </span><span class="im">&lt;cstddef&gt;</span>
+
+<span class="pp">#include </span><span class="im">&lt;iostream&gt;</span>
+<span class="pp">#include </span><span class="im">&lt;vector&gt;</span>
+
+<span class="bu">std::</span>vector&lt;<span class="dt">uint64_t</span>&gt; sieve(<span class="at">const</span> <span class="dt">uint64_t</span> max);
+
+<span class="dt">int</span> main() {
+  <span class="at">const</span> <span class="dt">uint64_t</span> MAX = <span class="dv">2000000</span>;
+  <span class="dt">uint64_t</span> sum = <span class="dv">0</span>;
+  <span class="bu">std::</span>vector&lt;<span class="dt">uint64_t</span>&gt; numbers = sieve(MAX);
+
+  <span class="cf">for</span> (<span class="dt">uint64_t</span> i = <span class="dv">0</span>; i &lt; numbers.size(); ++i) {
+    sum += numbers[i];
+    <span class="bu">std::</span>cout &lt;&lt; numbers[i];
+    <span class="cf">if</span> (i + <span class="dv">1</span> &lt; numbers.size()) { <span class="bu">std::</span>cout &lt;&lt; <span class="st">&quot; + &quot;</span>; }
+    <span class="cf">else</span> { <span class="bu">std::</span>cout &lt;&lt; <span class="st">&quot; = &quot;</span>; }
+  }
+  <span class="bu">std::</span>cout &lt;&lt; sum &lt;&lt; <span class="bu">std::</span>endl;
+}
+
+<span class="bu">std::</span>vector&lt;<span class="dt">uint64_t</span>&gt; sieve(<span class="at">const</span> <span class="dt">uint64_t</span> max) {
+  <span class="at">const</span> <span class="dt">uint64_t</span> SIZE = max + <span class="dv">1</span>;
+  <span class="bu">std::</span>vector&lt;<span class="dt">uint64_t</span>&gt; numbers(SIZE);
+
+  numbers[<span class="dv">0</span>] = SIZE;
+  numbers[<span class="dv">1</span>] = SIZE;
+  <span class="cf">for</span> (<span class="dt">uint64_t</span> i = <span class="dv">2</span>; i &lt; SIZE; ++i) { numbers[i] = i; }
+  <span class="cf">for</span> (<span class="dt">uint64_t</span> i = <span class="dv">2</span>; i &lt; SIZE; ++i) {
+    <span class="cf">for</span> (<span class="dt">uint64_t</span> j = i * <span class="dv">2</span>; j &lt; SIZE; j += i) { numbers[j] = SIZE; }
+  }
+  <span class="bu">std::</span>vector&lt;<span class="dt">uint64_t</span>&gt; r;
+  <span class="cf">for</span> (<span class="at">const</span> <span class="kw">auto</span> &amp;number : numbers) {
+    <span class="cf">if</span> (number &lt;= max) { r.push_back(number); }
+  }
+  <span class="cf">return</span> r;
+}</code></pre></div>
+<p>The answer is <code>142913828922</code>.</p>
+<p>The second Euler Problem I completed (Problem 14) is as follows:</p>
+<pre class="txt"><code>The following iterative sequence is defined for the set of positive integers:
+
+n → n/2 (n is even)
+n → 3n + 1 (n is odd)
+
+Using the rule above and starting with 13, we generate the following sequence:
+13 → 40 → 20 → 10 → 5 → 16 → 8 → 4 → 2 → 1
+
+It can be seen that this sequence (starting at 13 and finishing at 1) contains 
+10 terms. Although it has not been proved yet (Collatz Problem), it is thought 
+that all starting numbers finish at 1.
+
+Which starting number, under one million, produces the longest chain?
+
+NOTE: Once the chain starts the terms are allowed to go above one million.</code></pre>
+<p>I think this problem is way easier than the last one. The premise here is that we are to compute the number of terms it takes to reach <code>1</code> for all the numbers between <code>1</code> and <code>1000000</code> for the function <code>collatz(n)</code>. <code>collatz(n)</code> is defined something like this:</p>
+<div class="sourceCode"><pre class="sourceCode js"><code class="sourceCode javascript"><span class="kw">function</span> <span class="at">collatz</span>(n) <span class="op">{</span>
+  <span class="cf">while</span> (n <span class="op">&gt;</span> <span class="dv">1</span>) <span class="op">{</span>
+    <span class="cf">if</span> (n <span class="op">&amp;</span> <span class="dv">1</span>) <span class="op">{</span> n <span class="op">=</span> (<span class="dv">3</span> <span class="op">*</span> n) <span class="op">=</span> <span class="dv">1</span><span class="op">;</span> <span class="op">}</span>
+    <span class="cf">else</span> <span class="op">{</span> n <span class="op">=</span> n / <span class="dv">2</span><span class="op">;</span> <span class="op">}</span>
+  <span class="op">}</span>
+  <span class="cf">return</span> n<span class="op">;</span>
+<span class="op">}</span></code></pre></div>
+<p>In my implementation I defined the following function:</p>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="dt">uint64_t</span> collatz_terms(<span class="dt">uint64_t</span> value) {
+  <span class="dt">uint64_t</span> r = <span class="dv">1</span>;
+
+  <span class="cf">while</span> (value &gt; <span class="dv">1</span>) {
+    <span class="cf">if</span> (value &amp; <span class="dv">1</span>) { value = (<span class="dv">3</span> * value) + <span class="dv">1</span>; }
+    <span class="cf">else</span> { value /= <span class="dv">2</span>; }
+    ++r;
+  }
+
+  <span class="cf">return</span> r;
+}</code></pre></div>
+<p>In short what this does is start with <code>r</code> set to <code>1</code> term (this is the case for an input of <code>1</code> for instance) and then perform the <code>collatz(n)</code> function until we reach <code>1</code> incrementing <code>r</code> after each round. This alone is obviously not enough to figure out which number has the greatest number of terms. To do that we just need to have a simple &quot;find the maximum of some set&quot; code which looks like this:</p>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span>
+<span class="pp">#include </span><span class="im">&lt;stdint.h&gt;</span>
+
+<span class="dt">uint64_t</span> collatz_terms(<span class="dt">uint64_t</span> value);
+
+<span class="dt">int</span> main() {
+  <span class="dt">uint64_t</span> max = <span class="dv">0</span>,
+           num = <span class="dv">0</span>;
+
+  <span class="cf">for</span> (<span class="dt">uint64_t</span> i = <span class="dv">1</span>; tmp = <span class="dv">0</span>; i &lt; <span class="dv">1000000</span>; ++i) {
+    tmp = collatz_terms(i);
+    <span class="cf">if</span> (tmp &gt; max) {
+      max = tmp;
+      num = i;
+    }
+  }
+
+  printf(<span class="st">&quot;%ld : %ld terms</span><span class="sc">\n</span><span class="st">&quot;</span>, num, max);
+  <span class="cf">return</span> <span class="dv">0</span>;
+}
+
+<span class="dt">uint64_t</span> collatz_terms(<span class="dt">uint64_t</span> value) {
+  <span class="dt">uint64_t</span> r = <span class="dv">1</span>;
+
+  <span class="cf">while</span> (value &gt; <span class="dv">1</span>) {
+    <span class="cf">if</span> (value &amp; <span class="dv">1</span>) { value = (<span class="dv">3</span> * value) + <span class="dv">1</span>; }
+    <span class="cf">else</span> { value /= <span class="dv">2</span>; }
+    ++r;
+  }
+
+  <span class="cf">return</span> r;
+}</code></pre></div>
+<p>The answer turns out to be <code>837799</code> which takes <code>525</code> terms to reduce to <code>1</code>.</p>
+<p>Finally I've been working a lot on building a basic game engine. I tried, I really tried, to use <a href="https://godotengine.org">Godot</a> or something else but I just hate everything. I'm a snob. Just yesterday I finally got something animate! The project is a <strong>SUPER</strong> work in progress right now so I'm not going to release any of the code here (I need to rewrite the code for a third time because I'm dumb). It's been really fun to go from nothing to something though.</p>
+<div class="center">
+<p><video class="frame" src="https://pi.megate.ch:25443/blog/media/birthday.mp4" controls="true" preload="true"></video></p>
+</div>
+<p>Exactly what's going on is a bit complex. Underlying the entire output is a scene tree which holds each node in the scene. These nodes are drawn onto the screen based on a (currently badly designed) ordering. Right now there are about 52 things actually being drawn. The most obvious two are the text on the center of the screen and the framerate (which is an accurate calculation to my knowledge). The other 50 things are the field of stars behind the text. Each star is actually relying on the same texture (which is just an image of each frame of the star animation). Despite the out of control speed of the framerate the application is actually using a fixed update time of 60Hz. The screen is drawn as fast as possible regardless. Each star is also randomly placed so each time I run the application I get a new field of stars. This also helps me test that the stars are rendered behind the text.</p>
+<p>Anyways I'm beat. I hope I can keep improving my graphics work. I know this stuff is really rudimentary but it's way ahead of what I could have done even a month ago. I'll try to write again sooner rather than later. Maybe next week unless it's a really boring week.</p>
+<p>I'm still on my way to a smile but I think I'm getting there. I'm, as always, thinking of you wherever you are. 🙇‍ I hope things are alright out there.</p></div>
+		<div id="footer"><hr />
+<div class="flex-container footer">
+	<span class="flex-item flex-center">
+		{&nbsp;
+		<a href="https://github.com/gn0mesort/gn0mesort.github.io/">Source Code</a>
+		&nbsp;}
+	</span>
+</div></div>
+	</body>
+</html>
