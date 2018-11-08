@@ -1,32 +1,7 @@
 ---
-title: Blog
+title: longtimeagain
 style: /css/index.css
 ---
-
-# Blog { .flex-item .flex-center }
-
-## Contents { .flex-item .flex-center }
-
-<div class="flex-item flex-center frame">
-[[2018-11-08T06:42:27.418Z]  longtimeagain](/blog/posts/longtimeagain.html)<br />
-[[2018-08-15T06:34:41.789Z]  z](/blog/posts/z.html)<br />
-[[2018-07-02T00:15:15.561Z]  offtrack](/blog/posts/offtrack.html)<br />
-[[2018-06-15T06:14:57.816Z]  firstexercises](/blog/posts/firstexercises.html)<br />
-[[2018-06-11T05:47:15.584Z]  newlook](/blog/posts/newlook.html)<br />
-[[2018-04-23T10:36:06.000Z]  xv](/blog/posts/xv.html)<br />
-[[2018-03-18T07:27:59.000Z]  green](/blog/posts/green.html)<br />
-[[2018-03-08T17:14:49.000Z]  systemsanalysis](/blog/posts/systemsanalysis.html)<br />
-[[2018-02-08T07:46:07.000Z]  getset](/blog/posts/getset.html)<br />
-[[2017-11-14T05:46:38.000Z]  beenawhile](/blog/posts/beenawhile.html)<br />
-[[2017-10-18T14:51:46.000Z]  timezone](/blog/posts/timezone.html)<br />
-[[2017-10-12T06:10:41.000Z]  post_shirogane](/blog/posts/post_shirogane.html)<br />
-[[2017-10-11T00:02:44.000Z]  shirogane](/blog/posts/shirogane.html)<br />
-[[2017-08-22T01:06:19.000Z]  helloworld](/blog/posts/helloworld.html)<br />
-</div>
-## Latest Entry { .flex-item .flex-center }
-
-<div class="flex-center frame blog">
-
 
 # Long Time Again { .center }
 
@@ -45,5 +20,3 @@ I get in these kinds of moods where I'm really able to focus on something 100% (
 Anyway it hasn't been an easy few months for me. Perhaps the worst part of that is how easy my life really is. Sometimes I think that I would be better off if there was more suffering in my life. Isn't that kind of a horrible thing to wish for? Like there are people out there who are starving or dying of disease and I sit around comfortably saying, "I sure wish things were harder for me." Oh well.
 
 I think this whole post is probably an embarrassment. However, I think it's important I write even to no one. I hope I see you again sooner than later. I'm always thinking of you. Every single day and wherever you are 🙇
-<p class="center"><a href="/blog/posts/longtimeagain.html">[permalink]</a></p></div>
-

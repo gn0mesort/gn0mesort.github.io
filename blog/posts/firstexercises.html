@@ -48,234 +48,234 @@
 		<div class="flex-container flex-column"><h1 id="first-exercises" class="center">First Exercises</h1>
 <p>You may recall that I said:</p>
 <blockquote>
-<p>What I'd really like to do is do at least 1 programming exercise a week as well as complete 1 concrete step toward making a small computer game each week.</p>
+<p>What I’d really like to do is do at least 1 programming exercise a week as well as complete 1 concrete step toward making a small computer game each week.</p>
 </blockquote>
 <p>I set up a couple of little exercises for this week. These are really simple but I wanted to start with something I could definitely do. In the future I think I might pick either an Euler problem or something else more complicated like that (maybe some code golf problems from Stack Overflow too).</p>
 <p>The first problem I gave myself was the classic <a href="https://en.wikipedia.org/wiki/Fizz_Buzz">FizzBuzz</a> program. This is a pretty simple exercise but apparently a lot of people fail it. The prompt is as follows:</p>
 <blockquote>
-<p>Write a program that prints the numbers from 1 to 100. But for multiples of three print &quot;Fizz&quot; instead of the number and for the multiples of five print &quot;Buzz&quot;. For numbers which are multiples of both three and five print &quot;FizzBuzz&quot;.</p>
+<p>Write a program that prints the numbers from 1 to 100. But for multiples of three print “Fizz” instead of the number and for the multiples of five print “Buzz”. For numbers which are multiples of both three and five print “FizzBuzz”.</p>
 </blockquote>
 <p>This simple to get done, and a little more complicated to get done in a nice way. A naive C++ approach would be:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="pp">#include </span><span class="im">&lt;cstddef&gt;</span>
-
-<span class="pp">#include </span><span class="im">&lt;iostream&gt;</span>
-
-<span class="dt">int</span> main() {
-    <span class="cf">for</span> (<span class="dt">size_t</span> i = <span class="dv">1</span>; i &lt;= <span class="dv">100</span>; ++i) {
-        <span class="cf">if</span> (i % <span class="dv">15</span> == <span class="dv">0</span>) { <span class="bu">std::</span>cout &lt;&lt; <span class="st">&quot;FizzBuzz&quot;</span>; }
-        <span class="cf">else</span> <span class="cf">if</span> (i % <span class="dv">3</span> == <span class="dv">0</span>) { <span class="bu">std::</span>cout &lt;&lt; <span class="st">&quot;Fizz&quot;</span>; }
-        <span class="cf">else</span> <span class="cf">if</span> (i % <span class="dv">5</span> == <span class="dv">0</span>) { <span class="bu">std::</span>cout &lt;&lt; <span class="st">&quot;Buzz&quot;</span>; }
-        <span class="cf">else</span> { <span class="bu">std::</span>cout &lt;&lt; i; }
-        <span class="bu">std::</span>cout &lt;&lt; <span class="bu">std::</span>endl;
-    }
-    <span class="cf">return</span> <span class="dv">0</span>;
-}</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="pp">#include </span><span class="im">&lt;cstddef&gt;</span></a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="pp">#include </span><span class="im">&lt;iostream&gt;</span></a>
+<a class="sourceLine" id="cb1-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb1-5" data-line-number="5"><span class="dt">int</span> main() {</a>
+<a class="sourceLine" id="cb1-6" data-line-number="6">    <span class="cf">for</span> (<span class="dt">size_t</span> i = <span class="dv">1</span>; i &lt;= <span class="dv">100</span>; ++i) {</a>
+<a class="sourceLine" id="cb1-7" data-line-number="7">        <span class="cf">if</span> (i % <span class="dv">15</span> == <span class="dv">0</span>) { <span class="bu">std::</span>cout &lt;&lt; <span class="st">&quot;FizzBuzz&quot;</span>; }</a>
+<a class="sourceLine" id="cb1-8" data-line-number="8">        <span class="cf">else</span> <span class="cf">if</span> (i % <span class="dv">3</span> == <span class="dv">0</span>) { <span class="bu">std::</span>cout &lt;&lt; <span class="st">&quot;Fizz&quot;</span>; }</a>
+<a class="sourceLine" id="cb1-9" data-line-number="9">        <span class="cf">else</span> <span class="cf">if</span> (i % <span class="dv">5</span> == <span class="dv">0</span>) { <span class="bu">std::</span>cout &lt;&lt; <span class="st">&quot;Buzz&quot;</span>; }</a>
+<a class="sourceLine" id="cb1-10" data-line-number="10">        <span class="cf">else</span> { <span class="bu">std::</span>cout &lt;&lt; i; }</a>
+<a class="sourceLine" id="cb1-11" data-line-number="11">        <span class="bu">std::</span>cout &lt;&lt; <span class="bu">std::</span>endl;</a>
+<a class="sourceLine" id="cb1-12" data-line-number="12">    }</a>
+<a class="sourceLine" id="cb1-13" data-line-number="13">    <span class="cf">return</span> <span class="dv">0</span>;</a>
+<a class="sourceLine" id="cb1-14" data-line-number="14">}</a></code></pre></div>
 <p>This version is pretty simple. For each number we check if it is evenly divisible by 15 (the product of 3 and 5), 3, and 5. If the number is divisible by any of those then we print the respective string. Otherwise we just print the number.</p>
-<p>That about does it. You can nitpick here and there about my style (someone will definitely say, &quot;Shouldn't it be <code>!(i % 3)</code> etc?&quot;) but if you just want it done this does it. Maybe we don't <strong><em>just</em></strong> want it done though. Maybe we want to be a little slicker. A slicker answer would look like this (again in C++):</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="pp">#include </span><span class="im">&lt;cstddef&gt;</span>
-
-<span class="pp">#include </span><span class="im">&lt;iostream&gt;</span>
-<span class="pp">#include </span><span class="im">&lt;sstream&gt;</span>
-
-<span class="dt">int</span> main() {
-    <span class="cf">for</span> (<span class="dt">size_t</span> i = <span class="dv">1</span>; i &lt;= <span class="dv">100</span>; ++i) {
-        <span class="bu">std::</span>ostringstream ostr;
-        <span class="cf">if</span> (i % <span class="dv">3</span> == <span class="dv">0</span>) { ostr &lt;&lt; <span class="st">&quot;Fizz&quot;</span>; }
-        <span class="cf">if</span> (i % <span class="dv">5</span> == <span class="dv">0</span>) { ostr &lt;&lt; <span class="st">&quot;Buzz&quot;</span>; }
-        <span class="cf">if</span> (ostr.str().empty()) { ostr &lt;&lt; i; }
-        <span class="bu">std::</span>cout &lt;&lt; ostr.str() &lt;&lt; <span class="bu">std::</span>endl;
-    }
-    <span class="cf">return</span> <span class="dv">0</span>;
-}</code></pre></div>
-<p>This version is a little more advanced. What we're doing is creating a <code>std::ostringstream</code> (a stream type that allows us to create strings from other data). Then we're inserting values into this stream based on whether or not the current number is divisble by 3 and 5. If the resulting string is empty after both checks we insert the number itself instead. Finally we insert our string into <code>stdout</code>.</p>
-<p>Still pretty darn simple. In other languages (with fancier strings) this is even easier to do. I think we're forgetting something important though. C++ is for babies. So let's do it in C:</p>
-<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="pp">#include </span><span class="im">&lt;stddef.h&gt;</span>
-<span class="pp">#include </span><span class="im">&lt;string.h&gt;</span>
-<span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span>
-
-<span class="dt">int</span> main() {
-    <span class="cf">for</span> (<span class="dt">size_t</span> i = <span class="dv">1</span>; i &lt;= <span class="dv">100</span>; ++i) {
-        <span class="dt">char</span> result[<span class="dv">9</span>] = <span class="st">&quot;&quot;</span>;
-        <span class="cf">if</span> (i % <span class="dv">3</span> == <span class="dv">0</span>) { strncat(result, <span class="st">&quot;Fizz&quot;</span>, <span class="dv">4</span>); }
-        <span class="cf">if</span> (i % <span class="dv">5</span> == <span class="dv">0</span>) { strncat(result, <span class="st">&quot;Buzz&quot;</span>, <span class="dv">4</span>); }
-        <span class="cf">if</span> (strlen(result) == <span class="dv">0</span>) { snprintf(result, <span class="dv">8</span>, <span class="st">&quot;%d&quot;</span>, i); }
-        puts(result);
-    }
-    <span class="cf">return</span> <span class="dv">0</span>;
-}</code></pre></div>
-<p>Since this is C we have to use character arrays instead of string objects. We know that (in the worst case) we only have to print <code>&quot;FizzBuzz\0&quot;</code> hence the length of 9. Here we concatenate onto the string (called <code>result</code>) if the number is divisible by 3 or 5. If it isn't we print the number formated as a decimal value. Finally we print <code>result</code> on <code>stdout</code> with a newline added at the end. This version is also using the <code>n</code> variety of standard string functions (<code>strncat</code>, <code>snprintf</code>) which write at most <code>n</code> characters into our result. <code>n</code> here is 4 in the first two branches (where <code>i</code> was divisible by 3 or 5 or both) and 8 in the default case.</p>
-<p>You can definitely get more hardcore than this. I've seen solutions that take over 400 lines. I don't see much point in that though. Ultimately this is a simple problem and trying to come up with an optimal solution is a bit silly.</p>
+<p>That about does it. You can nitpick here and there about my style (someone will definitely say, “Shouldn’t it be <code>!(i % 3)</code> etc?”) but if you just want it done this does it. Maybe we don’t <strong><em>just</em></strong> want it done though. Maybe we want to be a little slicker. A slicker answer would look like this (again in C++):</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="pp">#include </span><span class="im">&lt;cstddef&gt;</span></a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="pp">#include </span><span class="im">&lt;iostream&gt;</span></a>
+<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="pp">#include </span><span class="im">&lt;sstream&gt;</span></a>
+<a class="sourceLine" id="cb2-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb2-6" data-line-number="6"><span class="dt">int</span> main() {</a>
+<a class="sourceLine" id="cb2-7" data-line-number="7">    <span class="cf">for</span> (<span class="dt">size_t</span> i = <span class="dv">1</span>; i &lt;= <span class="dv">100</span>; ++i) {</a>
+<a class="sourceLine" id="cb2-8" data-line-number="8">        <span class="bu">std::</span>ostringstream ostr;</a>
+<a class="sourceLine" id="cb2-9" data-line-number="9">        <span class="cf">if</span> (i % <span class="dv">3</span> == <span class="dv">0</span>) { ostr &lt;&lt; <span class="st">&quot;Fizz&quot;</span>; }</a>
+<a class="sourceLine" id="cb2-10" data-line-number="10">        <span class="cf">if</span> (i % <span class="dv">5</span> == <span class="dv">0</span>) { ostr &lt;&lt; <span class="st">&quot;Buzz&quot;</span>; }</a>
+<a class="sourceLine" id="cb2-11" data-line-number="11">        <span class="cf">if</span> (ostr.str().empty()) { ostr &lt;&lt; i; }</a>
+<a class="sourceLine" id="cb2-12" data-line-number="12">        <span class="bu">std::</span>cout &lt;&lt; ostr.str() &lt;&lt; <span class="bu">std::</span>endl;</a>
+<a class="sourceLine" id="cb2-13" data-line-number="13">    }</a>
+<a class="sourceLine" id="cb2-14" data-line-number="14">    <span class="cf">return</span> <span class="dv">0</span>;</a>
+<a class="sourceLine" id="cb2-15" data-line-number="15">}</a></code></pre></div>
+<p>This version is a little more advanced. What we’re doing is creating a <code>std::ostringstream</code> (a stream type that allows us to create strings from other data). Then we’re inserting values into this stream based on whether or not the current number is divisble by 3 and 5. If the resulting string is empty after both checks we insert the number itself instead. Finally we insert our string into <code>stdout</code>.</p>
+<p>Still pretty darn simple. In other languages (with fancier strings) this is even easier to do. I think we’re forgetting something important though. C++ is for babies. So let’s do it in C:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="pp">#include </span><span class="im">&lt;stddef.h&gt;</span></a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="pp">#include </span><span class="im">&lt;string.h&gt;</span></a>
+<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></a>
+<a class="sourceLine" id="cb3-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="dt">int</span> main() {</a>
+<a class="sourceLine" id="cb3-6" data-line-number="6">    <span class="cf">for</span> (<span class="dt">size_t</span> i = <span class="dv">1</span>; i &lt;= <span class="dv">100</span>; ++i) {</a>
+<a class="sourceLine" id="cb3-7" data-line-number="7">        <span class="dt">char</span> result[<span class="dv">9</span>] = <span class="st">&quot;&quot;</span>;</a>
+<a class="sourceLine" id="cb3-8" data-line-number="8">        <span class="cf">if</span> (i % <span class="dv">3</span> == <span class="dv">0</span>) { strncat(result, <span class="st">&quot;Fizz&quot;</span>, <span class="dv">4</span>); }</a>
+<a class="sourceLine" id="cb3-9" data-line-number="9">        <span class="cf">if</span> (i % <span class="dv">5</span> == <span class="dv">0</span>) { strncat(result, <span class="st">&quot;Buzz&quot;</span>, <span class="dv">4</span>); }</a>
+<a class="sourceLine" id="cb3-10" data-line-number="10">        <span class="cf">if</span> (strlen(result) == <span class="dv">0</span>) { snprintf(result, <span class="dv">8</span>, <span class="st">&quot;%d&quot;</span>, i); }</a>
+<a class="sourceLine" id="cb3-11" data-line-number="11">        puts(result);</a>
+<a class="sourceLine" id="cb3-12" data-line-number="12">    }</a>
+<a class="sourceLine" id="cb3-13" data-line-number="13">    <span class="cf">return</span> <span class="dv">0</span>;</a>
+<a class="sourceLine" id="cb3-14" data-line-number="14">}</a></code></pre></div>
+<p>Since this is C we have to use character arrays instead of string objects. We know that (in the worst case) we only have to print <code>&quot;FizzBuzz\0&quot;</code> hence the length of 9. Here we concatenate onto the string (called <code>result</code>) if the number is divisible by 3 or 5. If it isn’t we print the number formated as a decimal value. Finally we print <code>result</code> on <code>stdout</code> with a newline added at the end. This version is also using the <code>n</code> variety of standard string functions (<code>strncat</code>, <code>snprintf</code>) which write at most <code>n</code> characters into our result. <code>n</code> here is 4 in the first two branches (where <code>i</code> was divisible by 3 or 5 or both) and 8 in the default case.</p>
+<p>You can definitely get more hardcore than this. I’ve seen solutions that take over 400 lines. I don’t see much point in that though. Ultimately this is a simple problem and trying to come up with an optimal solution is a bit silly.</p>
 <p>The second exercise I did (because this is a neat trick and FizzBuzz is really easy) was to create a program that runs forever without any loops. This is also really easy but much harder to understand. So first a simple C (or C++ if you like) program that runs forever:</p>
-<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="dt">int</span> main() {
-    <span class="cf">while</span> (<span class="dv">1</span>);
-    <span class="cf">return</span> <span class="dv">0</span>;
-}</code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="dt">int</span> main() {</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2">    <span class="cf">while</span> (<span class="dv">1</span>);</a>
+<a class="sourceLine" id="cb4-3" data-line-number="3">    <span class="cf">return</span> <span class="dv">0</span>;</a>
+<a class="sourceLine" id="cb4-4" data-line-number="4">}</a></code></pre></div>
 <p>Another form of this that you might see is:</p>
-<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="dt">int</span> main() {
-    <span class="cf">for</span> (;;);
-    <span class="cf">return</span> <span class="dv">0</span>;
-}</code></pre></div>
-<p>For infinite loops I think that's as simple as it gets in C. I don't want any loops though. What I can do is this:</p>
-<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="dt">int</span> main() {
-    <span class="cf">return</span> main();
-}</code></pre></div>
-<p>Now, as you might guess if you know such things, this will not work normally. <code>main()</code> calls <code>main()</code> forever. The result is that at some point my program's call stack is going to explode and some manner of terrible cosmic horror will escape from my processor. Compiling this without any real thought looks like this:</p>
-<div class="sourceCode"><pre class="sourceCode sh"><code class="sourceCode bash">$ <span class="fu">gcc</span> main.c
-$ <span class="ex">./a.out</span>
-<span class="ex">Segmentation</span> fault (core dumped)</code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="dt">int</span> main() {</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2">    <span class="cf">for</span> (;;);</a>
+<a class="sourceLine" id="cb5-3" data-line-number="3">    <span class="cf">return</span> <span class="dv">0</span>;</a>
+<a class="sourceLine" id="cb5-4" data-line-number="4">}</a></code></pre></div>
+<p>For infinite loops I think that’s as simple as it gets in C. I don’t want any loops though. What I can do is this:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="dt">int</span> main() {</a>
+<a class="sourceLine" id="cb6-2" data-line-number="2">    <span class="cf">return</span> main();</a>
+<a class="sourceLine" id="cb6-3" data-line-number="3">}</a></code></pre></div>
+<p>Now, as you might guess if you know such things, this will not work normally. <code>main()</code> calls <code>main()</code> forever. The result is that at some point my program’s call stack is going to explode and some manner of terrible cosmic horror will escape from my processor. Compiling this without any real thought looks like this:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode sh"><code class="sourceCode bash"><a class="sourceLine" id="cb7-1" data-line-number="1">$ <span class="fu">gcc</span> main.c</a>
+<a class="sourceLine" id="cb7-2" data-line-number="2">$ <span class="ex">./a.out</span></a>
+<a class="sourceLine" id="cb7-3" data-line-number="3"><span class="ex">Segmentation</span> fault (core dumped)</a></code></pre></div>
 <p>At least on my machine. In Windows you might get some other manner of error message. However, if we put a little thought in and compile it as follows it will run forever:</p>
-<div class="sourceCode"><pre class="sourceCode sh"><code class="sourceCode bash">$ <span class="fu">gcc</span> -O3 main.c
-$ <span class="ex">./a.out</span></code></pre></div>
-<p>The reason this works is that I've turned on optimization (with <code>-O3</code>). We can disassemble the executables to see why this actually works. In the unoptimized version <code>main()</code> looks like this (at least on my x86 processor):</p>
-<div class="sourceCode"><pre class="sourceCode asm"><code class="sourceCode fasm">00000000000005fa &lt;main&gt;:
-<span class="fu"> 5fa:</span>   <span class="dv">55</span>                      <span class="bu">push</span>   %<span class="kw">rbp</span>
-<span class="fu"> 5fb:</span>   <span class="dv">48</span> <span class="dv">89</span> e5                <span class="bu">mov</span>    %<span class="kw">rsp</span>,%<span class="kw">rbp</span>
-<span class="fu"> 5fe:</span>   b8 <span class="dv">00</span> <span class="dv">00</span> <span class="dv">00</span> <span class="dv">00</span>          <span class="bu">mov</span>    <span class="dv">$</span><span class="bn">0x0,</span>%<span class="kw">eax</span>
-<span class="fu"> 603:</span>   e8 f2 ff ff ff          callq  5fa &lt;main&gt;
-<span class="fu"> 608:</span>   5d                      <span class="bu">pop</span>    %<span class="kw">rbp</span>
-<span class="fu"> 609:</span>   c3                      retq   
-<span class="fu"> 60a:</span>   <span class="dv">66</span> 0f 1f <span class="dv">44</span> <span class="dv">00</span> <span class="dv">00</span>       nopw   <span class="bn">0x0</span>(%<span class="kw">rax</span>,%<span class="kw">rax</span>,<span class="dv">1</span>)</code></pre></div>
-<p>The important line here is <code>callq 5fa &lt;main&gt;</code> which is telling the processor to save some information on the stack and then jump up to the address <code>0x5fa</code> which is the beginning of main again. We're also storing the value of <code>rbp</code> on the stack each time we do this. Eventually, when this has happened too many times, we run out of stack memory and the operating system tells us that we've done something wrong.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode sh"><code class="sourceCode bash"><a class="sourceLine" id="cb8-1" data-line-number="1">$ <span class="fu">gcc</span> -O3 main.c</a>
+<a class="sourceLine" id="cb8-2" data-line-number="2">$ <span class="ex">./a.out</span></a></code></pre></div>
+<p>The reason this works is that I’ve turned on optimization (with <code>-O3</code>). We can disassemble the executables to see why this actually works. In the unoptimized version <code>main()</code> looks like this (at least on my x86 processor):</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode asm"><code class="sourceCode fasm"><a class="sourceLine" id="cb9-1" data-line-number="1">00000000000005fa &lt;main&gt;:</a>
+<a class="sourceLine" id="cb9-2" data-line-number="2"><span class="fu"> 5fa:</span>   <span class="dv">55</span>                      <span class="bu">push</span>   %<span class="kw">rbp</span></a>
+<a class="sourceLine" id="cb9-3" data-line-number="3"><span class="fu"> 5fb:</span>   <span class="dv">48</span> <span class="dv">89</span> e5                <span class="bu">mov</span>    %<span class="kw">rsp</span>,%<span class="kw">rbp</span></a>
+<a class="sourceLine" id="cb9-4" data-line-number="4"><span class="fu"> 5fe:</span>   b8 <span class="dv">00</span> <span class="dv">00</span> <span class="dv">00</span> <span class="dv">00</span>          <span class="bu">mov</span>    <span class="dv">$</span><span class="bn">0x0,</span>%<span class="kw">eax</span></a>
+<a class="sourceLine" id="cb9-5" data-line-number="5"><span class="fu"> 603:</span>   e8 f2 ff ff ff          callq  5fa &lt;main&gt;</a>
+<a class="sourceLine" id="cb9-6" data-line-number="6"><span class="fu"> 608:</span>   5d                      <span class="bu">pop</span>    %<span class="kw">rbp</span></a>
+<a class="sourceLine" id="cb9-7" data-line-number="7"><span class="fu"> 609:</span>   c3                      retq   </a>
+<a class="sourceLine" id="cb9-8" data-line-number="8"><span class="fu"> 60a:</span>   <span class="dv">66</span> 0f 1f <span class="dv">44</span> <span class="dv">00</span> <span class="dv">00</span>       nopw   <span class="bn">0x0</span>(%<span class="kw">rax</span>,%<span class="kw">rax</span>,<span class="dv">1</span>)</a></code></pre></div>
+<p>The important line here is <code>callq 5fa &lt;main&gt;</code> which is telling the processor to save some information on the stack and then jump up to the address <code>0x5fa</code> which is the beginning of main again. We’re also storing the value of <code>rbp</code> on the stack each time we do this. Eventually, when this has happened too many times, we run out of stack memory and the operating system tells us that we’ve done something wrong.</p>
 <p>So what changes with optimzation? Well the optimized version of <code>main()</code> looks like this:</p>
-<div class="sourceCode"><pre class="sourceCode asm"><code class="sourceCode fasm">00000000000004f0 &lt;main&gt;:
-<span class="fu"> 4f0:</span>   eb fe                   <span class="bu">jmp</span>    4f0 &lt;main&gt;
-<span class="fu"> 4f2:</span>   <span class="dv">66</span> 2e 0f 1f <span class="dv">84</span> <span class="dv">00</span> <span class="dv">00</span>    nopw   %<span class="kw">cs</span>:<span class="bn">0x0</span>(%<span class="kw">rax</span>,%<span class="kw">rax</span>,<span class="dv">1</span>)
-<span class="fu"> 4f9:</span>   <span class="dv">00</span> <span class="dv">00</span> <span class="dv">00</span> 
-<span class="fu"> 4fc:</span>   0f 1f <span class="dv">40</span> <span class="dv">00</span>             nopl   <span class="bn">0x0</span>(%<span class="kw">rax</span>)</code></pre></div>
-<p>The only line that really matters here is the first one <code>jmp 4f0 &lt;main&gt;</code>. The <code>jmp</code> instruction, unlike <code>call</code>, doesn't bother storing any return information on the stack. We also stopped storing the value of <code>rbp</code> (this happens to be the frame pointer) on the stack as well. So here all we're doing is jumping back to the address <code>0x4f0</code> which unsurprisingly is the address that starts <code>main()</code>.</p>
-<p>This is called <a href="https://en.wikipedia.org/wiki/Tail_call">tail call optimization</a>. It works because we know that we don't have to save the state of any of our processor registers ahead of time. Normally when we call a function we have to save all the information about the previous function's state to the stack first. Otherwise when we return all of that information is lost (or at the very least extremely suspect because it may have been modified). Since a tail call occurs at the (tail) end of a function we don't need to worry about this though. The calling function is over. There are still some caveats to this (for instance what would happen if you passed a pointer to a stack local value from one recursive call to the next?) but if you just want an infinite loop this does the trick.</p>
-<p>I don't know how concrete it is but I did also work on some game related stuff. It's just a little test of drawing and collisions. Given the results I need some practice. The collision check specifically doesn't work perfectly. The problem is likely obvious but I haven't debugged my hacky code.</p>
-<h2 id="my-hacky-little-sfml-project-pls-dont-code-like-this-irl" class="center">My hacky little SFML project (pls don't code like this irl)</h2>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="pp">#include </span><span class="im">&lt;SFML/Graphics.hpp&gt;</span>
-
-<span class="dt">bool</span> collides(<span class="at">const</span> sf::Sprite &amp;character, <span class="at">const</span> sf::Sprite border[<span class="dv">32</span>],
-                            <span class="at">const</span> <span class="dt">int</span> direction) {
-    <span class="cf">for</span> (<span class="dt">size_t</span> i = <span class="dv">0</span>; i &lt; <span class="dv">32</span>; ++i) {
-        <span class="cf">if</span> (character.getGlobalBounds().intersects(border[i].getGlobalBounds())) {
-            <span class="cf">if</span> (direction == <span class="dv">0</span> &amp;&amp;
-                    border[i].getPosition().y &lt;= character.getPosition().y) {
-                <span class="cf">return</span> <span class="kw">true</span>;
-            }
-            <span class="cf">if</span> (direction == <span class="dv">1</span> &amp;&amp;
-                    border[i].getPosition().y &gt; character.getPosition().y) {
-                <span class="cf">return</span> <span class="kw">true</span>;
-            }
-            <span class="cf">if</span> (direction == <span class="dv">2</span> &amp;&amp;
-                    border[i].getPosition().x &lt;= character.getPosition().x) {
-                <span class="cf">return</span> <span class="kw">true</span>;
-            }
-            <span class="cf">if</span> (direction == <span class="dv">3</span> &amp;&amp;
-                    border[i].getPosition().x &gt; character.getPosition().x) {
-                <span class="cf">return</span> <span class="kw">true</span>;
-            }
-        }
-    }
-    <span class="cf">return</span> <span class="kw">false</span>;
-}
-
-<span class="dt">int</span> main() {
-    sf::RenderWindow window(sf::VideoMode(<span class="dv">256</span>, <span class="dv">256</span>), <span class="st">&quot;Collision&quot;</span>);
-    sf::Texture edge, corner, background, actor;
-    sf::Event ev;
-
-    <span class="cf">if</span> (!background.loadFromFile(<span class="st">&quot;res/img/background.png&quot;</span>)) {
-        <span class="cf">return</span> EXIT_FAILURE;
-    }
-    <span class="cf">if</span> (!edge.loadFromFile(<span class="st">&quot;res/img/edge.png&quot;</span>)) {
-        <span class="cf">return</span> EXIT_FAILURE;
-    }
-    <span class="cf">if</span> (!corner.loadFromFile(<span class="st">&quot;res/img/corner.png&quot;</span>)) {
-        <span class="cf">return</span> EXIT_FAILURE;
-    }
-    <span class="cf">if</span> (!actor.loadFromFile(<span class="st">&quot;res/img/character.png&quot;</span>)) {
-        <span class="cf">return</span> EXIT_FAILURE;
-    }
-
-    sf::Sprite area[<span class="dv">64</span>], border[<span class="dv">32</span>], character(actor);
-
-    <span class="cf">for</span> (<span class="dt">size_t</span> i = <span class="dv">0</span>; i &lt; <span class="dv">8</span>; ++i) {
-        <span class="cf">for</span> (<span class="dt">size_t</span> j = <span class="dv">0</span>; j &lt; <span class="dv">8</span>; ++j) {
-            area[i + <span class="dv">8</span> * j] = sf::Sprite(background);
-            area[i + <span class="dv">8</span> * j].setPosition(i * <span class="dv">32</span>, j * <span class="dv">32</span>);
-        }
-    }
-    <span class="cf">for</span> (<span class="dt">size_t</span> i = <span class="dv">0</span>; i &lt; <span class="dv">8</span>; ++i) {
-        <span class="cf">if</span> (i == <span class="dv">0</span>) {
-            border[i] = sf::Sprite(corner);
-            border[i].setPosition(<span class="dv">0</span>, <span class="dv">0</span>);
-        }
-        <span class="cf">else</span> <span class="cf">if</span> (i == <span class="dv">7</span>) {
-            border[i] = sf::Sprite(corner);
-            border[i].setRotation(<span class="dv">90</span>);
-            border[i].setPosition(<span class="dv">256</span>, <span class="dv">0</span>);
-        }
-        <span class="cf">else</span> {
-            border[i] = sf::Sprite(edge);
-            border[i].setRotation(<span class="dv">90</span>);
-            border[i].setPosition((i * <span class="dv">32</span>) + <span class="dv">32</span>, <span class="dv">0</span>);
-        }
-    }
-    <span class="cf">for</span> (<span class="dt">size_t</span> i = <span class="dv">0</span>; i &lt; <span class="dv">8</span>; ++i) {
-        <span class="dt">size_t</span> pos = i + <span class="dv">24</span>;
-        <span class="cf">if</span> (i == <span class="dv">0</span>) {
-            border[pos] = sf::Sprite(corner);
-            border[pos].setPosition(<span class="dv">0</span>, <span class="dv">256</span>);
-            border[pos].setRotation(<span class="dv">270</span>);
-        }
-        <span class="cf">else</span> <span class="cf">if</span> (i == <span class="dv">7</span>) {
-            border[pos] = sf::Sprite(corner);
-            border[pos].setPosition(<span class="dv">256</span>, <span class="dv">256</span>);
-            border[pos].setRotation(<span class="dv">180</span>);
-        }
-        <span class="cf">else</span> {
-            border[pos] = sf::Sprite(edge);
-            border[pos].setPosition(((pos - <span class="dv">24</span>) * <span class="dv">32</span>), <span class="dv">256</span>);
-            border[pos].setRotation(<span class="dv">270</span>);
-        }
-    }
-    <span class="cf">for</span> (<span class="dt">size_t</span> i = <span class="dv">1</span>; i &lt; <span class="dv">7</span>; ++i) {
-        border[i + <span class="dv">8</span>] = sf::Sprite(edge);
-        border[i + <span class="dv">8</span>].setPosition(<span class="dv">0</span>, i * <span class="dv">32</span>);
-    }
-    <span class="cf">for</span> (<span class="dt">size_t</span> i = <span class="dv">1</span>; i &lt; <span class="dv">7</span>; ++i) {
-        border[i + <span class="dv">16</span>] = sf::Sprite(edge);
-        border[i + <span class="dv">16</span>].setPosition(<span class="dv">256</span>, (i * <span class="dv">32</span>) + <span class="dv">32</span>);
-        border[i + <span class="dv">16</span>].setRotation(<span class="dv">180</span>);
-    }
-    character.setPosition(<span class="dv">32</span>, <span class="dv">32</span>);
-
-    <span class="cf">while</span> (window.isOpen()) {
-        <span class="cf">while</span> (window.pollEvent(ev)) {
-            <span class="cf">if</span> (ev.type == sf::Event::Closed) {
-                window.close();
-            }
-            <span class="cf">if</span> (ev.type == sf::Event::KeyPressed) {
-                sf::Vector2f pos = character.getPosition();
-                <span class="cf">if</span> (ev.key.code == sf::Keyboard::Key::Up) {
-                    <span class="cf">if</span> (!collides(character, border, <span class="dv">0</span>)) { character.move(<span class="dv">0</span>, <span class="dv">-32</span>); }
-                }
-                <span class="cf">if</span> (ev.key.code == sf::Keyboard::Key::Down) {
-                    <span class="cf">if</span> (!collides(character, border, <span class="dv">1</span>)) { character.move(<span class="dv">0</span>, <span class="dv">32</span>); }
-                }
-                <span class="cf">if</span> (ev.key.code == sf::Keyboard::Key::Left) {
-                    <span class="cf">if</span> (!collides(character, border, <span class="dv">2</span>)) { character.move(<span class="dv">-32</span>, <span class="dv">0</span>); }
-                }
-                <span class="cf">if</span> (ev.key.code == sf::Keyboard::Key::Right) {
-                    <span class="cf">if</span> (!collides(character, border, <span class="dv">3</span>)) { character.move(<span class="dv">32</span>, <span class="dv">0</span>); }
-                }
-            }
-        }
-
-        window.clear();
-
-        <span class="cf">for</span> (<span class="dt">size_t</span> i = <span class="dv">0</span>; i &lt; <span class="dv">64</span>; ++i) { window.draw(area[i]); }
-        <span class="cf">for</span> (<span class="dt">size_t</span> i = <span class="dv">0</span>; i &lt; <span class="dv">32</span>; ++i) { window.draw(border[i]); }
-        window.draw(character);
-
-        window.display();
-    }
-    <span class="cf">return</span> <span class="dv">0</span>;
-}</code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode asm"><code class="sourceCode fasm"><a class="sourceLine" id="cb10-1" data-line-number="1">00000000000004f0 &lt;main&gt;:</a>
+<a class="sourceLine" id="cb10-2" data-line-number="2"><span class="fu"> 4f0:</span>   eb fe                   <span class="bu">jmp</span>    4f0 &lt;main&gt;</a>
+<a class="sourceLine" id="cb10-3" data-line-number="3"><span class="fu"> 4f2:</span>   <span class="dv">66</span> 2e 0f 1f <span class="dv">84</span> <span class="dv">00</span> <span class="dv">00</span>    nopw   %<span class="kw">cs</span>:<span class="bn">0x0</span>(%<span class="kw">rax</span>,%<span class="kw">rax</span>,<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb10-4" data-line-number="4"><span class="fu"> 4f9:</span>   <span class="dv">00</span> <span class="dv">00</span> <span class="dv">00</span> </a>
+<a class="sourceLine" id="cb10-5" data-line-number="5"><span class="fu"> 4fc:</span>   0f 1f <span class="dv">40</span> <span class="dv">00</span>             nopl   <span class="bn">0x0</span>(%<span class="kw">rax</span>)</a></code></pre></div>
+<p>The only line that really matters here is the first one <code>jmp 4f0 &lt;main&gt;</code>. The <code>jmp</code> instruction, unlike <code>call</code>, doesn’t bother storing any return information on the stack. We also stopped storing the value of <code>rbp</code> (this happens to be the frame pointer) on the stack as well. So here all we’re doing is jumping back to the address <code>0x4f0</code> which unsurprisingly is the address that starts <code>main()</code>.</p>
+<p>This is called <a href="https://en.wikipedia.org/wiki/Tail_call">tail call optimization</a>. It works because we know that we don’t have to save the state of any of our processor registers ahead of time. Normally when we call a function we have to save all the information about the previous function’s state to the stack first. Otherwise when we return all of that information is lost (or at the very least extremely suspect because it may have been modified). Since a tail call occurs at the (tail) end of a function we don’t need to worry about this though. The calling function is over. There are still some caveats to this (for instance what would happen if you passed a pointer to a stack local value from one recursive call to the next?) but if you just want an infinite loop this does the trick.</p>
+<p>I don’t know how concrete it is but I did also work on some game related stuff. It’s just a little test of drawing and collisions. Given the results I need some practice. The collision check specifically doesn’t work perfectly. The problem is likely obvious but I haven’t debugged my hacky code.</p>
+<h2 id="my-hacky-little-sfml-project-pls-dont-code-like-this-irl" class="center">My hacky little SFML project (pls don’t code like this irl)</h2>
+<div class="sourceCode" id="cb11"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="pp">#include </span><span class="im">&lt;SFML/Graphics.hpp&gt;</span></a>
+<a class="sourceLine" id="cb11-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb11-3" data-line-number="3"><span class="dt">bool</span> collides(<span class="at">const</span> sf::Sprite &amp;character, <span class="at">const</span> sf::Sprite border[<span class="dv">32</span>],</a>
+<a class="sourceLine" id="cb11-4" data-line-number="4">                            <span class="at">const</span> <span class="dt">int</span> direction) {</a>
+<a class="sourceLine" id="cb11-5" data-line-number="5">    <span class="cf">for</span> (<span class="dt">size_t</span> i = <span class="dv">0</span>; i &lt; <span class="dv">32</span>; ++i) {</a>
+<a class="sourceLine" id="cb11-6" data-line-number="6">        <span class="cf">if</span> (character.getGlobalBounds().intersects(border[i].getGlobalBounds())) {</a>
+<a class="sourceLine" id="cb11-7" data-line-number="7">            <span class="cf">if</span> (direction == <span class="dv">0</span> &amp;&amp;</a>
+<a class="sourceLine" id="cb11-8" data-line-number="8">                    border[i].getPosition().y &lt;= character.getPosition().y) {</a>
+<a class="sourceLine" id="cb11-9" data-line-number="9">                <span class="cf">return</span> <span class="kw">true</span>;</a>
+<a class="sourceLine" id="cb11-10" data-line-number="10">            }</a>
+<a class="sourceLine" id="cb11-11" data-line-number="11">            <span class="cf">if</span> (direction == <span class="dv">1</span> &amp;&amp;</a>
+<a class="sourceLine" id="cb11-12" data-line-number="12">                    border[i].getPosition().y &gt; character.getPosition().y) {</a>
+<a class="sourceLine" id="cb11-13" data-line-number="13">                <span class="cf">return</span> <span class="kw">true</span>;</a>
+<a class="sourceLine" id="cb11-14" data-line-number="14">            }</a>
+<a class="sourceLine" id="cb11-15" data-line-number="15">            <span class="cf">if</span> (direction == <span class="dv">2</span> &amp;&amp;</a>
+<a class="sourceLine" id="cb11-16" data-line-number="16">                    border[i].getPosition().x &lt;= character.getPosition().x) {</a>
+<a class="sourceLine" id="cb11-17" data-line-number="17">                <span class="cf">return</span> <span class="kw">true</span>;</a>
+<a class="sourceLine" id="cb11-18" data-line-number="18">            }</a>
+<a class="sourceLine" id="cb11-19" data-line-number="19">            <span class="cf">if</span> (direction == <span class="dv">3</span> &amp;&amp;</a>
+<a class="sourceLine" id="cb11-20" data-line-number="20">                    border[i].getPosition().x &gt; character.getPosition().x) {</a>
+<a class="sourceLine" id="cb11-21" data-line-number="21">                <span class="cf">return</span> <span class="kw">true</span>;</a>
+<a class="sourceLine" id="cb11-22" data-line-number="22">            }</a>
+<a class="sourceLine" id="cb11-23" data-line-number="23">        }</a>
+<a class="sourceLine" id="cb11-24" data-line-number="24">    }</a>
+<a class="sourceLine" id="cb11-25" data-line-number="25">    <span class="cf">return</span> <span class="kw">false</span>;</a>
+<a class="sourceLine" id="cb11-26" data-line-number="26">}</a>
+<a class="sourceLine" id="cb11-27" data-line-number="27"></a>
+<a class="sourceLine" id="cb11-28" data-line-number="28"><span class="dt">int</span> main() {</a>
+<a class="sourceLine" id="cb11-29" data-line-number="29">    sf::RenderWindow window(sf::VideoMode(<span class="dv">256</span>, <span class="dv">256</span>), <span class="st">&quot;Collision&quot;</span>);</a>
+<a class="sourceLine" id="cb11-30" data-line-number="30">    sf::Texture edge, corner, background, actor;</a>
+<a class="sourceLine" id="cb11-31" data-line-number="31">    sf::Event ev;</a>
+<a class="sourceLine" id="cb11-32" data-line-number="32"></a>
+<a class="sourceLine" id="cb11-33" data-line-number="33">    <span class="cf">if</span> (!background.loadFromFile(<span class="st">&quot;res/img/background.png&quot;</span>)) {</a>
+<a class="sourceLine" id="cb11-34" data-line-number="34">        <span class="cf">return</span> EXIT_FAILURE;</a>
+<a class="sourceLine" id="cb11-35" data-line-number="35">    }</a>
+<a class="sourceLine" id="cb11-36" data-line-number="36">    <span class="cf">if</span> (!edge.loadFromFile(<span class="st">&quot;res/img/edge.png&quot;</span>)) {</a>
+<a class="sourceLine" id="cb11-37" data-line-number="37">        <span class="cf">return</span> EXIT_FAILURE;</a>
+<a class="sourceLine" id="cb11-38" data-line-number="38">    }</a>
+<a class="sourceLine" id="cb11-39" data-line-number="39">    <span class="cf">if</span> (!corner.loadFromFile(<span class="st">&quot;res/img/corner.png&quot;</span>)) {</a>
+<a class="sourceLine" id="cb11-40" data-line-number="40">        <span class="cf">return</span> EXIT_FAILURE;</a>
+<a class="sourceLine" id="cb11-41" data-line-number="41">    }</a>
+<a class="sourceLine" id="cb11-42" data-line-number="42">    <span class="cf">if</span> (!actor.loadFromFile(<span class="st">&quot;res/img/character.png&quot;</span>)) {</a>
+<a class="sourceLine" id="cb11-43" data-line-number="43">        <span class="cf">return</span> EXIT_FAILURE;</a>
+<a class="sourceLine" id="cb11-44" data-line-number="44">    }</a>
+<a class="sourceLine" id="cb11-45" data-line-number="45"></a>
+<a class="sourceLine" id="cb11-46" data-line-number="46">    sf::Sprite area[<span class="dv">64</span>], border[<span class="dv">32</span>], character(actor);</a>
+<a class="sourceLine" id="cb11-47" data-line-number="47"></a>
+<a class="sourceLine" id="cb11-48" data-line-number="48">    <span class="cf">for</span> (<span class="dt">size_t</span> i = <span class="dv">0</span>; i &lt; <span class="dv">8</span>; ++i) {</a>
+<a class="sourceLine" id="cb11-49" data-line-number="49">        <span class="cf">for</span> (<span class="dt">size_t</span> j = <span class="dv">0</span>; j &lt; <span class="dv">8</span>; ++j) {</a>
+<a class="sourceLine" id="cb11-50" data-line-number="50">            area[i + <span class="dv">8</span> * j] = sf::Sprite(background);</a>
+<a class="sourceLine" id="cb11-51" data-line-number="51">            area[i + <span class="dv">8</span> * j].setPosition(i * <span class="dv">32</span>, j * <span class="dv">32</span>);</a>
+<a class="sourceLine" id="cb11-52" data-line-number="52">        }</a>
+<a class="sourceLine" id="cb11-53" data-line-number="53">    }</a>
+<a class="sourceLine" id="cb11-54" data-line-number="54">    <span class="cf">for</span> (<span class="dt">size_t</span> i = <span class="dv">0</span>; i &lt; <span class="dv">8</span>; ++i) {</a>
+<a class="sourceLine" id="cb11-55" data-line-number="55">        <span class="cf">if</span> (i == <span class="dv">0</span>) {</a>
+<a class="sourceLine" id="cb11-56" data-line-number="56">            border[i] = sf::Sprite(corner);</a>
+<a class="sourceLine" id="cb11-57" data-line-number="57">            border[i].setPosition(<span class="dv">0</span>, <span class="dv">0</span>);</a>
+<a class="sourceLine" id="cb11-58" data-line-number="58">        }</a>
+<a class="sourceLine" id="cb11-59" data-line-number="59">        <span class="cf">else</span> <span class="cf">if</span> (i == <span class="dv">7</span>) {</a>
+<a class="sourceLine" id="cb11-60" data-line-number="60">            border[i] = sf::Sprite(corner);</a>
+<a class="sourceLine" id="cb11-61" data-line-number="61">            border[i].setRotation(<span class="dv">90</span>);</a>
+<a class="sourceLine" id="cb11-62" data-line-number="62">            border[i].setPosition(<span class="dv">256</span>, <span class="dv">0</span>);</a>
+<a class="sourceLine" id="cb11-63" data-line-number="63">        }</a>
+<a class="sourceLine" id="cb11-64" data-line-number="64">        <span class="cf">else</span> {</a>
+<a class="sourceLine" id="cb11-65" data-line-number="65">            border[i] = sf::Sprite(edge);</a>
+<a class="sourceLine" id="cb11-66" data-line-number="66">            border[i].setRotation(<span class="dv">90</span>);</a>
+<a class="sourceLine" id="cb11-67" data-line-number="67">            border[i].setPosition((i * <span class="dv">32</span>) + <span class="dv">32</span>, <span class="dv">0</span>);</a>
+<a class="sourceLine" id="cb11-68" data-line-number="68">        }</a>
+<a class="sourceLine" id="cb11-69" data-line-number="69">    }</a>
+<a class="sourceLine" id="cb11-70" data-line-number="70">    <span class="cf">for</span> (<span class="dt">size_t</span> i = <span class="dv">0</span>; i &lt; <span class="dv">8</span>; ++i) {</a>
+<a class="sourceLine" id="cb11-71" data-line-number="71">        <span class="dt">size_t</span> pos = i + <span class="dv">24</span>;</a>
+<a class="sourceLine" id="cb11-72" data-line-number="72">        <span class="cf">if</span> (i == <span class="dv">0</span>) {</a>
+<a class="sourceLine" id="cb11-73" data-line-number="73">            border[pos] = sf::Sprite(corner);</a>
+<a class="sourceLine" id="cb11-74" data-line-number="74">            border[pos].setPosition(<span class="dv">0</span>, <span class="dv">256</span>);</a>
+<a class="sourceLine" id="cb11-75" data-line-number="75">            border[pos].setRotation(<span class="dv">270</span>);</a>
+<a class="sourceLine" id="cb11-76" data-line-number="76">        }</a>
+<a class="sourceLine" id="cb11-77" data-line-number="77">        <span class="cf">else</span> <span class="cf">if</span> (i == <span class="dv">7</span>) {</a>
+<a class="sourceLine" id="cb11-78" data-line-number="78">            border[pos] = sf::Sprite(corner);</a>
+<a class="sourceLine" id="cb11-79" data-line-number="79">            border[pos].setPosition(<span class="dv">256</span>, <span class="dv">256</span>);</a>
+<a class="sourceLine" id="cb11-80" data-line-number="80">            border[pos].setRotation(<span class="dv">180</span>);</a>
+<a class="sourceLine" id="cb11-81" data-line-number="81">        }</a>
+<a class="sourceLine" id="cb11-82" data-line-number="82">        <span class="cf">else</span> {</a>
+<a class="sourceLine" id="cb11-83" data-line-number="83">            border[pos] = sf::Sprite(edge);</a>
+<a class="sourceLine" id="cb11-84" data-line-number="84">            border[pos].setPosition(((pos - <span class="dv">24</span>) * <span class="dv">32</span>), <span class="dv">256</span>);</a>
+<a class="sourceLine" id="cb11-85" data-line-number="85">            border[pos].setRotation(<span class="dv">270</span>);</a>
+<a class="sourceLine" id="cb11-86" data-line-number="86">        }</a>
+<a class="sourceLine" id="cb11-87" data-line-number="87">    }</a>
+<a class="sourceLine" id="cb11-88" data-line-number="88">    <span class="cf">for</span> (<span class="dt">size_t</span> i = <span class="dv">1</span>; i &lt; <span class="dv">7</span>; ++i) {</a>
+<a class="sourceLine" id="cb11-89" data-line-number="89">        border[i + <span class="dv">8</span>] = sf::Sprite(edge);</a>
+<a class="sourceLine" id="cb11-90" data-line-number="90">        border[i + <span class="dv">8</span>].setPosition(<span class="dv">0</span>, i * <span class="dv">32</span>);</a>
+<a class="sourceLine" id="cb11-91" data-line-number="91">    }</a>
+<a class="sourceLine" id="cb11-92" data-line-number="92">    <span class="cf">for</span> (<span class="dt">size_t</span> i = <span class="dv">1</span>; i &lt; <span class="dv">7</span>; ++i) {</a>
+<a class="sourceLine" id="cb11-93" data-line-number="93">        border[i + <span class="dv">16</span>] = sf::Sprite(edge);</a>
+<a class="sourceLine" id="cb11-94" data-line-number="94">        border[i + <span class="dv">16</span>].setPosition(<span class="dv">256</span>, (i * <span class="dv">32</span>) + <span class="dv">32</span>);</a>
+<a class="sourceLine" id="cb11-95" data-line-number="95">        border[i + <span class="dv">16</span>].setRotation(<span class="dv">180</span>);</a>
+<a class="sourceLine" id="cb11-96" data-line-number="96">    }</a>
+<a class="sourceLine" id="cb11-97" data-line-number="97">    character.setPosition(<span class="dv">32</span>, <span class="dv">32</span>);</a>
+<a class="sourceLine" id="cb11-98" data-line-number="98"></a>
+<a class="sourceLine" id="cb11-99" data-line-number="99">    <span class="cf">while</span> (window.isOpen()) {</a>
+<a class="sourceLine" id="cb11-100" data-line-number="100">        <span class="cf">while</span> (window.pollEvent(ev)) {</a>
+<a class="sourceLine" id="cb11-101" data-line-number="101">            <span class="cf">if</span> (ev.type == sf::Event::Closed) {</a>
+<a class="sourceLine" id="cb11-102" data-line-number="102">                window.close();</a>
+<a class="sourceLine" id="cb11-103" data-line-number="103">            }</a>
+<a class="sourceLine" id="cb11-104" data-line-number="104">            <span class="cf">if</span> (ev.type == sf::Event::KeyPressed) {</a>
+<a class="sourceLine" id="cb11-105" data-line-number="105">                sf::Vector2f pos = character.getPosition();</a>
+<a class="sourceLine" id="cb11-106" data-line-number="106">                <span class="cf">if</span> (ev.key.code == sf::Keyboard::Key::Up) {</a>
+<a class="sourceLine" id="cb11-107" data-line-number="107">                    <span class="cf">if</span> (!collides(character, border, <span class="dv">0</span>)) { character.move(<span class="dv">0</span>, <span class="dv">-32</span>); }</a>
+<a class="sourceLine" id="cb11-108" data-line-number="108">                }</a>
+<a class="sourceLine" id="cb11-109" data-line-number="109">                <span class="cf">if</span> (ev.key.code == sf::Keyboard::Key::Down) {</a>
+<a class="sourceLine" id="cb11-110" data-line-number="110">                    <span class="cf">if</span> (!collides(character, border, <span class="dv">1</span>)) { character.move(<span class="dv">0</span>, <span class="dv">32</span>); }</a>
+<a class="sourceLine" id="cb11-111" data-line-number="111">                }</a>
+<a class="sourceLine" id="cb11-112" data-line-number="112">                <span class="cf">if</span> (ev.key.code == sf::Keyboard::Key::Left) {</a>
+<a class="sourceLine" id="cb11-113" data-line-number="113">                    <span class="cf">if</span> (!collides(character, border, <span class="dv">2</span>)) { character.move(<span class="dv">-32</span>, <span class="dv">0</span>); }</a>
+<a class="sourceLine" id="cb11-114" data-line-number="114">                }</a>
+<a class="sourceLine" id="cb11-115" data-line-number="115">                <span class="cf">if</span> (ev.key.code == sf::Keyboard::Key::Right) {</a>
+<a class="sourceLine" id="cb11-116" data-line-number="116">                    <span class="cf">if</span> (!collides(character, border, <span class="dv">3</span>)) { character.move(<span class="dv">32</span>, <span class="dv">0</span>); }</a>
+<a class="sourceLine" id="cb11-117" data-line-number="117">                }</a>
+<a class="sourceLine" id="cb11-118" data-line-number="118">            }</a>
+<a class="sourceLine" id="cb11-119" data-line-number="119">        }</a>
+<a class="sourceLine" id="cb11-120" data-line-number="120"></a>
+<a class="sourceLine" id="cb11-121" data-line-number="121">        window.clear();</a>
+<a class="sourceLine" id="cb11-122" data-line-number="122"></a>
+<a class="sourceLine" id="cb11-123" data-line-number="123">        <span class="cf">for</span> (<span class="dt">size_t</span> i = <span class="dv">0</span>; i &lt; <span class="dv">64</span>; ++i) { window.draw(area[i]); }</a>
+<a class="sourceLine" id="cb11-124" data-line-number="124">        <span class="cf">for</span> (<span class="dt">size_t</span> i = <span class="dv">0</span>; i &lt; <span class="dv">32</span>; ++i) { window.draw(border[i]); }</a>
+<a class="sourceLine" id="cb11-125" data-line-number="125">        window.draw(character);</a>
+<a class="sourceLine" id="cb11-126" data-line-number="126"></a>
+<a class="sourceLine" id="cb11-127" data-line-number="127">        window.display();</a>
+<a class="sourceLine" id="cb11-128" data-line-number="128">    }</a>
+<a class="sourceLine" id="cb11-129" data-line-number="129">    <span class="cf">return</span> <span class="dv">0</span>;</a>
+<a class="sourceLine" id="cb11-130" data-line-number="130">}</a></code></pre></div>
 <h2 id="resources" class="center">Resources</h2>
 <p class="center">
 <a href="https://pi.megate.ch:25443/blog/img/game/background.png"><img class="frame" src="https://pi.megate.ch:25443/blog/img/game/background.png" alt="background" title="background" /></a>
@@ -289,8 +289,8 @@ $ <span class="ex">./a.out</span></code></pre></div>
 <p class="center">
 <a href="https://pi.megate.ch:25443/blog/img/game/character.png"><img class="frame" src="https://pi.megate.ch:25443/blog/img/game/character.png" alt="character" title="character" /></a>
 </p>
-<p>The command I'm using to compile this is as follows:</p>
-<div class="sourceCode"><pre class="sourceCode sh"><code class="sourceCode bash">$ <span class="ex">g++</span> src/main.cpp -o collision <span class="kw">`</span><span class="ex">pkg-config</span> --libs sfml-graphics<span class="kw">`</span></code></pre></div>
+<p>The command I’m using to compile this is as follows:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode sh"><code class="sourceCode bash"><a class="sourceLine" id="cb12-1" data-line-number="1">$ <span class="ex">g++</span> src/main.cpp -o collision <span class="kw">`</span><span class="ex">pkg-config</span> --libs sfml-graphics<span class="kw">`</span></a></code></pre></div>
 <p>Here are some screenshots of what it should look like:</p>
 <p class="center">
 <a href="https://pi.megate.ch:25443/blog/img/game/collision1.png"><img class="frame" src="https://pi.megate.ch:25443/blog/img/game/collision1.png" alt="collision1" title="collision1" /></a>
@@ -298,9 +298,9 @@ $ <span class="ex">./a.out</span></code></pre></div>
 <p class="center">
 <a href="https://pi.megate.ch:25443/blog/img/game/collision2.png"><img class="frame" src="https://pi.megate.ch:25443/blog/img/game/collision2.png" alt="collision2" title="collision2" /></a>
 </p>
-<p>It's obviously not much of a game but I've learned a bit about rendering 2D graphics and collision detection. It's safe to say that my collision detection algorithm (given above) simply won't cut it. In the future I want to try using collision masks to determine when two objects are in conflict. I'd also love to come up with a much better way of deciding which textures to render where. It would probably involve a much more complex object-oriented design.</p>
-<p>So that was my week. I'll do my very best to post again by this time next week. Hopefully I'll have a better SFML project and also some more exciting challenges.</p>
-<p>As usual, I'm thinking of you, wherever you are 🙇 I hope you're alright out there!</p></div>
+<p>It’s obviously not much of a game but I’ve learned a bit about rendering 2D graphics and collision detection. It’s safe to say that my collision detection algorithm (given above) simply won’t cut it. In the future I want to try using collision masks to determine when two objects are in conflict. I’d also love to come up with a much better way of deciding which textures to render where. It would probably involve a much more complex object-oriented design.</p>
+<p>So that was my week. I’ll do my very best to post again by this time next week. Hopefully I’ll have a better SFML project and also some more exciting challenges.</p>
+<p>As usual, I’m thinking of you, wherever you are 🙇 I hope you’re alright out there!</p></div>
 		<div id="footer"><hr />
 <div class="flex-container footer">
 	<span class="flex-item flex-center">
