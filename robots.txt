@@ -1,7 +1,2 @@
 User-agent: *
-Disallow: /tools/
-Disallow: /projects/
-Disallow: /js/
-Disallow: /html/
-Disallow: /css/
-Disallow: /blog/
+Disallow: /

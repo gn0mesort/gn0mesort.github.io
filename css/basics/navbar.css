@@ -1,0 +1,47 @@
+body {
+  padding: 0;
+  margin: 0;
+}
+
+header {
+  margin: 1rem;
+}
+
+main {
+  margin: 1rem;
+}
+
+footer {
+  margin: 1rem;
+}
+
+.navbar {
+  top: 0;
+  left: 0;
+  background: inherit;
+  position: fixed;
+  overflow: hidden;
+  width: 100%;
+}
+
+.spacer {
+  margin: 4rem;
+}
+
+.navbar .inner {
+  padding: 0.5rem 0.5rem 0 0.5rem;
+}
+
+.navbar a {
+  display: inline;
+}
+
+.navbar span::after {
+  content: " / ";
+}
+
+.navbar hr {
+  height: 5px;
+  width: 100%;
+  border: none;
+}

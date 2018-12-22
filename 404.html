@@ -1,59 +1,43 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8" />
-		<link rel="stylesheet" href="/css/index.css" />
-		
-		<title>Megatech - 404</title>
-	</head>
-	<body>
-		<div id="header"><div id="navbar" class="flex-container navbar">
-	<nav class="flex-item"><a href="/">home</a></nav>
-	<nav class="flex-item"><a href="/blog">blog</a></nav>
-	<nav class="flex-item"><a href="/projects">projects</a></nav>
-	<nav class="flex-item"><a href="mailto:gnomesort@megate.ch">contact</a></nav>
-	<span class="flex-item flex-right">
-		&lt;
-		<noscript class="red bold" title="JavaScript is disabled">
-			noscript
-		</noscript>
-		<span id="script-enabled" class="blue bold"
-					title="JavaScript is enabled"></span>
-		<script>
-			document.getElementById('script-enabled').innerText = 'script';
-		</script>
-		&gt;
-	</span>
-	<script>
-		let links = document.querySelectorAll("#navbar a");
-		for (let link of links) {
-			let regex = new RegExp(`^${link.href}/?#?$`, 'g');
-			if (document.location.href.match(regex)) {
-				link.href = '#';
-			}
-		}
-
-		let xhr = new XMLHttpRequest(),
-				url = 'https://pi.megate.ch:25443/visit';
-		xhr.onload = () => {
-			console.log(JSON.parse(xhr.response));
-		}
-		xhr.open('GET', `${url}`);
-		xhr.send();
-	</script>
-</div>
-<hr /></div>
-		<div class="flex-container flex-column"><h1 id="section" class="flex-item flex-center">404</h1>
-<div class="flex-item flex-center">
-<p>Page not found.</p>
-</div></div>
-		<div id="footer"><hr />
-<div class="flex-container footer">
-	<span class="flex-item flex-center">
-		{&nbsp;
-		<a href="https://github.com/gn0mesort/gn0mesort.github.io/">Source Code</a>
-		&nbsp;}
-	</span>
-</div></div>
-	</body>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="index.css" />
+    <title>Megatech</title>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="inner">
+        <span class="fg-foreground"><a href="/">Mt</a></span>
+        <span class="fg-foreground"><a href="https://github.com/gn0mesort">GitHub</a></span>
+        <span class="fg-foreground"><a href="mailto:gnomesort@megate.ch">Contact</a></span>
+      </div>
+      <hr class="bg-comment" />
+    </nav>
+    <div class="spacer"></div>
+    <header>
+      <div class="align-center">
+          <h1 class="braced"><span class="fg-purple">404</span></h1>
+          <h2 class="braced"><span class="fg-purple">Page Not Found</span></h2>
+      </div>
+    </header>
+    <main>
+      <div class="flex-row flex-space-evenly">
+          <div id="column_0" class="flex-column"></div>
+          <div id="column_1" class="flex-column">
+            <div class="frame">
+              <p><a href="/">Back Home</a></p>
+            </div>
+          </div>
+          <div id="column_2" class="flex-column"></div>
+      </div>
+    </main>
+    <footer>
+        <div class="align-center">
+          <p class="braced"><a href="https://github.com/gn0mesort/gn0mesort.github.io">source</a></p>
+        </div>
+        <div id="scroll_buffer"></div>
+    </footer>
+  </body>
 </html>

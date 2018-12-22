@@ -1,0 +1,9 @@
+a:link, a:visited, a:active {
+  color: var(--pink);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration-line: underline;
+  text-decoration-style: solid;
+}
