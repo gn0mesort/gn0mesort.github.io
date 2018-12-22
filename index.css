@@ -19,8 +19,10 @@ body {
   content: " }";
 }
 
-#column_1 {
-  max-width: 33%;
+@media all and (min-width: 1000px) {
+  #column_1 {
+    width: 33%;
+  }
 }
 
 #scroll_buffer {
