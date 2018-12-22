@@ -21,7 +21,7 @@ body {
 
 @media all and (min-width: 1000px) {
   #column_1 {
-    width: 33%;
+    max-width: 33%;
   }
 }
 
