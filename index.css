@@ -1,30 +1,217 @@
-@import url("/css/dracula/dracula.css");
-@import url("/css/flex/flex.css");
-@import url("/css/basics/navbar.css");
-@import url("/css/basics/align.css");
+/* Fonts */
+/*
+ * Font from https://int10h.org/oldschool-pc-fonts/
+ */
+@font-face {
+  font-family: 'PxPlus IBM VGA9';
+  src: url('fonts/pxplus_ibm_vga9.ttf');
+}
+/* End Fonts */
+
+/* Animations */
+@keyframes blink-link {
+  50% {
+    background-color: var(--cyan);
+    color: var(--black);
+  }
+  100% {
+    background-color: var(--black);
+    color: var(--cyan);
+  }
+}
+/* End Animations */
+
+:root {
+  --black: #000000;
+  --dark-gray: #555555;
+  --blue: #0000aa;
+  --light-blue: #5555ff;
+  --green: #00aa00;
+  --light-green: #55ff55;
+  --cyan: #00aaaa;
+  --light-cyan: #55ffff;
+  --red: #aa0000;
+  --light-red: #ff5555;
+  --magenta: #aa00aa;
+  --light-magenta: #ff55ff;
+  --brown: #aa5500;
+  --yellow: #ffff55;
+  --light-gray: #aaaaaa;
+  --white: #ffffff;
+  --ff7-ul: rgb(0,0,176);
+  --ff7-ll: rgb(0,0,80);
+  --ff7-ur: rgb(0,0,128);
+  --ff7-lr: rgb(0,0,32);
+}
 
 body {
-  background-color: var(--background);
-  color: var(--foreground);
-  font-family: "Source Code Pro", "DejaVu Sans Mono", monospace;
+  padding: 0;
+  margin: 0;
+  background-color: var(--black);
+  color: var(--light-gray);
+  font-family: 'PxPlus IBM VGA9', monospace;
   font-size: 10pt;
-  font-weight: bold;
+}
+
+header {
+  grid-row: 1;
+  grid-column: 2;
+}
+
+main {
+  grid-row: 2;
+  grid-column: 2;
+}
+
+footer {
+  grid-row: 3;
+  grid-column: 2;
+}
+
+a {
+  padding: 2px 5px;
+}
+a:link {
+  color: var(--cyan);
+  text-decoration: none;
+}
+a:hover {
+  animation: blink-link 2s infinite;
+}
+a:active {
+  color: var(--black);
+  background-color: var(--magenta);
+  animation: initial;
+}
+a:visited {
+  color: var(--cyan);
 }
 
 .braced::before {
-  content: "{ ";
+  content: '{ ';
+  color: var(--light-gray);
 }
-
 .braced::after {
-  content: " }";
+  content: ' }';
+  color: var(--light-gray);
 }
 
-@media all and (min-width: 1000px) {
-  #column_1 {
-    max-width: 33%;
-  }
+.slashed {
+  display: inline-block;
+}
+.slashed::after {
+  content: '/';
 }
 
-#scroll_buffer {
-  height: 25rem;
+.magenta {
+  color: var(--magenta);
+}
+.cyan {
+  color: var(--cyan);
+}
+
+.light-gray {
+  color: var(--light-gray);
+}
+
+p.indent {
+  text-indent: 2rem;
+}
+
+.navbar {
+  top: 0;
+  left: 0;
+  background: inherit;
+  position: fixed;
+  overflow: hidden;
+  width: 100%;
+}
+
+.navbar .inner {
+  padding: 0.5rem 0.5rem 0 0.5rem;
+}
+
+.navbar a {
+  display: inline;
+}
+
+
+div.spacer {
+  display: block;
+  width: 100%;
+  height: 3rem;
+}
+
+div.spacer.scroll {
+  height: 10rem;
+}
+
+hr {
+  background-color: var(--light-gray);
+  height: 5px;
+  width: 100%;
+  border: none;
+}
+
+.ff7-frame {
+  color: white;
+  text-shadow: 1px 0px black;
+  border-color: #949494;
+  border-style: ridge;
+  background-image: linear-gradient(
+    to bottom right, var(--ff7-ul), var(--ff7-lr)
+   ),
+   linear-gradient(
+    to top right, var(--ff7-ll), var(--ff7-ur)
+   );
+   border-width: 0.25rem;
+   padding: 1rem;
+   margin: 1rem;
+}
+
+.frame {
+  color: var(--light-gray);
+  border-color: var(--light-gray);
+  border-style: solid;
+  border-radius: 0.5rem;
+  border-width: 0.25rem;
+  padding: 1rem;
+  margin: 1rem;
+}
+
+
+/* .crt::before {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: linear-gradient(
+    rgba(20,20,20,0) 50%, rgba(0,0,0,0.25) 50%
+  ),
+  linear-gradient(
+    90deg, rgba(255,0,0,0.06), rgba(0,255,0,0.02), rgba(0,0,255,0.06)
+  );
+  z-index: 2;
+  background-size: 100vw, 2px, 3px 100vh;
+  pointer-events: none;
+}
+
+.crt {
+  animation: colorsep 3.0s infinite;
+} */
+
+.align-center {
+  text-align: center;
+}
+
+.grid {
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, auto);
+  justify-content: space-evenly;
+  align-content: center;
 }
