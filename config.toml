@@ -1,0 +1,11 @@
+baseURL = "https://megate.ch/"
+languageCode = "en-us"
+title = "Megatech"
+theme = "megatech"
+enableGitInfo = true
+
+[markup]
+  [markup.highlight]
+    tabWidth = 2
+    lineNos = true
+    style = "dracula"

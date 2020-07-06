@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.Language }}">
+    {{- partial "head.html" . -}}
+    <body>
+        {{- partial "navbar.html" . -}}
+        {{- partial "header.html" . -}}
+        <div class="grid-content">
+          {{- block "main" . }}{{- end }}
+        </div>
+        {{- partial "footer.html" . -}}
+    </body>
+</html>

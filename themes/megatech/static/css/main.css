@@ -1,0 +1,185 @@
+@import url("fira_code.css");
+
+:root {
+  --black-hard: #1d2021;
+  --black-soft: #32302f;
+  --black: #282828;
+  --red: #cc241d;
+  --green: #98971;
+  --yellow: #d79921;
+  --blue: #458588;
+  --purple: #b16286;
+  --aqua: #689d6a;
+  --orange: #d65d0e;
+  --gray: #a89984;
+  --light-gray: #928374;
+  --light-red: #fb4934;
+  --light-green: #b8bb26;
+  --light-yellow: #fabd2f;
+  --light-blue: #83a598;
+  --light-purple: #d3869b;
+  --light-aqua: #8ec07c;
+  --light-orange: #fe8019;
+  --white: #ebdbb2;
+}
+
+.center {
+  text-align: center;
+}
+
+img.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  transform: translateX(24px);
+}
+
+img#favicon {
+  transform: translateX(24px);
+}
+
+@media only screen and (max-width: 200px) {
+  img#favicon {
+    transform: translateX(12px);
+  }
+}
+
+.small {
+  font-size: small;
+}
+
+.xsmall {
+  font-size: x-small;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "FiraCode", monospace;
+  background-color: var(--black-hard);
+  color: var(--white);
+  display: grid;
+  grid-template-areas:
+    'navbar-left navbar-center navbar-right'
+    'header-left header-center header-right'
+    'content-left content-center content-right'
+    'footer-left footer-center footer-right';
+  grid-template-rows: repeat(4, auto);
+  grid-template-columns: auto 900px auto;
+  justify-content: space-evenly;
+}
+
+div.navbar {
+  background-color: var(--white);
+  color: var(--black-hard);
+  font-weight: bold;
+  position: fixed;
+  margin: 0;
+  padding-top: 0.25rem;
+  padding-left: 0.5rem;
+  padding-bottom: 0.25rem;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+}
+
+div.grid-navbar {
+  grid-area: navbar-left / navbar-center / navbar-right;
+}
+
+div.grid-header {
+  grid-area: header-left / header-center / header-right;
+}
+
+div.grid-content {
+  grid-area: content-center;
+}
+
+div.grid-footer {
+  grid-area: footer-left / footer-center / footer-right;
+}
+
+@media only screen and (max-width: 900px) {
+  body {
+    grid-template-areas:
+      'navbar'
+      'header'
+      'content'
+      'footer';
+    grid-template-rows: auto;
+    grid-template-columns: 1fr;
+  }
+
+  div.grid-navbar {
+    grid-area: navbar;
+  }
+
+  div.grid-header {
+    grid-area: header;
+  }
+
+  div.grid-content {
+    grid-area: content;
+  }
+
+  div.grid-footer {
+    grid-area: footer;
+  }
+}
+
+div.highlight {
+  border-style: groove;
+  margin-left: 0.25rem;
+  margin-right: 0.25rem;
+}
+
+a:link {
+  text-decoration: none;
+  color: var(--orange);
+}
+
+a:hover {
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  color: var(--light-orange);
+}
+
+a:visited {
+  text-decoration: none;
+  color: var(--orange);
+}
+
+a:active {
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  color: var(--yellow);
+}
+
+div.navbar a:link {
+  text-decoration: none;
+  color: var(--black-hard);
+}
+
+div.navbar a:hover {
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  color: var(--light-gray);
+}
+
+div.navbar a:visited {
+  text-decoration: none;
+  color: var(--black-hard);
+}
+
+div.navbar a:active {
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  color: var(--black-hard);
+}
+
+ul {
+  list-style: "- ";
+}
