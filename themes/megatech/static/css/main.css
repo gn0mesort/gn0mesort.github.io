@@ -135,11 +135,13 @@ div.highlight {
   border-style: groove;
   margin-left: 0.25rem;
   margin-right: 0.25rem;
+  padding: 0.5rem;
   font-size: 8pt;
 }
 
 .highlight pre {
   white-space: pre-wrap;
+  margin: 0;
 }
 
 a:link {
