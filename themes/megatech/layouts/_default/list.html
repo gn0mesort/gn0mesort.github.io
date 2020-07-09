@@ -4,15 +4,29 @@
     <header>
       <h2 class="center">{{ .Title }}</h2>
     </header>
-    {{ .Content }}
+    <div class="center">{{ .Content }}</div>
   </article>
-  {{ if .Pages }}
+  {{ if .Sections }}
+    <ul>
+    {{ range .Sections }}
+    <li><a href="{{ .Permalink }}">{{ .Title }}</a></li>
+    {{ if le .Pages 5 }}
+    <ul>
+      {{ range .Pages }}
+      {{ $published := .PublishDate.Format "Mon Jan _2 15:04:05 MST 2006" }}
+      {{ $published_dt := .PublishDate.Format "2006-01-02T15:04:05-0700" }}
+      <li><a href="{{ .Permalink }}">{{ .Title }}</a>&nbsp;<span class="small">{{ .Description }}</span>&nbsp;<time class="xsmall" datetime="$published_dt">({{ $published }})</time></li>
+      {{ end }}
+    </ul>
+    {{ end }}
+    {{ end }}
+    </ul>
+  {{ else if .Pages }}
   <ul>
     {{ range .Pages }}
     {{ $published := .PublishDate.Format "Mon Jan _2 15:04:05 MST 2006" }}
     {{ $published_dt := .PublishDate.Format "2006-01-02T15:04:05-0700" }}
-    <li><a href="{{ .Permalink }}">{{ .Title }}</a>&nbsp;(<time class="xsmall" datetime="$published_dt">{{ $published }}</time>)</li>
-    <p class="small">{{ .Summary }}</p>
+    <li><a href="{{ .Permalink }}">{{ .Title }}</a>&nbsp;<span class="small">{{ .Description }}</span>&nbsp;<time class="xsmall" datetime="$published_dt">({{ $published }})</time></li>
     {{ end }}
   </ul>
   {{ else }}

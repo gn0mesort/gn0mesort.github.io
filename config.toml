@@ -7,5 +7,5 @@ enableGitInfo = true
 [markup]
   [markup.highlight]
     tabWidth = 2
-    lineNos = true
     style = "dracula"
+    noClasses = false

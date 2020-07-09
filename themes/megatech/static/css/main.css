@@ -1,11 +1,12 @@
 @import url("fira_code.css");
+@import url("gruvbox.css");
 
 :root {
   --black-hard: #1d2021;
   --black-soft: #32302f;
   --black: #282828;
   --red: #cc241d;
-  --green: #98971;
+  --green: #98971a;
   --yellow: #d79921;
   --blue: #458588;
   --purple: #b16286;
@@ -54,10 +55,10 @@ img#favicon {
 
 * {
   box-sizing: border-box;
+  font-family: 'Fira Code', monospace;
 }
 
 body {
-  font-family: "FiraCode", monospace;
   background-color: var(--black-hard);
   color: var(--white);
   display: grid;
@@ -134,6 +135,11 @@ div.highlight {
   border-style: groove;
   margin-left: 0.25rem;
   margin-right: 0.25rem;
+  font-size: 8pt;
+}
+
+.highlight pre {
+  white-space: pre-wrap;
 }
 
 a:link {
@@ -183,3 +189,4 @@ div.navbar a:active {
 ul {
   list-style: "- ";
 }
+
