@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <title>Megatech - Fizzbuzz</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="Hugo 0.73.0" />
+  <link rel="stylesheet" href="/css/main.css" />
+  <link rel="icon" href="/img/favicon_48x42.png" />
+</head>
+<body><div class="navbar">
+  <nav>
+    <a href="/">~</a>&nbsp;/
+    
+    <a href="https://megate.ch/code/">code</a>&nbsp;/
+    
+    <a href="mailto:gnomesort@megate.ch">contact</a>&nbsp;/
+  </nav>
+</div>
+<div class="grid-navbar"><br /></div>
+<div class="grid-header">
+  <header>
+    <h1 class="center">{&nbsp;Fizzbuzz&nbsp;}</h1>
+  </header>
+</div>
+<div class="grid-content">
+<main>
+  <header>
+    
+    
+    
+    
+    <p class="xsmall">&nbsp;Created: <time datetime="2020-07-07T10:43:15-0700">Tue Jul  7 10:43:15 PDT 2020</time></p>
+    <p class="xsmall">Modified: <time datetime="2020-07-09T17:37:44-0700">Thu Jul  9 17:37:44 PDT 2020</time></p>
+  </header>
+  <p>This version writes to an arbitrary std::ostream (probably std::cout though let&rsquo;s be honest).</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;cstddef&gt;</span><span class="cp">
+</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;sstream&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span><span class="cp"></span>
+<span class="kt">void</span> <span class="nf">fizzbuzz</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span> <span class="n">out</span><span class="p">,</span> <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">size_t</span> <span class="n">till</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">auto</span> <span class="n">s_out</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">ostringstream</span><span class="p">{</span> <span class="p">};</span>
+  <span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1U</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">till</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">s_out</span><span class="p">.</span><span class="n">str</span><span class="p">(</span><span class="s">&#34;&#34;</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">i</span> <span class="o">%</span> <span class="mi">3</span><span class="p">))</span>
+    <span class="p">{</span>
+      <span class="n">s_out</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Fizz&#34;</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">i</span> <span class="o">%</span> <span class="mi">5</span><span class="p">))</span>
+    <span class="p">{</span>
+      <span class="n">s_out</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Buzz&#34;</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">s_out</span><span class="p">.</span><span class="n">str</span><span class="p">().</span><span class="n">empty</span><span class="p">())</span>
+    <span class="p">{</span>
+      <span class="n">s_out</span> <span class="o">&lt;&lt;</span> <span class="n">i</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">out</span> <span class="o">&lt;&lt;</span> <span class="n">s_out</span><span class="p">.</span><span class="n">str</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</main>
+
+        </div><div class="grid-footer">
+  <footer>
+    
+    <br />
+    <p class="center xsmall">{&nbsp;<a href="https://github.com/gn0mesort/gn0mesort.github.io">source</a>&nbsp;}</p>
+  </footer>
+</div>
+</body>
+</html>
