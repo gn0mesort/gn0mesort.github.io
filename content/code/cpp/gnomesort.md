@@ -1,8 +1,7 @@
 ---
 title: "Gnomesort"
-description: "A simple sort."
 date: 2020-07-08T08:49:02-07:00
-draft: true
+description: "A simple sort."
 ---
 
 This is a generic implementation of the gnomesort in C++. The function signatures are intended to be similar to the

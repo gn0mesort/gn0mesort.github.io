@@ -2,7 +2,6 @@
 title: "Fizzbuzz"
 date: 2020-07-07T10:43:15-07:00
 description: "Your favorite program!"
-draft: true
 ---
 
 This version writes to an arbitrary std::ostream (probably std::cout though let's be honest).

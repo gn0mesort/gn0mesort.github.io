@@ -5,8 +5,8 @@
     {{ $modified := .Lastmod.Format "Mon Jan _2 15:04:05 MST 2006" }}
     {{ $published_dt := .PublishDate.Format "2006-01-02T15:04:05-0700" }}
     {{ $modified_dt := .Lastmod.Format "2006-01-02T15:04:05-0700" }}
-    <p class="xsmall">Published: <time datetime="{{ $published_dt }}">{{ $published }}</time></p>
-    <p class="xsmall">&nbsp;Modified: <time datetime="{{ $modified_dt }}">{{ $modified }}</time></p>
+    <p class="xsmall">&nbsp;Created: <time datetime="{{ $published_dt }}">{{ $published }}</time></p>
+    <p class="xsmall">Modified: <time datetime="{{ $modified_dt }}">{{ $modified }}</time></p>
   </header>
   {{ .Content }}
 </main>
