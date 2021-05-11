@@ -1,8 +1,21 @@
 <head>
   <title>{{ if .Page.IsHome }}{{ .Site.Title }}{{ else }}{{ .Site.Title }} - {{ .Title }}{{ end }}</title>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  {{ if .Site.Params.AuthorName }}
+  <meta name="author" content="{{ .Site.Params.AuthorName }}" />
+  {{ end }}
+  {{ if .Keywords }}
+  <meta name="keywords" conetent="{{ .Keywords }}" />
+  {{ end }}
+  {{ if .Description }}
+  <meta name="description" content="{{ .Description }}" />
+  {{ end }}
   {{ hugo.Generator }}
+  <link rel="stylesheet" href="/css/light.css" />
+  <link rel="stylesheet" href="/css/dark.css" />
   <link rel="stylesheet" href="/css/main.css" />
+  <link rel="stylesheet" href="/fira/fira.css" />
+  <link rel="stylesheet" href="/fira_code/fira_code.css" />
   <link rel="icon" href="/img/favicon_48x42.png" />
 </head>

@@ -1,10 +1,7 @@
-<div class="navbar">
-  <nav>
-    <a href="/">~</a>&nbsp;/
-    {{ range .Site.Sections }}
-    <a href="{{ .Permalink }}">{{ lower .Title }}</a>&nbsp;/
-    {{ end }}
-    <a href="mailto:gnomesort@megate.ch">contact</a>&nbsp;/
-  </nav>
-</div>
-<div class="grid-navbar"><br /></div>
+<nav>
+  <a href="/">~</a>&nbsp;/
+  {{ range .Site.Sections }}
+  <a href="{{ .Permalink }}">{{ lower .Title }}</a>&nbsp;/
+  {{ end }}
+  <a href="mailto:gnomesort@megate.ch">contact</a>&nbsp;/
+</nav>
