@@ -4,8 +4,11 @@ title = "Megatech"
 theme = "megatech"
 enableGitInfo = true
 
+[params]
+  AuthorName = "Alexander Rothman"
+  GitHubUser = "gn0mesort"
+
 [markup]
   [markup.highlight]
     tabWidth = 2
-    style = "dracula"
     noClasses = false
