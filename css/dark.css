@@ -1,0 +1,46 @@
+@import url('/js/highlight/styles/gruvbox-dark.css') (prefers-color-scheme: dark);
+
+@media (prefers-color-scheme: dark)
+{
+  :root
+  {
+    /* Base Colors */
+    --bg: #282828;
+    --bg0_hard: #1d2021;
+    --bg0_soft: #32302f;
+    --bg0: #282828;
+    --bg1: #3c3836;
+    --bg2: #504945;
+    --bg3: #665c54;
+    --bg4: #7c6f64;
+    --fg: #ebdbb2;
+    --fg0: #fbf1c7;
+    --fg1: #ebdbb2;
+    --fg2: #d5c4a1;
+    --fg3: #bdae93;
+    --fg4: #a89984;
+    --red: #cc241d;
+    --highlight-red: #fb4934;
+    --green: #98971a;
+    --highlight-green: #b8bb26;
+    --yellow: #d79921;
+    --highlight-yellow: #fabd2f;
+    --blue: #458588;
+    --highlight-blue: #83a598;
+    --purple: #b16286;
+    --highlight-purple: #d3869b;
+    --aqua: #689d6a;
+    --highlight-aqua: #8ec07c;
+    --gray: #a09984;
+    --highligh-gray: #928374;
+    --orange: #d65d0e;
+    --highlight-orange: #fe8019;
+
+    /* Element Colors */
+    --navigation-shadow: var(--bg0_hard);
+    --navigation-text: var(--fg4);
+    --gutter-bg: var(--bg0_hard);
+    --main-bg: var(--bg0_soft);
+    --main-fg: var(--fg4);
+  }
+}
