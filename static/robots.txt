@@ -1,2 +1,6 @@
 User-agent: *
-Disallow: /
+Disallow: /js
+Disallow: /css
+Disallow: /img
+Disallow: /fira
+Disallow: /fira_code
