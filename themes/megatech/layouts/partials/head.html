@@ -5,8 +5,8 @@
   {{ if .Site.Params.AuthorName }}
   <meta name="author" content="{{ .Site.Params.AuthorName }}" />
   {{ end }}
-  {{ if .Keywords }}
-  <meta name="keywords" conetent="{{ .Keywords }}" />
+  {{ with .Keywords }}
+  <meta name="keywords" conetent="{{ range $i, $e := . }}{{ if $i }}, {{ end }}{{ $e }}{{ end }}" />
   {{ end }}
   {{ if .Description }}
   <meta name="description" content="{{ .Description }}" />

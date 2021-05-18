@@ -2,10 +2,11 @@
 title: "Gnomesort"
 date: 2020-07-08T08:49:02-07:00
 description: "A simple sort."
+draft: true
 ---
 
 This is a generic implementation of the gnomesort in C++. The function signatures are intended to be similar to the
-C++20 versions of std::sort.
+C++20 versions of `std::sort`.
 
 ```cpp
 #include <utility>

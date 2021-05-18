@@ -2,5 +2,18 @@
   <main>
       <h1 class="center-text">{&nbsp;{{ .Title }}&nbsp;}</h1>
       {{ .Content }}
+      <h2 class="center-text">Latest</h2>
+      <ul class="center-list">
+        {{ $pages := sort .Site.RegularPages "PublishDate" "desc" }}
+        {{ range first 1 $pages }}
+        {{ $published := .PublishDate.Format "Mon Jan _2 15:04:05 MST 2006" }}
+        {{ $published_dt := .PublishDate.Format "2006-01-02T15:04:05-0700" }}
+        <li>
+          <a href="{{ .Permalink }}">{{ .Title }}</a>&nbsp;
+          <span class="small">{{ .Description }}</span>&nbsp;
+          <time class="xsmall" datetime="$published_dt">({{ $published }})</time>
+        </li>
+        {{ end }}
+      </ul>
   </main>
 {{ end }}

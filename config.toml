@@ -9,6 +9,5 @@ enableGitInfo = true
   GitHubUser = "gn0mesort"
 
 [markup]
-  [markup.highlight]
-    tabWidth = 2
-    noClasses = false
+  [markup.goldmark.renderer]
+    unsafe = true
