@@ -10,25 +10,5 @@
 	<atom:link href="https://megate.ch/code/cpp/index.xml" rel="self" type="application/rss+xml" />
     
     
-    <item>
-      <title>Gnomesort</title>
-      <link>https://megate.ch/code/cpp/gnomesort/</link>
-      <pubDate>Wed, 08 Jul 2020 08:49:02 -0700</pubDate>
-      
-      <guid>https://megate.ch/code/cpp/gnomesort/</guid>
-      <description>This is a generic implementation of the gnomesort in C++. The function signatures are intended to be similar to the C++20 versions of std::sort.
-#include &amp;lt;utility&amp;gt;#include &amp;lt;iterator&amp;gt;#include &amp;lt;functional&amp;gt; template &amp;lt;typename RandomIt, typename Compare&amp;gt; constexpr void gnomesort(RandomIt first, RandomIt last, Compare comp) { if (first == last) { return; } auto pos = first; while (pos &amp;lt; last) { if (pos == first || !comp(*pos, *(pos - 1))) { ++pos; } else { std::swap(*pos, *(pos - 1)); --pos; } } } template &amp;lt;typename RandomIt&amp;gt; constexpr void gnomesort(RandomIt first, RandomIt last) { using value_type = typename std::iterator_traits&amp;lt;RandomIt&amp;gt;::value_type; gnomesort(first, last, std::less&amp;lt;value_type&amp;gt;{ }); } </description>
-    </item>
-    
-    <item>
-      <title>Fizzbuzz</title>
-      <link>https://megate.ch/code/cpp/fizzbuzz/</link>
-      <pubDate>Tue, 07 Jul 2020 10:43:15 -0700</pubDate>
-      
-      <guid>https://megate.ch/code/cpp/fizzbuzz/</guid>
-      <description>This version writes to an arbitrary std::ostream (probably std::cout though let&amp;rsquo;s be honest).
-#include &amp;lt;cstddef&amp;gt; #include &amp;lt;sstream&amp;gt;#include &amp;lt;iostream&amp;gt; void fizzbuzz(std::ostream&amp;amp; out, const std::size_t till) { auto s_out = std::ostringstream{ }; for (auto i = 1U; i &amp;lt;= till; ++i) { s_out.str(&amp;#34;&amp;#34;); if (!(i % 3)) { s_out &amp;lt;&amp;lt; &amp;#34;Fizz&amp;#34;; } if (!(i % 5)) { s_out &amp;lt;&amp;lt; &amp;#34;Buzz&amp;#34;; } if (s_out.str().empty()) { s_out &amp;lt;&amp;lt; i; } out &amp;lt;&amp;lt; s_out.str() &amp;lt;&amp;lt; std::endl; } } </description>
-    </item>
-    
   </channel>
 </rss>

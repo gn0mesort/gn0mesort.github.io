@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Megatech</title>
-    <link>https://megate.ch/</link>
-    <description>Recent content on Megatech</description>
+    <title>Thoughts on Megatech</title>
+    <link>https://megate.ch/thoughts/</link>
+    <description>Recent content in Thoughts on Megatech</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
+    <lastBuildDate>Tue, 18 May 2021 11:00:00 -0700</lastBuildDate>
     
-	<atom:link href="https://megate.ch/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://megate.ch/thoughts/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
