@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.Language }}">
+  {{- partial "head.html" . -}}
+  <body onload="hljs.highlightAll();">
+    {{- partial "navbar.html" . -}}
+    <div class="nav-left">&nbsp;</div>
+    <div class="nav-center">&nbsp;</div>
+    <div class="nav-right">&nbsp;</div>
+    <div class="left-column">&nbsp;</div>
+    <div class="center-column">
+      {{- partial "projects/header.html" . -}}
+      {{- block "main" . }}{{- end }}
+      {{- partial "footer.html" . -}}
+    </div>
+    <div class="right-column">&nbsp;</div>
+    <script src="/js/highlight/highlight.pack.js"></script>
+  </body>
+</html>

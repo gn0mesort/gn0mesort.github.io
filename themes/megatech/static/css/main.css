@@ -6,6 +6,8 @@ html
 body
 {
   font-family: 'Fira Sans', sans-serif;
+  font-weight: 400;
+  font-size: 10pt;
   background-color: var(--bg0_hard);
   color: var(--fg);
   padding: 0;
@@ -14,23 +16,43 @@ body
   display: grid;
   grid-template-areas: 'nav-left nav-center nav-right'
                        'col-left col-center col-right';
-  grid-template-rows: 3.5vh minmax(100vh, auto);
-  grid-template-columns: 0.33fr 2.33fr 0.33fr;
+  grid-template-rows: minmax(3vh, auto) minmax(100vh, auto);
+}
+
+@media only screen and (max-width: 800px) {
+  body {
+    grid-template-columns: 0 100% 0;
+  }
+}
+
+@media only screen and (min-width: 801px) {
+  body {
+    grid-template-columns: 1fr 800px 1fr;
+  }
 }
 
 nav.fixed
 {
+  user-select: none;
+  font-family: 'Fira Mono';
+  font-size: 10pt;
   position: fixed;
   top: 0;
   left: 0;
-  padding-top: 0.25vh;
-  padding-bottom: 0.25vh;
-  padding-left: 1vw;
-  padding-right: 1vw;
-  background-color: var(--bg2);
+  padding-top: 3px;
+  padding-bottom: 3px;
+  padding-left: 6px;
+  padding-right: 6px;
+  background-color: var(--bg0_soft);
   width: 100%;
-  min-height: 2vh;
+  /*min-height: 2vh;*/
   box-shadow: 0px 5px 1vw var(--navigation-shadow);
+}
+
+h1.site-title
+{
+  font-family: "Gothic Pixels";
+  font-size: 48pt;
 }
 
 main
@@ -58,10 +80,12 @@ nav.fixed > a:after, nav.fixed > a:hover:after, nav.fixed > a:active:after
   font-size: x-small;
 }
 
+/*
 .monospace
 {
   font-family: 'Fira Mono', monospace;
 }
+*/
 
 div.nav-left
 {
@@ -86,8 +110,7 @@ div.left-column
 div.center-column
 {
   grid-area: col-center;
-  padding-left: 6vw;
-  padding-right: 6vw;
+  padding: 1vh 1vw;
 }
 
 div.right-column
@@ -109,23 +132,21 @@ div.right-column, div.left-column, div.nav-left, div.nav-right
 
 div.highlight
 {
-  font-family: 'Fira Code', 'Fira Mono', monospace;
-  font-weight: 400;
-  font-size: 10px;
+  font-size: 10pt;
   margin: auto;
-  border: double;
+  border: outset;
   border-color: var(--fg);
-  max-width: 120ch;
+  max-width: 130ch;
   padding: 0;
   text-align: left;
+  box-shadow: 5px 5px 1vw var(--image-shadow);
 }
 
 code
 {
   background-color: var(--gutter-bg);
   font-family: 'Fira Code', 'Fira Mono', monospace;
-  font-weight: 400;
-  font-size: 10pt;
+  font-size: 8pt;
   color: var(--fg);
   padding: 1px 5px;
   border-radius: 5px;
@@ -180,4 +201,25 @@ ul
 {
   margin: auto;
   width: 60%;
+}
+
+img {
+  border: outset;
+  border-color: var(--fg);
+  /* padding: 0.5rem; */
+  box-shadow: 5px 5px 1vw var(--image-shadow);
+}
+
+img.no-border {
+  border: none;
+}
+
+img.no-shadow {
+  box-shadow: none;
+}
+
+img.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }

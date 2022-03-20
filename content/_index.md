@@ -13,5 +13,5 @@ keywords:
   - pugs
 ---
 
-<p class="center-text">I really like computers. This is my website for talking about computer things. I also like dogs and green tea.</p>
-
+<p class="center-text">I'm nothing like the grinning future-creature you envisaged this weekend.</p>
+<p class="center-text">Shamefully disappointing.</p>

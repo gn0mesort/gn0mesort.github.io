@@ -1,0 +1,15 @@
+{{ define "main" }}
+<main>
+  <h1 class="center-text">{{ .Title }}</h1>
+  {{ if .Params.subtitle }}
+  <h2 class="center-text">&ldquo;{{ .Params.subtitle }}&rdquo;</h2>
+  {{ end }}
+  {{ if .Params.toc }}
+  <aside>
+    <h2>Outline</h2>
+    {{ .TableOfContents }}
+  </aside>
+  {{ end }}
+  <article>{{ .Content }}</article>
+</main>
+{{ end }}

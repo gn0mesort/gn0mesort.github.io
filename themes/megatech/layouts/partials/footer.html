@@ -1,15 +1,7 @@
 <footer>
-  <p class="center-text xsmall">
-  {{ if .IsPage }}
-  &lcub;&nbsp;<a {{ if .PrevInSection }} href="{{ .PrevInSection.Permalink }}" {{ else }} class="disabled" {{ end }}>
-    prev
-  </a>&nbsp;&rcub;
-  {{ end }}
+  <p class="center-text">
+  {{ if gt .Page.WordCount 500 }}
   &nbsp;&lcub;&nbsp;<a href="#">top</a>&nbsp;&rcub;&nbsp;
-  {{ if .IsPage }}
-  &lcub;&nbsp;<a {{ if .NextInSection }} href="{{ .NextInSection.Permalink }}" {{ else }} class="disabled" {{ end }}>
-    next
-  </a>&nbsp;&rcub;
   {{ end }}
   </p>
 </footer>

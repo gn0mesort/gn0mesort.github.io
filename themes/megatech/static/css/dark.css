@@ -39,8 +39,9 @@
     /* Element Colors */
     --navigation-shadow: var(--bg0_hard);
     --navigation-text: var(--fg4);
-    --gutter-bg: var(--bg0_hard);
+    --gutter-bg: var(--bg0);
     --main-bg: var(--bg0_soft);
     --main-fg: var(--fg4);
+    --image-shadow: var(--bg0_hard);
   }
 }
