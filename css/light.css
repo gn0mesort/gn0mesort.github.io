@@ -42,5 +42,6 @@
     --gutter-bg: var(--bg0_soft);
     --main-bg: var(--bg0_hard);
     --main-fg: var(--fg);
+    --image-shadow: var(--fg4);
   }
 }
