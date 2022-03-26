@@ -12,6 +12,5 @@ keywords:
   - tea
   - pugs
 ---
-
 <p class="center-text">I'm nothing like the grinning future-creature you envisaged this weekend.</p>
 <p class="center-text">Shamefully disappointing.</p>
