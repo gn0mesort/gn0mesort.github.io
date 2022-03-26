@@ -130,6 +130,22 @@ div.right-column, div.left-column, div.nav-left, div.nav-right
   background-color: var(--gutter-bg);
 }
 
+@media (prefers-color-scheme: dark)
+{
+  div.right-column, div.left-column
+  {
+    background-image: url('/img/svg/signal_dark.svg');
+  }
+}
+
+@media (prefers-color-scheme: light)
+{
+  div.right-column, div.left-column
+  {
+    background-image: url('/img/svg/signal_light.svg');
+  }
+}
+
 div.highlight
 {
   font-size: 10pt;
@@ -218,7 +234,12 @@ img.no-shadow {
   box-shadow: none;
 }
 
-img.center {
+.hide
+{
+  display: none !important;
+}
+
+img.center, canvas.center {
   display: block;
   margin-left: auto;
   margin-right: auto;
