@@ -1,6 +1,6 @@
 {{ define "main" }}
 <main>
-  <h1 class="center-text">{{ .Title }}</h1>
+  <h1 class="center-text site-title">{{ .Title }}</h1>
   <article>
     <div class="center-text">{{ .Content }}</div>
   </article>
@@ -11,8 +11,8 @@
     {{ if le .Pages 5 }}
     <ul>
       {{ range .Pages }}
-      {{ $published := .PublishDate.Format "Mon Jan _2 15:04:05 MST 2006" }}
-      {{ $published_dt := .PublishDate.Format "2006-01-02T15:04:05-0700" }}
+      {{ $published := .PublishDate.Format "Mon Jan _2 2006" }}
+      {{ $published_dt := .PublishDate.Format "2006-01-02" }}
       <li><a href="{{ .Permalink }}">{{ .Title }}</a>&nbsp;<span class="small">{{ .Description }}</span>&nbsp;<time class="xsmall" datetime="$published_dt">({{ $published }})</time></li>
       {{ end }}
     </ul>
@@ -22,8 +22,8 @@
   {{ else if .Pages }}
   <ul>
     {{ range .Pages }}
-    {{ $published := .PublishDate.Format "Mon Jan _2 15:04:05 MST 2006" }}
-    {{ $published_dt := .PublishDate.Format "2006-01-02T15:04:05-0700" }}
+    {{ $published := .PublishDate.Format "Mon Jan _2 2006" }}
+    {{ $published_dt := .PublishDate.Format "2006-01-02" }}
     <li><a href="{{ .Permalink }}">{{ .Title }}</a>&nbsp;<span class="small">{{ .Description }}</span>&nbsp;<time class="xsmall" datetime="$published_dt">({{ $published }})</time></li>
     {{ end }}
   </ul>

@@ -1,8 +1,16 @@
 {{ define "main" }}
 <main>
+  {{ if .PublishDate }}
+  {{ $published := .PublishDate.Format "Mon Jan _2 2006" }}
+  {{ $published_dt := .PublishDate.Format "2006-01-02" }}
+  <h4>Posted:&nbsp;<time datetime={{ $published_dt }}>{{ $published }}</time>
+  {{ end }}
   <h1 class="center-text">{{ .Title }}</h1>
   {{ if .Params.subtitle }}
   <h2 class="center-text">&ldquo;{{ .Params.subtitle }}&rdquo;</h2>
+  {{ end }}
+  {{ if .Description }}
+  <h2 class="center-text">{{ .Description }}</h2>
   {{ end }}
   {{ if .Params.toc }}
   <aside>
