@@ -3,12 +3,47 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://megate.ch/code/snippets/</loc>
+    <lastmod>2022-04-01T12:09:57-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://megate.ch/code/</loc>
+    <lastmod>2022-04-01T12:09:57-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://megate.ch/code/webgl_cube/</loc>
+    <lastmod>2022-04-01T12:09:57-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://megate.ch/code/snippets/index_2d/</loc>
+    <lastmod>2022-04-01T12:09:57-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://megate.ch/code/snippets/is_pow2/</loc>
+    <lastmod>2022-04-01T12:09:57-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://megate.ch/code/fizzbuzz/</loc>
+    <lastmod>2022-04-01T12:09:57-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://megate.ch/code/snippets/ulog2/</loc>
+    <lastmod>2022-04-01T12:09:57-07:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://megate.ch/categories/</loc>
   </url>
   
   <url>
     <loc>https://megate.ch/</loc>
-    <lastmod>2022-03-25T17:01:47-07:00</lastmod>
+    <lastmod>2022-04-01T12:09:57-07:00</lastmod>
   </url>
   
   <url>

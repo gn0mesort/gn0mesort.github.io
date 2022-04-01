@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en"><head>
-  <title>Megatech</title>
+  <title>Megatech - is_pow2</title>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   
   <meta name="author" content="Alexander Rothman" />
   
   
+  
+  <meta name="description" content="Simple power of 2 check." />
   
   <meta name="generator" content="Hugo 0.80.0" />
   <link rel="stylesheet" href="/css/light.css" />
@@ -28,22 +30,26 @@
     <div class="nav-right">&nbsp;</div>
     <div class="left-column">&nbsp;</div>
     <div class="center-column">
+<header>
+</header>
+
 
 <main>
-  <h1 class="center-text site-title">Categories</h1>
-  <h2 class="center-text"></h2>
-  <article>
-    <div class="center-text"></div>
-  </article>
+  <h1 class="center-text">is_pow2</h1>
   
   
-  <p class="center-text">Nothing yet.</p>
-  
+  <article><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;concepts&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">constexpr</span> <span style="color:#66d9ef">bool</span> <span style="color:#a6e22e">is_pow2</span>(std<span style="color:#f92672">::</span>unsigned_integral <span style="color:#66d9ef">auto</span> x) {
+  <span style="color:#66d9ef">return</span> x <span style="color:#f92672">&amp;&amp;</span> <span style="color:#f92672">!</span>(x <span style="color:#f92672">&amp;</span> (x <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>));
+}
+
+</code></pre></div></article>
 </main>
 <footer>
   <p class="center-text">
   
-  &nbsp;&lcub;&nbsp;<a href="https://megate.ch/">up</a>&nbsp;&rcub;&nbsp;
+  &nbsp;&lcub;&nbsp;<a href="https://megate.ch/code/snippets/">up</a>&nbsp;&rcub;&nbsp;
   
   </p>
 </footer>

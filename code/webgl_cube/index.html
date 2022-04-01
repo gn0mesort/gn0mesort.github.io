@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <title>Megatech - WebGL2 Cube</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  
+  <meta name="author" content="Alexander Rothman" />
+  
+  
+  
+  <meta name="description" content="The Cube." />
+  
+  <meta name="generator" content="Hugo 0.80.0" />
+  <link rel="stylesheet" href="/css/light.css" />
+  <link rel="stylesheet" href="/css/dark.css" />
+  <link rel="stylesheet" href="/css/main.css" />
+  <link rel="stylesheet" href="/fira/fira.css" />
+  <link rel="stylesheet" href="/fira_code/fira_code.css" />
+  <link rel="stylesheet" href="/gothicpixels/gothicpixels.css" />
+</head>
+<body onload="hljs.highlightAll();"><nav class="fixed">
+  <a href="/">~</a>&nbsp;/
+  
+  <a href="https://megate.ch/code/">code</a>&nbsp;/
+  
+  
+  <a href="#bottom">to-bottom</a>&nbsp;/
+  <a href="#">to-top</a>&nbsp;/
+  
+</nav>
+<div class="nav-left">&nbsp;</div>
+    <div class="nav-center">&nbsp;</div>
+    <div class="nav-right">&nbsp;</div>
+    <div class="left-column">&nbsp;</div>
+    <div class="center-column">
+<header>
+</header>
+
+
+<main>
+  <h1 class="center-text">WebGL2 Cube</h1>
+  
+  
+  <article><div>
+  <canvas id="context" class="center hide"  width="640" height="480"></canvas>
+  <script src="/js/glm-js.min.js"></script>
+  <script src="/js/glcube.js"></script>
+</div>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#e6db74">&#39;use strict&#39;</span>;
+
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">main</span>() {
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">canvas</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#39;context&#39;</span>);
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">gl</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">canvas</span>.<span style="color:#a6e22e">getContext</span>(<span style="color:#e6db74">&#39;webgl2&#39;</span>);
+    <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">gl</span>) {
+        <span style="color:#66d9ef">return</span>;
+    }
+    <span style="color:#a6e22e">canvas</span>.<span style="color:#a6e22e">classList</span>.<span style="color:#a6e22e">remove</span>(<span style="color:#e6db74">&#39;hide&#39;</span>);
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">vertexShaderSrc</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">`#version 300 es
+</span><span style="color:#e6db74">uniform mat4 model;
+</span><span style="color:#e6db74">uniform mat4 view;
+</span><span style="color:#e6db74">uniform mat4 projection;
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">in vec3 vtx_position;
+</span><span style="color:#e6db74">in vec3 vtx_normal;
+</span><span style="color:#e6db74">in vec3 vtx_color;
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">out vec3 frg_position;
+</span><span style="color:#e6db74">out vec3 frg_normal;
+</span><span style="color:#e6db74">out vec3 frg_color;
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">void main() {
+</span><span style="color:#e6db74">   frg_position = vec3(model * vec4(vtx_position, 1.0));
+</span><span style="color:#e6db74">   frg_normal = mat3(transpose(inverse(model))) * vtx_normal;
+</span><span style="color:#e6db74">   gl_Position = projection * view * vec4(frg_position, 1.0);
+</span><span style="color:#e6db74">   frg_color = vtx_color;
+</span><span style="color:#e6db74">}
+</span><span style="color:#e6db74">`</span>;
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">fragmentShaderSrc</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">`#version 300 es
+</span><span style="color:#e6db74">precision highp float;
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">const vec3 light_position = vec3(1.2, 1.0, 2.0);
+</span><span style="color:#e6db74">const vec3 light_color = vec3(1.0, 1.0, 1.0);
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">in vec3 frg_position;
+</span><span style="color:#e6db74">in vec3 frg_normal;
+</span><span style="color:#e6db74">in vec3 frg_color;
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">out vec4 final_color;
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">void main() {
+</span><span style="color:#e6db74">  vec3 ambient = 0.1 * light_color;
+</span><span style="color:#e6db74">  vec3 light_direction = normalize(light_position - frg_position);
+</span><span style="color:#e6db74">  vec3 normal = normalize(frg_normal);
+</span><span style="color:#e6db74">  vec3 diffuse = max(dot(normal, light_direction), 0.0) * light_color;
+</span><span style="color:#e6db74">  vec3 view_direction = normalize(vec3(0, 0, 2.0) - frg_position);
+</span><span style="color:#e6db74">  vec3 reflect_direction = reflect(-light_direction, normal);
+</span><span style="color:#e6db74">  vec3 specular = 0.5 * pow(max(dot(view_direction, reflect_direction), 0.0), 32.0) * light_color;
+</span><span style="color:#e6db74">  vec3 result = specular + diffuse + ambient;
+</span><span style="color:#e6db74">  
+</span><span style="color:#e6db74">  final_color = vec4(result * frg_color, 1.0);
+</span><span style="color:#e6db74">}
+</span><span style="color:#e6db74">`</span>;
+
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">vertexShader</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">gl</span>.<span style="color:#a6e22e">createShader</span>(<span style="color:#a6e22e">gl</span>.<span style="color:#a6e22e">VERTEX_SHADER</span>);
+    <span style="color:#a6e22e">gl</span>.<span style="color:#a6e22e">shaderSource</span>(<span style="color:#a6e22e">vertexShader</span>, <span style="color:#a6e22e">vertexShaderSrc</span>);
+    <span style="color:#a6e22e">gl</span>.<span style="color:#a6e22e">compileShader</span>(<span style="color:#a6e22e">vertexShader</span>);
+    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">gl</span>.<span style="color:#a6e22e">getShaderInfoLog</span>(<span style="color:#a6e22e">vertexShader</span>));
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">fragmentShader</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">gl</span>.<span style="color:#a6e22e">createShader</span>(<span style="color:#a6e22e">gl</span>.<span style="color:#a6e22e">FRAGMENT_SHADER</span>);
+    <span style="color:#a6e22e">gl</span>.<span style="color:#a6e22e">shaderSource</span>(<span style="color:#a6e22e">fragmentShader</span>, <span style="color:#a6e22e">fragmentShaderSrc</span>);
+    <span style="color:#a6e22e">gl</span>.<span style="color:#a6e22e">compileShader</span>(<span style="color:#a6e22e">fragmentShader</span>);
+    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">gl</span>.<span style="color:#a6e22e">getShaderInfoLog</span>(<span style="color:#a6e22e">fragmentShader</span>));
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">graphicsProgram</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">gl</span>.<span style="color:#a6e22e">createProgram</span>();
+    <span style="color:#a6e22e">gl</span>.<span style="color:#a6e22e">attachShader</span>(<span style="color:#a6e22e">graphicsProgram</span>, <span style="color:#a6e22e">vertexShader</span>);
+    <span style="color:#a6e22e">gl</span>.<span style="color:#a6e22e">attachShader</span>(<span style="color:#a6e22e">graphicsProgram</span>, <span style="color:#a6e22e">fragmentShader</span>);
+    <span style="color:#a6e22e">gl</span>.<span style="color:#a6e22e">linkProgram</span>(<span style="color:#a6e22e">graphicsProgram</span>);
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">modelUni</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">gl</span>.<span style="color:#a6e22e">getUniformLocation</span>(<span style="color:#a6e22e">graphicsProgram</span>, <span style="color:#e6db74">&#39;model&#39;</span>);
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">viewUni</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">gl</span>.<span style="color:#a6e22e">getUniformLocation</span>(<span style="color:#a6e22e">graphicsProgram</span>, <span style="color:#e6db74">&#39;view&#39;</span>);
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">projectionUni</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">gl</span>.<span style="color:#a6e22e">getUniformLocation</span>(<span style="color:#a6e22e">graphicsProgram</span>,<span style="color:#e6db74">&#39;projection&#39;</span>);
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">positionAttr</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">gl</span>.<span style="color:#a6e22e">getAttribLocation</span>(<span style="color:#a6e22e">graphicsProgram</span>, <span style="color:#e6db74">&#39;vtx_position&#39;</span>);
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">normalAttr</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">gl</span>.<span style="color:#a6e22e">getAttribLocation</span>(<span style="color:#a6e22e">graphicsProgram</span>, <span style="color:#e6db74">&#39;vtx_normal&#39;</span>);
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">colorAttr</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">gl</span>.<span style="color:#a6e22e">getAttribLocation</span>(<span style="color:#a6e22e">graphicsProgram</span>, <span style="color:#e6db74">&#39;vtx_color&#39;</span>);
+
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">vertices</span> <span style="color:#f92672">=</span> [
+        <span style="color:#f92672">-</span><span style="color:#ae81ff">0.5</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">0.5</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">0.5</span>,  <span style="color:#ae81ff">0.0</span>,  <span style="color:#ae81ff">0.0</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1.0</span>,  <span style="color:#ae81ff">1.0</span>, <span style="color:#ae81ff">0.0</span>, <span style="color:#ae81ff">0.0</span>,
+        <span style="color:#ae81ff">0.5</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">0.5</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">0.5</span>,  <span style="color:#ae81ff">0.0</span>,  <span style="color:#ae81ff">0.0</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1.0</span>,  <span style="color:#ae81ff">1.0</span>, <span style="color:#ae81ff">0.0</span>, <span style="color:#ae81ff">0.0</span>,
+        <span style="color:#ae81ff">0.5</span>,  <span style="color:#ae81ff">0.5</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">0.5</span>,  <span style="color:#ae81ff">0.0</span>,  <span style="color:#ae81ff">0.0</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1.0</span>,  <span style="color:#ae81ff">1.0</span>, <span style="color:#ae81ff">0.0</span>, <span style="color:#ae81ff">0.0</span>,
+        <span style="color:#ae81ff">0.5</span>,  <span style="color:#ae81ff">0.5</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">0.5</span>,  <span style="color:#ae81ff">0.0</span>,  <span style="color:#ae81ff">0.0</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1.0</span>,  <span style="color:#ae81ff">1.0</span>, <span style="color:#ae81ff">0.0</span>, <span style="color:#ae81ff">0.0</span>,
+        <span style="color:#f92672">-</span><span style="color:#ae81ff">0.5</span>,  <span style="color:#ae81ff">0.5</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">0.5</span>,  <span style="color:#ae81ff">0.0</span>,  <span style="color:#ae81ff">0.0</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1.0</span>,  <span style="color:#ae81ff">1.0</span>, <span style="color:#ae81ff">0.0</span>, <span style="color:#ae81ff">0.0</span>,
+        <span style="color:#f92672">-</span><span style="color:#ae81ff">0.5</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">0.5</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">0.5</span>,  <span style="color:#ae81ff">0.0</span>,  <span style="color:#ae81ff">0.0</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1.0</span>,  <span style="color:#ae81ff">1.0</span>, <span style="color:#ae81ff">0.0</span>, <span style="color:#ae81ff">0.0</span>,
+
+        <span style="color:#f92672">-</span><span style="color:#ae81ff">0.5</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">0.5</span>,  <span style="color:#ae81ff">0.5</span>,  <span style="color:#ae81ff">0.0</span>,  <span style="color:#ae81ff">0.0</span>,  <span style="color:#ae81ff">1.0</span>,  <span style="color:#ae81ff">0.0</span>, <span style="color:#ae81ff">1.0</span>, <span style="color:#ae81ff">0.0</span>,
+        <span style="color:#ae81ff">0.5</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">0.5</span>,  <span style="color:#ae81ff">0.5</span>,  <span style="color:#ae81ff">0.0</span>,  <span style="color:#ae81ff">0.0</span>,  <span style="color:#ae81ff">1.0</span>,  <span style="color:#ae81ff">0.0</span>, <span style="color:#ae81ff">1.0</span>, <span style="color:#ae81ff">0.0</span>,
+        <span style="color:#ae81ff">0.5</span>,  <span style="color:#ae81ff">0.5</span>,  <span style="color:#ae81ff">0.5</span>,  <span style="color:#ae81ff">0.0</span>,  <span style="color:#ae81ff">0.0</span>,  <span style="color:#ae81ff">1.0</span>,  <span style="color:#ae81ff">0.0</span>, <span style="color:#ae81ff">1.0</span>, <span style="color:#ae81ff">0.0</span>,
+        <span style="color:#ae81ff">0.5</span>,  <span style="color:#ae81ff">0.5</span>,  <span style="color:#ae81ff">0.5</span>,  <span style="color:#ae81ff">0.0</span>,  <span style="color:#ae81ff">0.0</span>,  <span style="color:#ae81ff">1.0</span>,  <span style="color:#ae81ff">0.0</span>, <span style="color:#ae81ff">1.0</span>, <span style="color:#ae81ff">0.0</span>,
+        <span style="color:#f92672">-</span><span style="color:#ae81ff">0.5</span>,  <span style="color:#ae81ff">0.5</span>,  <span style="color:#ae81ff">0.5</span>,  <span style="color:#ae81ff">0.0</span>,  <span style="color:#ae81ff">0.0</span>,  <span style="color:#ae81ff">1.0</span>,  <span style="color:#ae81ff">0.0</span>, <span style="color:#ae81ff">1.0</span>, <span style="color:#ae81ff">0.0</span>,
+        <span style="color:#f92672">-</span><span style="color:#ae81ff">0.5</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">0.5</span>,  <span style="color:#ae81ff">0.5</span>,  <span style="color:#ae81ff">0.0</span>,  <span style="color:#ae81ff">0.0</span>,  <span style="color:#ae81ff">1.0</span>,  <span style="color:#ae81ff">0.0</span>, <span style="color:#ae81ff">1.0</span>, <span style="color:#ae81ff">0.0</span>,
+
+        <span style="color:#f92672">-</span><span style="color:#ae81ff">0.5</span>,  <span style="color:#ae81ff">0.5</span>,  <span style="color:#ae81ff">0.5</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1.0</span>,  <span style="color:#ae81ff">0.0</span>,  <span style="color:#ae81ff">0.0</span>,  <span style="color:#ae81ff">0.0</span>, <span style="color:#ae81ff">0.0</span>, <span style="color:#ae81ff">1.0</span>,
+        <span style="color:#f92672">-</span><span style="color:#ae81ff">0.5</span>,  <span style="color:#ae81ff">0.5</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">0.5</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1.0</span>,  <span style="color:#ae81ff">0.0</span>,  <span style="color:#ae81ff">0.0</span>,  <span style="color:#ae81ff">0.0</span>, <span style="color:#ae81ff">0.0</span>, <span style="color:#ae81ff">1.0</span>,
+        <span style="color:#f92672">-</span><span style="color:#ae81ff">0.5</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">0.5</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">0.5</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1.0</span>,  <span style="color:#ae81ff">0.0</span>,  <span style="color:#ae81ff">0.0</span>,  <span style="color:#ae81ff">0.0</span>, <span style="color:#ae81ff">0.0</span>, <span style="color:#ae81ff">1.0</span>,
+        <span style="color:#f92672">-</span><span style="color:#ae81ff">0.5</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">0.5</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">0.5</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1.0</span>,  <span style="color:#ae81ff">0.0</span>,  <span style="color:#ae81ff">0.0</span>,  <span style="color:#ae81ff">0.0</span>, <span style="color:#ae81ff">0.0</span>, <span style="color:#ae81ff">1.0</span>,
+        <span style="color:#f92672">-</span><span style="color:#ae81ff">0.5</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">0.5</span>,  <span style="color:#ae81ff">0.5</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1.0</span>,  <span style="color:#ae81ff">0.0</span>,  <span style="color:#ae81ff">0.0</span>,  <span style="color:#ae81ff">0.0</span>, <span style="color:#ae81ff">0.0</span>, <span style="color:#ae81ff">1.0</span>,
+        <span style="color:#f92672">-</span><span style="color:#ae81ff">0.5</span>,  <span style="color:#ae81ff">0.5</span>,  <span style="color:#ae81ff">0.5</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1.0</span>,  <span style="color:#ae81ff">0.0</span>,  <span style="color:#ae81ff">0.0</span>,  <span style="color:#ae81ff">0.0</span>, <span style="color:#ae81ff">0.0</span>, <span style="color:#ae81ff">1.0</span>,
+
+        <span style="color:#ae81ff">0.5</span>,  <span style="color:#ae81ff">0.5</span>,  <span style="color:#ae81ff">0.5</span>,  <span style="color:#ae81ff">1.0</span>,  <span style="color:#ae81ff">0.0</span>,  <span style="color:#ae81ff">0.0</span>,  <span style="color:#ae81ff">1.0</span>, <span style="color:#ae81ff">0.0</span>, <span style="color:#ae81ff">1.0</span>,
+        <span style="color:#ae81ff">0.5</span>,  <span style="color:#ae81ff">0.5</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">0.5</span>,  <span style="color:#ae81ff">1.0</span>,  <span style="color:#ae81ff">0.0</span>,  <span style="color:#ae81ff">0.0</span>,  <span style="color:#ae81ff">1.0</span>, <span style="color:#ae81ff">0.0</span>, <span style="color:#ae81ff">1.0</span>,
+        <span style="color:#ae81ff">0.5</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">0.5</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">0.5</span>,  <span style="color:#ae81ff">1.0</span>,  <span style="color:#ae81ff">0.0</span>,  <span style="color:#ae81ff">0.0</span>,  <span style="color:#ae81ff">1.0</span>, <span style="color:#ae81ff">0.0</span>, <span style="color:#ae81ff">1.0</span>,
+        <span style="color:#ae81ff">0.5</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">0.5</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">0.5</span>,  <span style="color:#ae81ff">1.0</span>,  <span style="color:#ae81ff">0.0</span>,  <span style="color:#ae81ff">0.0</span>,  <span style="color:#ae81ff">1.0</span>, <span style="color:#ae81ff">0.0</span>, <span style="color:#ae81ff">1.0</span>,
+        <span style="color:#ae81ff">0.5</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">0.5</span>,  <span style="color:#ae81ff">0.5</span>,  <span style="color:#ae81ff">1.0</span>,  <span style="color:#ae81ff">0.0</span>,  <span style="color:#ae81ff">0.0</span>,  <span style="color:#ae81ff">1.0</span>, <span style="color:#ae81ff">0.0</span>, <span style="color:#ae81ff">1.0</span>,
+        <span style="color:#ae81ff">0.5</span>,  <span style="color:#ae81ff">0.5</span>,  <span style="color:#ae81ff">0.5</span>,  <span style="color:#ae81ff">1.0</span>,  <span style="color:#ae81ff">0.0</span>,  <span style="color:#ae81ff">0.0</span>,  <span style="color:#ae81ff">1.0</span>, <span style="color:#ae81ff">0.0</span>, <span style="color:#ae81ff">1.0</span>,
+
+        <span style="color:#f92672">-</span><span style="color:#ae81ff">0.5</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">0.5</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">0.5</span>,  <span style="color:#ae81ff">0.0</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1.0</span>,  <span style="color:#ae81ff">0.0</span>,  <span style="color:#ae81ff">1.0</span>, <span style="color:#ae81ff">1.0</span>, <span style="color:#ae81ff">0.0</span>,
+        <span style="color:#ae81ff">0.5</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">0.5</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">0.5</span>,  <span style="color:#ae81ff">0.0</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1.0</span>,  <span style="color:#ae81ff">0.0</span>,  <span style="color:#ae81ff">1.0</span>, <span style="color:#ae81ff">1.0</span>, <span style="color:#ae81ff">0.0</span>,
+        <span style="color:#ae81ff">0.5</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">0.5</span>,  <span style="color:#ae81ff">0.5</span>,  <span style="color:#ae81ff">0.0</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1.0</span>,  <span style="color:#ae81ff">0.0</span>,  <span style="color:#ae81ff">1.0</span>, <span style="color:#ae81ff">1.0</span>, <span style="color:#ae81ff">0.0</span>,
+        <span style="color:#ae81ff">0.5</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">0.5</span>,  <span style="color:#ae81ff">0.5</span>,  <span style="color:#ae81ff">0.0</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1.0</span>,  <span style="color:#ae81ff">0.0</span>,  <span style="color:#ae81ff">1.0</span>, <span style="color:#ae81ff">1.0</span>, <span style="color:#ae81ff">0.0</span>,
+        <span style="color:#f92672">-</span><span style="color:#ae81ff">0.5</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">0.5</span>,  <span style="color:#ae81ff">0.5</span>,  <span style="color:#ae81ff">0.0</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1.0</span>,  <span style="color:#ae81ff">0.0</span>,  <span style="color:#ae81ff">1.0</span>, <span style="color:#ae81ff">1.0</span>, <span style="color:#ae81ff">0.0</span>,
+        <span style="color:#f92672">-</span><span style="color:#ae81ff">0.5</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">0.5</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">0.5</span>,  <span style="color:#ae81ff">0.0</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1.0</span>,  <span style="color:#ae81ff">0.0</span>,  <span style="color:#ae81ff">1.0</span>, <span style="color:#ae81ff">1.0</span>, <span style="color:#ae81ff">0.0</span>,
+
+        <span style="color:#f92672">-</span><span style="color:#ae81ff">0.5</span>,  <span style="color:#ae81ff">0.5</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">0.5</span>,  <span style="color:#ae81ff">0.0</span>,  <span style="color:#ae81ff">1.0</span>,  <span style="color:#ae81ff">0.0</span>,  <span style="color:#ae81ff">0.0</span>, <span style="color:#ae81ff">1.0</span>, <span style="color:#ae81ff">1.0</span>,
+        <span style="color:#ae81ff">0.5</span>,  <span style="color:#ae81ff">0.5</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">0.5</span>,  <span style="color:#ae81ff">0.0</span>,  <span style="color:#ae81ff">1.0</span>,  <span style="color:#ae81ff">0.0</span>,  <span style="color:#ae81ff">0.0</span>, <span style="color:#ae81ff">1.0</span>, <span style="color:#ae81ff">1.0</span>,
+        <span style="color:#ae81ff">0.5</span>,  <span style="color:#ae81ff">0.5</span>,  <span style="color:#ae81ff">0.5</span>,  <span style="color:#ae81ff">0.0</span>,  <span style="color:#ae81ff">1.0</span>,  <span style="color:#ae81ff">0.0</span>,  <span style="color:#ae81ff">0.0</span>, <span style="color:#ae81ff">1.0</span>, <span style="color:#ae81ff">1.0</span>,
+        <span style="color:#ae81ff">0.5</span>,  <span style="color:#ae81ff">0.5</span>,  <span style="color:#ae81ff">0.5</span>,  <span style="color:#ae81ff">0.0</span>,  <span style="color:#ae81ff">1.0</span>,  <span style="color:#ae81ff">0.0</span>,  <span style="color:#ae81ff">0.0</span>, <span style="color:#ae81ff">1.0</span>, <span style="color:#ae81ff">1.0</span>,
+        <span style="color:#f92672">-</span><span style="color:#ae81ff">0.5</span>,  <span style="color:#ae81ff">0.5</span>,  <span style="color:#ae81ff">0.5</span>,  <span style="color:#ae81ff">0.0</span>,  <span style="color:#ae81ff">1.0</span>,  <span style="color:#ae81ff">0.0</span>,  <span style="color:#ae81ff">0.0</span>, <span style="color:#ae81ff">1.0</span>, <span style="color:#ae81ff">1.0</span>,
+        <span style="color:#f92672">-</span><span style="color:#ae81ff">0.5</span>,  <span style="color:#ae81ff">0.5</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">0.5</span>,  <span style="color:#ae81ff">0.0</span>,  <span style="color:#ae81ff">1.0</span>,  <span style="color:#ae81ff">0.0</span>,  <span style="color:#ae81ff">0.0</span>, <span style="color:#ae81ff">1.0</span>, <span style="color:#ae81ff">1.0</span>,
+    ];
+
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">vao</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">gl</span>.<span style="color:#a6e22e">createVertexArray</span>();
+    <span style="color:#a6e22e">gl</span>.<span style="color:#a6e22e">bindVertexArray</span>(<span style="color:#a6e22e">vao</span>);
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">vbo</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">gl</span>.<span style="color:#a6e22e">createBuffer</span>();
+    <span style="color:#a6e22e">gl</span>.<span style="color:#a6e22e">bindBuffer</span>(<span style="color:#a6e22e">gl</span>.<span style="color:#a6e22e">ARRAY_BUFFER</span>, <span style="color:#a6e22e">vbo</span>);
+    <span style="color:#a6e22e">gl</span>.<span style="color:#a6e22e">bufferData</span>(<span style="color:#a6e22e">gl</span>.<span style="color:#a6e22e">ARRAY_BUFFER</span>, <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Float32Array</span>(<span style="color:#a6e22e">vertices</span>), <span style="color:#a6e22e">gl</span>.<span style="color:#a6e22e">STATIC_DRAW</span>);
+    <span style="color:#a6e22e">gl</span>.<span style="color:#a6e22e">enableVertexAttribArray</span>(<span style="color:#a6e22e">positionAttr</span>);
+    <span style="color:#a6e22e">gl</span>.<span style="color:#a6e22e">vertexAttribPointer</span>(<span style="color:#a6e22e">positionAttr</span>, <span style="color:#ae81ff">3</span>, <span style="color:#a6e22e">gl</span>.<span style="color:#a6e22e">FLOAT</span>, <span style="color:#66d9ef">false</span>, <span style="color:#ae81ff">36</span>, <span style="color:#ae81ff">0</span>);
+    <span style="color:#a6e22e">gl</span>.<span style="color:#a6e22e">enableVertexAttribArray</span>(<span style="color:#a6e22e">normalAttr</span>);
+    <span style="color:#a6e22e">gl</span>.<span style="color:#a6e22e">vertexAttribPointer</span>(<span style="color:#a6e22e">normalAttr</span>, <span style="color:#ae81ff">3</span>, <span style="color:#a6e22e">gl</span>.<span style="color:#a6e22e">FLOAT</span>, <span style="color:#66d9ef">false</span>, <span style="color:#ae81ff">36</span>, <span style="color:#ae81ff">12</span>)
+    <span style="color:#a6e22e">gl</span>.<span style="color:#a6e22e">enableVertexAttribArray</span>(<span style="color:#a6e22e">colorAttr</span>);
+    <span style="color:#a6e22e">gl</span>.<span style="color:#a6e22e">vertexAttribPointer</span>(<span style="color:#a6e22e">colorAttr</span>, <span style="color:#ae81ff">3</span>, <span style="color:#a6e22e">gl</span>.<span style="color:#a6e22e">FLOAT</span>, <span style="color:#66d9ef">false</span>, <span style="color:#ae81ff">36</span>, <span style="color:#ae81ff">24</span>);
+
+    <span style="color:#a6e22e">gl</span>.<span style="color:#a6e22e">enable</span>(<span style="color:#a6e22e">gl</span>.<span style="color:#a6e22e">DEPTH_TEST</span>);
+    <span style="color:#a6e22e">gl</span>.<span style="color:#a6e22e">enable</span>(<span style="color:#a6e22e">gl</span>.<span style="color:#a6e22e">BLEND</span>);
+
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">projection</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">glm</span>.<span style="color:#a6e22e">perspective</span>(<span style="color:#a6e22e">glm</span>.<span style="color:#a6e22e">radians</span>(<span style="color:#ae81ff">90.0</span>), <span style="color:#ae81ff">4.0</span> <span style="color:#f92672">/</span> <span style="color:#ae81ff">3.0</span>, <span style="color:#ae81ff">0.1</span>, <span style="color:#ae81ff">100.0</span>).<span style="color:#a6e22e">elements</span>;
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">cameraPos</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">glm</span>.<span style="color:#a6e22e">vec3</span>([<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">2</span>]);
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">cameraUp</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">glm</span>.<span style="color:#a6e22e">vec3</span>([<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>]);
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">view</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">glm</span>.<span style="color:#a6e22e">lookAt</span>(<span style="color:#a6e22e">cameraPos</span>, <span style="color:#a6e22e">glm</span>.<span style="color:#a6e22e">vec3</span>(), <span style="color:#a6e22e">cameraUp</span>).<span style="color:#a6e22e">elements</span>;
+    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">model</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">glm</span>.<span style="color:#a6e22e">mat4</span>();
+    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">last</span> <span style="color:#f92672">=</span> Date.<span style="color:#a6e22e">now</span>();
+    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">dt</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">drawScene</span> <span style="color:#f92672">=</span> () =&gt; {
+        <span style="color:#a6e22e">gl</span>.<span style="color:#a6e22e">bindVertexArray</span>(<span style="color:#a6e22e">vao</span>);
+        <span style="color:#a6e22e">gl</span>.<span style="color:#a6e22e">useProgram</span>(<span style="color:#a6e22e">graphicsProgram</span>);
+        <span style="color:#a6e22e">gl</span>.<span style="color:#a6e22e">uniformMatrix4fv</span>(<span style="color:#a6e22e">projectionUni</span>, <span style="color:#66d9ef">false</span>, <span style="color:#a6e22e">projection</span>);
+        <span style="color:#a6e22e">gl</span>.<span style="color:#a6e22e">uniformMatrix4fv</span>(<span style="color:#a6e22e">viewUni</span>, <span style="color:#66d9ef">false</span>, <span style="color:#a6e22e">view</span>);
+        <span style="color:#a6e22e">model</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">glm</span>.<span style="color:#a6e22e">rotate</span>(<span style="color:#a6e22e">model</span>, <span style="color:#a6e22e">glm</span>.<span style="color:#a6e22e">radians</span>(<span style="color:#ae81ff">30.0</span>) <span style="color:#f92672">*</span> <span style="color:#a6e22e">dt</span>, <span style="color:#a6e22e">glm</span>.<span style="color:#a6e22e">vec3</span>(<span style="color:#ae81ff">1.0</span>, <span style="color:#ae81ff">0.0</span>, <span style="color:#ae81ff">0.0</span>));
+        <span style="color:#a6e22e">model</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">glm</span>.<span style="color:#a6e22e">rotate</span>(<span style="color:#a6e22e">model</span>, <span style="color:#a6e22e">glm</span>.<span style="color:#a6e22e">radians</span>(<span style="color:#ae81ff">30.0</span>) <span style="color:#f92672">*</span> <span style="color:#a6e22e">dt</span>, <span style="color:#a6e22e">glm</span>.<span style="color:#a6e22e">vec3</span>(<span style="color:#ae81ff">0.0</span>, <span style="color:#ae81ff">1.0</span>, <span style="color:#ae81ff">0.0</span>));
+        <span style="color:#a6e22e">gl</span>.<span style="color:#a6e22e">uniformMatrix4fv</span>(<span style="color:#a6e22e">modelUni</span>, <span style="color:#66d9ef">false</span>, <span style="color:#a6e22e">model</span>.<span style="color:#a6e22e">elements</span>);
+        <span style="color:#a6e22e">gl</span>.<span style="color:#a6e22e">clear</span>(<span style="color:#a6e22e">gl</span>.<span style="color:#a6e22e">COLOR_BUFFER_BIT</span> <span style="color:#f92672">|</span> <span style="color:#a6e22e">gl</span>.<span style="color:#a6e22e">DEPTH_BUFFER_BIT</span>);
+        <span style="color:#a6e22e">gl</span>.<span style="color:#a6e22e">drawArrays</span>(<span style="color:#a6e22e">gl</span>.<span style="color:#a6e22e">TRIANGLES</span>, <span style="color:#ae81ff">0</span>, <span style="color:#a6e22e">vertices</span>.<span style="color:#a6e22e">length</span> <span style="color:#f92672">/</span> <span style="color:#ae81ff">9</span>);
+        <span style="color:#a6e22e">requestAnimationFrame</span>(<span style="color:#a6e22e">drawScene</span>);
+        <span style="color:#a6e22e">dt</span> <span style="color:#f92672">=</span> (Date.<span style="color:#a6e22e">now</span>() <span style="color:#f92672">-</span> <span style="color:#a6e22e">last</span>) <span style="color:#f92672">/</span> <span style="color:#ae81ff">1000</span>;
+        <span style="color:#a6e22e">last</span> <span style="color:#f92672">=</span> Date.<span style="color:#a6e22e">now</span>();
+    };
+    <span style="color:#a6e22e">requestAnimationFrame</span>(<span style="color:#a6e22e">drawScene</span>);
+}
+
+<span style="color:#a6e22e">main</span>();
+</code></pre></div></article>
+</main>
+<footer>
+  <p class="center-text">
+  
+  &nbsp;&lcub;&nbsp;<a href="https://megate.ch/code/">up</a>&nbsp;&rcub;&nbsp;
+  
+  </p>
+</footer>
+</div>
+    <div class="right-column">&nbsp;</div>
+    <script src="/js/highlight/highlight.pack.js"></script><div id="bottom"></div>
+</body>
+</html>

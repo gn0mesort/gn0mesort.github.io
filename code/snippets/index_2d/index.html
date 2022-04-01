@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <title>Megatech - index_2d</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  
+  <meta name="author" content="Alexander Rothman" />
+  
+  
+  
+  <meta name="description" content="2D index into a 1D array." />
+  
+  <meta name="generator" content="Hugo 0.80.0" />
+  <link rel="stylesheet" href="/css/light.css" />
+  <link rel="stylesheet" href="/css/dark.css" />
+  <link rel="stylesheet" href="/css/main.css" />
+  <link rel="stylesheet" href="/fira/fira.css" />
+  <link rel="stylesheet" href="/fira_code/fira_code.css" />
+  <link rel="stylesheet" href="/gothicpixels/gothicpixels.css" />
+</head>
+<body onload="hljs.highlightAll();"><nav class="fixed">
+  <a href="/">~</a>&nbsp;/
+  
+  <a href="https://megate.ch/code/">code</a>&nbsp;/
+  
+  
+</nav>
+<div class="nav-left">&nbsp;</div>
+    <div class="nav-center">&nbsp;</div>
+    <div class="nav-right">&nbsp;</div>
+    <div class="left-column">&nbsp;</div>
+    <div class="center-column">
+<header>
+</header>
+
+
+<main>
+  <h1 class="center-text">index_2d</h1>
+  
+  
+  <article><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cinttypes&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">template</span> <span style="color:#f92672">&lt;</span><span style="color:#66d9ef">bool</span> IsRowMajor, <span style="color:#66d9ef">typename</span> SizeType <span style="color:#f92672">=</span> std<span style="color:#f92672">::</span>size_t<span style="color:#f92672">&gt;</span>
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">basic_indexer_2d</span> <span style="color:#66d9ef">final</span> {
+<span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+    <span style="color:#66d9ef">using</span> size_type <span style="color:#f92672">=</span> SizeType;
+<span style="color:#66d9ef">private</span><span style="color:#f92672">:</span>
+  size_type m_stride{ };
+<span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+  <span style="color:#66d9ef">explicit</span> <span style="color:#66d9ef">constexpr</span> basic_indexer_2d(<span style="color:#66d9ef">const</span> size_type stride) <span style="color:#f92672">:</span> m_stride{ stride } { }
+  <span style="color:#66d9ef">constexpr</span> <span style="color:#a6e22e">basic_indexer_2d</span>(basic_indexer_2d<span style="color:#f92672">&amp;&amp;</span> other) <span style="color:#f92672">=</span> <span style="color:#66d9ef">default</span>;
+  <span style="color:#66d9ef">constexpr</span> <span style="color:#a6e22e">basic_indexer_2d</span>(<span style="color:#66d9ef">const</span> basic_indexer_2d<span style="color:#f92672">&amp;</span> other) <span style="color:#f92672">=</span> <span style="color:#66d9ef">default</span>;
+
+  <span style="color:#66d9ef">constexpr</span> <span style="color:#f92672">~</span>basic_indexer_2d() <span style="color:#66d9ef">noexcept</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">default</span>;
+
+  <span style="color:#66d9ef">constexpr</span> basic_indexer_2d<span style="color:#f92672">&amp;</span> <span style="color:#66d9ef">operator</span><span style="color:#f92672">=</span>(basic_indexer_2d<span style="color:#f92672">&amp;&amp;</span> rhs) <span style="color:#f92672">=</span> <span style="color:#66d9ef">default</span>;
+  <span style="color:#66d9ef">constexpr</span> basic_indexer_2d<span style="color:#f92672">&amp;</span> <span style="color:#66d9ef">operator</span><span style="color:#f92672">=</span>(<span style="color:#66d9ef">const</span> basic_indexer_2d<span style="color:#f92672">&amp;</span> rhs) <span style="color:#f92672">=</span> <span style="color:#66d9ef">default</span>;
+  <span style="color:#66d9ef">constexpr</span> size_type <span style="color:#a6e22e">operator</span>()(<span style="color:#66d9ef">const</span> size_type row, <span style="color:#66d9ef">const</span> size_type column) <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">noexcept</span> {
+    <span style="color:#66d9ef">if</span> <span style="color:#66d9ef">constexpr</span> (IsRowMajor)
+    {
+        <span style="color:#66d9ef">return</span> (row <span style="color:#f92672">*</span> m_stride) <span style="color:#f92672">+</span> column;
+    }
+    <span style="color:#66d9ef">else</span>
+    {
+        <span style="color:#66d9ef">return</span> (column <span style="color:#f92672">*</span> m_stride) <span style="color:#f92672">+</span> row;
+    }
+  }
+};
+
+<span style="color:#66d9ef">using</span> row_major_indexer_2d <span style="color:#f92672">=</span> basic_indexer_2d<span style="color:#f92672">&lt;</span>true<span style="color:#f92672">&gt;</span>;
+<span style="color:#66d9ef">using</span> column_major_indexer_2d <span style="color:#f92672">=</span> basic_indexer_2d<span style="color:#f92672">&lt;</span>false<span style="color:#f92672">&gt;</span>;
+</code></pre></div></article>
+</main>
+<footer>
+  <p class="center-text">
+  
+  &nbsp;&lcub;&nbsp;<a href="https://megate.ch/code/snippets/">up</a>&nbsp;&rcub;&nbsp;
+  
+  </p>
+</footer>
+</div>
+    <div class="right-column">&nbsp;</div>
+    <script src="/js/highlight/highlight.pack.js"></script><div id="bottom"></div>
+</body>
+</html>
