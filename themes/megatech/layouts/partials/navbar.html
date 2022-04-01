@@ -1,7 +1,10 @@
 <nav class="fixed">
   <a href="/">~</a>&nbsp;/
   {{ range .Site.Sections }}
-  <a href="{{ .Permalink }}">{{ lower .Title }}</a>&nbsp;/
+  <a href="{{ .Permalink }}">{{ lower .Section }}</a>&nbsp;/
   {{ end }}
-  <a href="mailto:gnomesort@megate.ch">contact</a>&nbsp;/
+  {{ if or (gt .Page.WordCount 500) (gt (len .Page.Plain) 1500) }}
+  <a href="#bottom">to-bottom</a>&nbsp;/
+  <a href="#">to-top</a>&nbsp;/
+  {{ end }}
 </nav>

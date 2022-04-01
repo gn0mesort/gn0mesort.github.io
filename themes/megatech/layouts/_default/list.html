@@ -1,13 +1,14 @@
 {{ define "main" }}
 <main>
-  <h1 class="center-text site-title">{{ .Title }}</h1>
+  <h1 class="center-text site-title">{{ title .Title }}</h1>
+  <h2 class="center-text">{{ .Description }}</h2>
   <article>
     <div class="center-text">{{ .Content }}</div>
   </article>
   {{ if .Sections }}
     <ul>
     {{ range .Sections }}
-    <li><a href="{{ .Permalink }}">{{ .Title }}</a></li>
+    <li><a href="{{ .Permalink }}">{{ .Title }}</a>&nbsp;<span class="small">{{ .Description }}</span></li>
     {{ if le .Pages 5 }}
     <ul>
       {{ range .Pages }}
@@ -17,10 +18,13 @@
     {{ end }}
     {{ end }}
     </ul>
-  {{ else if .Pages }}
+  {{ end }}
+  {{ if .Pages }}
   <ul>
     {{ range .Pages }}
+    {{ if .IsPage }}
     <li><a href="{{ .Permalink }}">{{ .Title }}</a>&nbsp;<span class="small">{{ .Description }}</span></li>
+    {{ end }}
     {{ end }}
   </ul>
   {{ else }}

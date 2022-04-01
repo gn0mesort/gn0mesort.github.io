@@ -1,5 +1,5 @@
 <head>
-  <title>{{ if .Page.IsHome }}{{ .Site.Title }}{{ else }}{{ .Site.Title }} - {{ .Title }}{{ end }}</title>
+  <title>{{ .Site.Title }}{{ if or .Page.IsSection .Page.IsPage }} - {{ if .Page.IsSection }}{{ .Page.Section }}{{ else }}{{ .Page.Title }}{{ end }}{{ end }}</title>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   {{ if .Site.Params.AuthorName }}

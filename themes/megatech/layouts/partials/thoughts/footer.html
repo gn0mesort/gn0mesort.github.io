@@ -5,8 +5,8 @@
     prev
   </a>&nbsp;&rcub;
   {{ end }}
-  {{ if gt .Page.WordCount 500 }}
-  &nbsp;&lcub;&nbsp;<a href="#">top</a>&nbsp;&rcub;&nbsp;
+  {{ if .Parent }}
+  &nbsp;&lcub;&nbsp;<a href="{{ .Parent.Permalink }}">up</a>&nbsp;&rcub;&nbsp;
   {{ end }}
   {{ if .IsPage }}
   &lcub;&nbsp;<a {{ if .NextInSection }} href="{{ .NextInSection.Permalink }}" {{ else }} class="disabled" {{ end }}>

@@ -244,3 +244,16 @@ img.center, canvas.center {
   margin-left: auto;
   margin-right: auto;
 }
+
+@counter-style acm-citation
+{
+  system: numeric;
+  symbols: '\30' '\31' '\32' '\33' '\34' '\35' '\36' '\37' '\38' '\39';
+  prefix: '[';
+  suffix: '] ';
+}
+
+ol.citations
+{
+  list-style: acm-citation;
+}

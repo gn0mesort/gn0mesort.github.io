@@ -10,5 +10,7 @@ enableGitInfo = true
   mainSections = [ 'thoughts' ]
 
 [markup]
-  [markup.goldmark.renderer]
-    unsafe = true
+    [markup.goldmark]
+        [markup.goldmark.renderer]
+            unsafe = true
+
