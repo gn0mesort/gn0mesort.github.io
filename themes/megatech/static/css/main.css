@@ -257,3 +257,12 @@ ol.citations
 {
   list-style: acm-citation;
 }
+
+.epigraph
+{
+  font-style: italic;
+  text-align: center;
+  border: outset;
+  border-color: var(--fg);
+  box-shadow: 5px 5px 1vw var(--image-shadow);
+}

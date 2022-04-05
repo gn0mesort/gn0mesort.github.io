@@ -15,13 +15,13 @@ Some solutions are unnecessarily clever.
 #include <stdio.h>
 
 int main() {
-    const char* msg = "Fizz\0Buzz";
-    int i, j;
-    for (i = 1, j = 0; i <= 100; ++i, j = (!(i % 3) << 1) | (!(i % 5)))
-    {
-        printf("%.*s%.*s%.*d\n", (j & 2) << 1, &msg[0], (j & 1) << 2, &msg[5], !j, i * !j);
-    }
-    return 0;
+  const char* msg = "Fizz\0Buzz";
+  int i, j;
+  for (i = 1, j = 0; i <= 100; ++i, j = (!(i % 3) << 1) | (!(i % 5)))
+  {
+    printf("%.*s%.*s%.*d\n", (j & 2) << 1, &msg[0], (j & 1) << 2, &msg[5], !j, i * !j);
+  }
+  return 0;
 }
 ```
 
@@ -29,16 +29,41 @@ int main() {
 
 ```cpp
 #include <cstdio>
+#include <cstddef>
 
+#include <array>
 #include <string_view>
 
+struct state final {
+  char i{ };
+  char j{ };
+  char k{ };
+  char jk{ };
+};
+
+template <std::size_t Max = 100>
+consteval std::array<state, Max> states() {
+  auto res = std::array<state, Max>{ };
+  for (auto i = std::size_t{ 1 }; i <= Max; ++i)
+  {
+    res[i - 1].i = i;
+    res[i - 1].j = -!(i % 3);
+    res[i - 1].k = -!(i % 5);
+    res[i - 1].jk = !(res[i - 1].j | res[i - 1].k);
+    res[i - 1].i &= -res[i - 1].jk;
+    res[i - 1].j &= 4;
+    res[i - 1].k &= 4;
+  }
+  return res;
+}
+
 int main() {
-    constexpr auto msg = std::string_view{ "Fizz\0Buzz" };
-    for (auto i = 1, j = 0; i <= 100; ++i, j = (!(i % 3) << 1) | (!(i % 5)))
-    {
-        std::printf("%.*s%.*s%.*d\n", (j & 2) << 1, &msg[0], (j & 1) << 2, &msg[5], !j, i * !j);
-    }
-    return 0;
+  constexpr auto msg = std::string_view{ "Fizz\0Buzz" };
+  for (const auto& state : states())
+  {
+    std::printf("%.*s%.*s%.*d\n", state.j, &msg[0], state.k, &msg[5], state.jk, state.i);
+  }
+  return 0;
 }
 ```
 
