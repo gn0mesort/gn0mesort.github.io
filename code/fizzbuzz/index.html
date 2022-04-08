@@ -188,10 +188,13 @@ Some solutions are unnecessarily clever.</p>
   }
 <span style="color:#75715e">?&gt;</span><span style="color:#960050;background-color:#1e0010">
 </span></code></pre></div><h2 id="python3">Python3</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#66d9ef">for</span> msg <span style="color:#f92672">in</span> [(<span style="color:#66d9ef">lambda</span> a: (<span style="color:#66d9ef">lambda</span> msg, b: msg <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;Buzz&#39;</span>
-                        <span style="color:#66d9ef">if</span> b <span style="color:#f92672">%</span> <span style="color:#ae81ff">5</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">else</span> msg)(<span style="color:#e6db74">&#39;Fizz&#39;</span>, a)
-             <span style="color:#66d9ef">if</span> a <span style="color:#f92672">%</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">else</span> (<span style="color:#66d9ef">lambda</span> d: <span style="color:#e6db74">&#39;Buzz&#39;</span>
-                                 <span style="color:#66d9ef">if</span> d <span style="color:#f92672">%</span> <span style="color:#ae81ff">5</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">else</span> str(d))(a))(i)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#66d9ef">for</span> msg <span style="color:#f92672">in</span> [(<span style="color:#66d9ef">lambda</span> a:
+                (<span style="color:#66d9ef">lambda</span> msg, b:
+                  msg <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;Buzz&#39;</span> <span style="color:#66d9ef">if</span> b <span style="color:#f92672">%</span> <span style="color:#ae81ff">5</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">else</span> msg
+                )(<span style="color:#e6db74">&#39;Fizz&#39;</span>, a) <span style="color:#66d9ef">if</span> a <span style="color:#f92672">%</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">else</span> (<span style="color:#66d9ef">lambda</span> d:
+                  <span style="color:#e6db74">&#39;Buzz&#39;</span> <span style="color:#66d9ef">if</span> d <span style="color:#f92672">%</span> <span style="color:#ae81ff">5</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">else</span> str(d)
+                )(a)
+            )(i)
             <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">101</span>)]:
     <span style="color:#66d9ef">print</span>(msg)
 </code></pre></div></article>
