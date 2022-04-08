@@ -1,6 +1,6 @@
 ---
 title: Megatech
-description: Alexander Rothman's homepage. 
+description: Alexander Rothman's homepage.
 keywords:
   - programming
   - c++
@@ -26,6 +26,7 @@ keywords:
 </p>
 <h2 class="center-text">Contact</h2>
 <p>
-  <span>&nbsp;&nbsp;email: <a href="mailto:gnomesort@megate.ch">gnomesort@megate.ch</a>&nbsp;(<a href="/res/publickey.gpg">gpg</a>)</span><br />
-  <span>github: <a href="https://github.com/gn0mesort/">gn0mesort</a></span>
+  <span>&nbsp;&nbsp;&nbsp;email: <a href="mailto:gnomesort@megate.ch">gnomesort@megate.ch</a>&nbsp;(<a href="/res/publickey.gpg">gpg</a>)</span><br />
+  <span>&nbsp;github: <a href="https://github.com/gn0mesort/">gn0mesort</a></span><br />
+  <span>discord: gnomesort#5217</span>
 </p>

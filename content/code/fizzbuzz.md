@@ -165,10 +165,13 @@ for (let i = 1; i <= 100; ++i)
 ## Python3
 
 ```py
-for msg in [(lambda a: (lambda msg, b: msg + 'Buzz'
-                        if b % 5 == 0 else msg)('Fizz', a)
-             if a % 3 == 0 else (lambda d: 'Buzz'
-                                 if d % 5 == 0 else str(d))(a))(i)
+for msg in [(lambda a:
+                (lambda msg, b:
+                  msg + 'Buzz' if b % 5 == 0 else msg
+                )('Fizz', a) if a % 3 == 0 else (lambda d:
+                  'Buzz' if d % 5 == 0 else str(d)
+                )(a)
+            )(i)
             for i in range(1, 101)]:
     print(msg)
 ```
