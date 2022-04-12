@@ -13,4 +13,5 @@ enableGitInfo = true
     [markup.goldmark]
         [markup.goldmark.renderer]
             unsafe = true
-
+    [markup.highlight]
+      codeFences = false
