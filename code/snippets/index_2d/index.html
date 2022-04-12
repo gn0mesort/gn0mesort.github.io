@@ -38,38 +38,39 @@
   <h1 class="center-text">index_2d</h1>
   
   
-  <article><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cinttypes&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span>
-<span style="color:#66d9ef">template</span> <span style="color:#f92672">&lt;</span><span style="color:#66d9ef">bool</span> IsRowMajor, <span style="color:#66d9ef">typename</span> SizeType <span style="color:#f92672">=</span> std<span style="color:#f92672">::</span>size_t<span style="color:#f92672">&gt;</span>
-<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">basic_indexer_2d</span> <span style="color:#66d9ef">final</span> {
-<span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
-    <span style="color:#66d9ef">using</span> size_type <span style="color:#f92672">=</span> SizeType;
-<span style="color:#66d9ef">private</span><span style="color:#f92672">:</span>
+  <article><pre><code class="language-cpp">#include &lt;cinttypes&gt;
+
+template &lt;bool IsRowMajor, typename SizeType = std::size_t&gt;
+class basic_indexer_2d final {
+public:
+    using size_type = SizeType;
+private:
   size_type m_stride{ };
-<span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
-  <span style="color:#66d9ef">explicit</span> <span style="color:#66d9ef">constexpr</span> basic_indexer_2d(<span style="color:#66d9ef">const</span> size_type stride) <span style="color:#f92672">:</span> m_stride{ stride } { }
-  <span style="color:#66d9ef">constexpr</span> <span style="color:#a6e22e">basic_indexer_2d</span>(basic_indexer_2d<span style="color:#f92672">&amp;&amp;</span> other) <span style="color:#f92672">=</span> <span style="color:#66d9ef">default</span>;
-  <span style="color:#66d9ef">constexpr</span> <span style="color:#a6e22e">basic_indexer_2d</span>(<span style="color:#66d9ef">const</span> basic_indexer_2d<span style="color:#f92672">&amp;</span> other) <span style="color:#f92672">=</span> <span style="color:#66d9ef">default</span>;
+public:
+  explicit constexpr basic_indexer_2d(const size_type stride) : m_stride{ stride } { }
+  constexpr basic_indexer_2d(basic_indexer_2d&amp;&amp; other) = default;
+  constexpr basic_indexer_2d(const basic_indexer_2d&amp; other) = default;
 
-  <span style="color:#66d9ef">constexpr</span> <span style="color:#f92672">~</span>basic_indexer_2d() <span style="color:#66d9ef">noexcept</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">default</span>;
+  constexpr ~basic_indexer_2d() noexcept = default;
 
-  <span style="color:#66d9ef">constexpr</span> basic_indexer_2d<span style="color:#f92672">&amp;</span> <span style="color:#66d9ef">operator</span><span style="color:#f92672">=</span>(basic_indexer_2d<span style="color:#f92672">&amp;&amp;</span> rhs) <span style="color:#f92672">=</span> <span style="color:#66d9ef">default</span>;
-  <span style="color:#66d9ef">constexpr</span> basic_indexer_2d<span style="color:#f92672">&amp;</span> <span style="color:#66d9ef">operator</span><span style="color:#f92672">=</span>(<span style="color:#66d9ef">const</span> basic_indexer_2d<span style="color:#f92672">&amp;</span> rhs) <span style="color:#f92672">=</span> <span style="color:#66d9ef">default</span>;
-  <span style="color:#66d9ef">constexpr</span> size_type <span style="color:#a6e22e">operator</span>()(<span style="color:#66d9ef">const</span> size_type row, <span style="color:#66d9ef">const</span> size_type column) <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">noexcept</span> {
-    <span style="color:#66d9ef">if</span> <span style="color:#66d9ef">constexpr</span> (IsRowMajor)
+  constexpr basic_indexer_2d&amp; operator=(basic_indexer_2d&amp;&amp; rhs) = default;
+  constexpr basic_indexer_2d&amp; operator=(const basic_indexer_2d&amp; rhs) = default;
+  constexpr size_type operator()(const size_type row, const size_type column) const noexcept {
+    if constexpr (IsRowMajor)
     {
-        <span style="color:#66d9ef">return</span> (row <span style="color:#f92672">*</span> m_stride) <span style="color:#f92672">+</span> column;
+        return (row * m_stride) + column;
     }
-    <span style="color:#66d9ef">else</span>
+    else
     {
-        <span style="color:#66d9ef">return</span> (column <span style="color:#f92672">*</span> m_stride) <span style="color:#f92672">+</span> row;
+        return (column * m_stride) + row;
     }
   }
 };
 
-<span style="color:#66d9ef">using</span> row_major_indexer_2d <span style="color:#f92672">=</span> basic_indexer_2d<span style="color:#f92672">&lt;</span>true<span style="color:#f92672">&gt;</span>;
-<span style="color:#66d9ef">using</span> column_major_indexer_2d <span style="color:#f92672">=</span> basic_indexer_2d<span style="color:#f92672">&lt;</span>false<span style="color:#f92672">&gt;</span>;
-</code></pre></div></article>
+using row_major_indexer_2d = basic_indexer_2d&lt;true&gt;;
+using column_major_indexer_2d = basic_indexer_2d&lt;false&gt;;
+</code></pre>
+</article>
 </main>
 <footer>
   <p class="center-text">
@@ -80,6 +81,6 @@
 </footer>
 </div>
     <div class="right-column">&nbsp;</div>
-    <script src="/js/highlight/highlight.pack.js"></script><div id="bottom"></div>
+    <script src="/js/highlight/highlight.min.js"></script><div id="bottom"></div>
 </body>
 </html>

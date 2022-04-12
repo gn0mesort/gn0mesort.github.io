@@ -13,7 +13,7 @@
       <pubDate>Tue, 29 Mar 2022 20:35:23 -0700</pubDate>
       
       <guid>https://megate.ch/code/webgl_cube/</guid>
-      <description>&amp;#39;use strict&amp;#39;; function main() { const canvas = document.getElementById(&amp;#39;context&amp;#39;); const gl = canvas.getContext(&amp;#39;webgl2&amp;#39;); if (!gl) { return; } canvas.classList.remove(&amp;#39;hide&amp;#39;); const vertexShaderSrc = `#version 300 es uniform mat4 model; uniform mat4 view; uniform mat4 projection; in vec3 vtx_position; in vec3 vtx_normal; in vec3 vtx_color; out vec3 frg_position; out vec3 frg_normal; out vec3 frg_color; void main() { frg_position = vec3(model * vec4(vtx_position, 1.0)); frg_normal = mat3(transpose(inverse(model))) * vtx_normal; gl_Position = projection * view * vec4(frg_position, 1.</description>
+      <description>&#39;use strict&#39;; function main() { const canvas = document.getElementById(&#39;context&#39;); const gl = canvas.getContext(&#39;webgl2&#39;); if (!gl) { return; } canvas.classList.remove(&#39;hide&#39;); const vertexShaderSrc = `#version 300 es uniform mat4 model; uniform mat4 view; uniform mat4 projection; in vec3 vtx_position; in vec3 vtx_normal; in vec3 vtx_color; out vec3 frg_position; out vec3 frg_normal; out vec3 frg_color; void main() { frg_position = vec3(model * vec4(vtx_position, 1.0)); frg_normal = mat3(transpose(inverse(model))) * vtx_normal; gl_Position = projection * view * vec4(frg_position, 1.</description>
     </item>
     
     <item>
@@ -23,7 +23,7 @@
       
       <guid>https://megate.ch/code/fizzbuzz/</guid>
       <description>Fizzbuzz in various languages just to demonstrate that I&amp;rsquo;m not totally useless. Some solutions are unnecessarily clever.
-C89 #include &amp;lt;stdio.h&amp;gt; int main() { const char* msg = &amp;#34;Fizz\0Buzz&amp;#34;; int i, j; for (i = 1, j = 0; i &amp;lt;= 100; ++i, j = (!(i % 3) &amp;lt;&amp;lt; 1) | (!(i % 5))) { printf(&amp;#34;%.*s%.*s%.*d\n&amp;#34;, (j &amp;amp; 2) &amp;lt;&amp;lt; 1, &amp;amp;msg[0], (j &amp;amp; 1) &amp;lt;&amp;lt; 2, &amp;amp;msg[5], !j, i * !</description>
+C89 #include &amp;lt;stdio.h&amp;gt; int main() { const char* msg = &amp;quot;Fizz\0Buzz&amp;quot;; int i, j; for (i = 1, j = 0; i &amp;lt;= 100; ++i, j = (!(i % 3) &amp;lt;&amp;lt; 1) | (!(i % 5))) { printf(&amp;quot;%.*s%.*s%.*d\n&amp;quot;, (j &amp;amp; 2) &amp;lt;&amp;lt; 1, &amp;amp;msg[0], (j &amp;amp; 1) &amp;lt;&amp;lt; 2, &amp;amp;msg[5], !j, i * !</description>
     </item>
     
   </channel>

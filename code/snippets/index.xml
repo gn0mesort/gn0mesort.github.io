@@ -8,12 +8,30 @@
     <language>en-us</language>
     <lastBuildDate>Wed, 30 Mar 2022 09:59:43 -0700</lastBuildDate><atom:link href="https://megate.ch/code/snippets/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>is_even</title>
+      <link>https://megate.ch/code/snippets/is_even/</link>
+      <pubDate>Mon, 11 Apr 2022 21:36:21 -0700</pubDate>
+      
+      <guid>https://megate.ch/code/snippets/is_even/</guid>
+      <description>#include &amp;lt;concepts&amp;gt; template &amp;lt;std::signed_integral Type&amp;gt; constexpr bool is_odd(Type x) { return x &amp;amp; 1; } template &amp;lt;std::signed_integral Type&amp;gt; constexpr bool is_even(Type x) { return !is_odd(x); }  </description>
+    </item>
+    
+    <item>
+      <title>abs</title>
+      <link>https://megate.ch/code/snippets/abs/</link>
+      <pubDate>Mon, 11 Apr 2022 20:57:57 -0700</pubDate>
+      
+      <guid>https://megate.ch/code/snippets/abs/</guid>
+      <description>#include &amp;lt;concepts&amp;gt; #include &amp;lt;bit&amp;gt; #include &amp;lt;limits&amp;gt; template &amp;lt;std::signed_integral Type&amp;gt; constexpr Type abs(Type x) { constexpr auto bits = std::numeric_limits&amp;lt;Type&amp;gt;::digits; return (x ^ (x &amp;gt;&amp;gt; bits)) - (x &amp;gt;&amp;gt; bits); } template &amp;lt;std::floating_point Type&amp;gt; constexpr Type abs(Type x) { if constexpr (std::endian::native == std::endian::little) { reinterpret_cast&amp;lt;char*&amp;gt;(&amp;amp;x)[sizeof(Type) - 1] &amp;amp;= 0x7f; } else if constexpr (std::endian::native == std::endian::big) { reinterpret_cast&amp;lt;char*&amp;gt;(&amp;amp;x)[0] &amp;amp;= 0x7f; } return x; }  </description>
+    </item>
+    
+    <item>
       <title>index_2d</title>
       <link>https://megate.ch/code/snippets/index_2d/</link>
       <pubDate>Tue, 29 Mar 2022 20:18:59 -0700</pubDate>
       
       <guid>https://megate.ch/code/snippets/index_2d/</guid>
-      <description>#include &amp;lt;cinttypes&amp;gt; template &amp;lt;bool IsRowMajor, typename SizeType = std::size_t&amp;gt; class basic_indexer_2d final { public: using size_type = SizeType; private: size_type m_stride{ }; public: explicit constexpr basic_indexer_2d(const size_type stride) : m_stride{ stride } { } constexpr basic_indexer_2d(basic_indexer_2d&amp;amp;&amp;amp; other) = default; constexpr basic_indexer_2d(const basic_indexer_2d&amp;amp; other) = default; constexpr ~basic_indexer_2d() noexcept = default; constexpr basic_indexer_2d&amp;amp; operator=(basic_indexer_2d&amp;amp;&amp;amp; rhs) = default; constexpr basic_indexer_2d&amp;amp; operator=(const basic_indexer_2d&amp;amp; rhs) = default; constexpr size_type operator()(const size_type row, const size_type column) const noexcept { if constexpr (IsRowMajor) { return (row * m_stride) + column; } else { return (column * m_stride) + row; } } }; using row_major_indexer_2d = basic_indexer_2d&amp;lt;true&amp;gt;; using column_major_indexer_2d = basic_indexer_2d&amp;lt;false&amp;gt;; </description>
+      <description>#include &amp;lt;cinttypes&amp;gt; template &amp;lt;bool IsRowMajor, typename SizeType = std::size_t&amp;gt; class basic_indexer_2d final { public: using size_type = SizeType; private: size_type m_stride{ }; public: explicit constexpr basic_indexer_2d(const size_type stride) : m_stride{ stride } { } constexpr basic_indexer_2d(basic_indexer_2d&amp;amp;&amp;amp; other) = default; constexpr basic_indexer_2d(const basic_indexer_2d&amp;amp; other) = default; constexpr ~basic_indexer_2d() noexcept = default; constexpr basic_indexer_2d&amp;amp; operator=(basic_indexer_2d&amp;amp;&amp;amp; rhs) = default; constexpr basic_indexer_2d&amp;amp; operator=(const basic_indexer_2d&amp;amp; rhs) = default; constexpr size_type operator()(const size_type row, const size_type column) const noexcept { if constexpr (IsRowMajor) { return (row * m_stride) + column; } else { return (column * m_stride) + row; } } }; using row_major_indexer_2d = basic_indexer_2d&amp;lt;true&amp;gt;; using column_major_indexer_2d = basic_indexer_2d&amp;lt;false&amp;gt;;  </description>
     </item>
     
     <item>
@@ -22,7 +40,7 @@
       <pubDate>Tue, 29 Mar 2022 20:14:58 -0700</pubDate>
       
       <guid>https://megate.ch/code/snippets/is_pow2/</guid>
-      <description>#include &amp;lt;concepts&amp;gt; constexpr bool is_pow2(std::unsigned_integral auto x) { return x &amp;amp;&amp;amp; !(x &amp;amp; (x - 1)); } </description>
+      <description>#include &amp;lt;concepts&amp;gt; constexpr bool is_pow2(std::unsigned_integral auto x) { return x &amp;amp;&amp;amp; !(x &amp;amp; (x - 1)); }  </description>
     </item>
     
     <item>
@@ -31,7 +49,7 @@
       <pubDate>Tue, 29 Mar 2022 13:39:00 -0700</pubDate>
       
       <guid>https://megate.ch/code/snippets/ulog2/</guid>
-      <description>#include &amp;lt;cinttypes&amp;gt;#include &amp;lt;climits&amp;gt; #include &amp;lt;bit&amp;gt;#include &amp;lt;type_traits&amp;gt;#include &amp;lt;concepts&amp;gt;#include &amp;lt;stdexcept&amp;gt; template &amp;lt;std::unsigned_integral Type, std::size_t BITS = sizeof(Type) * CHAR_BIT&amp;gt; constexpr Type ulog2(const Type x) { if (!x) { throw std::domain_error{ &amp;#34;ulog2(0) is undefined.&amp;#34; }; } auto middle = BITS &amp;gt;&amp;gt; 1; for (auto left = std::size_t{ 0 }, right = BITS; left &amp;lt;= right; middle = (right + left) &amp;gt;&amp;gt; 1) { auto cmp = std::bit_cast&amp;lt;std::make_signed_t&amp;lt;Type&amp;gt;&amp;gt;(x - (Type{ 1 } &amp;lt;&amp;lt; middle)); if (cmp &amp;gt; 0) { left = middle + 1; } else if (cmp &amp;lt; 0) { right = middle - 1; } else { return middle; } } return middle; } </description>
+      <description>#include &amp;lt;cinttypes&amp;gt; #include &amp;lt;climits&amp;gt; #include &amp;lt;bit&amp;gt; #include &amp;lt;type_traits&amp;gt; #include &amp;lt;concepts&amp;gt; #include &amp;lt;stdexcept&amp;gt; template &amp;lt;std::unsigned_integral Type, std::size_t BITS = sizeof(Type) * CHAR_BIT&amp;gt; constexpr Type ulog2(const Type x) { if (!x) { throw std::domain_error{ &amp;quot;ulog2(0) is undefined.&amp;quot; }; } auto middle = BITS &amp;gt;&amp;gt; 1; for (auto left = std::size_t{ 0 }, right = BITS; left &amp;lt;= right; middle = (right + left) &amp;gt;&amp;gt; 1) { auto cmp = std::bit_cast&amp;lt;std::make_signed_t&amp;lt;Type&amp;gt;&amp;gt;(x - (Type{ 1 } &amp;lt;&amp;lt; middle)); if (cmp &amp;gt; 0) { left = middle + 1; } else if (cmp &amp;lt; 0) { right = middle - 1; } else { return middle; } } return middle; }  </description>
     </item>
     
   </channel>

@@ -38,13 +38,14 @@
   <h1 class="center-text">is_pow2</h1>
   
   
-  <article><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;concepts&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span>
-<span style="color:#66d9ef">constexpr</span> <span style="color:#66d9ef">bool</span> <span style="color:#a6e22e">is_pow2</span>(std<span style="color:#f92672">::</span>unsigned_integral <span style="color:#66d9ef">auto</span> x) {
-  <span style="color:#66d9ef">return</span> x <span style="color:#f92672">&amp;&amp;</span> <span style="color:#f92672">!</span>(x <span style="color:#f92672">&amp;</span> (x <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>));
+  <article><pre><code class="language-cpp">#include &lt;concepts&gt;
+
+constexpr bool is_pow2(std::unsigned_integral auto x) {
+  return x &amp;&amp; !(x &amp; (x - 1));
 }
 
-</code></pre></div></article>
+</code></pre>
+</article>
 </main>
 <footer>
   <p class="center-text">
@@ -55,6 +56,6 @@
 </footer>
 </div>
     <div class="right-column">&nbsp;</div>
-    <script src="/js/highlight/highlight.pack.js"></script><div id="bottom"></div>
+    <script src="/js/highlight/highlight.min.js"></script><div id="bottom"></div>
 </body>
 </html>

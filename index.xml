@@ -7,12 +7,30 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language><atom:link href="https://megate.ch/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>is_even</title>
+      <link>https://megate.ch/code/snippets/is_even/</link>
+      <pubDate>Mon, 11 Apr 2022 21:36:21 -0700</pubDate>
+      
+      <guid>https://megate.ch/code/snippets/is_even/</guid>
+      <description>#include &amp;lt;concepts&amp;gt; template &amp;lt;std::signed_integral Type&amp;gt; constexpr bool is_odd(Type x) { return x &amp;amp; 1; } template &amp;lt;std::signed_integral Type&amp;gt; constexpr bool is_even(Type x) { return !is_odd(x); }  </description>
+    </item>
+    
+    <item>
+      <title>abs</title>
+      <link>https://megate.ch/code/snippets/abs/</link>
+      <pubDate>Mon, 11 Apr 2022 20:57:57 -0700</pubDate>
+      
+      <guid>https://megate.ch/code/snippets/abs/</guid>
+      <description>#include &amp;lt;concepts&amp;gt; #include &amp;lt;bit&amp;gt; #include &amp;lt;limits&amp;gt; template &amp;lt;std::signed_integral Type&amp;gt; constexpr Type abs(Type x) { constexpr auto bits = std::numeric_limits&amp;lt;Type&amp;gt;::digits; return (x ^ (x &amp;gt;&amp;gt; bits)) - (x &amp;gt;&amp;gt; bits); } template &amp;lt;std::floating_point Type&amp;gt; constexpr Type abs(Type x) { if constexpr (std::endian::native == std::endian::little) { reinterpret_cast&amp;lt;char*&amp;gt;(&amp;amp;x)[sizeof(Type) - 1] &amp;amp;= 0x7f; } else if constexpr (std::endian::native == std::endian::big) { reinterpret_cast&amp;lt;char*&amp;gt;(&amp;amp;x)[0] &amp;amp;= 0x7f; } return x; }  </description>
+    </item>
+    
+    <item>
       <title>WebGL2 Cube</title>
       <link>https://megate.ch/code/webgl_cube/</link>
       <pubDate>Tue, 29 Mar 2022 20:35:23 -0700</pubDate>
       
       <guid>https://megate.ch/code/webgl_cube/</guid>
-      <description>&amp;#39;use strict&amp;#39;; function main() { const canvas = document.getElementById(&amp;#39;context&amp;#39;); const gl = canvas.getContext(&amp;#39;webgl2&amp;#39;); if (!gl) { return; } canvas.classList.remove(&amp;#39;hide&amp;#39;); const vertexShaderSrc = `#version 300 es uniform mat4 model; uniform mat4 view; uniform mat4 projection; in vec3 vtx_position; in vec3 vtx_normal; in vec3 vtx_color; out vec3 frg_position; out vec3 frg_normal; out vec3 frg_color; void main() { frg_position = vec3(model * vec4(vtx_position, 1.0)); frg_normal = mat3(transpose(inverse(model))) * vtx_normal; gl_Position = projection * view * vec4(frg_position, 1.</description>
+      <description>&#39;use strict&#39;; function main() { const canvas = document.getElementById(&#39;context&#39;); const gl = canvas.getContext(&#39;webgl2&#39;); if (!gl) { return; } canvas.classList.remove(&#39;hide&#39;); const vertexShaderSrc = `#version 300 es uniform mat4 model; uniform mat4 view; uniform mat4 projection; in vec3 vtx_position; in vec3 vtx_normal; in vec3 vtx_color; out vec3 frg_position; out vec3 frg_normal; out vec3 frg_color; void main() { frg_position = vec3(model * vec4(vtx_position, 1.0)); frg_normal = mat3(transpose(inverse(model))) * vtx_normal; gl_Position = projection * view * vec4(frg_position, 1.</description>
     </item>
     
     <item>
@@ -21,7 +39,7 @@
       <pubDate>Tue, 29 Mar 2022 20:18:59 -0700</pubDate>
       
       <guid>https://megate.ch/code/snippets/index_2d/</guid>
-      <description>#include &amp;lt;cinttypes&amp;gt; template &amp;lt;bool IsRowMajor, typename SizeType = std::size_t&amp;gt; class basic_indexer_2d final { public: using size_type = SizeType; private: size_type m_stride{ }; public: explicit constexpr basic_indexer_2d(const size_type stride) : m_stride{ stride } { } constexpr basic_indexer_2d(basic_indexer_2d&amp;amp;&amp;amp; other) = default; constexpr basic_indexer_2d(const basic_indexer_2d&amp;amp; other) = default; constexpr ~basic_indexer_2d() noexcept = default; constexpr basic_indexer_2d&amp;amp; operator=(basic_indexer_2d&amp;amp;&amp;amp; rhs) = default; constexpr basic_indexer_2d&amp;amp; operator=(const basic_indexer_2d&amp;amp; rhs) = default; constexpr size_type operator()(const size_type row, const size_type column) const noexcept { if constexpr (IsRowMajor) { return (row * m_stride) + column; } else { return (column * m_stride) + row; } } }; using row_major_indexer_2d = basic_indexer_2d&amp;lt;true&amp;gt;; using column_major_indexer_2d = basic_indexer_2d&amp;lt;false&amp;gt;; </description>
+      <description>#include &amp;lt;cinttypes&amp;gt; template &amp;lt;bool IsRowMajor, typename SizeType = std::size_t&amp;gt; class basic_indexer_2d final { public: using size_type = SizeType; private: size_type m_stride{ }; public: explicit constexpr basic_indexer_2d(const size_type stride) : m_stride{ stride } { } constexpr basic_indexer_2d(basic_indexer_2d&amp;amp;&amp;amp; other) = default; constexpr basic_indexer_2d(const basic_indexer_2d&amp;amp; other) = default; constexpr ~basic_indexer_2d() noexcept = default; constexpr basic_indexer_2d&amp;amp; operator=(basic_indexer_2d&amp;amp;&amp;amp; rhs) = default; constexpr basic_indexer_2d&amp;amp; operator=(const basic_indexer_2d&amp;amp; rhs) = default; constexpr size_type operator()(const size_type row, const size_type column) const noexcept { if constexpr (IsRowMajor) { return (row * m_stride) + column; } else { return (column * m_stride) + row; } } }; using row_major_indexer_2d = basic_indexer_2d&amp;lt;true&amp;gt;; using column_major_indexer_2d = basic_indexer_2d&amp;lt;false&amp;gt;;  </description>
     </item>
     
     <item>
@@ -30,7 +48,7 @@
       <pubDate>Tue, 29 Mar 2022 20:14:58 -0700</pubDate>
       
       <guid>https://megate.ch/code/snippets/is_pow2/</guid>
-      <description>#include &amp;lt;concepts&amp;gt; constexpr bool is_pow2(std::unsigned_integral auto x) { return x &amp;amp;&amp;amp; !(x &amp;amp; (x - 1)); } </description>
+      <description>#include &amp;lt;concepts&amp;gt; constexpr bool is_pow2(std::unsigned_integral auto x) { return x &amp;amp;&amp;amp; !(x &amp;amp; (x - 1)); }  </description>
     </item>
     
     <item>
@@ -40,7 +58,7 @@
       
       <guid>https://megate.ch/code/fizzbuzz/</guid>
       <description>Fizzbuzz in various languages just to demonstrate that I&amp;rsquo;m not totally useless. Some solutions are unnecessarily clever.
-C89 #include &amp;lt;stdio.h&amp;gt; int main() { const char* msg = &amp;#34;Fizz\0Buzz&amp;#34;; int i, j; for (i = 1, j = 0; i &amp;lt;= 100; ++i, j = (!(i % 3) &amp;lt;&amp;lt; 1) | (!(i % 5))) { printf(&amp;#34;%.*s%.*s%.*d\n&amp;#34;, (j &amp;amp; 2) &amp;lt;&amp;lt; 1, &amp;amp;msg[0], (j &amp;amp; 1) &amp;lt;&amp;lt; 2, &amp;amp;msg[5], !j, i * !</description>
+C89 #include &amp;lt;stdio.h&amp;gt; int main() { const char* msg = &amp;quot;Fizz\0Buzz&amp;quot;; int i, j; for (i = 1, j = 0; i &amp;lt;= 100; ++i, j = (!(i % 3) &amp;lt;&amp;lt; 1) | (!(i % 5))) { printf(&amp;quot;%.*s%.*s%.*d\n&amp;quot;, (j &amp;amp; 2) &amp;lt;&amp;lt; 1, &amp;amp;msg[0], (j &amp;amp; 1) &amp;lt;&amp;lt; 2, &amp;amp;msg[5], !j, i * !</description>
     </item>
     
     <item>
@@ -49,7 +67,7 @@ C89 #include &amp;lt;stdio.h&amp;gt; int main() { const char* msg = &amp;#34;Fiz
       <pubDate>Tue, 29 Mar 2022 13:39:00 -0700</pubDate>
       
       <guid>https://megate.ch/code/snippets/ulog2/</guid>
-      <description>#include &amp;lt;cinttypes&amp;gt;#include &amp;lt;climits&amp;gt; #include &amp;lt;bit&amp;gt;#include &amp;lt;type_traits&amp;gt;#include &amp;lt;concepts&amp;gt;#include &amp;lt;stdexcept&amp;gt; template &amp;lt;std::unsigned_integral Type, std::size_t BITS = sizeof(Type) * CHAR_BIT&amp;gt; constexpr Type ulog2(const Type x) { if (!x) { throw std::domain_error{ &amp;#34;ulog2(0) is undefined.&amp;#34; }; } auto middle = BITS &amp;gt;&amp;gt; 1; for (auto left = std::size_t{ 0 }, right = BITS; left &amp;lt;= right; middle = (right + left) &amp;gt;&amp;gt; 1) { auto cmp = std::bit_cast&amp;lt;std::make_signed_t&amp;lt;Type&amp;gt;&amp;gt;(x - (Type{ 1 } &amp;lt;&amp;lt; middle)); if (cmp &amp;gt; 0) { left = middle + 1; } else if (cmp &amp;lt; 0) { right = middle - 1; } else { return middle; } } return middle; } </description>
+      <description>#include &amp;lt;cinttypes&amp;gt; #include &amp;lt;climits&amp;gt; #include &amp;lt;bit&amp;gt; #include &amp;lt;type_traits&amp;gt; #include &amp;lt;concepts&amp;gt; #include &amp;lt;stdexcept&amp;gt; template &amp;lt;std::unsigned_integral Type, std::size_t BITS = sizeof(Type) * CHAR_BIT&amp;gt; constexpr Type ulog2(const Type x) { if (!x) { throw std::domain_error{ &amp;quot;ulog2(0) is undefined.&amp;quot; }; } auto middle = BITS &amp;gt;&amp;gt; 1; for (auto left = std::size_t{ 0 }, right = BITS; left &amp;lt;= right; middle = (right + left) &amp;gt;&amp;gt; 1) { auto cmp = std::bit_cast&amp;lt;std::make_signed_t&amp;lt;Type&amp;gt;&amp;gt;(x - (Type{ 1 } &amp;lt;&amp;lt; middle)); if (cmp &amp;gt; 0) { left = middle + 1; } else if (cmp &amp;lt; 0) { right = middle - 1; } else { return middle; } } return middle; }  </description>
     </item>
     
   </channel>

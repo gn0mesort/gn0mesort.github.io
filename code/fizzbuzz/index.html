@@ -59,72 +59,74 @@
   <article><p>Fizzbuzz in various languages just to demonstrate that I&rsquo;m not totally useless.
 Some solutions are unnecessarily clever.</p>
 <h2 id="c89">C89</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span>
-<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
-  <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span><span style="color:#f92672">*</span> msg <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Fizz</span><span style="color:#ae81ff">\0</span><span style="color:#e6db74">Buzz&#34;</span>;
-  <span style="color:#66d9ef">int</span> i, j;
-  <span style="color:#66d9ef">for</span> (i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">100</span>; <span style="color:#f92672">++</span>i, j <span style="color:#f92672">=</span> (<span style="color:#f92672">!</span>(i <span style="color:#f92672">%</span> <span style="color:#ae81ff">3</span>) <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">|</span> (<span style="color:#f92672">!</span>(i <span style="color:#f92672">%</span> <span style="color:#ae81ff">5</span>)))
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+
+int main() {
+  const char* msg = &quot;Fizz\0Buzz&quot;;
+  int i, j;
+  for (i = 1, j = 0; i &lt;= 100; ++i, j = (!(i % 3) &lt;&lt; 1) | (!(i % 5)))
   {
-    printf(<span style="color:#e6db74">&#34;%.*s%.*s%.*d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, (j <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">2</span>) <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">1</span>, <span style="color:#f92672">&amp;</span>msg[<span style="color:#ae81ff">0</span>], (j <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">2</span>, <span style="color:#f92672">&amp;</span>msg[<span style="color:#ae81ff">5</span>], <span style="color:#f92672">!</span>j, i <span style="color:#f92672">*</span> <span style="color:#f92672">!</span>j);
+    printf(&quot;%.*s%.*s%.*d\n&quot;, (j &amp; 2) &lt;&lt; 1, &amp;msg[0], (j &amp; 1) &lt;&lt; 2, &amp;msg[5], !j, i * !j);
   }
-  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+  return 0;
 }
-</code></pre></div><h2 id="c20">C++20</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstddef&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span>
-<span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;array&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;string_view&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span>
-<span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">state</span> <span style="color:#66d9ef">final</span> {
-  <span style="color:#66d9ef">char</span> i{ };
-  <span style="color:#66d9ef">char</span> j{ };
-  <span style="color:#66d9ef">char</span> k{ };
-  <span style="color:#66d9ef">char</span> jk{ };
+</code></pre>
+<h2 id="c20">C++20</h2>
+<pre><code class="language-cpp">#include &lt;cstdio&gt;
+#include &lt;cstddef&gt;
+
+#include &lt;array&gt;
+#include &lt;string_view&gt;
+
+struct state final {
+  char i{ };
+  char j{ };
+  char k{ };
+  char jk{ };
 };
 
-<span style="color:#66d9ef">template</span> <span style="color:#f92672">&lt;</span>std<span style="color:#f92672">::</span>size_t Max <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span><span style="color:#f92672">&gt;</span>
-<span style="color:#66d9ef">consteval</span> std<span style="color:#f92672">::</span>array<span style="color:#f92672">&lt;</span>state, Max<span style="color:#f92672">&gt;</span> states() {
-  <span style="color:#66d9ef">auto</span> res <span style="color:#f92672">=</span> std<span style="color:#f92672">::</span>array<span style="color:#f92672">&lt;</span>state, Max<span style="color:#f92672">&gt;</span>{ };
-  <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">auto</span> i <span style="color:#f92672">=</span> std<span style="color:#f92672">::</span>size_t{ <span style="color:#ae81ff">1</span> }; i <span style="color:#f92672">&lt;=</span> Max; <span style="color:#f92672">++</span>i)
+template &lt;std::size_t Max = 100&gt;
+consteval std::array&lt;state, Max&gt; states() {
+  auto res = std::array&lt;state, Max&gt;{ };
+  for (auto i = std::size_t{ 1 }; i &lt;= Max; ++i)
   {
-    res[i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>].i <span style="color:#f92672">=</span> i;
-    res[i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>].j <span style="color:#f92672">=</span> <span style="color:#f92672">-!</span>(i <span style="color:#f92672">%</span> <span style="color:#ae81ff">3</span>);
-    res[i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>].k <span style="color:#f92672">=</span> <span style="color:#f92672">-!</span>(i <span style="color:#f92672">%</span> <span style="color:#ae81ff">5</span>);
-    res[i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>].jk <span style="color:#f92672">=</span> <span style="color:#f92672">!</span>(res[i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>].j <span style="color:#f92672">|</span> res[i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>].k);
-    res[i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>].i <span style="color:#f92672">&amp;=</span> <span style="color:#f92672">-</span>res[i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>].jk;
-    res[i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>].j <span style="color:#f92672">&amp;=</span> <span style="color:#ae81ff">4</span>;
-    res[i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>].k <span style="color:#f92672">&amp;=</span> <span style="color:#ae81ff">4</span>;
+    res[i - 1].i = i;
+    res[i - 1].j = -!(i % 3);
+    res[i - 1].k = -!(i % 5);
+    res[i - 1].jk = !(res[i - 1].j | res[i - 1].k);
+    res[i - 1].i &amp;= -res[i - 1].jk;
+    res[i - 1].j &amp;= 4;
+    res[i - 1].k &amp;= 4;
   }
-  <span style="color:#66d9ef">return</span> res;
+  return res;
 }
 
-<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
-  <span style="color:#66d9ef">constexpr</span> <span style="color:#66d9ef">auto</span> msg <span style="color:#f92672">=</span> std<span style="color:#f92672">::</span>string_view{ <span style="color:#e6db74">&#34;Fizz</span><span style="color:#ae81ff">\0</span><span style="color:#e6db74">Buzz&#34;</span> };
-  <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">auto</span><span style="color:#f92672">&amp;</span> state : states())
+int main() {
+  constexpr auto msg = std::string_view{ &quot;Fizz\0Buzz&quot; };
+  for (const auto&amp; state : states())
   {
-    std<span style="color:#f92672">::</span>printf(<span style="color:#e6db74">&#34;%.*s%.*s%.*d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, state.j, <span style="color:#f92672">&amp;</span>msg[<span style="color:#ae81ff">0</span>], state.k, <span style="color:#f92672">&amp;</span>msg[<span style="color:#ae81ff">5</span>], state.jk, state.i);
+    std::printf(&quot;%.*s%.*s%.*d\n&quot;, state.j, &amp;msg[0], state.k, &amp;msg[5], state.jk, state.i);
   }
-  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+  return 0;
 }
-</code></pre></div><h2 id="c">C#</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#66d9ef">using</span> System;
+</code></pre>
+<h2 id="c">C#</h2>
+<pre><code class="language-cs">using System;
 
-<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Program</span> {
-  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> Main (<span style="color:#66d9ef">string</span>[] args) {
-    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i = <span style="color:#ae81ff">1</span>; i &lt;= <span style="color:#ae81ff">100</span>; ++i)
+class Program {
+  public static void Main (string[] args) {
+    for (int i = 1; i &lt;= 100; ++i)
     {
-      <span style="color:#66d9ef">var</span> message = <span style="color:#e6db74">&#34;&#34;</span>;
-      <span style="color:#66d9ef">if</span> (i % <span style="color:#ae81ff">3</span> == <span style="color:#ae81ff">0</span>)
+      var message = &quot;&quot;;
+      if (i % 3 == 0)
       {
-        message += <span style="color:#e6db74">&#34;Fizz&#34;</span>; 
+        message += &quot;Fizz&quot;; 
       }
-      <span style="color:#66d9ef">if</span> (i % <span style="color:#ae81ff">5</span> == <span style="color:#ae81ff">0</span>)
+      if (i % 5 == 0)
       {
-        message += <span style="color:#e6db74">&#34;Buzz&#34;</span>;
+        message += &quot;Buzz&quot;;
       }
-      <span style="color:#66d9ef">if</span> (message == <span style="color:#e6db74">&#34;&#34;</span>)
+      if (message == &quot;&quot;)
       {
         message = i.ToString();
       }
@@ -132,72 +134,77 @@ Some solutions are unnecessarily clever.</p>
     }
   }
 }
-</code></pre></div><h2 id="java">Java</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Main</span> <span style="color:#f92672">{</span>
-  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-    <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 1<span style="color:#f92672">;</span> i <span style="color:#f92672">&lt;=</span> 100<span style="color:#f92672">;</span> <span style="color:#f92672">++</span>i<span style="color:#f92672">)</span>
-    <span style="color:#f92672">{</span>
-      <span style="color:#66d9ef">final</span> StringBuilder builder <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> StringBuilder<span style="color:#f92672">();</span>
-      <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>i <span style="color:#f92672">%</span> 3 <span style="color:#f92672">==</span> 0<span style="color:#f92672">)</span>
-      <span style="color:#f92672">{</span>
-        builder<span style="color:#f92672">.</span><span style="color:#a6e22e">append</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Fizz&#34;</span><span style="color:#f92672">);</span>
-      <span style="color:#f92672">}</span>
-      <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>i <span style="color:#f92672">%</span> 5 <span style="color:#f92672">==</span> 0<span style="color:#f92672">)</span>
-      <span style="color:#f92672">{</span>
-        builder<span style="color:#f92672">.</span><span style="color:#a6e22e">append</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Buzz&#34;</span><span style="color:#f92672">);</span>
-      <span style="color:#f92672">}</span>
-      <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>builder<span style="color:#f92672">.</span><span style="color:#a6e22e">isEmpty</span><span style="color:#f92672">())</span>
-      <span style="color:#f92672">{</span>
-        builder<span style="color:#f92672">.</span><span style="color:#a6e22e">append</span><span style="color:#f92672">(</span>i<span style="color:#f92672">);</span>
-      <span style="color:#f92672">}</span>
-      System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>builder<span style="color:#f92672">);</span>
-    <span style="color:#f92672">}</span>
-  <span style="color:#f92672">}</span>
-</code></pre></div><h2 id="javascript">Javascript</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; <span style="color:#a6e22e">i</span> <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">100</span>; <span style="color:#f92672">++</span><span style="color:#a6e22e">i</span>)
+</code></pre>
+<h2 id="java">Java</h2>
+<pre><code class="language-java">class Main {
+  public static void main(String[] args) {
+    for (int i = 1; i &lt;= 100; ++i)
+    {
+      final StringBuilder builder = new StringBuilder();
+      if (i % 3 == 0)
+      {
+        builder.append(&quot;Fizz&quot;);
+      }
+      if (i % 5 == 0)
+      {
+        builder.append(&quot;Buzz&quot;);
+      }
+      if (builder.isEmpty())
+      {
+        builder.append(i);
+      }
+      System.out.println(builder);
+    }
+  }
+</code></pre>
+<h2 id="javascript">Javascript</h2>
+<pre><code class="language-js">for (let i = 1; i &lt;= 100; ++i)
 {
-  <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">msg</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span>;
-  <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">i</span> <span style="color:#f92672">%</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">===</span> <span style="color:#ae81ff">0</span>)
+  let msg = '';
+  if (i % 3 === 0)
   {
-    <span style="color:#a6e22e">msg</span> <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#39;Fizz&#39;</span>;
+    msg += 'Fizz';
   }
-  <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">i</span> <span style="color:#f92672">%</span> <span style="color:#ae81ff">5</span> <span style="color:#f92672">===</span> <span style="color:#ae81ff">0</span>)
+  if (i % 5 === 0)
   {
-    <span style="color:#a6e22e">msg</span> <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#39;Buzz&#39;</span>;
+    msg += 'Buzz';
   }
-  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">msg</span> <span style="color:#f92672">||</span> <span style="color:#a6e22e">i</span>);
+  console.log(msg || i);
 }
-</code></pre></div><h2 id="php">PHP</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
-  <span style="color:#66d9ef">for</span> ($i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; $i <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">100</span>; <span style="color:#f92672">++</span>$i)
+</code></pre>
+<h2 id="php">PHP</h2>
+<pre><code class="language-php">&lt;?php
+  for ($i = 1; $i &lt;= 100; ++$i)
   {
-    $msg <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span>;
-    <span style="color:#66d9ef">if</span> ($i <span style="color:#f92672">%</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">===</span> <span style="color:#ae81ff">0</span>)
+    $msg = '';
+    if ($i % 3 === 0)
     {
-      $msg <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Fizz&#39;</span>;
+      $msg = 'Fizz';
     }
-    <span style="color:#66d9ef">if</span> ($i <span style="color:#f92672">%</span> <span style="color:#ae81ff">5</span> <span style="color:#f92672">===</span> <span style="color:#ae81ff">0</span>)
+    if ($i % 5 === 0)
     {
-      $msg <span style="color:#f92672">=</span> $msg <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;Buzz&#39;</span>;
+      $msg = $msg . 'Buzz';
     }
-    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">strlen</span>($msg) <span style="color:#f92672">===</span> <span style="color:#ae81ff">0</span>)
+    if (strlen($msg) === 0)
     {
-      $msg <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">$i</span><span style="color:#e6db74">&#34;</span>;
+      $msg = &quot;$i&quot;;
     }
-    <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;&lt;p&gt;</span><span style="color:#e6db74">$msg</span><span style="color:#e6db74">&lt;/p&gt;&#34;</span>);
+    print(&quot;&lt;p&gt;$msg&lt;/p&gt;&quot;);
   }
-<span style="color:#75715e">?&gt;</span><span style="color:#960050;background-color:#1e0010">
-</span></code></pre></div><h2 id="python3">Python3</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#66d9ef">for</span> msg <span style="color:#f92672">in</span> [(<span style="color:#66d9ef">lambda</span> a:
-                (<span style="color:#66d9ef">lambda</span> msg, b:
-                  msg <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;Buzz&#39;</span> <span style="color:#66d9ef">if</span> b <span style="color:#f92672">%</span> <span style="color:#ae81ff">5</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">else</span> msg
-                )(<span style="color:#e6db74">&#39;Fizz&#39;</span>, a) <span style="color:#66d9ef">if</span> a <span style="color:#f92672">%</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">else</span> (<span style="color:#66d9ef">lambda</span> d:
-                  <span style="color:#e6db74">&#39;Buzz&#39;</span> <span style="color:#66d9ef">if</span> d <span style="color:#f92672">%</span> <span style="color:#ae81ff">5</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">else</span> str(d)
+?&gt;
+</code></pre>
+<h2 id="python3">Python3</h2>
+<pre><code class="language-py">for msg in [(lambda a:
+                (lambda msg, b:
+                  msg + 'Buzz' if b % 5 == 0 else msg
+                )('Fizz', a) if a % 3 == 0 else (lambda d:
+                  'Buzz' if d % 5 == 0 else str(d)
                 )(a)
             )(i)
-            <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">101</span>)]:
-    <span style="color:#66d9ef">print</span>(msg)
-</code></pre></div></article>
+            for i in range(1, 101)]:
+    print(msg)
+</code></pre>
+</article>
 </main>
 <footer>
   <p class="center-text">
@@ -208,6 +215,6 @@ Some solutions are unnecessarily clever.</p>
 </footer>
 </div>
     <div class="right-column">&nbsp;</div>
-    <script src="/js/highlight/highlight.pack.js"></script><div id="bottom"></div>
+    <script src="/js/highlight/highlight.min.js"></script><div id="bottom"></div>
 </body>
 </html>

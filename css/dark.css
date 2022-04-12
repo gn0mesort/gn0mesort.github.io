@@ -1,4 +1,4 @@
-@import url('/js/highlight/styles/gruvbox-dark.css') (prefers-color-scheme: dark);
+@import url('/js/highlight/styles/base16/gruvbox-dark-hard.min.css') (prefers-color-scheme: dark);
 
 @media (prefers-color-scheme: dark)
 {

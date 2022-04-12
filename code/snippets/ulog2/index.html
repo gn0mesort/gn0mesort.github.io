@@ -38,40 +38,41 @@
   <h1 class="center-text">ulog2</h1>
   
   
-  <article><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cinttypes&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;climits&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span>
-<span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;bit&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;type_traits&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;concepts&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdexcept&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span>
-<span style="color:#66d9ef">template</span> <span style="color:#f92672">&lt;</span>std<span style="color:#f92672">::</span>unsigned_integral Type, std<span style="color:#f92672">::</span>size_t BITS <span style="color:#f92672">=</span> <span style="color:#66d9ef">sizeof</span>(Type) <span style="color:#f92672">*</span> CHAR_BIT<span style="color:#f92672">&gt;</span>
-<span style="color:#66d9ef">constexpr</span> Type ulog2(<span style="color:#66d9ef">const</span> Type x) {
-  <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>x)
+  <article><pre><code class="language-cpp">#include &lt;cinttypes&gt;
+#include &lt;climits&gt;
+
+#include &lt;bit&gt;
+#include &lt;type_traits&gt;
+#include &lt;concepts&gt;
+#include &lt;stdexcept&gt;
+
+template &lt;std::unsigned_integral Type, std::size_t BITS = sizeof(Type) * CHAR_BIT&gt;
+constexpr Type ulog2(const Type x) {
+  if (!x)
   {
-    <span style="color:#66d9ef">throw</span> std<span style="color:#f92672">::</span>domain_error{ <span style="color:#e6db74">&#34;ulog2(0) is undefined.&#34;</span> };
+    throw std::domain_error{ &quot;ulog2(0) is undefined.&quot; };
   }
-  <span style="color:#66d9ef">auto</span> middle <span style="color:#f92672">=</span> BITS <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">1</span>;
-  <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">auto</span> left <span style="color:#f92672">=</span> std<span style="color:#f92672">::</span>size_t{ <span style="color:#ae81ff">0</span> }, right <span style="color:#f92672">=</span> BITS; left <span style="color:#f92672">&lt;=</span> right; middle <span style="color:#f92672">=</span> (right <span style="color:#f92672">+</span> left) <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">1</span>)
+  auto middle = BITS &gt;&gt; 1;
+  for (auto left = std::size_t{ 0 }, right = BITS; left &lt;= right; middle = (right + left) &gt;&gt; 1)
   {
-    <span style="color:#66d9ef">auto</span> cmp <span style="color:#f92672">=</span> std<span style="color:#f92672">::</span>bit_cast<span style="color:#f92672">&lt;</span>std<span style="color:#f92672">::</span>make_signed_t<span style="color:#f92672">&lt;</span>Type<span style="color:#f92672">&gt;&gt;</span>(x <span style="color:#f92672">-</span> (Type{ <span style="color:#ae81ff">1</span> } <span style="color:#f92672">&lt;&lt;</span> middle));
-    <span style="color:#66d9ef">if</span> (cmp <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>)
+    auto cmp = std::bit_cast&lt;std::make_signed_t&lt;Type&gt;&gt;(x - (Type{ 1 } &lt;&lt; middle));
+    if (cmp &gt; 0)
     {
-        left <span style="color:#f92672">=</span> middle <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
+        left = middle + 1;
     }
-    <span style="color:#66d9ef">else</span> <span style="color:#a6e22e">if</span> (cmp <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>)
+    else if (cmp &lt; 0)
     {
-        right <span style="color:#f92672">=</span> middle <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>;
+        right = middle - 1;
     }
-    <span style="color:#66d9ef">else</span>
+    else
     {
-        <span style="color:#66d9ef">return</span> middle;
+        return middle;
     }
   }
-  <span style="color:#66d9ef">return</span> middle;
+  return middle;
 }
-</code></pre></div></article>
+</code></pre>
+</article>
 </main>
 <footer>
   <p class="center-text">
@@ -82,6 +83,6 @@
 </footer>
 </div>
     <div class="right-column">&nbsp;</div>
-    <script src="/js/highlight/highlight.pack.js"></script><div id="bottom"></div>
+    <script src="/js/highlight/highlight.min.js"></script><div id="bottom"></div>
 </body>
 </html>

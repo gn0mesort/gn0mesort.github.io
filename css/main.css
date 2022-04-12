@@ -146,6 +146,7 @@ div.right-column, div.left-column, div.nav-left, div.nav-right
   }
 }
 
+/*
 div.highlight
 {
   font-size: 10pt;
@@ -157,6 +158,7 @@ div.highlight
   text-align: left;
   box-shadow: 5px 5px 1vw var(--image-shadow);
 }
+*/
 
 code
 {
@@ -170,6 +172,14 @@ code
 
 pre
 {
+  font-size: 10pt;
+  margin: auto;
+  border: outset;
+  border-color: var(--fg);
+  max-width: 130ch;
+  padding: 0;
+  text-align: left;
+  box-shadow: 5px 5px 1vw var(--image-shadow);
   overflow: auto;
   margin: 0;
   padding: 0;

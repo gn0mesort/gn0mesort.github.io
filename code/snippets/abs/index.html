@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <title>Megatech - abs</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  
+  <meta name="author" content="Alexander Rothman" />
+  
+  
+  
+  <meta name="description" content="Branch free absolute value for two&#39;s complement integers and IEEE754." />
+  
+  <meta name="generator" content="Hugo 0.80.0" />
+  <link rel="stylesheet" href="/css/light.css" />
+  <link rel="stylesheet" href="/css/dark.css" />
+  <link rel="stylesheet" href="/css/main.css" />
+  <link rel="stylesheet" href="/fira/fira.css" />
+  <link rel="stylesheet" href="/fira_code/fira_code.css" />
+  <link rel="stylesheet" href="/gothicpixels/gothicpixels.css" />
+</head>
+<body onload="hljs.highlightAll();"><nav class="fixed">
+  <a href="/">~</a>&nbsp;/
+  
+  <a href="https://megate.ch/code/">code</a>&nbsp;/
+  
+  
+</nav>
+<div class="nav-left">&nbsp;</div>
+    <div class="nav-center">&nbsp;</div>
+    <div class="nav-right">&nbsp;</div>
+    <div class="left-column">&nbsp;</div>
+    <div class="center-column">
+<header>
+</header>
+
+
+<main>
+  <h1 class="center-text">abs</h1>
+  
+  
+  <article><pre><code class="language-cpp">#include &lt;concepts&gt;
+#include &lt;bit&gt;
+#include &lt;limits&gt;
+
+template &lt;std::signed_integral Type&gt;
+constexpr Type abs(Type x) {
+    constexpr auto bits = std::numeric_limits&lt;Type&gt;::digits;
+    return (x ^ (x &gt;&gt; bits)) - (x &gt;&gt; bits);
+}
+
+template &lt;std::floating_point Type&gt;
+constexpr Type abs(Type x) {
+  if constexpr (std::endian::native == std::endian::little)
+  {
+    reinterpret_cast&lt;char*&gt;(&amp;x)[sizeof(Type) - 1] &amp;= 0x7f;
+  }
+  else if constexpr (std::endian::native == std::endian::big)
+  {
+    reinterpret_cast&lt;char*&gt;(&amp;x)[0] &amp;= 0x7f;
+  }
+  return x;
+}
+</code></pre>
+</article>
+</main>
+<footer>
+  <p class="center-text">
+  
+  &nbsp;&lcub;&nbsp;<a href="https://megate.ch/code/snippets/">up</a>&nbsp;&rcub;&nbsp;
+  
+  </p>
+</footer>
+</div>
+    <div class="right-column">&nbsp;</div>
+    <script src="/js/highlight/highlight.min.js"></script><div id="bottom"></div>
+</body>
+</html>
