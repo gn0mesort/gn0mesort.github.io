@@ -10,12 +10,12 @@ draft: false
 ```cpp
 #include <concepts>
 
-template <std::signed_integral Type>
+template <std::integral Type>
 constexpr bool is_odd(Type x) {
   return x & 1;
 }
 
-template <std::signed_integral Type>
+template <std::integral Type>
 constexpr bool is_even(Type x) {
   return !is_odd(x);
 }
