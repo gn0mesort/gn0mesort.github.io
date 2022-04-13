@@ -7,12 +7,21 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language><atom:link href="https://megate.ch/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>to_human_readable</title>
+      <link>https://megate.ch/code/snippets/to_human_readable/</link>
+      <pubDate>Wed, 13 Apr 2022 13:35:38 -0700</pubDate>
+      
+      <guid>https://megate.ch/code/snippets/to_human_readable/</guid>
+      <description>#include &amp;lt;cmath&amp;gt; #include &amp;lt;string&amp;gt; #include &amp;lt;sstream&amp;gt; #include &amp;lt;iomanip&amp;gt; #include &amp;lt;limits&amp;gt; #include &amp;lt;bit&amp;gt; enum class byte_unit_type { binary, // 1 KiB = 1024 B decimal, // 1 KB = 1000 B (like hard drive vendors) customary // 1 KB = 1024 B (like Windows) }; template &amp;lt;byte_unit_type Units = byte_unit_type::binary&amp;gt; std::string to_human_readable(const std::size_t bytes) { constexpr auto units = &amp;quot;KMGTPEiB&amp;quot;; constexpr auto unit_ending = Units == byte_unit_type::binary ? &amp;amp;units[6] : &amp;amp;units[7]; constexpr auto kilo = Units !</description>
+    </item>
+    
+    <item>
       <title>is_even</title>
       <link>https://megate.ch/code/snippets/is_even/</link>
       <pubDate>Mon, 11 Apr 2022 21:36:21 -0700</pubDate>
       
       <guid>https://megate.ch/code/snippets/is_even/</guid>
-      <description>#include &amp;lt;concepts&amp;gt; template &amp;lt;std::signed_integral Type&amp;gt; constexpr bool is_odd(Type x) { return x &amp;amp; 1; } template &amp;lt;std::signed_integral Type&amp;gt; constexpr bool is_even(Type x) { return !is_odd(x); }  </description>
+      <description>#include &amp;lt;concepts&amp;gt; template &amp;lt;std::integral Type&amp;gt; constexpr bool is_odd(Type x) { return x &amp;amp; 1; } template &amp;lt;std::integral Type&amp;gt; constexpr bool is_even(Type x) { return !is_odd(x); }  </description>
     </item>
     
     <item>

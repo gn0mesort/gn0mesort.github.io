@@ -40,12 +40,12 @@
   
   <article><pre><code class="language-cpp">#include &lt;concepts&gt;
 
-template &lt;std::signed_integral Type&gt;
+template &lt;std::integral Type&gt;
 constexpr bool is_odd(Type x) {
   return x &amp; 1;
 }
 
-template &lt;std::signed_integral Type&gt;
+template &lt;std::integral Type&gt;
 constexpr bool is_even(Type x) {
   return !is_odd(x);
 }
