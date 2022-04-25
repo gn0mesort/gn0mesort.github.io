@@ -20,6 +20,7 @@ constexpr Type abs(Type x) {
 
 template <std::floating_point Type>
 constexpr Type abs(Type x) {
+  static_assert(std::numeric_limits<Type>::is_iec559);
   if constexpr (std::endian::native == std::endian::little)
   {
     reinterpret_cast<char*>(&x)[sizeof(Type) - 1] &= 0x7f;
