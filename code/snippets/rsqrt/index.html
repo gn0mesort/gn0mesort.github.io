@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"><head>
-  <title>Megatech - abs</title>
+  <title>Megatech - rsqrt</title>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   
@@ -8,7 +8,7 @@
   
   
   
-  <meta name="description" content="Branch free absolute value for two&#39;s complement integers and IEEE754." />
+  <meta name="description" content="Fast approximate inverse square root for IEEE754." />
   
   <meta name="generator" content="Hugo 0.80.0" />
   <link rel="stylesheet" href="/css/light.css" />
@@ -35,31 +35,30 @@
 
 
 <main>
-  <h1 class="center-text">abs</h1>
+  <h1 class="center-text">rsqrt</h1>
   
   
-  <article><pre><code class="language-cpp">#include &lt;concepts&gt;
+  <article><pre><code class="language-cpp">#include &lt;cinttypes&gt;
+
 #include &lt;bit&gt;
 #include &lt;limits&gt;
 
-template &lt;std::signed_integral Type&gt;
-constexpr Type abs(Type x) {
-    constexpr auto bits = std::numeric_limits&lt;Type&gt;::digits;
-    return (x ^ (x &gt;&gt; bits)) - (x &gt;&gt; bits);
+// Constants from Jan Kadlec's implementation
+// &lt;http://rrrola.wz.cz/inv_sqrt.html&gt;
+constexpr float rsqrt(const float x) {
+  static_assert(std::numeric_limits&lt;float&gt;::is_iec559);
+  auto f = std::bit_cast&lt;float&gt;(0x5f1ffff9U - (std::bit_cast&lt;std::uint32_t&gt;(x) &gt;&gt; 1));
+  f *= 0.703952253f * (2.38924456f - x * f * f);
+  return f;
 }
 
-template &lt;std::floating_point Type&gt;
-constexpr Type abs(Type x) {
-  static_assert(std::numeric_limits&lt;Type&gt;::is_iec559);
-  if constexpr (std::endian::native == std::endian::little)
-  {
-    reinterpret_cast&lt;char*&gt;(&amp;x)[sizeof(Type) - 1] &amp;= 0x7f;
-  }
-  else if constexpr (std::endian::native == std::endian::big)
-  {
-    reinterpret_cast&lt;char*&gt;(&amp;x)[0] &amp;= 0x7f;
-  }
-  return x;
+// Magic number from Matthew Robertson.
+// &lt;https://cs.uwaterloo.ca/~m32rober/rsqrt.pdf&gt;
+constexpr double rsqrt(const double x) {
+  static_assert(std::numeric_limits&lt;double&gt;::is_iec559);
+  auto f = std::bit_cast&lt;double&gt;(0x5fe6eb50c7b537a9ULL - (std::bit_cast&lt;std::uint64_t&gt;(x) &gt;&gt; 1));
+  f *= 5.0 * (3.0 - x * f * f); // Improved constants for 64-bit aren't known.
+  return f;
 }
 </code></pre>
 </article>

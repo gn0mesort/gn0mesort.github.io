@@ -39,21 +39,22 @@
   
   
   <article><pre><code class="language-cpp">#include &lt;cinttypes&gt;
-#include &lt;climits&gt;
 
 #include &lt;bit&gt;
 #include &lt;type_traits&gt;
 #include &lt;concepts&gt;
 #include &lt;stdexcept&gt;
+#include &lt;limits&gt;
 
-template &lt;std::unsigned_integral Type, std::size_t BITS = sizeof(Type) * CHAR_BIT&gt;
+template &lt;std::unsigned_integral Type&gt;
 constexpr Type ulog2(const Type x) {
   if (!x)
   {
     throw std::domain_error{ &quot;ulog2(0) is undefined.&quot; };
   }
-  auto middle = BITS &gt;&gt; 1;
-  for (auto left = std::size_t{ 0 }, right = BITS; left &lt;= right; middle = (right + left) &gt;&gt; 1)
+  constexpr auto bits = std::numeric_limits&lt;Type&gt;::digits;
+  auto middle = bits &gt;&gt; 1;
+  for (auto left = std::size_t{ 0 }, right = bits; left &lt;= right; middle = (right + left) &gt;&gt; 1)
   {
     auto cmp = std::bit_cast&lt;std::make_signed_t&lt;Type&gt;&gt;(x - (Type{ 1 } &lt;&lt; middle));
     if (cmp &gt; 0)
