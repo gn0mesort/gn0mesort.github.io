@@ -7,7 +7,7 @@ enableGitInfo = true
 [params]
   AuthorName = "Alexander Rothman"
   GitHubUser = "gn0mesort"
-  mainSections = [ 'thoughts' ]
+  mainSections = [ 'thoughts', 'slog' ]
 
 [markup]
     [markup.goldmark]
