@@ -1,73 +1,48 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  
   <url>
+    <loc>https://megate.ch/slog/</loc>
+    <lastmod>2022-06-13T08:36:54-07:00</lastmod>
+  </url><url>
     <loc>https://megate.ch/code/snippets/rsqrt/</loc>
     <lastmod>2022-04-25T12:40:50-07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://megate.ch/code/snippets/to_human_readable/</loc>
     <lastmod>2022-04-13T13:58:55-07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://megate.ch/code/snippets/is_even/</loc>
     <lastmod>2022-04-13T13:58:55-07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://megate.ch/code/snippets/abs/</loc>
     <lastmod>2022-04-25T12:35:26-07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://megate.ch/code/snippets/</loc>
     <lastmod>2022-04-01T12:09:57-07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://megate.ch/code/</loc>
     <lastmod>2022-04-01T12:09:57-07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://megate.ch/code/webgl_cube/</loc>
     <lastmod>2022-04-01T12:09:57-07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://megate.ch/code/snippets/index_2d/</loc>
     <lastmod>2022-04-01T12:09:57-07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://megate.ch/code/snippets/is_pow2/</loc>
     <lastmod>2022-04-01T12:09:57-07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://megate.ch/code/fizzbuzz/</loc>
     <lastmod>2022-04-08T10:35:35-07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://megate.ch/code/snippets/ulog2/</loc>
     <lastmod>2022-04-25T12:35:26-07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://megate.ch/categories/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://megate.ch/</loc>
     <lastmod>2022-04-08T10:35:35-07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://megate.ch/tags/</loc>
   </url>
-  
 </urlset>
