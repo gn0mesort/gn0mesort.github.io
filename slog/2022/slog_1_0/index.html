@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <title>Megatech - Slog 1.0</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  
+  <meta name="author" content="Alexander Rothman" />
+  
+  
+  
+  <meta name="generator" content="Hugo 0.92.2" />
+  <link rel="stylesheet" href="/css/light.css" />
+  <link rel="stylesheet" href="/css/dark.css" />
+  <link rel="stylesheet" href="/css/main.css" />
+  <link rel="stylesheet" href="/fira/fira.css" />
+  <link rel="stylesheet" href="/fira_code/fira_code.css" />
+  <link rel="stylesheet" href="/gothicpixels/gothicpixels.css" />
+</head>
+<body onload="hljs.highlightAll();"><nav class="fixed">
+  <a href="/">~</a>&nbsp;/
+  
+  <a href="https://megate.ch/slog/">slog</a>&nbsp;/
+  
+  <a href="https://megate.ch/code/">code</a>&nbsp;/
+  
+  
+  <a href="#bottom">to-bottom</a>&nbsp;/
+  <a href="#">to-top</a>&nbsp;/
+  
+</nav>
+<div class="nav-left">&nbsp;</div>
+    <div class="nav-center">&nbsp;</div>
+    <div class="nav-right">&nbsp;</div>
+    <div class="left-column">&nbsp;</div>
+    <div class="center-column">
+<header>
+</header>
+
+
+<main>
+  <h1 class="center-text">Slog 1.0</h1>
+  
+  
+  <aside>
+    <h2>Outline</h2>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#about-the-slog">About the Slog</a></li>
+    <li><a href="#current-projects">Current Projects</a></li>
+  </ul>
+</nav>
+  </aside>
+  
+  <article><h2 id="about-the-slog">About the Slog</h2>
+<p>I haven&rsquo;t published any of my thoughts online in quite a while. I think it&rsquo;s been about a year but, honestly, I&rsquo;ve
+lost track. When I was younger I didn&rsquo;t have much of a filter about publishing. I would just write whatever I liked
+and it would go up on MySpace (later I would have used Facebook). I certainly didn&rsquo;t worry about grammar, sourcing my
+claims, or presenting any coherent arguments. As I&rsquo;ve gotten older I&rsquo;ve lost my ability to write freely.</p>
+<p>Instead of writing freely, I&rsquo;m much more careful today. Part of that comes from having a more educated perspective on
+how to write. Mostly though, I think I&rsquo;m just more anxious than I was as a teenager. The result is that I have a
+relatively small online footprint. I&rsquo;m comfortable with that, of course, but it also means I have no record of my
+thoughts.</p>
+<p>Not having any record of what I am doing or why is a huge issue for me. When it comes to projects with clear
+timelines, objectives, and technical requirements this isn&rsquo;t an issue. Often what that amounts to, though, is
+schoolwork. I&rsquo;m really good at schoolwork but I&rsquo;m not great at keeping up with my own interests. I lose track of what
+I was doing, I don&rsquo;t keep detailed notes, I revisit the same issues over and over, and just generally work in circles.
+That&rsquo;s why I want to start writing more often. I think that by keeping a log or journal of my thoughts I can stay more
+focused and committed to projects that I actually care about.</p>
+<p>I think that keeping a record of what I&rsquo;ve been up to here (in my stream of consciousness log) will help me focus.
+However, there needs to be some rules about how I approach it. Otherwise, I&rsquo;ll be so anxious about presentation that
+nothing will ever get written. Firstly, I&rsquo;ll be writing whatever is on my mind. I&rsquo;m not going to worry too much about
+structure or coherence. Entries in this log might have focused topics but I might just ramble a bit too. Second,
+grammar and spelling are going to be secondary concerns. I&rsquo;ll probably run a spellcheck on each entry before publishing
+but I&rsquo;m not going to worry too much about grammar. Third, I&rsquo;m not going to worry about sourcing every single claim I
+make. This log will be a place for my opinions and like most opinions many will probably be unfounded. Hopefully, by
+sticking to these rules I can keep a regular record of where I&rsquo;m at without getting too anxious about the details.</p>
+<p>What this means is that, if you&rsquo;re reading this, you should be aware of a few basic things:</p>
+<ol>
+<li>This is not a formal discussion of any topic. You should not treat anything I say here as authoritative in any
+sense.</li>
+<li>You should expect to see grammar and spelling mistakes. Entries might be edited for grammar and spelling after the
+fact or I might just leave the mistakes in.</li>
+<li>You should not expect everything I say to be correct or even in the ballpark of correct.</li>
+</ol>
+<p>At some point, I would like to also publish more thoroughly thought through articles but they will be in a different
+section. Beside that, my thinking right now is that I would like to publish a new entry here at least once a week. I
+think that I can reasonably do that for the foreseeable future.</p>
+<h2 id="current-projects">Current Projects</h2>
+<p>Recently, I&rsquo;ve been working on two parallel projects. These are <a href="https://github.com/gn0mesort/vkfl/">VKFL</a> and
+<a href="https://github.com/gn0mesort/oberon/">Oberon</a>. VKFL is a simple thing. It provides a convenient way for me to load
+the various Vulkan API function pointers and store them. Oberon is the more ambitious project. In theory, I want it to
+be a library for doing real-time 3D rendering with Vulkan. In practice right now it does very little.</p>
+<p>The problem I have, working on Oberon, is that it&rsquo;s very difficult to build useful abstractions with limited
+experience. Without a concrete application, I don&rsquo;t have much to go on. I&rsquo;ve had some success reading other open source
+applications (especially <a href="https://github.com/Novum/vkQuake">VkQuake</a>) but they don&rsquo;t feel like a substitute for a
+practical application I&rsquo;ve written myself. I think, if I want to make actual progress I&rsquo;ll have to first work on a
+specific application instead of trying to build a library.</p>
+<p>I&rsquo;ve been mulling over the idea of using a highly specific application (i.e., one written specifically for the
+environment I&rsquo;m using on my machine) as a way to feel out the what and how of library code. I would start by
+introducing features in the application. Then, once I was happy with the functionality, I could start thinking about
+abstracting it and promoting the abstraction to Oberon. This also has the added benefit of being more fun.</p>
+<p>As for VKFL, I don&rsquo;t know that there&rsquo;s much to be done with it. Originally, I based it on
+<a href="https://github.com/zeux/volk">Volk</a>. Since then though, I&rsquo;ve skimmed some of the corresponding code in the
+<a href="https://mesa3d.org/">Mesa</a> Vulkan implementation. Mesa uses a <a href="https://www.makotemplates.org/">Mako</a> template to
+generate dispatch tables. The solution I&rsquo;m using right now is pretty portable because it only requires standard Python
+modules. However, Mako templates are a lot more flexible which has gotten me thinking about changing my approach. I
+would also like to switch from the standard <code>xml.etree</code> module to the equivalent
+<a href="https://pypi.org/project/defusedxml/">defusedxml</a> module.</p>
+<p>To sum up, I&rsquo;m probably going to spend the next week buried in X11 and Vulkan documentation. Hopefully, I can make
+more progress than I have over the last year or so though.</p>
+</article>
+</main>
+<footer>
+  <p class="center-text">
+  
+  &nbsp;&lcub;&nbsp;<a href="https://megate.ch/slog/2022/">up</a>&nbsp;&rcub;&nbsp;
+  
+  </p>
+</footer>
+</div>
+    <div class="right-column">&nbsp;</div>
+    <script src="/js/highlight/highlight.min.js"></script><div id="bottom"></div>
+</body>
+</html>

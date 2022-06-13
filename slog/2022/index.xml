@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>2022 on Megatech</title>
+    <link>https://megate.ch/slog/2022/</link>
+    <description>Recent content in 2022 on Megatech</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 31 May 2022 12:34:46 -0700</lastBuildDate><atom:link href="https://megate.ch/slog/2022/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Slog 1.0</title>
+      <link>https://megate.ch/slog/2022/slog_1_0/</link>
+      <pubDate>Fri, 10 Jun 2022 00:00:00 -0700</pubDate>
+      
+      <guid>https://megate.ch/slog/2022/slog_1_0/</guid>
+      <description>About the Slog I haven&amp;rsquo;t published any of my thoughts online in quite a while. I think it&amp;rsquo;s been about a year but, honestly, I&amp;rsquo;ve lost track. When I was younger I didn&amp;rsquo;t have much of a filter about publishing. I would just write whatever I liked and it would go up on MySpace (later I would have used Facebook). I certainly didn&amp;rsquo;t worry about grammar, sourcing my claims, or presenting any coherent arguments.</description>
+    </item>
+    
+  </channel>
+</rss>
