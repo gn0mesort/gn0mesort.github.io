@@ -1,7 +1,7 @@
 ---
 title: "rsqrt"
 subtitle: ""
-description: "Fast approximate inverse square root for IEEE754."
+description: "Fast approximate inverse square root for IEEE-754."
 date: 2022-04-25T10:53:14-07:00
 toc: false
 draft: false
