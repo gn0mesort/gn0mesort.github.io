@@ -8,6 +8,16 @@
     <language>en-us</language>
     <lastBuildDate>Tue, 31 May 2022 12:34:46 -0700</lastBuildDate><atom:link href="https://megate.ch/slog/2022/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Slog 2.0</title>
+      <link>https://megate.ch/slog/2022/slog_2_0/</link>
+      <pubDate>Sat, 18 Jun 2022 00:00:00 -0700</pubDate>
+      
+      <guid>https://megate.ch/slog/2022/slog_2_0/</guid>
+      <description>Week in Review In my last post, I said I intended to spend the week working on various Vulkan and X11 things. That hasn&amp;rsquo;t happened because I was working on another project. Alongside my personal interests, I&amp;rsquo;ve also been for game projects to work on. Mostly, these projects haven&amp;rsquo;t panned out. The usual conversation I have is something like, &amp;ldquo;what kind of game are you interested in working on?&amp;rdquo;
+&amp;ldquo;Oh! It&amp;rsquo;s really cool!</description>
+    </item>
+    
+    <item>
       <title>Slog 1.0</title>
       <link>https://megate.ch/slog/2022/slog_1_0/</link>
       <pubDate>Fri, 10 Jun 2022 00:00:00 -0700</pubDate>

@@ -8,6 +8,15 @@
     <language>en-us</language>
     <lastBuildDate>Wed, 30 Mar 2022 09:59:43 -0700</lastBuildDate><atom:link href="https://megate.ch/code/snippets/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>clamp</title>
+      <link>https://megate.ch/code/snippets/clamp/</link>
+      <pubDate>Sat, 18 Jun 2022 00:00:00 -0700</pubDate>
+      
+      <guid>https://megate.ch/code/snippets/clamp/</guid>
+      <description>#include &amp;lt;concepts&amp;gt; template &amp;lt;std::integral Type&amp;gt; constexpr Type clamp(const Type value, const Type lo, const Type hi) { const auto hilo = (-(value &amp;gt; hi) &amp;amp; hi) | (-(value &amp;lt; lo) &amp;amp; lo); return (-!hilo &amp;amp; value) | hilo; }  </description>
+    </item>
+    
+    <item>
       <title>rsqrt</title>
       <link>https://megate.ch/code/snippets/rsqrt/</link>
       <pubDate>Mon, 25 Apr 2022 10:53:14 -0700</pubDate>

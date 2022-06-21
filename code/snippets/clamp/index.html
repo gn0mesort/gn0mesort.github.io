@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en"><head>
-  <title>Megatech - slog</title>
+  <title>Megatech - clamp</title>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   
   <meta name="author" content="Alexander Rothman" />
   
   
+  
+  <meta name="description" content="Branch free integer clamp." />
   
   <meta name="generator" content="Hugo 0.92.2" />
   <link rel="stylesheet" href="/css/light.css" />
@@ -30,42 +32,28 @@
     <div class="nav-right">&nbsp;</div>
     <div class="left-column">&nbsp;</div>
     <div class="center-column">
+<header>
+</header>
+
 
 <main>
-  <h1 class="center-text site-title">Stream of Consciousness Log</h1>
-  <h2 class="center-text"></h2>
-  <article>
-    <div class="center-text"><p><strong>An unfiltered log of my thoughts.</strong></p>
-</div>
-  </article>
-  
-    <ul>
-    
-    <li><a href="https://megate.ch/slog/2022/">2022</a>&nbsp;<span class="small"></span></li>
-    
-    <ul>
-      
-      <li><a href="https://megate.ch/slog/2022/slog_2_0/">Slog 2.0</a>&nbsp;<span class="small"></span></li>
-      
-      <li><a href="https://megate.ch/slog/2022/slog_1_0/">Slog 1.0</a>&nbsp;<span class="small"></span></li>
-      
-    </ul>
-    
-    
-    </ul>
+  <h1 class="center-text">clamp</h1>
   
   
-  <ul>
-    
-    
-    
-  </ul>
-  
+  <article><pre><code class="language-cpp">#include &lt;concepts&gt;
+
+template &lt;std::integral Type&gt;
+constexpr Type clamp(const Type value, const Type lo, const Type hi) {
+    const auto hilo = (-(value &gt; hi) &amp; hi) | (-(value &lt; lo) &amp; lo);
+    return (-!hilo &amp; value) | hilo;
+}
+</code></pre>
+</article>
 </main>
 <footer>
   <p class="center-text">
   
-  &nbsp;&lcub;&nbsp;<a href="https://megate.ch/">up</a>&nbsp;&rcub;&nbsp;
+  &nbsp;&lcub;&nbsp;<a href="https://megate.ch/code/snippets/">up</a>&nbsp;&rcub;&nbsp;
   
   </p>
 </footer>

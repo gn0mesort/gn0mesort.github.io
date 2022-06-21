@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <title>Megatech - Slog 2.0</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  
+  <meta name="author" content="Alexander Rothman" />
+  
+  
+  
+  <meta name="generator" content="Hugo 0.92.2" />
+  <link rel="stylesheet" href="/css/light.css" />
+  <link rel="stylesheet" href="/css/dark.css" />
+  <link rel="stylesheet" href="/css/main.css" />
+  <link rel="stylesheet" href="/fira/fira.css" />
+  <link rel="stylesheet" href="/fira_code/fira_code.css" />
+  <link rel="stylesheet" href="/gothicpixels/gothicpixels.css" />
+</head>
+<body onload="hljs.highlightAll();"><nav class="fixed">
+  <a href="/">~</a>&nbsp;/
+  
+  <a href="https://megate.ch/slog/">slog</a>&nbsp;/
+  
+  <a href="https://megate.ch/code/">code</a>&nbsp;/
+  
+  
+  <a href="#bottom">to-bottom</a>&nbsp;/
+  <a href="#">to-top</a>&nbsp;/
+  
+</nav>
+<div class="nav-left">&nbsp;</div>
+    <div class="nav-center">&nbsp;</div>
+    <div class="nav-right">&nbsp;</div>
+    <div class="left-column">&nbsp;</div>
+    <div class="center-column">
+<header>
+</header>
+
+
+<main>
+  <h1 class="center-text">Slog 2.0</h1>
+  
+  
+  <aside>
+    <h2>Outline</h2>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#week-in-review">Week in Review</a></li>
+    <li><a href="#whining-about-godot">Whining about Godot</a></li>
+  </ul>
+</nav>
+  </aside>
+  
+  <article><h2 id="week-in-review">Week in Review</h2>
+<p>In my last post, I said I intended to spend the week working on various Vulkan and X11 things. That hasn&rsquo;t happened
+because I was working on another project. Alongside my personal interests, I&rsquo;ve also been for game projects to work on.
+Mostly, these projects haven&rsquo;t panned out. The usual conversation I have is something like, &ldquo;what kind of game
+are you interested in working on?&rdquo;</p>
+<p>&ldquo;Oh! It&rsquo;s really cool! I&rsquo;ve had this idea forever!&rdquo;</p>
+<p>&ldquo;Could you describe the mechanics to me?&rdquo;</p>
+<p>&ldquo;Well, you&rsquo;re a knight from the kingdom of <code>fantasy_name</code> and you go on a quest to save the princess!&rdquo;</p>
+<p>&ldquo;That sounds cool but I need to have something specific to work on. If you can get me some kind of explanation of the
+game we can discuss it again.&rdquo;</p>
+<p>&ldquo;Oh alright.&rdquo; Followed by radio silence, obviously.</p>
+<p>I don&rsquo;t fault people for being like this. I was definitely exactly like this until, maybe, my senior year of high
+school (2010 can you believe that?). Around that time I started to get more interested in the actual mechanics of
+computer games rather than just the idea of a game as a vehicle for a story. These days I tend to agree with this
+quote from <em>Masters of Doom</em>:</p>
+<blockquote>
+<p>&ldquo;Story in a game,&rdquo; [Carmack] said, &ldquo;is like a story in a porn movie; it&rsquo;s expected to be there, but it&rsquo;s not that
+important.&rdquo;</p>
+</blockquote>
+<p>This position probably seems a bit dimissive (because it is). However, I think it reveals something crucially unique
+about interactive media. Interactive media (which games definitely are and perhaps porn movies are too) is all about
+experience. When a person plays a computer game the written text, music, or video is far less important than their
+experience as an actor in the game. <em>Doom</em> certainly exemplifies this (since the story is more or less there as a joke)
+but I think it&rsquo;s true of less action focused games as well. <em>Dark Souls</em> and <em>King&rsquo;s Field</em> come to mind as obvious
+examples but they&rsquo;re far from the only ones.</p>
+<p>Anyway, I did ultimately find a project that I think is more feasible than usual. It took about 3 weeks of back of and
+forth to get the designer/director/sound guy I&rsquo;m currently working with to come up with anything resembling game
+mechanics but he, ultimately, did. Getting to a point of having something workable has been a huge process and,
+honestly, I&rsquo;m not optimistic about the project&rsquo;s prospects. It&rsquo;s still a lot better than nothing though and It&rsquo;s
+given me a chance to work directly with <a href="https://godotengine.org/">Godot</a> 3.4.</p>
+<h2 id="whining-about-godot">Whining about Godot</h2>
+<p>Godot is impressive for what it is. I can&rsquo;t think of another open source game engine that is as well established or as
+capable. Working with it though, even for a week, has really cemented my dislike of &ldquo;game engines&rdquo;. In retrospect, I
+might have preferred to work with Unity or Unreal despite their proprietary nature (although you can access the source
+for Unreal as long as you have a license). The biggest bother of Godot, so far, is GDScript.</p>
+<p>I don&rsquo;t find GDScript difficult to use. It&rsquo;s basically Python and does many of the things I dislike about Python
+(weird mixed dynamic/static typing, whitespace delineated scopes, etc.). These are mostly minor inconveniences though.
+What I find really troubling about GDScript is the lack of clear specifics for basic properties of the language. There
+is, for example, an <code>int</code> type as you would expect. The documentation page for GDScript&rsquo;s <code>int</code> tells us the following:</p>
+<blockquote>
+<p>Signed 64-bit integer type.</p>
+<p>It can take values in the interval [-2^63, 2^63 - 1], i.e. [-9223372036854775808, 9223372036854775807]. Exceeding those bounds will wrap around.</p>
+</blockquote>
+<p>what it doesn&rsquo;t tell us is how this value is actually represented. I&rsquo;ve assumed, so far, that it&rsquo;s two&rsquo;s complement
+because C++20 requires integer types to be two&rsquo;s complement. This seems to work fine but without inspecting the
+language implementation there&rsquo;s no good way to know if -1 is <code>0xffffffffffffffff</code>, <code>0x80000000000001</code>,
+<code>0xfffffffffffffffe</code>, or some representation that is less obvious. This particular gripe probably seems minor to anyone
+less interested in clever bit fiddling than me but it&rsquo;s part of a larger theme with the language. Another example, both
+<code>int</code> and <code>float</code> types are said to be 64-bit but <code>PoolIntArray</code> and <code>PoolRealArray</code> (the corresponding typed arrays)
+use 32-bit values. Vectors (i.e., the equivalents of the GLSL <code>vec2</code> and <code>vec3</code> not <code>std::vector</code>) are also 32-bit
+floating point values. This is not documented on the corresponding documentation pages for the <code>Vector2</code> or <code>Vector3</code>
+type of course. Instead it&rsquo;s noted on the documentation page for the <code>float</code> type. Similar to <code>int</code>, the
+representation of floating point values is unclear except that the documentation says it corresponds to the C++
+<code>double</code>. Is it IEEE-754? Probably, but who really knows! I could go on about these vagueries for a while longer but
+it&rsquo;s just gripes all the way down.</p>
+<p>I think, the big lesson from this is that it would be best to avoid bespoke programming languages. Godot&rsquo;s website
+gives a laundry list of reasons why GDScript was a good idea but I&rsquo;d rather just program in C++ personally. I read,
+somewhere, that during the transition from Unreal 3 to Unreal 4 there were a lot of discussions about the utility and
+viability of UnrealScript. Obviously, UnrealScript is no longer with us. Instead Unreal just uses C++ (and apparently
+some new languages in Unreal 5). I kind of think they got the right of it. C++ is old and in some ways it&rsquo;s kind of
+crusty but it&rsquo;s also increasingly clearly defined and supported pretty much everywhere already.</p>
+</article>
+</main>
+<footer>
+  <p class="center-text">
+  
+  &nbsp;&lcub;&nbsp;<a href="https://megate.ch/slog/2022/">up</a>&nbsp;&rcub;&nbsp;
+  
+  </p>
+</footer>
+</div>
+    <div class="right-column">&nbsp;</div>
+    <script src="/js/highlight/highlight.min.js"></script><div id="bottom"></div>
+</body>
+</html>
