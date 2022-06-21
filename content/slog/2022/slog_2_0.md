@@ -4,7 +4,6 @@ subtitle: ""
 description: ""
 date: 2022-06-18T00:00:00-07:00
 toc: true
-draft: true
 ---
 
 ## Week in Review
