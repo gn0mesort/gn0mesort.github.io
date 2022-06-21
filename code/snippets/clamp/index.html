@@ -44,8 +44,8 @@
 
 template &lt;std::integral Type&gt;
 constexpr Type clamp(const Type value, const Type lo, const Type hi) {
-    const auto hilo = (-(value &gt; hi) &amp; hi) | (-(value &lt; lo) &amp; lo);
-    return (-!hilo &amp; value) | hilo;
+  const auto hilo = (-(value &gt; hi) &amp; hi) | (-(value &lt; lo) &amp; lo);
+  return (-!hilo &amp; value) | hilo;
 }
 </code></pre>
 </article>

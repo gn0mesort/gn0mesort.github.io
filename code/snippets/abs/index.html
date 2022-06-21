@@ -8,7 +8,7 @@
   
   
   
-  <meta name="description" content="Branch free absolute value for two&#39;s complement integers and IEEE754." />
+  <meta name="description" content="Branch free absolute value for two&#39;s complement integers and IEEE-754." />
   
   <meta name="generator" content="Hugo 0.92.2" />
   <link rel="stylesheet" href="/css/light.css" />
@@ -46,8 +46,8 @@
 
 template &lt;std::signed_integral Type&gt;
 constexpr Type abs(Type x) {
-    constexpr auto bits = std::numeric_limits&lt;Type&gt;::digits;
-    return (x ^ (x &gt;&gt; bits)) - (x &gt;&gt; bits);
+  constexpr auto bits = std::numeric_limits&lt;Type&gt;::digits;
+  return (x ^ (x &gt;&gt; bits)) - (x &gt;&gt; bits);
 }
 
 template &lt;std::floating_point Type&gt;
