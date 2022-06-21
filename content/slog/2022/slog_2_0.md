@@ -32,7 +32,7 @@ quote from *Masters of Doom*:
 > "Story in a game," [Carmack] said, "is like a story in a porn movie; it's expected to be there, but it's not that
 > important."
 
-This position probably seems a bit dimissive (because it is). However, I think it reveals something crucially unique
+This position probably seems a bit dismissive (because it is). However, I think it reveals something crucially unique
 about interactive media. Interactive media (which games definitely are and perhaps porn movies are too) is all about
 experience. When a person plays a computer game the written text, music, or video is far less important than their 
 experience as an actor in the game. *Doom* certainly exemplifies this (since the story is more or less there as a joke)
@@ -61,7 +61,7 @@ is, for example, an `int` type as you would expect. The documentation page for G
 >
 > It can take values in the interval [-2^63, 2^63 - 1], i.e. [-9223372036854775808, 9223372036854775807]. Exceeding those bounds will wrap around.
 
-what it doesn't tell us is how this value is actually represented. I've assumed, so far, that it's two's complement
+What it doesn't tell us is how this value is actually represented. I've assumed, so far, that it's two's complement
 because C++20 requires integer types to be two's complement. This seems to work fine but without inspecting the
 language implementation there's no good way to know if -1 is `0xffffffffffffffff`, `0x80000000000001`,
 `0xfffffffffffffffe`, or some representation that is less obvious. This particular gripe probably seems minor to anyone
@@ -71,7 +71,7 @@ use 32-bit values. Vectors (i.e., the equivalents of the GLSL `vec2` and `vec3` 
 floating point values. This is not documented on the corresponding documentation pages for the `Vector2` or `Vector3`
 type of course. Instead it's noted on the documentation page for the `float` type. Similar to `int`, the
 representation of floating point values is unclear except that the documentation says it corresponds to the C++
-`double`. Is it IEEE-754? Probably, but who really knows! I could go on about these vagueries for a while longer but
+`double`. Is it IEEE-754? Probably, but who really knows! I could go on about these vagaries for a while longer but
 it's just gripes all the way down.
 
 I think, the big lesson from this is that it would be best to avoid bespoke programming languages. Godot's website
