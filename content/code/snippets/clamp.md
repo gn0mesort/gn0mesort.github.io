@@ -9,7 +9,7 @@ date: 2022-06-18T00:00:00-07:00
 
 template <std::integral Type>
 constexpr Type clamp(const Type value, const Type lo, const Type hi) {
-    const auto hilo = (-(value > hi) & hi) | (-(value < lo) & lo);
-    return (-!hilo & value) | hilo;
+  const auto hilo = (-(value > hi) & hi) | (-(value < lo) & lo);
+  return (-!hilo & value) | hilo;
 }
 ```

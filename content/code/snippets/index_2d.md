@@ -12,7 +12,7 @@ toc: false
 template <bool IsRowMajor, typename SizeType = std::size_t>
 class basic_indexer_2d final {
 public:
-    using size_type = SizeType;
+  using size_type = SizeType;
 private:
   size_type m_stride{ };
 public:
@@ -27,11 +27,11 @@ public:
   constexpr size_type operator()(const size_type row, const size_type column) const noexcept {
     if constexpr (IsRowMajor)
     {
-        return (row * m_stride) + column;
+      return (row * m_stride) + column;
     }
     else
     {
-        return (column * m_stride) + row;
+      return (column * m_stride) + row;
     }
   }
 };

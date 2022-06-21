@@ -27,15 +27,15 @@ constexpr Type ulog2(const Type x) {
     auto cmp = std::bit_cast<std::make_signed_t<Type>>(x - (Type{ 1 } << middle));
     if (cmp > 0)
     {
-        left = middle + 1;
+      left = middle + 1;
     }
     else if (cmp < 0)
     {
-        right = middle - 1;
+      right = middle - 1;
     }
     else
     {
-        return middle;
+      return middle;
     }
   }
   return middle;
