@@ -1,10 +1,9 @@
 ---
 title: "Slog 2.1"
 subtitle: ""
-description: "RE: Slog 2.0"
+description: "GPL, angst, dragging."
 date: 2022-06-21T13:39:44-07:00
 toc: true
-draft: true
 ---
 
 ## Project Stuff
@@ -19,7 +18,7 @@ separate ways. I'm a little disappointed but not surprised by the whole thing.
 
 ## What's the big deal?
 
-I'm left wondering what the big deal is about licenses like the GPL. I know that the GPL specifically (and moreso my
+I'm left wondering what the big deal is about licenses like the GPL. I know that the GPL specifically (and more so my
 preferred software license, the dreaded AGPL-3.0) generates a lot of angst. To me it feels like the GPL protects my
 interests as a software developer (or at least provides a standard way to protect myself). I get protection from
 people using my work (in public) without giving back. Sometimes, I think it's overkill or at least makes the
@@ -40,7 +39,11 @@ software required to ensure that copies are not distributed?
 In the end I think it just amounts to conflicting goals and ways of thinking. I'm not interested in software
 development to make a big score (or multiple big scores). I can understand that many people see software as a get
 rich quick scheme though. It's hard to ignore that aspect of computer technology broadly. Throughout my life, there
-has been, floating, the idea that one good idea could turn a person from a shiftless college student into a
+has been, floating, the idea that one good project could turn a person from a shiftless college student into a
 billionaire overnight. I guess it would be nice too but it isn't something I'd hold me breath on.
+
+## Continuing
+
+So I guess, with my last project dead it's back to Vulkan and X11 stuff for the time being.
 
 > **づるづるづるづる**
