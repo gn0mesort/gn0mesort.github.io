@@ -46,4 +46,4 @@ billionaire overnight. I guess it would be nice too but it isn't something I'd h
 
 So I guess, with my last project dead it's back to Vulkan and X11 stuff for the time being.
 
-> **づるづるづるづる**
+> **ずるずるずるずる**
