@@ -70,7 +70,7 @@ quote from <em>Masters of Doom</em>:</p>
 <p>&ldquo;Story in a game,&rdquo; [Carmack] said, &ldquo;is like a story in a porn movie; it&rsquo;s expected to be there, but it&rsquo;s not that
 important.&rdquo;</p>
 </blockquote>
-<p>This position probably seems a bit dimissive (because it is). However, I think it reveals something crucially unique
+<p>This position probably seems a bit dismissive (because it is). However, I think it reveals something crucially unique
 about interactive media. Interactive media (which games definitely are and perhaps porn movies are too) is all about
 experience. When a person plays a computer game the written text, music, or video is far less important than their
 experience as an actor in the game. <em>Doom</em> certainly exemplifies this (since the story is more or less there as a joke)
@@ -94,7 +94,7 @@ is, for example, an <code>int</code> type as you would expect. The documentation
 <p>Signed 64-bit integer type.</p>
 <p>It can take values in the interval [-2^63, 2^63 - 1], i.e. [-9223372036854775808, 9223372036854775807]. Exceeding those bounds will wrap around.</p>
 </blockquote>
-<p>what it doesn&rsquo;t tell us is how this value is actually represented. I&rsquo;ve assumed, so far, that it&rsquo;s two&rsquo;s complement
+<p>What it doesn&rsquo;t tell us is how this value is actually represented. I&rsquo;ve assumed, so far, that it&rsquo;s two&rsquo;s complement
 because C++20 requires integer types to be two&rsquo;s complement. This seems to work fine but without inspecting the
 language implementation there&rsquo;s no good way to know if -1 is <code>0xffffffffffffffff</code>, <code>0x80000000000001</code>,
 <code>0xfffffffffffffffe</code>, or some representation that is less obvious. This particular gripe probably seems minor to anyone
@@ -104,7 +104,7 @@ use 32-bit values. Vectors (i.e., the equivalents of the GLSL <code>vec2</code> 
 floating point values. This is not documented on the corresponding documentation pages for the <code>Vector2</code> or <code>Vector3</code>
 type of course. Instead it&rsquo;s noted on the documentation page for the <code>float</code> type. Similar to <code>int</code>, the
 representation of floating point values is unclear except that the documentation says it corresponds to the C++
-<code>double</code>. Is it IEEE-754? Probably, but who really knows! I could go on about these vagueries for a while longer but
+<code>double</code>. Is it IEEE-754? Probably, but who really knows! I could go on about these vagaries for a while longer but
 it&rsquo;s just gripes all the way down.</p>
 <p>I think, the big lesson from this is that it would be best to avoid bespoke programming languages. Godot&rsquo;s website
 gives a laundry list of reasons why GDScript was a good idea but I&rsquo;d rather just program in C++ personally. I read,

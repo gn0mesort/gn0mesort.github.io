@@ -7,6 +7,15 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language><atom:link href="https://megate.ch/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Slog 2.1</title>
+      <link>https://megate.ch/slog/2022/slog_2_1/</link>
+      <pubDate>Tue, 21 Jun 2022 13:39:44 -0700</pubDate>
+      
+      <guid>https://megate.ch/slog/2022/slog_2_1/</guid>
+      <description>Project Stuff Right after I posted my last update, the project I mentioned in it imploded. As I said then I wasn&amp;rsquo;t especially optimistic about it. What caused the implosion was pretty simple. We agreed, essentially, to work on a demo for a game written for the Godot 3.4 game engine. I wanted to release the source code for this demo under a free license (i.e., GNU AGPL-3.0, GNU GPL-3.0, or maybe even a permissive license).</description>
+    </item>
+    
+    <item>
       <title>clamp</title>
       <link>https://megate.ch/code/snippets/clamp/</link>
       <pubDate>Sat, 18 Jun 2022 00:00:00 -0700</pubDate>

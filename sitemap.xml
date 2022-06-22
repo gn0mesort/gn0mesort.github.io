@@ -2,11 +2,14 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://megate.ch/slog/2022/slog_2_1/</loc>
+    <lastmod>2022-06-21T20:52:53-07:00</lastmod>
+  </url><url>
     <loc>https://megate.ch/code/snippets/clamp/</loc>
     <lastmod>2022-06-20T23:38:45-07:00</lastmod>
   </url><url>
     <loc>https://megate.ch/slog/2022/slog_2_0/</loc>
-    <lastmod>2022-06-20T23:07:21-07:00</lastmod>
+    <lastmod>2022-06-21T16:25:36-07:00</lastmod>
   </url><url>
     <loc>https://megate.ch/slog/2022/slog_1_0/</loc>
     <lastmod>2022-06-13T08:36:54-07:00</lastmod>
@@ -18,7 +21,7 @@
     <lastmod>2022-06-13T08:36:54-07:00</lastmod>
   </url><url>
     <loc>https://megate.ch/code/snippets/rsqrt/</loc>
-    <lastmod>2022-04-25T12:40:50-07:00</lastmod>
+    <lastmod>2022-06-21T16:26:08-07:00</lastmod>
   </url><url>
     <loc>https://megate.ch/code/snippets/to_human_readable/</loc>
     <lastmod>2022-04-13T13:58:55-07:00</lastmod>
