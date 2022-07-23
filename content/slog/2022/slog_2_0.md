@@ -1,8 +1,8 @@
 ---
 title: "Slog 2.0"
 subtitle: ""
-description: ""
-date: 2022-06-18T00:00:00-07:00
+description: "Whining about Godot"
+date: 2022-06-18
 toc: true
 ---
 

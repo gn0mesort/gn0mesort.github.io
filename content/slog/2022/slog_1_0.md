@@ -1,8 +1,8 @@
 ---
 title: "Slog 1.0"
 subtitle: ""
-description: ""
-date: 2022-06-10T00:00:00-07:00
+description: "About the Slog"
+date: 2022-06-10
 toc: true
 ---
 ## About the Slog
