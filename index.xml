@@ -7,50 +7,12 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language><atom:link href="https://megate.ch/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Slog 3.0</title>
-      <link>https://megate.ch/slog/2022/slog_3_0/</link>
-      <pubDate>Fri, 22 Jul 2022 00:00:00 +0000</pubDate>
-      
-      <guid>https://megate.ch/slog/2022/slog_3_0/</guid>
-      <description>Personal Stuff I&amp;rsquo;ve been a bit depressed lately so I&amp;rsquo;ve forgone writing anything. I keep trying to write but I haven&amp;rsquo;t been happy enough with the results to post anything. My plan, is to keep this short and largely personal rather than talk about any big ideas I have. It&amp;rsquo;s tempting to go in that direction but I don&amp;rsquo;t feel comfortable speaking too authoritatively.
-Over the last little while, I&amp;rsquo;ve been working on a few things.</description>
-    </item>
-    
-    <item>
-      <title>Slog 2.1</title>
-      <link>https://megate.ch/slog/2022/slog_2_1/</link>
-      <pubDate>Tue, 21 Jun 2022 13:39:44 -0700</pubDate>
-      
-      <guid>https://megate.ch/slog/2022/slog_2_1/</guid>
-      <description>Project Stuff Right after I posted my last update, the project I mentioned in it imploded. As I said then I wasn&amp;rsquo;t especially optimistic about it. What caused the implosion was pretty simple. We agreed, essentially, to work on a demo for a game written for the Godot 3.4 game engine. I wanted to release the source code for this demo under a free license (i.e., GNU AGPL-3.0, GNU GPL-3.0, or maybe even a permissive license).</description>
-    </item>
-    
-    <item>
       <title>clamp</title>
       <link>https://megate.ch/code/snippets/clamp/</link>
       <pubDate>Sat, 18 Jun 2022 00:00:00 -0700</pubDate>
       
       <guid>https://megate.ch/code/snippets/clamp/</guid>
       <description>#include &amp;lt;concepts&amp;gt; template &amp;lt;std::integral Type&amp;gt; constexpr Type clamp(const Type value, const Type lo, const Type hi) { const auto hilo = (-(value &amp;gt; hi) &amp;amp; hi) | (-(value &amp;lt; lo) &amp;amp; lo); return (-!hilo &amp;amp; value) | hilo; }  </description>
-    </item>
-    
-    <item>
-      <title>Slog 2.0</title>
-      <link>https://megate.ch/slog/2022/slog_2_0/</link>
-      <pubDate>Sat, 18 Jun 2022 00:00:00 +0000</pubDate>
-      
-      <guid>https://megate.ch/slog/2022/slog_2_0/</guid>
-      <description>Week in Review In my last post, I said I intended to spend the week working on various Vulkan and X11 things. That hasn&amp;rsquo;t happened because I was working on another project. Alongside my personal interests, I&amp;rsquo;ve also been for game projects to work on. Mostly, these projects haven&amp;rsquo;t panned out. The usual conversation I have is something like, &amp;ldquo;what kind of game are you interested in working on?&amp;rdquo;
-&amp;ldquo;Oh! It&amp;rsquo;s really cool!</description>
-    </item>
-    
-    <item>
-      <title>Slog 1.0</title>
-      <link>https://megate.ch/slog/2022/slog_1_0/</link>
-      <pubDate>Fri, 10 Jun 2022 00:00:00 +0000</pubDate>
-      
-      <guid>https://megate.ch/slog/2022/slog_1_0/</guid>
-      <description>About the Slog I haven&amp;rsquo;t published any of my thoughts online in quite a while. I think it&amp;rsquo;s been about a year but, honestly, I&amp;rsquo;ve lost track. When I was younger I didn&amp;rsquo;t have much of a filter about publishing. I would just write whatever I liked and it would go up on MySpace (later I would have used Facebook). I certainly didn&amp;rsquo;t worry about grammar, sourcing my claims, or presenting any coherent arguments.</description>
     </item>
     
     <item>
