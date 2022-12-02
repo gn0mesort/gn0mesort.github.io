@@ -41,9 +41,18 @@
   <article><pre><code class="language-cpp">#include &lt;concepts&gt;
 
 template &lt;std::integral Type&gt;
+constexpr Type max(const Type a, const Type b) {
+  return a ^ ((a ^ b) &amp; -(a &lt; b));
+}
+
+template &lt;std::integral Type&gt;
+constexpr Type min(const Type a, const Type b) {
+  return b ^ ((a ^ b) &amp; -(a &lt; b));
+}
+
+template &lt;std::integral Type&gt;
 constexpr Type clamp(const Type value, const Type lo, const Type hi) {
-  const auto hilo = (-(value &gt; hi) &amp; hi) | (-(value &lt; lo) &amp; lo);
-  return (-!hilo &amp; value) | hilo;
+  return min(max(value, lo), hi);
 }
 </code></pre>
 </article>
