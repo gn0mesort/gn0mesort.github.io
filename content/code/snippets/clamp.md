@@ -8,8 +8,17 @@ date: 2022-06-18T00:00:00-07:00
 #include <concepts>
 
 template <std::integral Type>
+constexpr Type max(const Type a, const Type b) {
+  return a ^ ((a ^ b) & -(a < b));
+}
+
+template <std::integral Type>
+constexpr Type min(const Type a, const Type b) {
+  return b ^ ((a ^ b) & -(a < b));
+}
+
+template <std::integral Type>
 constexpr Type clamp(const Type value, const Type lo, const Type hi) {
-  const auto hilo = (-(value > hi) & hi) | (-(value < lo) & lo);
-  return (-!hilo & value) | hilo;
+  return min(max(value, lo), hi);
 }
 ```
