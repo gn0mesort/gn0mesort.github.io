@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 temp=$(mktemp -d -p /tmp/)
 dest=$(pwd)
-hugo -d $temp
+hugo --minify -d $temp
 git checkout master
 GLOBIGNORE=.git
 rm -rfv *
