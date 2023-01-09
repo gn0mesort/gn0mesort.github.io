@@ -1,491 +1,53 @@
-
-
-
-
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-	<meta name="generator" content="Hugo 0.92.2" />
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    
-    <meta name="author" content="Alexander Rothman" />
-    
-    
-    <meta name="keywords" content="programming, c&#43;&#43;, c, 3d, graphics, computer graphics, opinions, tea, pugs" />
-    
-    <title>Megatech</title>
-    <style>
-      @media (prefers-color-scheme: light) {
-  :root {
-    /* Base Colors */
-    --bg: #fbf1c7;
-    --bg0_hard: #f9f5d7;
-    --bg0_soft: #f2e5bc;
-    --bg0: #fbf1c7;
-    --bg1: #ebdbb2;
-    --bg2: #d5c4a1;
-    --bg3: #bdae93;
-    --bg4: #a89984;
-    --fg: #3c3836;
-    --fg0: #282828;
-    --fg1: #3c3836;
-    --fg2: #504945;
-    --fg3: #665c54;
-    --fg4: #7c6f64;
-    --red: #cc241d;
-    --highlight-red: #9d0006;
-    --green: #98971a;
-    --highlight-green: #79740e;
-    --yellow: #d79921;
-    --highlight-yellow: #b57614;
-    --blue: #458588;
-    --highlight-blue: #076678;
-    --purple: #b16286;
-    --highlight-purple: #8f3f71;
-    --aqua: #689d6a;
-    --highlight-aqua: #427b58;
-    --gray: #7c6f54;
-    --highligh-gray: #928374;
-    --orange: #d65d0e;
-    --highlight-orange: #af3a03;
-
-    /* Element Colors */
-    --navigation-shadow: var(--fg4);
-    --navigation-text: var(--fg);
-    --gutter-bg: var(--bg0_soft);
-    --main-bg: var(--bg0_hard);
-    --main-fg: var(--fg);
-    --image-shadow: var(--fg4);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    /* Base Colors */
-    --bg: #282828;
-    --bg0_hard: #1d2021;
-    --bg0_soft: #32302f;
-    --bg0: #282828;
-    --bg1: #3c3836;
-    --bg2: #504945;
-    --bg3: #665c54;
-    --bg4: #7c6f64;
-    --fg: #ebdbb2;
-    --fg0: #fbf1c7;
-    --fg1: #ebdbb2;
-    --fg2: #d5c4a1;
-    --fg3: #bdae93;
-    --fg4: #a89984;
-    --red: #cc241d;
-    --highlight-red: #fb4934;
-    --green: #98971a;
-    --highlight-green: #b8bb26;
-    --yellow: #d79921;
-    --highlight-yellow: #fabd2f;
-    --blue: #458588;
-    --highlight-blue: #83a598;
-    --purple: #b16286;
-    --highlight-purple: #d3869b;
-    --aqua: #689d6a;
-    --highlight-aqua: #8ec07c;
-    --gray: #a09984;
-    --highligh-gray: #928374;
-    --orange: #d65d0e;
-    --highlight-orange: #fe8019;
-
-    /* Element Colors */
-    --navigation-shadow: var(--bg0_hard);
-    --navigation-text: var(--fg4);
-    --gutter-bg: var(--bg0);
-    --main-bg: var(--bg0_soft);
-    --main-fg: var(--fg4);
-    --image-shadow: var(--bg0_hard);
-  }
-}
-
-body {
-  background-color: var(--main-bg);
-  color: var(--main-fg);
-}
-
-      
-      @font-face{
-    font-family: 'Fira Sans';
-    src: local('Fira Sans Hair'),
-         url('/typefaces/woff2/FiraSans-Hair.woff2') format('woff2');
-    font-weight: 100;
-    font-style: normal;
-}
-
-@font-face{
-    font-family: 'Fira Sans';
-    src: local('Fira Sans Hair Italic'),
-         url('/typefaces/woff2/FiraSans-HairItalic.woff2') format('woff2');
-    font-weight: 100;
-    font-style: italic;
-}
-
-@font-face{
-    font-family: 'Fira Sans';
-    src: local('Fira Sans UltraLight'),
-         url('/typefaces/woff2/FiraSans-UltraLight.woff2') format('woff2');
-    font-weight: 200;
-    font-style: normal;
-}
-
-@font-face{
-    font-family: 'Fira Sans';
-    src: local('Fira Sans UltraLight Italic'),
-         url('/typefaces/woff2/FiraSans-UltraLightItalic.woff2') format('woff2');
-    font-weight: 200;
-    font-style: italic;
-}
-
-@font-face{
-    font-family: 'Fira Sans';
-    src: local('Fira Sans Light'),
-         url('/typefaces/woff2/FiraSans-Light.woff2') format('woff2');
-    font-weight: 300;
-    font-style: normal;
-}
-
-@font-face{
-    font-family: 'Fira Sans';
-    src: local('Fira Sans Light Italic'),
-         url('/typefaces/woff2/FiraSans-LightItalic.woff2') format('woff2');
-    font-weight: 300;
-    font-style: italic;
-}
-
-@font-face{
-    font-family: 'Fira Sans';
-    src: local('Fira Sans Regular'),
-         url('/typefaces/woff2/FiraSans-Regular.woff2') format('woff2');
-    font-weight: 400;
-    font-style: normal;
-}
-
-@font-face{
-    font-family: 'Fira Sans';
-    src: local('Fira Sans Regular Italic'),
-         url('/typefaces/woff2/FiraSans-Italic.woff2') format('woff2');
-    font-weight: 400;
-    font-style: italic;
-}
-
-@font-face{
-    font-family: 'Fira Sans';
-    src: local('Fira Sans Medium'),
-         url('/typefaces/woff2/FiraSans-Medium.woff2') format('woff2');
-    font-weight: 500;
-    font-style: normal;
-}
-
-@font-face{
-    font-family: 'Fira Sans';
-    src: local('Fira Sans Medium Italic'),
-         url('/typefaces/woff2/FiraSans-MediumItalic.woff2') format('woff2');
-    font-weight: 500;
-    font-style: italic;
-}
-
-@font-face{
-    font-family: 'Fira Sans';
-    src: local('Fira Sans SemiBold'),
-         url('/typefaces/woff2/FiraSans-SemiBold.woff2') format('woff2');
-    font-weight: 600;
-    font-style: normal;
-}
-
-@font-face{
-    font-family: 'Fira Sans';
-    src: local('Fira Sans SemiBold Italic'),
-         url('/typefaces/woff2/FiraSans-SemiBoldItalic.woff2') format('woff2');
-    font-weight: 600;
-    font-style: italic;
-}
-
-@font-face{
-    font-family: 'Fira Sans';
-    src: local('Fira Sans Bold'),
-         url('/typefaces/woff2/FiraSans-Bold.woff2') format('woff2');
-    font-weight: 700;
-    font-style: normal;
-}
-
-@font-face{
-    font-family: 'Fira Sans';
-    src: local('Fira Sans Bold Italic'),
-         url('/typefaces/woff2/FiraSans-BoldItalic.woff2') format('woff2');
-    font-weight: 700;
-    font-style: italic;
-}
-
-@font-face{
-    font-family: 'Fira Sans';
-    src: local('Fira Sans ExtraBold'),
-         url('/typefaces/woff2/FiraSans-ExtraBold.woff2') format('woff2');
-    font-weight: 800;
-    font-style: normal;
-}
-
-@font-face{
-    font-family: 'Fira Sans';
-    src: local('Fira Sans ExtraBold Italic'),
-         url('/typefaces/woff2/FiraSans-ExtraBoldItalic.woff2') format('woff2');
-    font-weight: 800;
-    font-style: italic;
-}
-
-@font-face{
-    font-family: 'Fira Sans';
-    src: local('Fira Sans Heavy'),
-         url('/typefaces/woff2/FiraSans-Heavy.woff2') format('woff2');
-    font-weight: 900;
-    font-style: normal;
-}
-
-@font-face{
-    font-family: 'Fira Sans';
-    src: local('Fira Sans Heavy Italic'),
-         url('/typefaces/woff2/FiraSans-HeavyItalic.woff2') format('woff2');
-    font-weight: 900;
-    font-style: italic;
-}
-
-
-@font-face{
-    font-family: 'Fira Mono';
-    src: local('Fira Mono'),
-         url('/typefaces/woff2/FiraMono-Regular.woff2') format('woff2');
-    font-weight: 400;
-    font-style: normal;
-}
-
-@font-face{
-    font-family: 'Fira Mono';
-    src: local('Fira Mono Bold'),
-         url('/typefaces/woff2/FiraMono-Bold.woff2') format('woff2');
-    font-weight: 600;
-    font-style: normal;
-}
-
-
-      @font-face {
-  font-family: 'Fira Code';
-  src: url('/typefaces/woff2/FiraCode-Light.woff2') format('woff2');
-  font-weight: 300;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Fira Code';
-  src: url('/typefaces/woff2/FiraCode-Regular.woff2') format('woff2');
-  font-weight: 400;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Fira Code';
-  src: url('/typefaces/woff2/FiraCode-Medium.woff2') format('woff2');
-  font-weight: 500;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Fira Code';
-  src: url('/typefaces/woff2/FiraCode-SemiBold.woff2') format('woff2');
-  font-weight: 600;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Fira Code';
-  src: url('/typefaces/woff2/FiraCode-Bold.woff2') format('woff2');
-  font-weight: 700;
-  font-style: normal;
-}
-
-
-      body {
-  font-family: "Fira Sans", sans-serif;
-}
-
-code {
-  font-family: "Fira Code", "Fira Mono", monospace;
-  font-variant-ligatures: none;
-}
-
-      body {
-  margin: 0;
-}
-
-div.grid-container {
-  display: grid;
-  margin: 1in 0 1in 0;
-  border: 0;
-  grid-template-areas: "left middle right"
-                       "left middle right"
-                       "left middle right";
-}
-
-@media only screen and (max-width: 8.5in) {
-  div.grid-container {
-    grid-template-columns: 0% 100% 0%;
-  }
-
-  div.grid-left-column, div.grid-right-column {
-    display: none;
-  }
-}
-
-@media only screen and (min-width: 8.6in) {
-  div.grid-container {
-    grid-template-columns: auto 8.5in auto;
-  }
-}
-
-div.grid-left-column {
-  grid-area: "left";
-}
-
-div.grid-middle-column {
-  grid-area: "middle";
-}
-
-div.grid-right-column {
-  grid-area: "right"
-}
-
-      .center-text {
-  text-align: center;
-}
-
-body {
-  font-size: 12pt;
-  text-align: justify;
-}
-
-hr {
-  border-color: var(--main-fg);
-  background-color: var(--main-fg);
-  border-style: solid;
-  border-width: 2px;
-}
-
-nav > a {
-  font-size: 14pt;
-}
-
-a {
-  text-decoration: none;
-}
-
-a:link {
-  color: var(--blue);
-}
-
-a:hover, a:visited:hover {
-  color: var(--purple);
-  text-decoration: underline;
-  text-decoration-style: wavy;
-}
-
-a:active, a:visited:active {
-  color: var(--purple-highlight);
-}
-
-a:visited {
-  color: var(--aqua);
-}
-
-h1.title {
-  font-size: 36pt;
-}
-
-img {
-  display: block;
-  border: outset;
-  margin: auto;
-}
-
-canvas {
-  display: block;
-  margin: auto;
-}
-
-pre {
-  font-size: 10pt;
-  text-align: left;
-  border-color: var(--fg);
-  border: outset;
-  margin: auto;
-  max-width: 120ch;
-  white-space: pre-wrap;
-}
-
-pre code.hljs {
-  padding: 0.12in;
-}
-
-
-main {
-  margin-bottom: 0.5in;
-}
-
-    </style>
-  </head>
-  
-  <body>
-  
-    <div class="grid-container">
-      <div class="left-column"></div>
-      <div class="middle-column">
-        <header>
-          <hr />
-          <h1 class="title center-text">Megatech</h1>
-          <nav>
-            <a href="/">~</a>&nbsp;/
-            
-            <a href="https://megate.ch/code/">code</a>&nbsp;/
-            
-          </nav>
-        <hr />
-        </header>
-        <main>
-        <br />
-        
-  <h2 class="center-text">About Me</h2>
-<p class="center-text">
-  <span>I'm nothing like the grinning future-creature you envisaged this weekend.</span><br />
-  <span>Shamefully disappointing.</span>
+<!doctype html><html lang=en>
+<head>
+<meta name=generator content="Hugo 0.92.2">
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=author content="Alexander Rothman">
+<meta name=keywords content="programming,c++,c,3d,graphics,computer graphics,opinions,tea,pugs">
+<title>Megatech</title>
+<style>@media(prefers-color-scheme:light){:root{--bg:#fbf1c7;--bg0_hard:#f9f5d7;--bg0_soft:#f2e5bc;--bg0:#fbf1c7;--bg1:#ebdbb2;--bg2:#d5c4a1;--bg3:#bdae93;--bg4:#a89984;--fg:#3c3836;--fg0:#282828;--fg1:#3c3836;--fg2:#504945;--fg3:#665c54;--fg4:#7c6f64;--red:#cc241d;--highlight-red:#9d0006;--green:#98971a;--highlight-green:#79740e;--yellow:#d79921;--highlight-yellow:#b57614;--blue:#458588;--highlight-blue:#076678;--purple:#b16286;--highlight-purple:#8f3f71;--aqua:#689d6a;--highlight-aqua:#427b58;--gray:#7c6f54;--highligh-gray:#928374;--orange:#d65d0e;--highlight-orange:#af3a03;--navigation-shadow:var(--fg4);--navigation-text:var(--fg);--gutter-bg:var(--bg0_soft);--main-bg:var(--bg0_hard);--main-fg:var(--fg);--image-shadow:var(--fg4)}}@media(prefers-color-scheme:dark){:root{--bg:#282828;--bg0_hard:#1d2021;--bg0_soft:#32302f;--bg0:#282828;--bg1:#3c3836;--bg2:#504945;--bg3:#665c54;--bg4:#7c6f64;--fg:#ebdbb2;--fg0:#fbf1c7;--fg1:#ebdbb2;--fg2:#d5c4a1;--fg3:#bdae93;--fg4:#a89984;--red:#cc241d;--highlight-red:#fb4934;--green:#98971a;--highlight-green:#b8bb26;--yellow:#d79921;--highlight-yellow:#fabd2f;--blue:#458588;--highlight-blue:#83a598;--purple:#b16286;--highlight-purple:#d3869b;--aqua:#689d6a;--highlight-aqua:#8ec07c;--gray:#a09984;--highligh-gray:#928374;--orange:#d65d0e;--highlight-orange:#fe8019;--navigation-shadow:var(--bg0_hard);--navigation-text:var(--fg4);--gutter-bg:var(--bg0);--main-bg:var(--bg0_soft);--main-fg:var(--fg4);--image-shadow:var(--bg0_hard)}}body{background-color:var(--main-bg);color:var(--main-fg)}@font-face{font-family:fira sans;src:local('Fira Sans Hair'),url(/typefaces/woff2/FiraSans-Hair.woff2)format('woff2');font-weight:100;font-style:normal}@font-face{font-family:fira sans;src:local('Fira Sans Hair Italic'),url(/typefaces/woff2/FiraSans-HairItalic.woff2)format('woff2');font-weight:100;font-style:italic}@font-face{font-family:fira sans;src:local('Fira Sans UltraLight'),url(/typefaces/woff2/FiraSans-UltraLight.woff2)format('woff2');font-weight:200;font-style:normal}@font-face{font-family:fira sans;src:local('Fira Sans UltraLight Italic'),url(/typefaces/woff2/FiraSans-UltraLightItalic.woff2)format('woff2');font-weight:200;font-style:italic}@font-face{font-family:fira sans;src:local('Fira Sans Light'),url(/typefaces/woff2/FiraSans-Light.woff2)format('woff2');font-weight:300;font-style:normal}@font-face{font-family:fira sans;src:local('Fira Sans Light Italic'),url(/typefaces/woff2/FiraSans-LightItalic.woff2)format('woff2');font-weight:300;font-style:italic}@font-face{font-family:fira sans;src:local('Fira Sans Regular'),url(/typefaces/woff2/FiraSans-Regular.woff2)format('woff2');font-weight:400;font-style:normal}@font-face{font-family:fira sans;src:local('Fira Sans Regular Italic'),url(/typefaces/woff2/FiraSans-Italic.woff2)format('woff2');font-weight:400;font-style:italic}@font-face{font-family:fira sans;src:local('Fira Sans Medium'),url(/typefaces/woff2/FiraSans-Medium.woff2)format('woff2');font-weight:500;font-style:normal}@font-face{font-family:fira sans;src:local('Fira Sans Medium Italic'),url(/typefaces/woff2/FiraSans-MediumItalic.woff2)format('woff2');font-weight:500;font-style:italic}@font-face{font-family:fira sans;src:local('Fira Sans SemiBold'),url(/typefaces/woff2/FiraSans-SemiBold.woff2)format('woff2');font-weight:600;font-style:normal}@font-face{font-family:fira sans;src:local('Fira Sans SemiBold Italic'),url(/typefaces/woff2/FiraSans-SemiBoldItalic.woff2)format('woff2');font-weight:600;font-style:italic}@font-face{font-family:fira sans;src:local('Fira Sans Bold'),url(/typefaces/woff2/FiraSans-Bold.woff2)format('woff2');font-weight:700;font-style:normal}@font-face{font-family:fira sans;src:local('Fira Sans Bold Italic'),url(/typefaces/woff2/FiraSans-BoldItalic.woff2)format('woff2');font-weight:700;font-style:italic}@font-face{font-family:fira sans;src:local('Fira Sans ExtraBold'),url(/typefaces/woff2/FiraSans-ExtraBold.woff2)format('woff2');font-weight:800;font-style:normal}@font-face{font-family:fira sans;src:local('Fira Sans ExtraBold Italic'),url(/typefaces/woff2/FiraSans-ExtraBoldItalic.woff2)format('woff2');font-weight:800;font-style:italic}@font-face{font-family:fira sans;src:local('Fira Sans Heavy'),url(/typefaces/woff2/FiraSans-Heavy.woff2)format('woff2');font-weight:900;font-style:normal}@font-face{font-family:fira sans;src:local('Fira Sans Heavy Italic'),url(/typefaces/woff2/FiraSans-HeavyItalic.woff2)format('woff2');font-weight:900;font-style:italic}@font-face{font-family:fira mono;src:local('Fira Mono'),url(/typefaces/woff2/FiraMono-Regular.woff2)format('woff2');font-weight:400;font-style:normal}@font-face{font-family:fira mono;src:local('Fira Mono Bold'),url(/typefaces/woff2/FiraMono-Bold.woff2)format('woff2');font-weight:600;font-style:normal}@font-face{font-family:fira code;src:url(/typefaces/woff2/FiraCode-Light.woff2)format('woff2');font-weight:300;font-style:normal}@font-face{font-family:fira code;src:url(/typefaces/woff2/FiraCode-Regular.woff2)format('woff2');font-weight:400;font-style:normal}@font-face{font-family:fira code;src:url(/typefaces/woff2/FiraCode-Medium.woff2)format('woff2');font-weight:500;font-style:normal}@font-face{font-family:fira code;src:url(/typefaces/woff2/FiraCode-SemiBold.woff2)format('woff2');font-weight:600;font-style:normal}@font-face{font-family:fira code;src:url(/typefaces/woff2/FiraCode-Bold.woff2)format('woff2');font-weight:700;font-style:normal}body{font-family:fira sans,sans-serif}code{font-family:fira code,fira mono,monospace;font-variant-ligatures:none}body{margin:0}div.grid-container{display:grid;margin:1in 0;border:0;grid-template-areas:"left middle right" "left middle right" "left middle right"}@media only screen and (max-width:8.5in){div.grid-container{grid-template-columns:0% 100% 0%}div.grid-left-column,div.grid-right-column{display:none}}@media only screen and (min-width:8.6in){div.grid-container{grid-template-columns:auto 8.5in auto}}div.grid-left-column{grid-area:"left"}div.grid-middle-column{grid-area:"middle"}div.grid-right-column{grid-area:"right"}.center-text{text-align:center}body{font-size:12pt;text-align:justify}hr{border-color:var(--main-fg);background-color:var(--main-fg);border-style:solid;border-width:2px}nav>a{font-size:14pt}a{text-decoration:none}a:link{color:var(--blue)}a:hover,a:visited:hover{color:var(--purple);text-decoration:underline;text-decoration-style:wavy}a:active,a:visited:active{color:var(--purple-highlight)}a:visited{color:var(--aqua)}h1.title{font-size:36pt}img{display:block;border:outset;margin:auto}canvas{display:block;margin:auto}pre{font-size:10pt;text-align:left;border-color:var(--fg);border:outset;margin:auto;max-width:120ch;white-space:pre-wrap}pre code.hljs{padding:.12in}main{margin-bottom:.5in}</style>
+</head>
+<body>
+<div class=grid-container>
+<div class=left-column></div>
+<div class=middle-column>
+<header>
+<hr>
+<h1 class="title center-text">Megatech</h1>
+<nav>
+<a href=/>~</a>&nbsp;/
+<a href=https://megate.ch/code/>code</a>&nbsp;/
+</nav>
+<hr>
+</header>
+<main>
+<br>
+<h2 class=center-text>About Me</h2>
+<p class=center-text>
+<span>I'm nothing like the grinning future-creature you envisaged this weekend.</span><br>
+<span>Shamefully disappointing.</span>
 </p>
 <p>
-  <span><b>&nbsp;&nbsp;&nbsp;&nbsp;name</b>: Alexander or Alex are both fine.</span><br />
-  <span><b>good at</b>: programming computers, playing video games, and drinking too much tea.</span><br />
-  <span><b>&nbsp;&nbsp;&nbsp;bad at</b>: anything involving music or cars.</span><br />
-  <span><b>&nbsp;&nbsp;&nbsp;motto</b>: Proper Planning Prevents Poor Performance.</span>
+<span><b>&nbsp;&nbsp;&nbsp;&nbsp;name</b>: Alexander or Alex are both fine.</span><br>
+<span><b>good at</b>: programming computers, playing video games, and drinking too much tea.</span><br>
+<span><b>&nbsp;&nbsp;&nbsp;bad at</b>: anything involving music or cars.</span><br>
+<span><b>&nbsp;&nbsp;&nbsp;motto</b>: Proper Planning Prevents Poor Performance.</span>
 </p>
-<h2 class="center-text">Contact</h2>
+<h2 class=center-text>Contact</h2>
 <p>
-  <span>&nbsp;&nbsp;&nbsp;email: <a href="mailto:gnomesort@megate.ch">gnomesort@megate.ch</a>&nbsp;(<a href="/res/publickey.gpg">gpg</a>)</span><br />
-  <span>&nbsp;github: <a href="https://github.com/gn0mesort/">gn0mesort</a></span><br />
-  <span>discord: gnomesort#5217</span>
+<span>&nbsp;&nbsp;&nbsp;email: <a href=mailto:gnomesort@megate.ch>gnomesort@megate.ch</a>&nbsp;(<a href=/res/publickey.gpg>gpg</a>)</span><br>
+<span>&nbsp;github: <a href=https://github.com/gn0mesort/>gn0mesort</a></span><br>
+<span>discord: gnomesort#5217</span>
 </p>
-
-  
-  
-
-        </main>
-        <footer>
-          <hr />
-          <nav class="center-text"><a href="#">top</a></nav>
-          <hr />
-        </footer>
-      </div>
-      <div class="right-column"></div>
-    </div>
-    
-  </body>
+</main>
+<footer>
+<hr>
+<nav class=center-text><a href=#>top</a></nav>
+<hr>
+</footer>
+</div>
+<div class=right-column></div>
+</div>
+</body>
 </html>

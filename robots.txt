@@ -1,10 +1,7 @@
 user-agent: *
 disallow: /res
 disallow: /js
-disallow: /css
 disallow: /img
-disallow: /fira
-disallow: /fira_code
-disallow: /gothicpixels
+disallow: /typefaces
 
 sitemap: https://megate.ch/sitemap.xml
