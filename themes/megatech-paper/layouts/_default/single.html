@@ -1,0 +1,12 @@
+{{ define "main" }}
+{{ if .Params.subtitle }}
+<h2>&ldquo;{{ .Params.subtitle }}&rdquo;</h2>
+{{ end }}
+{{ if .Params.toc }}
+<aside>
+  <h2>Outline</h2>
+  {{ .TableOfContents }}
+</aside>
+{{ end }}
+<article>{{ .Content }}</article>
+{{ end }}

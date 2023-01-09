@@ -1,0 +1,10 @@
+name = "Megatech Paper"
+description = "Custom Theme"
+homepage = "https://megate.ch/"
+tags = []
+features = []
+min_version = "0.92.2"
+
+[author]
+  name = "Alexander Rothman"
+  homepage = "https://megate.ch/"

@@ -1,0 +1,32 @@
+{{ define "main" }}
+<h2 class="center-text">{{ .Description }}</h2>
+<article>
+  <div class="center-text">{{ .Content }}</div>
+</article>
+{{ if .Sections }}
+<ul>
+{{ range .Sections }}
+  <li><a href="{{ .Permalink }}">{{ .Title }}</a>&nbsp;<span class="small">{{ .Description }}</span></li>
+  {{ if le .Pages 5 }}
+  <ul>
+    {{ range .Pages }}
+    <li><a href="{{ .Permalink }}">{{ .Title }}</a>&nbsp;<span class="small">{{ .Description }}</span></li>
+    {{ end }}
+  </ul>
+  {{ end }}
+{{ end }}
+  </ul>
+{{ end }}
+{{ if .Pages }}
+<ul>
+  {{ range .Pages }}
+  {{ if .IsPage }}
+  <li><a href="{{ .Permalink }}">{{ .Title }}</a>&nbsp;<span class="small">{{ .Description }}</span></li>
+  {{ end }}
+  {{ end }}
+</ul>
+{{ else }}
+<p class="center-text">Nothing yet.</p>
+{{ end }}
+</main>
+{{ end }}

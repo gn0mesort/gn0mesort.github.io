@@ -1,0 +1,75 @@
+.center-text {
+  text-align: center;
+}
+
+body {
+  font-size: 12pt;
+  text-align: justify;
+}
+
+hr {
+  border-color: var(--main-fg);
+  background-color: var(--main-fg);
+  border-style: solid;
+  border-width: 2px;
+}
+
+nav > a {
+  font-size: 14pt;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:link {
+  color: var(--blue);
+}
+
+a:hover, a:visited:hover {
+  color: var(--purple);
+  text-decoration: underline;
+  text-decoration-style: wavy;
+}
+
+a:active, a:visited:active {
+  color: var(--purple-highlight);
+}
+
+a:visited {
+  color: var(--aqua);
+}
+
+h1.title {
+  font-size: 36pt;
+}
+
+img {
+  display: block;
+  border: outset;
+  margin: auto;
+}
+
+canvas {
+  display: block;
+  margin: auto;
+}
+
+pre {
+  font-size: 10pt;
+  text-align: left;
+  border-color: var(--fg);
+  border: outset;
+  margin: auto;
+  max-width: 120ch;
+  white-space: pre-wrap;
+}
+
+pre code.hljs {
+  padding: 0.12in;
+}
+
+
+main {
+  margin-bottom: 0.5in;
+}

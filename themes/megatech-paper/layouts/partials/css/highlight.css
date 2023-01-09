@@ -1,0 +1,7 @@
+@media (prefers-color-scheme: light) {
+  {{ partial "css/gruvbox-light-hard.min.css" }}
+}
+
+@media (prefers-color-scheme: dark) {
+  {{ partial "css/gruvbox-dark-hard.min.css" }}
+}
