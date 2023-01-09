@@ -45,7 +45,8 @@ std::string to_human_readable(const std::size_t bytes) {
     }
     else if constexpr (kilo == 1000)
     {
-      const auto pow1000 = static_cast<std::size_t>(std::floor(std::log(bytes) / std::log(1000)));
+      const auto pow1000 = static_cast<std::size_t>(std::floor(std::log(bytes) /
+                                                    std::log(1000)));
       format_stream << static_cast<double>(bytes) / std::pow(1000, pow1000);
       format_stream << " " << units[pow1000 - 1];
     }

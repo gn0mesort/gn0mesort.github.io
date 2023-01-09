@@ -1,21 +1,18 @@
 {{ define "main" }}
-  <main>
-      <h1 class="center-text site-title">&nbsp;{{ .Title }}&nbsp;</h1>
-      {{ .Content }}
-      {{ $pages := sort (where .Site.RegularPages "Type" "in" site.Params.mainSections) "PublishDate" "desc" }}
-      {{ if ge $pages 1 }}
-      <h2 class="center-text">Latest</h2>
-      <ul>
-        {{ range first 2 $pages }}
-        {{ $published := .PublishDate.Format "Mon Jan _2 2006" }}
-        {{ $published_dt := .PublishDate.Format "2006-01-02" }}
-        <li>
-          <a href="{{ .Permalink }}">{{ .Title }}</a>
-          <span class="small">{{ .Description }}</span>
-          <time class="xsmall" datetime="$published_dt">({{ $published }})</time>
-        </li>
-        {{ end }}
-      </ul>
-      {{ end }}
-  </main>
+  {{ .Content }}
+  {{ $pages := sort (where .Site.RegularPages "Type" "in" site.Params.mainSections) "PublishDate" "desc" }}
+  {{ if ge $pages 1 }}
+  <h2 class="center-text">Latest</h2>
+  <ul>
+    {{ range first 2 $pages }}
+    {{ $published := .PublishDate.Format "Mon Jan _2 2006" }}
+    {{ $published_dt := .PublishDate.Format "2006-01-02" }}
+    <li>
+      <a href="{{ .Permalink }}">{{ .Title }}</a>
+      <span class="small">{{ .Description }}</span>
+      <time class="xsmall" datetime="$published_dt">({{ $published }})</time>
+    </li>
+    {{ end }}
+  </ul>
+  {{ end }}
 {{ end }}

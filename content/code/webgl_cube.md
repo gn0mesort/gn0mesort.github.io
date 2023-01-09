@@ -60,7 +60,8 @@ void main() {
   vec3 diffuse = max(dot(normal, light_direction), 0.0) * light_color;
   vec3 view_direction = normalize(vec3(0, 0, 2.0) - frg_position);
   vec3 reflect_direction = reflect(-light_direction, normal);
-  vec3 specular = 0.5 * pow(max(dot(view_direction, reflect_direction), 0.0), 32.0) * light_color;
+  vec3 specular = 0.5 * pow(max(dot(view_direction, reflect_direction), 0.0), 32.0) *
+                  light_color;
   vec3 result = specular + diffuse + ambient;
   
   final_color = vec4(result * frg_color, 1.0);

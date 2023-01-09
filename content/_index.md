@@ -1,5 +1,4 @@
 ---
-title: Megatech
 description: Alexander Rothman's homepage.
 keywords:
   - programming
@@ -12,7 +11,6 @@ keywords:
   - tea
   - pugs
 ---
-<img class="center" src="/img/pugdoom.jpg" style="width: 256px;" />
 <h2 class="center-text">About Me</h2>
 <p class="center-text">
   <span>I'm nothing like the grinning future-creature you envisaged this weekend.</span><br />

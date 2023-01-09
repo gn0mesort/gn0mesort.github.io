@@ -26,7 +26,8 @@ constexpr float rsqrt(const float x) {
 // <https://cs.uwaterloo.ca/~m32rober/rsqrt.pdf>
 constexpr double rsqrt(const double x) {
   static_assert(std::numeric_limits<double>::is_iec559);
-  auto f = std::bit_cast<double>(0x5fe6eb50c7b537a9ULL - (std::bit_cast<std::uint64_t>(x) >> 1));
+  auto f = std::bit_cast<double>(0x5fe6eb50c7b537a9ULL -
+           (std::bit_cast<std::uint64_t>(x) >> 1));
   f *= 0.5 * (3.0 - x * f * f); // Improved constants for 64-bit aren't known.
   return f;
 }

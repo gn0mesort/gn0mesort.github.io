@@ -1,13 +1,13 @@
 baseURL = "https://megate.ch/"
 languageCode = "en-us"
 title = "Megatech"
-theme = "megatech"
+theme = "megatech-paper"
 enableGitInfo = true
 
 [params]
   AuthorName = "Alexander Rothman"
   GitHubUser = "gn0mesort"
-  mainSections = [ 'thoughts', 'slog' ]
+  mainSections = [ ]
 
 [markup]
     [markup.goldmark]
