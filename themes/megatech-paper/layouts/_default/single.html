@@ -1,6 +1,10 @@
 {{ define "main" }}
 {{ if .Params.subtitle }}
-<h2>&ldquo;{{ .Params.subtitle }}&rdquo;</h2>
+<p><span class="epigraph"><i>{{ .Params.subtitle | safeHTML }}</i></span>
+{{ if .Params.subtitleAttribution }}
+<span class="epigraph-attribution">&mdash;&nbsp;{{ .Params.subtitleAttribution | safeHTML }}{{ if .Params.subtitleWork }}, {{ .Params.subtitleWork | safeHTML }}{{ end }}</span>
+{{ end }}
+</p>
 {{ end }}
 {{ if .Params.toc }}
 <aside>

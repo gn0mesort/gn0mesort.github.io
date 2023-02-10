@@ -15,6 +15,7 @@
     {{ with .Keywords }}
     <meta name="keywords" content="{{ range $i, $e := . }}{{ if $i }}, {{ end }}{{ $e }}{{ end }}" />
     {{ end }}
+    {{ hugo.Generator }}
     <title>{{ .Site.Title }}{{ if $is_page_or_section }} - {{ $title }}{{ end }}</title>
     <style>
       {{ partial "css/colors.css" . | safeCSS }}
@@ -40,9 +41,9 @@
           <hr />
           <h1 class="title center-text">{{ .Site.Title }}</h1>
           <nav>
-            <a href="/">~</a>&nbsp;/
+            <a href="{{ .Site.Home.Permalink }}">~</a>&nbsp;/
             {{ range .Site.Sections }}
-            <a href="{{ .Permalink }}">{{ lower .Section }}</a>&nbsp;/
+            <a href="{{ .Permalink }}">{{ replace (lower .Section) "_" " " }}</a>&nbsp;/
             {{ end }}
           </nav>
         <hr />

@@ -2,6 +2,22 @@
   text-align: center;
 }
 
+.small {
+  font-size: 10pt;
+}
+
+.smaller {
+  font-size: 8pt;
+}
+
+.monospace {
+  font-family: "Fira Mono", monospace;
+}
+
+.sans-serif {
+  font-family: "Fira Sans", sans-serif;
+}
+
 body {
   font-size: 12pt;
   text-align: justify;
@@ -69,7 +85,15 @@ pre code.hljs {
   padding: 0.12in;
 }
 
-
 main {
   margin-bottom: 0.5in;
+}
+
+span.epigraph {
+  display: block;
+  text-align: justify;
+}
+span.epigraph-attribution {
+  display: block;
+  text-align: right;
 }
