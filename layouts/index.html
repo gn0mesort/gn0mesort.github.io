@@ -1,3 +1,20 @@
+{{ define "head" }}
+  <style>
+    dl.contact-list {
+      display: grid;
+      grid-template-columns: auto auto;
+    }
+    dl.contact-list dt {
+      grid-column-start: 1;
+      font-weight: bold;
+      text-align: right;
+    }
+    dl.contact-list dd {
+      grid-column-start: 2;
+      margin: 0 1rem;
+    }
+  </style>
+{{ end }}
 {{ define "main" }}
   {{ .Content }}
   {{ $pages := sort (where .Site.RegularPages "Type" "in" site.Params.mainSections) "PublishDate" "desc" }}
@@ -8,9 +25,7 @@
     {{ $published := .PublishDate.Format "Mon Jan _2 2006" }}
     {{ $published_dt := .PublishDate.Format "2006-01-02" }}
     <li>
-      <a href="{{ .Permalink }}">{{ .Title }}</a>
-      <span class="small">{{ .Description }}</span>
-      <time class="xsmall" datetime="$published_dt">({{ $published }})</time>
+      <a href="{{ .Permalink }}">{{ .Title }}</a>&nbsp;-{{ if .Description }}<span>&nbsp;{{ .Description }}</span>{{ end }}&nbsp;<time class="small" datetime="$published_dt">({{ $published }})</time>
     </li>
     {{ end }}
   </ul>

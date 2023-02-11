@@ -12,19 +12,15 @@ keywords:
   - pugs
 ---
 <h2 class="center-text">About Me</h2>
-<p class="center-text">
-  <span>I'm nothing like the grinning future-creature you envisaged this weekend.</span><br />
-  <span>Shamefully disappointing.</span>
-</p>
-<p>
-  <span><b>&nbsp;&nbsp;&nbsp;&nbsp;name</b>: Alexander or Alex are both fine.</span><br />
-  <span><b>good at</b>: programming computers, playing video games, and drinking too much tea.</span><br />
-  <span><b>&nbsp;&nbsp;&nbsp;bad at</b>: anything involving music or cars.</span><br />
-  <span><b>&nbsp;&nbsp;&nbsp;motto</b>: Proper Planning Prevents Poor Performance.</span>
-</p>
+<p class="center-text">I'm nothing like the grinning future-creature you envisaged this weekend.<br />Shamefully disappointing.</p>
 <h2 class="center-text">Contact</h2>
-<p>
-  <span>&nbsp;&nbsp;&nbsp;email: <a href="mailto:gnomesort@megate.ch">gnomesort@megate.ch</a>&nbsp;(<a href="/res/publickey.gpg">gpg</a>)</span><br />
-  <span>&nbsp;github: <a href="https://github.com/gn0mesort/">gn0mesort</a></span><br />
-  <span>discord: gnomesort#5217</span>
-</p>
+<dl class="contact-list">
+  <dt>gpg:</dt>
+  <dd><a href="/res/publickey.gpg">5E45F01E3DE483CA</a></dd>
+  <dt>email:</dt>
+  <dd><a href="mailto:gnomesort@megate.ch">gnomesort@megate.ch</a></dd>
+  <dt>github:</dt>
+  <dd><a href="https://github.com/gn0mesort/">gn0mesort</a></dd>
+  <dt>discord:</dt>
+  <dd>gnomesort#5217</dd>
+</dl>
