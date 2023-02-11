@@ -1,19 +1,19 @@
 {{ define "main" }}
 {{ $show_dates := .Params.ShowDates }}
-<h2 class="center-text">{{ .Description }}</h2>
+<h3 class="center-text">{{ .Description }}</h3>
 <article>
   <div class="center-text">{{ .Content }}</div>
 </article>
 {{ if .Sections }}
 <ul>
 {{ range .Sections }}
-  <li><a href="{{ .Permalink }}">{{ .Title }}</a>&nbsp;<span>{{ .Description }}</span></li>
+<li><a href="{{ .Permalink }}">{{ .Title }}/</a>&nbsp;<span>{{ .Description }}</span></li>
   {{ if le .Pages 5 }}
   <ul>
     {{ range .Pages }}
     {{ $published := .PublishDate.Format "Mon Jan _2 2006" }}
     {{ $published_dt := .PublishDate.Format "2006-01-02" }}
-    <li><a href="{{ .Permalink }}">{{ .Title }}</a>&nbsp;-&nbsp;<span>{{ .Description }}</span>{{ if $show_dates }}&nbsp;<time class="small" datetime="$published_dt">({{ $published }})</time>{{ end }}</li>
+    <li><a href="{{ .Permalink }}">{{ .Title }}</a>&nbsp;-{{ if .Description }}<span>&nbsp;{{ .Description }}</span>{{ end }}{{ if $show_dates }}&nbsp;<time class="small" datetime="$published_dt">({{ $published }})</time>{{ end }}</li>
     {{ end }}
   </ul>
   {{ end }}
@@ -26,7 +26,7 @@
   {{ if .IsPage }}
   {{ $published := .PublishDate.Format "Mon Jan _2 2006" }}
   {{ $published_dt := .PublishDate.Format "2006-01-02" }}
-  <li><a href="{{ .Permalink }}">{{ .Title }}</a>&nbsp;-&nbsp;<span>{{ .Description }}</span>{{ if $show_dates }}&nbsp;<time class="small" datetime="$published_dt">({{ $published }})</time>{{ end }}</li>
+  <li><a href="{{ .Permalink }}">{{ .Title }}</a>&nbsp;-{{ if .Description }}<span>&nbsp;{{ .Description }}</span>{{ end }}{{ if $show_dates }}&nbsp;<time class="small" datetime="$published_dt">({{ $published }})</time>{{ end }}</li>
   {{ end }}
   {{ end }}
 </ul>

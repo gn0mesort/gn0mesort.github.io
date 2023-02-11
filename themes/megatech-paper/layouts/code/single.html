@@ -1,0 +1,34 @@
+{{ define "head" }}
+<style>
+  {{ partial "css/highlight.css" . | safeCSS }}
+</style>
+{{ end }}
+
+{{ define "main" }}
+{{ if .Params.subtitle }}
+<p><span class="epigraph"><i>{{ .Params.subtitle | safeHTML }}</i></span>
+{{ if .Params.subtitleAttribution }}
+<span class="epigraph-attribution">&mdash;&nbsp;{{ .Params.subtitleAttribution | safeHTML }}{{ if .Params.subtitleWork }}, {{ .Params.subtitleWork | safeHTML }}{{ end }}</span>
+{{ end }}
+</p>
+{{ end }}
+{{ if .Params.toc }}
+<aside>
+  <h2>Outline</h2>
+  {{ .TableOfContents }}
+</aside>
+{{ end }}
+<article>{{ .Content }}</article>
+{{ end }}
+
+{{ define "scripts" }}
+<script src="/js/highlight.min.js"></script>
+<script>
+  function highlighter() {
+    let body = document.getElementsByTagName('body')[0];
+    body.onload = hljs.highlightAll;
+  }
+
+  highlighter();
+</script>
+{{ end }}

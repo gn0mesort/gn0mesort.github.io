@@ -1,4 +1,3 @@
-{{ $enable_code := (and .Page.IsPage (eq (lower .Page.Section) "code")) }}
 {{ $is_page_or_section := (or .Page.IsSection .Page.IsPage) }}
 {{ $title := .Site.Title }}
 {{ if $is_page_or_section }}
@@ -19,21 +18,15 @@
     <title>{{ .Site.Title }}{{ if $is_page_or_section }} - {{ $title }}{{ end }}</title>
     <style>
       {{ partial "css/colors.css" . | safeCSS }}
-      {{ if $enable_code }}
-      {{ partial "css/highlight.css" . | safeCSS }}
-      {{ end }}
       {{ partial "css/fira.css" . | safeCSS }}
       {{ partial "css/fira_code.css" . | safeCSS }}
       {{ partial "css/fonts.css" . | safeCSS }}
       {{ partial "css/grid.css" . | safeCSS }}
       {{ partial "css/elements.css" . | safeCSS }}
     </style>
+    {{ block "head" . }}{{ end }}
   </head>
-  {{ if $enable_code }}
-  <body onload="hljs.highlightAll();">
-  {{ else }}
   <body>
-  {{ end }}
     <div class="grid-container">
       <div class="left-column"></div>
       <div class="middle-column">
@@ -60,8 +53,6 @@
       </div>
       <div class="right-column"></div>
     </div>
-    {{ if $enable_code }}
-    <script src="/js/highlight.min.js"></script>
-    {{ end }}
+    {{ block "scripts" . }}{{ end }}
   </body>
 </html>
