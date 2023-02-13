@@ -1,8 +1,5 @@
 ---
 title: {{ title (replace .Name "_" " ") }}
-subtitle: ""
-subtitleattribution: ""
-subtitlework: ""
 description: ""
 date: {{ .Date }}
 publishdate: {{ .Date }}
