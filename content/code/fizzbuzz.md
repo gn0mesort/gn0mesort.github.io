@@ -175,3 +175,76 @@ for msg in [(lambda a:
             for i in range(1, 101)]:
     print(msg)
 ```
+
+## x86-64 NASM
+
+```x86asm
+;
+; Intended to be used with 64-bit GNU/Linux systems.
+; Build:
+;   nasm -felf64 -o fizzbuzz.o
+;   gcc -o fizzbuzz fizzbuzz.o
+;
+extern printf
+extern puts
+
+global main:function
+
+section .text
+main:
+  push rbp
+  push rbx
+  push r12
+  mov rbp, rsp
+  mov rbx, 1
+main._loop:
+  cmp rbx, 100
+  jg main._exit
+  xor r12, r12
+  mov rax, rbx
+  xor rdx, rdx
+  mov rsi, 3
+  div rsi
+  or rdx, 0
+  jnz main._div_five
+  xor al, al
+  lea rdi, [rel fizz]
+  call printf wrt ..plt
+  add r12, rax
+main._div_five:
+  mov rax, rbx
+  xor rdx, rdx
+  mov rsi, 5
+  div rsi
+  or rdx, 0
+  jnz main._num
+  xor al, al
+  lea rdi, [rel buzz]
+  call printf wrt ..plt
+  add r12, rax
+main._num:
+  or r12, 0
+  jnz main._end_loop
+  mov al, 1
+  lea rdi, [rel number]
+  mov rsi, rbx
+  call printf wrt ..plt
+main._end_loop:
+  lea rdi, [rel empty]
+  call puts wrt ..plt
+  add rbx, 1
+  jmp main._loop
+main._exit:
+  xor eax, eax
+  mov rsp, rbp
+  pop r12
+  pop rbx
+  pop rbp
+  ret
+
+section .rodata
+  fizz: db `Fizz\0`
+  buzz: db `Buzz\0`
+number: db `%llu\0`
+ empty: db `\0`
+```
