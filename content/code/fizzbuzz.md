@@ -191,60 +191,82 @@ extern puts
 global main:function
 
 section .text
+           ONE_THIRD: equ 0xaaaaaaaaaaaaaaab
+         THREE_SHIFT: equ 1
+THREE_REMAINDER_MASK: equ 0xfffffffffffffffe
+           ONE_FIFTH: equ 0xcccccccccccccccd
+          FIVE_SHIFT: equ 2
+ FIVE_REMAINDER_MASK: equ 0xfffffffffffffffc
 main:
   push rbp
+  mov rbp, rsp
   push rbx
   push r12
-  mov rbp, rsp
+  push r13
   mov rbx, 1
 main._loop:
   cmp rbx, 100
   jg main._exit
-  xor r12, r12
+  xor r9, r9
   mov rax, rbx
-  xor rdx, rdx
-  mov rsi, 3
-  div rsi
-  or rdx, 0
-  jnz main._div_five
-  xor al, al
-  lea rdi, [rel fizz]
-  call printf wrt ..plt
-  add r12, rax
-main._div_five:
+  mov r10, ONE_THIRD
+  mov r11, ONE_FIFTH
+  mul r10
+  mov r10, rdx
+  mov r12, rdx
   mov rax, rbx
-  xor rdx, rdx
-  mov rsi, 5
-  div rsi
-  or rdx, 0
-  jnz main._num
-  xor al, al
-  lea rdi, [rel buzz]
+  mul r11
+  mov r11, rdx
+  mov r13, rdx
+  shr r10, THREE_SHIFT
+  shr r11, FIVE_SHIFT
+  and r12, THREE_REMAINDER_MASK
+  and r13, FIVE_REMAINDER_MASK
+  add r12, r10
+  add r13, r11
+  mov r10, rbx
+  mov r11, rbx
+  sub r10, r12
+  sub r11, r13
+  cmp r10, 0
+  setz r12b
+  cmp r11, 0
+  setz r13b
+  mov rsi, FIZZ_LENGTH
+  neg r12
+  mov rcx, BUZZ_LENGTH
+  neg r13
+  and rsi, r12
+  and rcx, r13
+  mov r9, rsi
+  lea rdi, [rel format]
+  lea rdx, [rel fizz]
+  lea r8, [rel buzz]
+  or r9, rcx
+  setz r9b
+  mov rax, rbx
+  neg r9
+  and rax, r9
+  and r9, 1
+  push rax
+  xor rax, rax
   call printf wrt ..plt
-  add r12, rax
-main._num:
-  or r12, 0
-  jnz main._end_loop
-  mov al, 1
-  lea rdi, [rel number]
-  mov rsi, rbx
-  call printf wrt ..plt
-main._end_loop:
-  lea rdi, [rel empty]
-  call puts wrt ..plt
+  add rsp, 8
   add rbx, 1
   jmp main._loop
 main._exit:
   xor eax, eax
-  mov rsp, rbp
+  pop r13
   pop r12
   pop rbx
+  mov rsp, rbp
   pop rbp
   ret
 
 section .rodata
-  fizz: db `Fizz\0`
-  buzz: db `Buzz\0`
-number: db `%llu\0`
- empty: db `\0`
+       fizz: db `Fizz\0`
+FIZZ_LENGTH: equ $-fizz
+       buzz: db `Buzz\0`
+BUZZ_LENGTH: equ $-buzz
+     format: db `%.*s%.*s%.*llu\n\0`
 ```
