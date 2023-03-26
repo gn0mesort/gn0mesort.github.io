@@ -186,7 +186,6 @@ for msg in [(lambda a:
 ;   gcc -o fizzbuzz fizzbuzz.o
 ;
 extern printf
-extern puts
 
 global main:function
 
