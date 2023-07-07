@@ -22,5 +22,5 @@ keywords:
   <dt>github:</dt>
   <dd><a href="https://github.com/gn0mesort/">gn0mesort</a></dd>
   <dt>discord:</dt>
-  <dd>gnomesort#5217</dd>
+  <dd>gnomesort</dd>
 </dl>
