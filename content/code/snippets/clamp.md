@@ -1,6 +1,8 @@
 ---
 title: "clamp"
 description: "Branch free integer clamp."
+summary: "Branch free integer clamp."
+highlighter: true
 date: 2022-06-18T00:00:00-07:00
 ---
 

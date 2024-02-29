@@ -1,5 +1,5 @@
 ---
-description: Alexander Rothman's homepage.
+summary: Alexander Rothman's homepage.
 keywords:
   - programming
   - c++

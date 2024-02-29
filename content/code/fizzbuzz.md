@@ -2,8 +2,13 @@
 title: "Fizzbuzz"
 subtitle: ""
 description: "The mandatory demonstration of minimum competency."
+summary:
+    "Fizzbuzz in various languages just to demonstrate that I'm not totally
+    useless. Some solutions are unnecessarily clever."
 date: 2022-03-29T15:10:39-07:00
 toc: true
+highlighter: true
+backrefs: true
 ---
 
 Fizzbuzz in various languages just to demonstrate that I'm not totally useless.
@@ -20,6 +25,36 @@ int main() {
   for (i = 1, j = 0; i <= 100; ++i, j = (!(i % 3) << 1) | (!(i % 5)))
   {
     printf("%.*s%.*s%.*d\n", (j & 2) << 1, &msg[0], (j & 1) << 2, &msg[5], !j, i * !j);
+  }
+  return 0;
+}
+```
+
+## C18 (Euler's Method)
+
+```c
+#include <stdio.h>
+
+int main() {
+  for (int i = 1; i <= 100; ++i)
+  {
+    switch ((i * i * i * i) % 15)
+    {
+    case 0:
+      puts("FizzBuzz");
+      break;
+    case 1:
+      printf("%d\n", i);
+      break;
+    case 6:
+      puts("Fizz");
+      break;
+    case 10:
+      puts("Buzz");
+      break;
+    default:
+      break;
+    }
   }
   return 0;
 }

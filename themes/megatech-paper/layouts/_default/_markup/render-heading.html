@@ -1,0 +1,5 @@
+{{ if .Page.Params.backrefs }}
+<h{{ .Level }} class="backref" id="{{ .Anchor }}"><span class="backref-heading">{{ .Text | safeHTML }}</span><aside><span class="backref-anchor"><a class="backref" href="#{{ .Anchor | safeURL }}">&lt;&#61;&#61;</a></span></aside></h{{ .Level }}>
+{{ else }}
+<h{{ .Level }} id="{{ .Anchor }}">{{ .Text | safeHTML }}</h{{ .Level }}>
+{{ end }}

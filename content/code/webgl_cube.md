@@ -3,7 +3,9 @@ title: "WebGL2 Cube"
 subtitle: ""
 description: "The Cube."
 date: 2022-03-29T20:35:23-07:00
+highlighter: true
 toc: false
+summary: The Cube.
 ---
 <div>
   <canvas id="context" class="center hide"  width="640" height="480"></canvas>

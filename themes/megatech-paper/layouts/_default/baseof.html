@@ -4,15 +4,21 @@
 {{ $title = .Page.Title }}
 {{ end }}
 <!DOCTYPE html>
-<html lang="{{ .Site.Language }}">
+<html lang="{{ .Site.LanguageCode }}">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    {{ if .Site.Params.AuthorName }}
-    <meta name="author" content="{{ .Site.Params.AuthorName }}" />
+    {{ with .Site.Home.OutputFormats.Get "rss" -}}
+    {{ printf `<link rel=%q type=%q href=%q title=%q>` .Rel .MediaType.Type .Permalink site.Title | safeHTML }}
+    {{ end }}
+    {{ if .Site.Params.Author.Name }}
+    <meta name="author" content="{{ .Site.Params.Author.Name }}" />
     {{ end }}
     {{ with .Keywords }}
     <meta name="keywords" content="{{ range $i, $e := . }}{{ if $i }}, {{ end }}{{ $e }}{{ end }}" />
+    {{ end }}
+    {{ if .Params.Summary }}
+    <meta name="description" content="{{ .Summary }}" />
     {{ end }}
     {{ hugo.Generator }}
     <title>{{ .Site.Title }}{{ if $is_page_or_section }} - {{ $title }}{{ end }}</title>
@@ -23,6 +29,9 @@
       {{ partial "css/fonts.css" . | safeCSS }}
       {{ partial "css/grid.css" . | safeCSS }}
       {{ partial "css/elements.css" . | safeCSS }}
+      {{ if .Page.Params.highlighter }}
+      {{ partial "css/highlight.css" . | safeCSS }}
+      {{ end }}
     </style>
     {{ block "head" . }}{{ end }}
   </head>
@@ -33,12 +42,19 @@
         <header>
           <hr />
           <h1 class="title center-text">{{ .Site.Title }}</h1>
-          <nav>
-            <a href="{{ .Site.Home.Permalink }}">~</a>&nbsp;/
-            {{ range .Site.Sections }}
-            <a href="{{ .Permalink }}">{{ replace (lower .Section) "_" " " }}</a>&nbsp;/
+          <div class="nav-grid-container">
+            <nav>
+              <a href="{{ .Site.Home.Permalink }}">~</a>&nbsp;/
+              {{ range .Site.Sections.ByTitle }}
+              <a href="{{ .Permalink }}">{{ replace (lower .Section) "_" " " }}</a>&nbsp;/
+              {{ end }}
+            </nav>
+            <nav class="icons">
+            {{ with .Site.Home.OutputFormats.Get "rss" -}}
+              <a href="{{ .Permalink }}"><img class="icon" src="/img/svg/rss.svg" /></a>
             {{ end }}
-          </nav>
+            </nav>
+          </div>
         <hr />
         </header>
         <main>
@@ -54,5 +70,11 @@
       <div class="right-column"></div>
     </div>
     {{ block "scripts" . }}{{ end }}
+    {{ if .Page.Params.highlighter }}
+    <script src="/js/highlight.min.js"></script>
+    <script>
+      window.addEventListener('load', hljs.highlightAll);
+    </script>
+    {{ end }}
   </body>
 </html>

@@ -2,8 +2,10 @@
 title: "is_even"
 subtitle: ""
 description: "Two's complement integer parity checks."
+summary: "Two's complement integer parity checks."
 date: 2022-04-11T21:36:21-07:00
 toc: false
+highlighter: true
 draft: false
 ---
 

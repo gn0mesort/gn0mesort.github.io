@@ -4,5 +4,7 @@ body {
 
 code {
   font-family: "Fira Code", "Fira Mono", monospace;
+  font-size: 10pt;
+  font-weight: bold;
   font-variant-ligatures: none;
 }

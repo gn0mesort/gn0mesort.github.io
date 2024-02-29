@@ -23,27 +23,21 @@ body {
 }
 
 @media only screen and (max-width: 8.5in) {
-  body {
-    text-align: initial;
-  }
-
   main {
     margin-left: 0.2in;
     margin-right: 0.2in;
   }
 }
 
-@media only screen and (min-width: 8.6in) {
-  body {
-    text-align: justify;
-  }
-}
-
 hr {
-  border-color: var(--main-fg);
+border-color: var(--main-fg);
   background-color: var(--main-fg);
   border-style: solid;
   border-width: 2px;
+}
+
+span.nowrap {
+  white-space: nowrap;
 }
 
 nav > a {
@@ -54,22 +48,110 @@ a {
   text-decoration: none;
 }
 
-a:link {
-  color: var(--blue);
-}
-
 a:hover, a:visited:hover {
-  color: var(--purple);
   text-decoration: underline;
   text-decoration-style: wavy;
 }
 
-a:active, a:visited:active {
-  color: var(--purple-highlight);
+@media (prefers-color-scheme: dark)
+{
+  a:link {
+    color: var(--highlight-orange);
+  }
+
+  a:hover, a:visited:hover {
+    color: var(--highlight-orange);
+  }
+
+  a:active, a:visited:active {
+    color: var(--highlight-purple);
+  }
+
+  a:visited {
+    color: var(--orange);
+  }
 }
 
-a:visited {
-  color: var(--aqua);
+@media (prefers-color-scheme: light)
+{
+  a:link {
+    color: var(--red);
+  }
+
+  a:hover, a:visited:hover {
+    color: var(--red);
+  }
+
+  a:active, a:visited:active {
+    color: var(--highlight-purple);
+  }
+
+  a:visited {
+    color: var(--highlight-red);
+  }
+}
+
+h1.backref, h2.backref, h3.backref, h4.backref, h5.backref, h6.backref {
+  display: grid;
+  grid-template: "heading anchor";
+  grid-template-columns: minmax(auto, 1fr) auto;
+  justify-content: left;
+  column-gap: 1rem;
+  white-space: nowrap;
+}
+
+span.backref-heading {
+  grid-area: heading;
+}
+
+span.backref-anchor {
+  grid-area: anchor;
+  justify-content: right;
+  font-family: "Fira Code", "Fira Mono", monospace;
+}
+
+
+a.backref {
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+a.backref:hover, a.backref:visited:hover {
+  text-decoration: none;
+}
+
+@media (prefers-color-scheme: dark)
+{
+
+  a.backref:link {
+    color: var(--bg1);
+  }
+
+  a.backref:hover, a.backref:visited:hover {
+    color: var(--highlight-orange);
+  }
+
+  a.backref:visited {
+    color: var(--bg2);
+  }
+
+}
+
+@media (prefers-color-scheme: light)
+{
+
+  a.backref:link {
+    color: var(--bg1);
+  }
+
+  a.backref:hover, a.backref:visited:hover {
+    color: var(--red);
+  }
+
+  a.backref:visited {
+    color: var(--bg1);
+  }
+
 }
 
 h1.title {
@@ -80,6 +162,13 @@ img {
   display: block;
   border: outset;
   margin: auto;
+}
+
+img.icon {
+  border: none;
+  display: inline-flex;
+  max-width: 14pt;
+  vertical-align: middle;
 }
 
 canvas {
@@ -99,6 +188,13 @@ pre {
 
 pre code.hljs {
   padding: 0.12in;
+}
+
+pre code {
+  font-weight: normal;
+  background-color: inherit;
+  padding: inherit;
+  border-radius: inherit;
 }
 
 main {

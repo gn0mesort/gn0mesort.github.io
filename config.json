@@ -1,0 +1,32 @@
+{
+  "baseUrl": "https://megate.ch/",
+  "title": "Megatech",
+  "theme": "megatech-paper",
+  "enableGitInfo": true,
+  "copyright": "© Alexander Rothman",
+  "params": {
+    "githubUser": "gn0mesort",
+    "mainSections": [ "projects" ],
+    "author": {
+      "email": "gnomesort@megate.ch",
+      "name": "Alexander Rothman"
+    }
+  },
+  "languageCode": "en-US",
+  "markup": {
+    "goldmark": {
+      "renderer": {
+        "unsafe": true
+      }
+    },
+    "highlight" : {
+      "codeFences": false
+    }
+  },
+  "outputs": {
+    "home": [ "html", "rss" ],
+    "section": [ "html" ],
+    "taxonomy": [ "html" ],
+    "term": [ "html" ]
+  }
+}

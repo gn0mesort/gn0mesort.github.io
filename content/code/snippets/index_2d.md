@@ -2,7 +2,9 @@
 title: "index_2d"
 subtitle: ""
 description: "2D index into a 1D array."
+summary: "2D index into a 1D array."
 date: 2022-03-29T20:18:59-07:00
+highlighter: true
 toc: false
 ---
 

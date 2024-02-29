@@ -28,13 +28,28 @@ div.grid-container {
 }
 
 div.grid-left-column {
-  grid-area: "left";
+  grid-area: left;
 }
 
 div.grid-middle-column {
-  grid-area: "middle";
+  grid-area: middle;
 }
 
 div.grid-right-column {
-  grid-area: "right"
+  grid-area: right;
+}
+
+div.nav-grid-container {
+  display: grid;
+  grid-template-areas: "navigation icons";
+  grid-template-columns: 1fr auto;
+  column-gap: 1rem;
+}
+
+div.nav-grid-container nav {
+  grid-area: navigation;
+}
+
+div.nav-grid-container nav.icons {
+  grid-area: icons;
 }

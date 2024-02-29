@@ -2,7 +2,9 @@
 title: "ulog2"
 subtitle: ""
 description: "Binary search based binary logarithm calculation."
+summary: "Binary search based binary logarithm calculation."
 date: 2022-03-29T13:39:00-07:00
+highlighter: true
 toc: false
 ---
 ```cpp

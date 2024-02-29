@@ -1,4 +1,9 @@
 {{ define "main" }}
+{{ if .Params.showdates }}
+{{ $published := .PublishDate.Format "January _2, 2006" }}
+{{ $published_dt := .PublishDate.Format "2006-01-02" }}
+<h4 class="center-text"><time datetime="{{ $published_dt }}">{{$published}}</time></h4>
+{{ end }}
 {{ if .Params.subtitle }}
 <p><span class="epigraph"><i>{{ .Params.subtitle | safeHTML }}</i></span>
 {{ if .Params.subtitleAttribution }}

@@ -2,8 +2,10 @@
 title: "abs"
 subtitle: ""
 description: "Branch free absolute value for two's complement integers and IEEE-754."
+summary: "Branch free absolute value for two's complement integers and IEEE-754."
 date: 2022-04-11T20:57:57-07:00
 toc: false
+highlighter: true
 draft: false
 ---
 

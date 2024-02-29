@@ -2,8 +2,10 @@
 title: "to_human_readable"
 subtitle: ""
 description: "Convert an unsigned integer byte count to a human readable string."
+summary: "Convert an unsigned integer byte count to a human readable string."
 date: 2022-04-13T13:35:38-07:00
 toc: false
+highlighter: true
 draft: false
 ---
 
