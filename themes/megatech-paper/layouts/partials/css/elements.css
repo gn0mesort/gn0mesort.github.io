@@ -169,6 +169,7 @@ img.icon {
   display: inline-flex;
   max-width: 14pt;
   vertical-align: middle;
+  aspect-ratio: 1 / 1;
 }
 
 canvas {

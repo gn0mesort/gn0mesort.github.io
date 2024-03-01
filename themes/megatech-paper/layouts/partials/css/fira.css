@@ -4,6 +4,7 @@
          url('/typefaces/woff2/FiraSans-Hair.woff2') format('woff2');
     font-weight: 100;
     font-style: normal;
+    font-display: swap;
 }
 
 @font-face{
@@ -12,6 +13,7 @@
          url('/typefaces/woff2/FiraSans-HairItalic.woff2') format('woff2');
     font-weight: 100;
     font-style: italic;
+    font-display: swap;
 }
 
 @font-face{
@@ -20,6 +22,7 @@
          url('/typefaces/woff2/FiraSans-UltraLight.woff2') format('woff2');
     font-weight: 200;
     font-style: normal;
+    font-display: swap;
 }
 
 @font-face{
@@ -28,6 +31,7 @@
          url('/typefaces/woff2/FiraSans-UltraLightItalic.woff2') format('woff2');
     font-weight: 200;
     font-style: italic;
+    font-display: swap;
 }
 
 @font-face{
@@ -36,6 +40,7 @@
          url('/typefaces/woff2/FiraSans-Light.woff2') format('woff2');
     font-weight: 300;
     font-style: normal;
+    font-display: swap;
 }
 
 @font-face{
@@ -44,6 +49,7 @@
          url('/typefaces/woff2/FiraSans-LightItalic.woff2') format('woff2');
     font-weight: 300;
     font-style: italic;
+    font-display: swap;
 }
 
 @font-face{
@@ -52,6 +58,7 @@
          url('/typefaces/woff2/FiraSans-Regular.woff2') format('woff2');
     font-weight: 400;
     font-style: normal;
+    font-display: swap;
 }
 
 @font-face{
@@ -60,6 +67,7 @@
          url('/typefaces/woff2/FiraSans-Italic.woff2') format('woff2');
     font-weight: 400;
     font-style: italic;
+    font-display: swap;
 }
 
 @font-face{
@@ -68,6 +76,7 @@
          url('/typefaces/woff2/FiraSans-Medium.woff2') format('woff2');
     font-weight: 500;
     font-style: normal;
+    font-display: swap;
 }
 
 @font-face{
@@ -76,6 +85,7 @@
          url('/typefaces/woff2/FiraSans-MediumItalic.woff2') format('woff2');
     font-weight: 500;
     font-style: italic;
+    font-display: swap;
 }
 
 @font-face{
@@ -84,6 +94,7 @@
          url('/typefaces/woff2/FiraSans-SemiBold.woff2') format('woff2');
     font-weight: 600;
     font-style: normal;
+    font-display: swap;
 }
 
 @font-face{
@@ -92,6 +103,7 @@
          url('/typefaces/woff2/FiraSans-SemiBoldItalic.woff2') format('woff2');
     font-weight: 600;
     font-style: italic;
+    font-display: swap;
 }
 
 @font-face{
@@ -100,6 +112,7 @@
          url('/typefaces/woff2/FiraSans-Bold.woff2') format('woff2');
     font-weight: 700;
     font-style: normal;
+    font-display: swap;
 }
 
 @font-face{
@@ -108,6 +121,7 @@
          url('/typefaces/woff2/FiraSans-BoldItalic.woff2') format('woff2');
     font-weight: 700;
     font-style: italic;
+    font-display: swap;
 }
 
 @font-face{
@@ -116,6 +130,7 @@
          url('/typefaces/woff2/FiraSans-ExtraBold.woff2') format('woff2');
     font-weight: 800;
     font-style: normal;
+    font-display: swap;
 }
 
 @font-face{
@@ -124,6 +139,7 @@
          url('/typefaces/woff2/FiraSans-ExtraBoldItalic.woff2') format('woff2');
     font-weight: 800;
     font-style: italic;
+    font-display: swap;
 }
 
 @font-face{
@@ -132,6 +148,7 @@
          url('/typefaces/woff2/FiraSans-Heavy.woff2') format('woff2');
     font-weight: 900;
     font-style: normal;
+    font-display: swap;
 }
 
 @font-face{
@@ -140,6 +157,7 @@
          url('/typefaces/woff2/FiraSans-HeavyItalic.woff2') format('woff2');
     font-weight: 900;
     font-style: italic;
+    font-display: swap;
 }
 
 
@@ -149,6 +167,7 @@
          url('/typefaces/woff2/FiraMono-Regular.woff2') format('woff2');
     font-weight: 400;
     font-style: normal;
+    font-display: swap;
 }
 
 @font-face{
@@ -157,5 +176,6 @@
          url('/typefaces/woff2/FiraMono-Bold.woff2') format('woff2');
     font-weight: 600;
     font-style: normal;
+    font-display: swap;
 }
 
