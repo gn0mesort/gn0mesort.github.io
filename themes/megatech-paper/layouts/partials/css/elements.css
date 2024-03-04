@@ -164,6 +164,10 @@ img {
   margin: auto;
 }
 
+a.icon, a.icon:hover, a.icon:active, a.icon:visited, a.icon:link {
+  text-decoration: none;
+}
+
 img.icon {
   border: none;
   display: inline-flex;

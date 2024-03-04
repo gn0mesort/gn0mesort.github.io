@@ -50,8 +50,20 @@
               {{ end }}
             </nav>
             <nav class="icons">
+            {{ if .Site.Params.GithubUser }}
+              <a class="icon" href="https://github.com/{{ .Site.Params.GithubUser }}">
+                <picture>
+                  <source srcset="/img/svg/github_mark_white.svg" media="(prefers-color-scheme: dark)" />
+                  <img class="icon" alt="Github" aria-label="Github" src="/img/svg/github_mark.svg" />
+                </picture>
+              </a>
+            {{ end }}
             {{ with .Site.Home.OutputFormats.Get "rss" -}}
-              <a href="{{ .Permalink }}"><img class="icon" alt="RSS Feed" aria-label="RSS Feed" src="/img/svg/rss.svg" /></a>
+              <a class="icon" href="{{ .Permalink }}">
+                <picture>
+                  <img class="icon" alt="RSS Feed" aria-label="RSS Feed" src="/img/svg/rss.svg" />
+                </picture>
+              </a>
             {{ end }}
             </nav>
           </div>
