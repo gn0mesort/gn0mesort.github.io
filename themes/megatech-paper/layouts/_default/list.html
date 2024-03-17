@@ -35,7 +35,9 @@
   {{ $show_dates := .Params.ShowDates }}
   {{ $published := .PublishDate.Format "January _2, 2006" }}
   {{ $published_dt := .PublishDate.Format "2006-01-02" }}
+  {{ if not .Params.NoList }}
   <li><a href="{{ .Permalink }}">{{ .Title }}</a>{{ if or .Description $show_dates}}&nbsp;-{{ end }}{{ if .Description }}&nbsp;{{ .Description }}{{ end }}{{ if $show_dates }}&nbsp;<time class="small" datetime="{{ $published_dt }}">({{ $published }})</time>{{ end }}</li>
+  {{ end }}
   {{ end }}
 </ul>
 {{ else }}

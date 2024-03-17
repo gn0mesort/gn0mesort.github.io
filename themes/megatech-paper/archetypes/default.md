@@ -12,4 +12,5 @@ backrefs: true
 highlighter: false
 showdates: false
 draft: true
+nolist: false
 ---
