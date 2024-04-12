@@ -23,6 +23,7 @@
     {{ hugo.Generator }}
     <title>{{ .Site.Title }}{{ if $is_page_or_section }} - {{ $title }}{{ end }}</title>
     <style>
+      {{ partial "css/base.css" . | safeCSS }}
       {{ partial "css/colors.css" . | safeCSS }}
       {{ partial "css/fira.css" . | safeCSS }}
       {{ partial "css/fira_code.css" . | safeCSS }}

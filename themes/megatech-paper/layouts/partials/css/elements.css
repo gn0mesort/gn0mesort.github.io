@@ -22,11 +22,9 @@ body {
   font-size: 12pt;
 }
 
-@media only screen and (max-width: 8.5in) {
-  main {
-    margin-left: 0.2in;
-    margin-right: 0.2in;
-  }
+main {
+  margin-left: 0.2in;
+  margin-right: 0.2in;
 }
 
 hr {
@@ -158,27 +156,23 @@ h1.title {
   font-size: 36pt;
 }
 
-img {
-  display: block;
-  border: outset;
-  margin: auto;
-}
 
 a.icon, a.icon:hover, a.icon:active, a.icon:visited, a.icon:link {
   text-decoration: none;
 }
 
 img.icon {
-  border: none;
   display: inline-flex;
   max-width: 14pt;
   vertical-align: middle;
   aspect-ratio: 1 / 1;
 }
 
-canvas {
+canvas#cube-context {
   display: block;
   margin: auto;
+  max-width: 100%;
+  height: auto;
 }
 
 pre {
@@ -214,4 +208,8 @@ span.epigraph {
 span.epigraph-attribution {
   display: block;
   text-align: right;
+}
+
+ul > li {
+  margin-bottom: 0.33rem;
 }
