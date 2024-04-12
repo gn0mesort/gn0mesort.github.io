@@ -1,7 +1,7 @@
 'use strict';
 
 function main() {
-    const canvas = document.getElementById('context');
+    const canvas = document.getElementById('cube-context');
     const gl = canvas.getContext('webgl2');
     if (!gl) {
         return;

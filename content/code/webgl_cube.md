@@ -8,7 +8,7 @@ toc: false
 summary: The Cube.
 ---
 <div>
-  <canvas id="context" class="center hide"  width="640" height="480"></canvas>
+  <canvas id="cube-context" width="640" height="480"></canvas>
   <script src="/js/glm-js.min.js"></script>
   <script src="/js/glcube.js"></script>
 </div>
@@ -17,7 +17,7 @@ summary: The Cube.
 'use strict';
 
 function main() {
-  const canvas = document.getElementById('context');
+  const canvas = document.getElementById('cube-context');
   const gl = canvas.getContext('webgl2');
   if (!gl) {
     return;
