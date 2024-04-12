@@ -17,7 +17,6 @@ toc: true
 backrefs: true
 highlighter: false
 showdates: true
-draft: true
 nolist: false
 ---
 
