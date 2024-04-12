@@ -1,4 +1,54 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Megatech</title><link>https://megate.ch/</link><description>Recent content on Megatech</description><generator>Hugo -- gohugo.io</generator><language>en-US</language><managingEditor>gnomesort@megate.ch (Alexander Rothman)</managingEditor><webMaster>gnomesort@megate.ch (Alexander Rothman)</webMaster><copyright>© Alexander Rothman</copyright><lastBuildDate>Thu, 11 Apr 2024 19:03:59 -0700</lastBuildDate><atom:link href="https://megate.ch/index.xml" rel="self" type="application/rss+xml"/><item><title>Standard C++ Tic-Tac-Toe</title><author>gnomesort@megate.ch</author><category>projects</category><link>https://megate.ch/projects/standard_cxx_tic_tac_toe/</link><pubDate>Thu, 21 Mar 2024</pubDate><guid>https://megate.ch/projects/standard_cxx_tic_tac_toe/</guid><description>&lt;h2 id="introduction">Introduction&lt;/h2>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Megatech</title><link>https://megate.ch/</link><description>Recent content on Megatech</description><generator>Hugo -- gohugo.io</generator><language>en-US</language><managingEditor>gnomesort@megate.ch (Alexander Rothman)</managingEditor><webMaster>gnomesort@megate.ch (Alexander Rothman)</webMaster><copyright>© Alexander Rothman</copyright><lastBuildDate>Thu, 11 Apr 2024 19:07:31 -0700</lastBuildDate><atom:link href="https://megate.ch/index.xml" rel="self" type="application/rss+xml"/><item><title>Sunset 76</title><author>gnomesort@megate.ch</author><category>projects</category><link>https://megate.ch/projects/sunset_76/</link><pubDate>Thu, 11 Apr 2024</pubDate><guid>https://megate.ch/projects/sunset_76/</guid><description>&lt;h2 id="introduction">Introduction&lt;/h2>
+&lt;p>In January, a friend of mine approached me about creating a web page for his small business. The business,
+&lt;a href="https://sunset76.com">Sunset 76&lt;/a>, had a domain name and some kind of shared web hosting package, but the previous
+operator had essentially abandoned it. The result was
+&lt;a href="https://megate.ch/img/sunset_76_original_desktop.png">a largely blank page with some blurry JPEG images&lt;/a>
+(&lt;a href="https://megate.ch/img/sunset_76_original_mobile.png">mobile&lt;/a>) that reflected poorly on Sunset 76.&lt;/p>
+&lt;p>I&amp;rsquo;m not a huge web guy, but I agreed to help. After all, the needs of a small business generally don&amp;rsquo;t involve vast
+web applications or services. Really, the only thing the business required was a single static web page answering its
+customer&amp;rsquo;s most common questions.&lt;/p>
+&lt;h2 id="the-problem">The Problem&lt;/h2>
+&lt;p>Basically, there were two problems involved in building a web page for Sunset 76. First, I needed to write the page
+itself, write the stylesheet, and create any images that the page required. Second, I needed to wrangle the hosting
+service, &lt;a href="https://www.turbify.com/">Turbify&lt;/a>, and convince it to display the page rather than one made through its
+builder.&lt;/p>
+&lt;p>Sunset 76&amp;rsquo;s new page needed to meet only the most basic requirement. It needed to look more or less professional. That
+meant &lt;a href="https://megate.ch/img/sunset_76_new_desktop.png">no blurry JPEG images&lt;/a> and a
+&lt;a href="https://megate.ch/img/sunset_76_new_mobile.png">responsive layout that would look presentable across devices&lt;/a>. Additionally, I needed
+to acquire any resource files myself.&lt;/p>
+&lt;p>Handling Turbify shouldn&amp;rsquo;t have been an issue. Uploading a file to a web server and configuring it to serve that same
+file should be easy. Unfortunately, Turbify&amp;rsquo;s web interface has some issues. At least on my end, pages that should
+exist don&amp;rsquo;t (e.g., their &lt;a href="https://www.cpanel.net/">cPanel&lt;/a> interface is intermittently inaccessible), links in
+documentation go to missing pages, and there&amp;rsquo;s no clear way to disable a web site created through the builder
+application.&lt;/p>
+&lt;h2 id="the-solution">The Solution&lt;/h2>
+&lt;p>Writing a static web page isn&amp;rsquo;t an especially complicated task. The hardest part is writing a stylesheet that looks
+good independent of the device displaying it. Even then, writing a sufficient stylesheet is mostly just time-consuming
+rather than cognitively challenging. In addition to HTML and CSS, I prepared images and typefaces for Sunset 76. I
+prepared the logo, under advisement from the client, using &lt;a href="https://inkscape.org/">Inkscape&lt;/a> and chose
+&lt;a href="http://mozilla.github.io/Fira/">Fira Sans&lt;/a> for the type. I also prepared additional images by rendering PDFs provided
+by the California Bureau of Automotive Repair into appropriately sized PNG images.&lt;/p>
+&lt;p>Getting Turbify to behave was a bigger issue than writing the web page. When I&amp;rsquo;ve dealt with web hosting in the past,
+it&amp;rsquo;s always been using a dedicated server that I could access using SSH. Unsurprisingly, in a shared hosting
+environment this is a no-go. Instead, I needed to do everything through Turbify&amp;rsquo;s cPanel. I don&amp;rsquo;t think this would
+have been so bad except that it was only accessible occasionally. Uploading the files wasn&amp;rsquo;t enough though. I still
+had to rewrite an &lt;code>.htaccess&lt;/code> file to make the page visible. I&amp;rsquo;m not big on &lt;a href="https://httpd.apache.org/">Apache&lt;/a>
+(Turbify seems to actually be using &lt;a href="https://www.litespeedtech.com/products/litespeed-web-server">LiteSpeed&lt;/a>) so I had
+to learn to do that.&lt;/p>
+&lt;h2 id="thoughts">Thoughts&lt;/h2>
+&lt;p>This was a pretty simple project and, for me, the real lesson was about technical debt. Sunset 76&amp;rsquo;s biggest problem
+wasn&amp;rsquo;t creating a functional static web page. Rather, its biggest difficulty was working around past decisions. I&amp;rsquo;m
+sure that, in the past, Turbify made sense. It probably didn&amp;rsquo;t require paying someone like me, and I&amp;rsquo;m sure that was
+a big plus in a world where most small businesses had a minimal web presence. Now, in a time when a web presence is
+more crucial the consequences of that previous decision need to be paid off.&lt;/p>
+&lt;p>In an ideal world, I think Sunset 76 would have ditched Turbify completely. It&amp;rsquo;s better to pay off all of that debt if
+possible. Realistically though, business needs to go on as usual, and I wasn&amp;rsquo;t contracted to reimagine Sunset 76&amp;rsquo;s IT
+situation. That&amp;rsquo;s just how commercial projects are. It&amp;rsquo;s that way even between friends. It would be nice to return to
+this some day and go for broke. Right now though, I&amp;rsquo;m content with the result.&lt;/p>
+&lt;p>This project started in January but, for various reasons, had a long hiatus until recently. I don&amp;rsquo;t mind, especially
+to help a friend, but I feel like this project somewhat interrupted my flow. Prior to returning to this, I had started
+on a &lt;a href="https://invisible-island.net/ncurses/">NCURSES&lt;/a> based game project. Hopefully, in the near term I can focus on
+that project. I&amp;rsquo;d like to get at least a demo completed and available before moving on to anything else.&lt;/p></description></item><item><title>Standard C++ Tic-Tac-Toe</title><author>gnomesort@megate.ch</author><category>projects</category><link>https://megate.ch/projects/standard_cxx_tic_tac_toe/</link><pubDate>Thu, 21 Mar 2024</pubDate><guid>https://megate.ch/projects/standard_cxx_tic_tac_toe/</guid><description>&lt;h2 id="introduction">Introduction&lt;/h2>
 &lt;p>Early in 2016, I really started to pick up &lt;span class="nowrap">C++&lt;/span>. I was taking an introductory level city
 college course that was a little too easy for me because I had taken a similar course several years prior. It was
 pretty standard, in my opinion, for a basic computer programming course. Most of the assignments involved writing
