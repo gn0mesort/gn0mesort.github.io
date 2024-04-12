@@ -21,7 +21,7 @@
   {{ if ge $pages 1 }}
   <h2 class="center-text">Latest</h2>
   <ul>
-    {{ range first 2 $pages }}
+    {{ range first 5 $pages }}
     {{ $show_dates := .Params.ShowDates }}
     {{ $published := .PublishDate.Format "Mon Jan _2 2006" }}
     {{ $published_dt := .PublishDate.Format "2006-01-02" }}
