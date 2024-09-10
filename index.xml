@@ -1,4 +1,106 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Megatech</title><link>https://megate.ch/</link><description>Recent content on Megatech</description><generator>Hugo -- gohugo.io</generator><language>en-US</language><managingEditor>gnomesort@megate.ch (Alexander Rothman)</managingEditor><webMaster>gnomesort@megate.ch (Alexander Rothman)</webMaster><copyright>© Alexander Rothman</copyright><lastBuildDate>Thu, 11 Apr 2024 19:07:31 -0700</lastBuildDate><atom:link href="https://megate.ch/index.xml" rel="self" type="application/rss+xml"/><item><title>Sunset 76</title><author>gnomesort@megate.ch</author><category>projects</category><link>https://megate.ch/projects/sunset_76/</link><pubDate>Thu, 11 Apr 2024</pubDate><guid>https://megate.ch/projects/sunset_76/</guid><description>&lt;h2 id="introduction">Introduction&lt;/h2>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Megatech</title><link>https://megate.ch/</link><description>Recent content on Megatech</description><generator>Hugo -- gohugo.io</generator><language>en-US</language><managingEditor>gnomesort@megate.ch (Alexander Rothman)</managingEditor><webMaster>gnomesort@megate.ch (Alexander Rothman)</webMaster><copyright>© Alexander Rothman</copyright><lastBuildDate>Mon, 09 Sep 2024 23:14:08 -0700</lastBuildDate><atom:link href="https://megate.ch/index.xml" rel="self" type="application/rss+xml"/><item><title>Megatech-Vulkan Dispatch</title><author>gnomesort@megate.ch</author><category>projects</category><link>https://megate.ch/projects/megatech_vulkan_dispatch/</link><pubDate>Mon, 09 Sep 2024</pubDate><guid>https://megate.ch/projects/megatech_vulkan_dispatch/</guid><description>&lt;h2 id="introduction">Introduction&lt;/h2>
+&lt;p>All the way &lt;a href="https://megate.ch/projects/standard_cxx_tic_tac_toe/">back in March&lt;/a>, I wrote that I thought a text-mode game would be a
+good next step after my little Tic-Tac-Toe project. When it came time to decide on something to work on, I actually
+did attempt this. I wanted to write a little &lt;a href="https://invisible-island.net/ncurses/announce.html">NCURSES&lt;/a>
+role-playing game. Unfortunately, I quickly lost interest. The big problem was that there simply isn&amp;rsquo;t a reliable why
+to retrieve keyboard input from the NCURSES interface. I tried using a different library
+(&lt;a href="https://github.com/dankamongmen/notcurses">notcurses&lt;/a>) to resolve this, but I was left feeling that my needs just
+didn&amp;rsquo;t map to the capabilities that were actually available.&lt;/p>
+&lt;p>In the same post where I wrote about wanting to write a text-mode game, I also wrote that I was tempted to go back to
+&lt;a href="https://www.khronos.org/opengl/">OpenGL&lt;/a> or &lt;a href="https://www.vulkan.org/">Vulkan&lt;/a>. Well, obviously, that&amp;rsquo;s what I ended
+up doing. After becoming frustrated with NCURSES, I decided to simply return to a topic I find interesting. I thought
+it would be fun to return to writing my own Vulkan API tool-kit.&lt;/p>
+&lt;p>Previously, when I&amp;rsquo;ve attempted this type of project, my eyes have been bigger than my stomach. To help keep
+everything grounded in reality, I decided to focus exclusively on Vulkan and start at the most basic level. In my
+opinion, the most basic level of Vulkan functionality is just preparing to access the API.&lt;/p>
+&lt;h2 id="the-problem">The Problem&lt;/h2>
+&lt;p>Before a Vulkan program can do anything interesting, it needs to discover function pointers to the commands that it&amp;rsquo;s
+going to use. Usually, a program can just link the Vulkan loader library and let the operating system&amp;rsquo;s run-time
+linker resolve the core Vulkan commands. Unfortunately, the
+&lt;a href="https://registry.khronos.org/vulkan/specs/1.3-extensions/html/vkspec.html#initialization-functionpointers">Vulkan specification&lt;/a>
+says this:&lt;/p>
+&lt;blockquote>
+&lt;p>Vulkan commands are not necessarily exposed by static linking on a platform.&lt;/p>
+&lt;/blockquote>
+&lt;p>This means that, with only one exception, applications might be required to resolve Vulkan commands using
+&lt;a href="https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkGetInstanceProcAddr.html">&lt;code>vkGetInstanceProcAddr&lt;/code>&lt;/a>.
+The singular exception is, of course, &lt;code>vkGetInstanceProcAddr&lt;/code> itself. On this, the
+specification provides some clarification:&lt;/p>
+&lt;blockquote>
+&lt;p>&lt;code>vkGetInstanceProcAddr&lt;/code> itself is obtained in a platform- and loader- specific manner. Typically, the loader library
+will export this command as a function symbol, so applications &lt;strong>can&lt;/strong> link against the loader library, or load it
+dynamically and look up the symbol using platform-specific APIs.&lt;/p>
+&lt;/blockquote>
+&lt;p>There is actually a second issue though. In addition to the above bits, the Vulkan specification says:&lt;/p>
+&lt;blockquote>
+&lt;p>In order to support systems with multiple Vulkan implementations, the function pointers returned by
+&lt;code>vkGetInstanceProcAddr&lt;/code> &lt;strong>may&lt;/strong> point to dispatch code that calls a different real implementation for different
+&lt;a href="https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkDevice.html">&lt;code>VkDevice&lt;/code>&lt;/a> objects or their child
+objects. The overhead of the internal dispatch for &lt;code>VkDevice&lt;/code> objects can be avoided by obtaining device-specific
+function pointers for any commands that use a device or device-child object as
+their dispatchable object.&lt;/p>
+&lt;/blockquote>
+&lt;p>To summarize all of this, a Vulkan application should do two things in the name of portability and performance. First,
+it should always resolve Vulkan commands using one of the two available resolvers (i.e., &lt;code>vkGetInstanceProcAddr&lt;/code> or
+&lt;a href="https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkGetDeviceProcAddr.html">&lt;code>vkGetDeviceProcAddr&lt;/code>&lt;/a>).
+Any other method of accessing Vulkan is not guaranteed. Second, it should avoid resolving device-level functionality
+with &lt;code>vkGetInstanceProcAddr&lt;/code>. Using &lt;code>vkGetDeviceProcAddr&lt;/code> is better because it allows the application to avoid
+additional dispatch work each time it invokes a device-level command.&lt;/p>
+&lt;p>So, here&amp;rsquo;s the problem: how does a Vulkan application manage this in a way that doesn&amp;rsquo;t suck?&lt;/p>
+&lt;h2 id="the-solution">The Solution&lt;/h2>
+&lt;p>My solution is a two-parter. First, there&amp;rsquo;s the
+&lt;a href="https://github.com/gn0mesort/megatech-vulkan-dispatch">Megatech-Vulkan Dispatch&lt;/a> library. It&amp;rsquo;s a pretty simple
+&lt;span class="nowrap">C++20&lt;/span> library that stores Vulkan function pointers in arrays. Second, there&amp;rsquo;s a Python
+script that generates the actual lists of Vulkan commands used in the &lt;span class="nowrap">C++&lt;/span> library. This
+script is actually where a lot of the magic is happening.&lt;/p>
+&lt;p>The script, which is a part of the
+&lt;a href="https://github.com/gn0mesort/megatech-vulkan-dispatch-tools">Megatech-Vulkan Dispatch Tools&lt;/a> package, is used to
+extract information from the XML representation of Vulkan. The script reads the XML specification, parses it, and
+extracts the bits relevant to commands. At that point it reads and renders a &lt;a href="https://www.makotemplates.org/">Mako&lt;/a>
+template to generate its output. The trick, in so far as any of this is a trick, is that the script understands enough
+of the Vulkan specification to provide the input template with very specific lists of commands. A user could, for
+example, ask it to only provide commands that are available in Vulkan 1.0, &lt;code>VK_KHR_surface&lt;/code>, &lt;code>VK_KHR_xcb_surface&lt;/code>, and
+&lt;code>VK_KHR_swapchain&lt;/code>. The script also understands dependencies between Vulkan features. This means that if a user
+requests a feature but doesn&amp;rsquo;t request the feature&amp;rsquo;s dependencies, the script will report an error.&lt;/p>
+&lt;p>The library is all about keeping things simple. As I already said, its main job is to store function pointers in
+arrays. It&amp;rsquo;s not exactly rocket science. The library provides three dispatch table objects (one for each level of
+Vulkan functionality). When an application initializes a dispatch table, the library loads the function pointers for
+the corresponding level of functionality. To retrieve a function pointer the application queries the dispatch table
+using either an index (in the form of a scoped enumeration value) or a hash value (computed using the 64-bit
+&lt;a href="https://en.wikipedia.org/wiki/Fowler%E2%80%93Noll%E2%80%93Vo_hash_function">FNV-1a&lt;/a> hash function). In either case,
+the library prefers to resolve these operations at compile-time. Basically, the strategy is to pay for loading Vulkan
+commands up front so that applications don&amp;rsquo;t have to call &lt;code>vkGetInstanceProcAddr&lt;/code> or &lt;code>vkGetDeviceProcAddr&lt;/code> in their
+main loop.&lt;/p>
+&lt;h2 id="thoughts">Thoughts&lt;/h2>
+&lt;p>Something I&amp;rsquo;ve been coping with a lot lately is realizing how obsessive I can be. I have a terrible time letting go of
+things, and it&amp;rsquo;s even worse when I&amp;rsquo;m being told I can&amp;rsquo;t do something. Vulkan is quickly becoming one of my obsessions.
+I simply can&amp;rsquo;t stand the idea that mastering it is too hard for me.&lt;/p>
+&lt;p>The dispatch problem is one I&amp;rsquo;ve tackled before (my previous project is &lt;a href="https://github.com/gn0mesort/vkfl">VKFL&lt;/a>),
+but I think this implementation is better considered than my previous work. Previously, I had used indexing as the
+exclusive method for accessing Vulkan commands. Since the library can be compiled with different sets of available
+commands, this could lead to an issue where an application would need to be recompiled any time the library changed.
+I guess a lot of software is that way ultimately, but the hash API that I&amp;rsquo;ve provided here solves the issue in this
+case. I think splitting the dispatch table up by level is a much better approach too. Previously, I had one dispatch
+table type that would be updated to use new functionality as it became available. This is fine for a Vulkan
+application with a single instance and device, but for multiple devices it permits some kind of weird behavior. The
+implementation I&amp;rsquo;ve used for this project, I think, is much clearer about what a client application should do (i.e.,
+give each device its own table).&lt;/p>
+&lt;p>I&amp;rsquo;m not super enthusiastic about this Vulkan dispatch thing to be clear. To me this is just a good way to get back to
+thinking about Vulkan. Dispatch tables aren&amp;rsquo;t a huge technical achievement, but they are something I need to build
+further Vulkan tools. My actual interest is in building a highly configurable graph-based 3D renderer.&lt;/p>
+&lt;p>That isn&amp;rsquo;t to say I think this is bad work though. There are other solutions to this floating around out there. The
+two I&amp;rsquo;m familiar with most, &lt;a href="https://github.com/zeux/volk">Volk&lt;/a> and
+&lt;a href="https://github.com/KhronosGroup/Vulkan-Hpp">vulkan.hpp&lt;/a>&amp;rsquo;s &lt;code>DispatchLoaderDynamic&lt;/code>, both have features I think are
+undesirable. Hopefully, Megatech-Vulkan Dispatch is useful to anyone who feels the more mainstream approaches don&amp;rsquo;t
+fit into their application. Even if my library doesn&amp;rsquo;t fit, I hope the generator script is at least instructive to
+some degree.&lt;/p>
+&lt;p>On a more personal note, I&amp;rsquo;ve been pretty up and down lately. Some days I&amp;rsquo;m feeling very positive and can get a lot
+done. Other days, I just end up sleeping. The killer heat here hasn&amp;rsquo;t helped in that regard. I&amp;rsquo;ll just keep drinking
+water and pushing forward though.&lt;/p>
+&lt;p>Writing these posts is always a struggle and I don&amp;rsquo;t get much done around them. Once, this is published though, I can
+get started on my next thing. Right now, I&amp;rsquo;m thinking of continuing on with Vulkan. If I get bored, I might switch
+gears to another game project instead. That&amp;rsquo;s just life, I try to focus on one thing but end up focusing on something
+else entirely.&lt;/p></description></item><item><title>Sunset 76</title><author>gnomesort@megate.ch</author><category>projects</category><link>https://megate.ch/projects/sunset_76/</link><pubDate>Thu, 11 Apr 2024</pubDate><guid>https://megate.ch/projects/sunset_76/</guid><description>&lt;h2 id="introduction">Introduction&lt;/h2>
 &lt;p>In January, a friend of mine approached me about creating a web page for his small business. The business,
 &lt;a href="https://sunset76.com">Sunset 76&lt;/a>, had a domain name and some kind of shared web hosting package, but the previous
 operator had essentially abandoned it. The result was
@@ -205,7 +307,7 @@ like everything else I&amp;rsquo;ve mentioned, though, this makes the source cod
 debug.&lt;/p>
 &lt;h2 id="the-solution">The Solution&lt;/h2>
 &lt;p>To solve these problems, &lt;a href="https://github.com/gn0mesort/godot/tree/3.5">the patched version of Godot&lt;/a>
-had to change both the &lt;code>Label&lt;/code> and &lt;code>RichTextLabel&lt;/code> nodes. The core of both nodes' new CJK line-breaking functionality
+had to change both the &lt;code>Label&lt;/code> and &lt;code>RichTextLabel&lt;/code> nodes. The core of both nodes&amp;rsquo; new CJK line-breaking functionality
 is the &lt;a href="https://github.com/gn0mesort/godot/blob/3.5/scene/gui/gs_cjk.h">&lt;code>gnomesort::is_cjk_x_char&lt;/code>&lt;/a> family of
 functions. These functions provide a modular way for Godot scene nodes to classify CJK text. This functionality
 includes simple detection (i.e., is the text CJK or not), detection of whether or not a character may end a line,
