@@ -3,16 +3,18 @@ title: "Fizzbuzz"
 subtitle: ""
 description: "The mandatory demonstration of minimum competency."
 summary:
-    "Fizzbuzz in various languages just to demonstrate that I'm not totally
-    useless. Some solutions are unnecessarily clever."
+    "This page is a list of \"Fizzbuzz\" implementations in various
+     languages. Some of the solutions are unnecessarily clever. Hopefully, this demonstrates that I'm not totally
+     useless."
 date: 2022-03-29T15:10:39-07:00
 toc: true
 highlighter: true
 backrefs: true
 ---
 
-Fizzbuzz in various languages just to demonstrate that I'm not totally useless.
-Some solutions are unnecessarily clever.
+This page is a list of ["Fizzbuzz"](https://https://en.wikipedia.org/wiki/Fizz_buzz) implementations in various
+languages. Some of the solutions are unnecessarily clever. Hopefully, this demonstrates that I'm not totally
+useless.
 
 ## C89
 
