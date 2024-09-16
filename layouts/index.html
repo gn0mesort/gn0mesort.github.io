@@ -19,7 +19,7 @@
   {{ .Content }}
   {{ $pages := sort (where .Site.RegularPages "Type" "in" site.Params.MainSections) "PublishDate" "desc" }}
   {{ if ge $pages 1 }}
-  <h2 class="center-text">Latest</h2>
+  <h1 class="center-text">Latest</h1>
   <ul>
     {{ range first 5 $pages }}
     {{ $show_dates := .Params.ShowDates }}

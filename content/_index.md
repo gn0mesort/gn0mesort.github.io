@@ -1,5 +1,5 @@
 ---
-summary: Alexander Rothman's homepage.
+summary: "Alexander Rothman's homepage."
 keywords:
   - programming
   - c++
@@ -11,9 +11,20 @@ keywords:
   - tea
   - pugs
 ---
-<h2 class="center-text">About Me</h2>
-<p class="center-text">I'm nothing like the grinning future-creature you envisaged this weekend.<br />Shamefully disappointing.</p>
-<h2 class="center-text">Contact</h2>
+<h1 class="center-text">About Me</h1>
+<article>
+<p class="center-text"><em>I'm nothing like the grinning future-creature you envisaged this weekend.</em></p>
+
+My name is Alex, and I'm a computer programmer living in Southern California. I'm interested in 3D graphics, animation,
+and game programming. Besides programming, I enjoy reading sci-fi and fantasy novels, playing computer games,
+swimming, and, occasionally, baking. I also love to relax with a good cup of tea.
+
+This web site has been different things at different times. Today, I'm using it to share my thoughts about the
+[projects](/projects) I work on. I try to write a little report about each project I finish. Besides that, sometimes I
+provide [code snippets](/code) (usually written in <span class="nowrap">C++</span>) that I find interesting or useful.
+
+</article>
+<h1 class="center-text">Contact</h1>
 <dl class="contact-list">
   <dt>gpg:</dt>
   <dd><a href="/res/publickey.gpg">5E45F01E3DE483CA</a></dd>
