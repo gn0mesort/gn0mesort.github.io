@@ -213,3 +213,18 @@ span.epigraph-attribution {
 ul > li {
   margin-bottom: 0.33rem;
 }
+
+dl.footnotes {
+  display: grid;
+  grid-template-areas: "id text";
+  column-gap: 1rem;
+  font-size: 9pt;
+}
+
+dl.footnotes > dt::after {
+  content: ".";
+}
+
+dl.footnotes > dd {
+  margin: auto;
+}
