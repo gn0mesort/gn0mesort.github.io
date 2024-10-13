@@ -1,4 +1,118 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Megatech</title><link>https://megate.ch/</link><description>Recent content on Megatech</description><generator>Hugo -- gohugo.io</generator><language>en-US</language><managingEditor>gnomesort@megate.ch (Alexander Rothman)</managingEditor><webMaster>gnomesort@megate.ch (Alexander Rothman)</webMaster><copyright>© Alexander Rothman</copyright><lastBuildDate>Mon, 16 Sep 2024 20:59:57 -0700</lastBuildDate><atom:link href="https://megate.ch/index.xml" rel="self" type="application/rss+xml"/><item><title>Megatech-Vulkan Dispatch</title><author>gnomesort@megate.ch</author><category>projects</category><link>https://megate.ch/projects/megatech_vulkan_dispatch/</link><pubDate>Mon, 09 Sep 2024</pubDate><guid>https://megate.ch/projects/megatech_vulkan_dispatch/</guid><description>&lt;h2 id="introduction">Introduction&lt;/h2>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Megatech</title><link>https://megate.ch/</link><description>Recent content on Megatech</description><generator>Hugo -- gohugo.io</generator><language>en-US</language><managingEditor>gnomesort@megate.ch (Alexander Rothman)</managingEditor><webMaster>gnomesort@megate.ch (Alexander Rothman)</webMaster><copyright>© Alexander Rothman</copyright><lastBuildDate>Sat, 12 Oct 2024 21:49:13 -0700</lastBuildDate><atom:link href="https://megate.ch/index.xml" rel="self" type="application/rss+xml"/><item><title>Megatech Assertions</title><author>gnomesort@megate.ch</author><category>projects</category><link>https://megate.ch/projects/megatech_assertions/</link><pubDate>Sat, 12 Oct 2024</pubDate><guid>https://megate.ch/projects/megatech_assertions/</guid><description>&lt;h2 id="introduction">Introduction&lt;/h2>
+&lt;p>Debug assertions are something I go back and forth on. In general, I&amp;rsquo;ve always tended towards what others might call
+cowboy coding. Lately, I&amp;rsquo;ve been trying to move away from that a bit. That means that I&amp;rsquo;ve been writing more tests,
+and I&amp;rsquo;d like to leverage assertions more too. Unfortunately for me, &lt;span class="nowrap">C++&amp;rsquo;s&lt;/span> assertion
+functionality kind of sucks.&lt;/p>
+&lt;p>On its own, &lt;span class="nowrap">C++20&lt;/span> provides two types of assertions. First, there are compile-time
+assertions with &lt;code>static_assert&lt;/code>. These are mostly fine for what they are. Plus, with concepts a lot of what I&amp;rsquo;d like
+to be able to enforce at compile-time is now enforceable. On the other hand, &lt;span class="nowrap">C++&amp;rsquo;s&lt;/span>
+run-time assert macro (that it inherited from C) sucks. It lacks any really useful debugging features and is
+confusingly controlled by the &lt;code>NDEBUG&lt;/code> macro (you disable debugging by enabling no debugging). That&amp;rsquo;s why I&amp;rsquo;ve
+usually provided my own implementation for run-time assertions.&lt;/p>
+&lt;p>In the past, when I&amp;rsquo;ve provided my own assertion implementation it was just part of the project I was working on.
+I didn&amp;rsquo;t want to do that this time around because I&amp;rsquo;m pretty sure I&amp;rsquo;d just be reimplementing the same stuff over and
+over. I also think it&amp;rsquo;s probably less useful to others. So, here&amp;rsquo;s another little library.&lt;/p>
+&lt;h2 id="the-problem">The Problem&lt;/h2>
+&lt;p>Standard &lt;span class="nowrap">C++&lt;/span> run-time assertions provide a very minimal interface. You can check that an
+expression is true. If the expression isn&amp;rsquo;t true, the program writes a diagnostic message and calls &lt;code>std::abort&lt;/code>. If
+you need more functionality than that, for example custom diagnostics, you need to resort to hacks like:&lt;/p>
+&lt;pre>&lt;code class="language-cpp">assert(i &amp;lt; 12 &amp;amp;&amp;amp; &amp;quot;If i is out of range you probably passed the wrong value to foo().&amp;quot;);
+&lt;/code>&lt;/pre>
+&lt;p>It would be better to have an interface that allows developers to provide an explicit message (like &lt;code>static_assert&lt;/code>
+does). It would be even better if that interface allowed for formatted messages, so that they can communicate run-time
+context. At least for me, sometimes being able to see the value that triggered a failure saves one or more round-trips
+with &lt;a href="https://sourceware.org/gdb/">GDB&lt;/a>.&lt;/p>
+&lt;p>In addition to lacking custom messages, I think the macro that controls standard assertions is confusing. When
+&lt;code>NDEBUG&lt;/code> is enabled (i.e., defined) debugging is disabled. Often, &lt;code>NDEBUG&lt;/code> will be defined whenever you build a
+program in a &amp;ldquo;release&amp;rdquo; configuration. It&amp;rsquo;s important to keep this behavior because lots of people expect it. However,
+it would be better to have an option to clearly enable or disable assertions regardless of &lt;code>NDEBUG&lt;/code>.&lt;/p>
+&lt;p>Finally, it&amp;rsquo;s critical that assertions work even in cases where you&amp;rsquo;ve totally screwed your program. I think, that&amp;rsquo;s
+probably why the standard macro is so limited. It can be written in a way that provides, basically, one point of
+failure (i.e., writing to standard error). Anything more complex either needs that same property, or it needs to have
+all of its fancy features be optional.&lt;/p>
+&lt;p>Outside the assertion problem itself, there&amp;rsquo;s also the problem of testing any module whose purpose is to abort a
+program with an error. Obviously, you can&amp;rsquo;t test programs of that type by checking for whether they exit with an
+error. So, these difficulties require some extra infrastructure to solve in a testable way.&lt;/p>
+&lt;h2 id="the-solution">The Solution&lt;/h2>
+&lt;p>My solution is a library that I&amp;rsquo;ve called &lt;a href="https://github.com/gn0mesort/megatech-assertions">Megatech Assertions&lt;/a>.
+Unsurprisingly, the primary interface is a set of function-like macros. Three of these macros
+(&lt;code>MEGATECH_ASSERT&lt;/code>, &lt;code>MEGATECH_PRECONDITION&lt;/code>, and &lt;code>MEGATECH_POSTCONDITION&lt;/code>) behave more or less like the standard
+assertion macro. There are three more macros that provide access to a formatted message assertion
+(&lt;code>MEGATECH_ASSERT_MSG&lt;/code>, &lt;code>MEGATECH_PRECONDITION_MSG&lt;/code>, and &lt;code>MEGATECH_POSTCONDITION_MSG&lt;/code>). These behave like the standard
+assertion, but they accept a format string and a variadic set of parameters. The exact type of format string is
+dependent on the features available at compile-time. By default, Megatech Assertions prefers the standard format
+library. This allows for type-safe formatting. If that isn&amp;rsquo;t available, for whatever reason, the library falls back
+to &lt;code>printf&lt;/code>-style syntax. This is more portable, but requires more care. Since this changing default behavior might be
+undesirable, applications can explicitly define which formatter to use at compile-time or leverage a set of explicit
+macros for each syntax (&lt;code>MEGATECH_*_MSG_FORMAT&lt;/code> and &lt;code>MEGATECH_*_MSG_PRINTF&lt;/code>). The standard format based functionality
+is always dependent on its availability at compile-time, so in the case that it isn&amp;rsquo;t available it is always disabled.&lt;/p>
+&lt;p>Underneath these macros is a pretty simple procedural interface. &lt;code>megatech::debug_assertion&lt;/code> provides the
+implementation for standard-like assertions. Meanwhile, &lt;code>megatech::debug_assertion_printf&lt;/code> (always available) and
+&lt;code>megatech::debug_assertion_format&lt;/code> (available when standard format is available and enabled) provide the extended
+message-based functionality.&lt;/p>
+&lt;p>Introducing the formatted message functionality creates some room for failures. For example, what should a program do
+when a formatter fails? You can&amp;rsquo;t throw an error back to the application after an assertion fails because the program
+is definitionally in an undefined state. The way I&amp;rsquo;ve handled this is by reporting an error message rather than the
+desired developer message. The error messages are compile-time constants and don&amp;rsquo;t require any formatting before
+output. Another issue is what happens if the system is out of memory? This is a somewhat unlikely case, but consider
+the following scenario:&lt;/p>
+&lt;pre>&lt;code class="language-cpp">auto p = reinterpret_cast&amp;lt;int*&amp;gt;(std::malloc(size * sizeof(int)));
+MEGATECH_ASSERT_MSG(p != nullptr, &amp;quot;Tried to allocate {} ints, but failed.&amp;quot;, size);
+&lt;/code>&lt;/pre>
+&lt;p>If this assertion fails, it isn&amp;rsquo;t safe to allocate further memory for a formatted message. We have to do something
+else. My implementation solves this by using a static buffer for formatted messages. Instead of allocating, the
+library truncates messages to the buffer&amp;rsquo;s size. Truncating for the &lt;code>printf&lt;/code>-style formatter is trivial. It calls
+&lt;code>std::vsnprintf&lt;/code>, which truncates all by itself. The standard format implementation uses &lt;code>std::vformat_to&lt;/code> instead.
+&lt;code>std::vformat_to&lt;/code> has no idea about buffer lengths, so I had to write a truncating iterator type which discards any
+extra output. The build configuration controls the exact buffer size. The default is 4001 bytes (i.e., enough for a
+minimum of 1000
+&lt;a href="https://en.wikipedia.org/wiki/Universal_Character_Set_characters#Characters_vs_code_points">UTF-8 &amp;ldquo;characters&amp;rdquo;&lt;/a> and a
+&lt;code>NUL&lt;/code>-terminator), but it can be reduced or fully disabled. When the build disables the message buffer, formatted
+message assertions behave identically to the standard-style assertions.&lt;/p>
+&lt;p>In terms of enabling and disabling assertions entirely, Megatech Assertions uses two macros. Applications can define
+&lt;code>MEGATECH_ASSERTIONS_DISABLED&lt;/code> to totally disable assertions after that point. The inverse,
+&lt;code>MEGATECH_ASSERTIONS_ENABLED&lt;/code> can be defined explicitly too. It has the obvious effect of enabling assertions. When
+an application leaves both macros undefined, &lt;code>MEGATECH_ASSERTIONS_ENABLED&lt;/code> is conditionally defined based on &lt;code>NDEBUG&lt;/code>.
+Disabled assertions all resolve to &lt;code>((void) 0)&lt;/code>.&lt;/p>
+&lt;p>That pretty much covers my problems, but there is another issue that came up while I was working on this library.
+What happens if multiple assertions fail, at roughly the same time, in parallel? The answer (at least with
+&lt;a href="https://www.gnu.org/software/libc/">GNU implementations&lt;/a>) seems to be that sometimes you get one message, and
+sometimes you get multiple. Usually, you don&amp;rsquo;t get more than two. This is mostly a personal choice, but I&amp;rsquo;d prefer to
+see as many messages as I can collect.&lt;/p>
+&lt;p>To enable more defined behavior in parallel programs, I&amp;rsquo;ve added some synchronization to make assertions thread-safe
+by default. When this is enabled, it changes a couple of things. First, it makes the message buffer thread-local. The
+exact consequences of this are hard for me to estimate, but it definitely expands the memory requirement for
+assertions (roughly 4 KiB per thread that fails an assertion rather than roughly 4 KiB for the entire library).
+Second, it adds a few synchronization primitives (i.e., &lt;code>std::mutex&lt;/code> and &lt;code>std::condition_variable&lt;/code>) to keep assertion
+failures on multiple threads from interfering with each other. The result is, as long as parallel failures happen
+roughly at the same time, multiple diagnostics will be collected before the program aborts.&lt;/p>
+&lt;p>Obviously, for some users this a huge over-complication. It introduces more points of failure, expands the memory
+cost of the library, and can slow things down. To fix that, I&amp;rsquo;ve made the thread-safety feature optional, but it&amp;rsquo;s
+enabled by default.&lt;/p>
+&lt;p>Lastly, to test all of this I&amp;rsquo;ve written a small Python script that implements the various test conditions I&amp;rsquo;m
+checking for. Basically, the script looks at standard error and checks for the messages it expects. Then the script
+converts the result into an exit code so that &lt;a href="https://mesonbuild.com/">Meson&lt;/a> can report the test result correctly.
+It&amp;rsquo;s nothing fancy, but how else are you going to test a feature that requires a program to fail?&lt;/p>
+&lt;h2 id="thoughts">Thoughts&lt;/h2>
+&lt;p>To me, this was a pretty boring little thing. You can probably tell, that I needed to over-complicate it a little
+just to keep myself interested. I actually started this because I felt that I should add assertions to a couple of
+places in &lt;a href="https://github.com/gn0mesort/megatech-vulkan-dispatch">Megatech-Vulkan Dispatch&lt;/a>. I mostly based the
+implementation on things that I had written before, but with greater attention to detail this time. For me, the
+functionality is satisfactory. I hope that it is useful for others too.&lt;/p>
+&lt;p>With this project behind me, I&amp;rsquo;m planning to do quick update to Megatech-Vulkan Dispatch. I probably won&amp;rsquo;t write
+about it because it&amp;rsquo;s just a small change. After that, I&amp;rsquo;m going back to
+&lt;a href="https://megate.ch/projects/megatech_vulkan_dispatch/#thoughts">my previous plans&lt;/a>. Either I&amp;rsquo;ll work on something
+&lt;a href="https://vulkan.org">Vulkan&lt;/a> related, or maybe I&amp;rsquo;ll revisit writing a text-mode game.&lt;/p>
+&lt;p>I&amp;rsquo;m actually leaning towards a game at the moment. I guess, I&amp;rsquo;m just fickle in that way. I like to write libraries
+like this one because they make me feel like I&amp;rsquo;m doing something generally useful (at least to all my future selves).
+Complete applications, on the other hand make me feel more like a, &amp;ldquo;real programmer&amp;rdquo;.&lt;/p>
+&lt;p>Lately, I&amp;rsquo;ve been really struggling. I&amp;rsquo;ve been looking for work, and it just hasn&amp;rsquo;t gone anywhere yet. The whole
+process makes me feel like a total reject. Obviously, getting summarily rejected by some business&amp;rsquo;s HR department or
+&lt;a href="https://en.wikipedia.org/wiki/Applicant_tracking_system">ATS&lt;/a> isn&amp;rsquo;t a huge personal indictment. It sure feels that
+way to me though. Whatever I do next, I want it to really build me up rather than make me feel like I&amp;rsquo;m a reject.
+That&amp;rsquo;s why I&amp;rsquo;ve been thinking about doing a less structured game project. None of the, &amp;ldquo;only standard
+&lt;span class="nowrap">C++&lt;/span>,&amp;rdquo; stuff or fixation on rigorous personal expectations I usually bring to my projects.&lt;/p>
+&lt;p>Regardless, I&amp;rsquo;m never going to give up. That&amp;rsquo;s just how I am.&lt;/p></description></item><item><title>Megatech-Vulkan Dispatch</title><author>gnomesort@megate.ch</author><category>projects</category><link>https://megate.ch/projects/megatech_vulkan_dispatch/</link><pubDate>Mon, 09 Sep 2024</pubDate><guid>https://megate.ch/projects/megatech_vulkan_dispatch/</guid><description>&lt;h2 id="introduction">Introduction&lt;/h2>
 &lt;p>All the way &lt;a href="https://megate.ch/projects/standard_cxx_tic_tac_toe/">back in March&lt;/a>, I wrote that I thought a text-mode game would be a
 good next step after my little Tic-Tac-Toe project. When it came time to decide on something to work on, I actually
 did attempt this. I wanted to write a little &lt;a href="https://invisible-island.net/ncurses/announce.html">NCURSES&lt;/a>
