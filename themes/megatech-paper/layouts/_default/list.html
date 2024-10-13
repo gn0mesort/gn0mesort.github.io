@@ -1,3 +1,26 @@
+{{ define "structured-data" }}
+{{ $i := 1 }}
+{{ $s := slice }}
+{{ range .Sections.ByTitle }}
+
+{{ $s = $s | append (slice (dict "@type" "ListItem" "position" $i "name" .Title "item" .Permalink)) }}
+{{ $i = add $i 1 }}
+{{ end }}
+{{ range .RegularPages.Reverse }}
+{{ if not .Params.NoList }}
+{{ $s = $s | append (slice (dict "@type" "ListItem" "position" $i "name" .Title "item" .Permalink)) }}
+{{ $i = add $i 1  }}
+{{ end }}
+{{ end }}
+{{ $m := dict
+  "@context" "https://schema.org"
+  "@type" "BreadcrumbList"
+  "itemListElement" $s
+}}
+<script type="application/ld+json">
+{{ encoding.Jsonify $m | safe.JS }}
+</script>
+{{ end }}
 {{ define "main" }}
 <h3 class="center-text">{{ .Description }}</h3>
 <article>

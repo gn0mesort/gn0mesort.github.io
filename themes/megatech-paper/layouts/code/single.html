@@ -1,3 +1,23 @@
+{{ define "structured-data" }}
+{{ $m := dict
+  "@context" "https://schema.org"
+  "@type" "Code"
+  "headline" .Params.Title
+  "datePublished" .Params.PublishDate
+  "dateModified" .Params.PublishDate
+  "author" (slice
+    (dict
+      "@type" "Person"
+      "name" .Site.Params.Author.Name
+      "alternateName" .Site.Params.Author.AlternateName
+      "url" .Site.Home.Permalink
+      "email" .Site.Params.Author.Email
+    ))
+}}
+<script type="application/ld+json">
+{{ encoding.Jsonify $m | safe.JS }}
+</script>
+{{ end }}
 {{ define "main" }}
 {{ if .Params.subtitle }}
 <p><span class="epigraph"><i>{{ .Params.subtitle | safeHTML }}</i></span>

@@ -9,7 +9,8 @@
     "mainSections": [ "projects" ],
     "author": {
       "email": "gnomesort@megate.ch",
-      "name": "Alexander Rothman"
+      "name": "Alexander Rothman",
+      "alternateName": "gnomesort"
     }
   },
   "languageCode": "en-US",

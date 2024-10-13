@@ -15,6 +15,26 @@
     }
   </style>
 {{ end }}
+{{ define "structured-data" }}
+{{ $last := index (sort .Site.RegularPages "PublishDate" "desc") 0 }}
+{{ $m := dict
+  "@context" "https://schema.org"
+  "@type" "ProfilePage"
+  "headline" .Params.Title
+  "dateModified" $last.PublishDate
+  "mainEntity" (slice
+    (dict
+      "@type" "Person"
+      "name" .Site.Params.Author.Name
+      "alternateName" .Site.Params.Author.AlternateName
+      "url" .Site.Home.Permalink
+      "email" .Site.Params.Author.Email
+    ))
+}}
+<script type="application/ld+json">
+{{ encoding.Jsonify $m | safe.JS }}
+</script>
+{{ end }}
 {{ define "main" }}
   {{ .Content }}
   {{ $pages := sort (where .Site.RegularPages "Type" "in" site.Params.MainSections) "PublishDate" "desc" }}
@@ -23,7 +43,7 @@
   <ul>
     {{ range first 5 $pages }}
     {{ $show_dates := .Params.ShowDates }}
-    {{ $published := .PublishDate.Format "Mon Jan _2 2006" }}
+    {{ $published := .PublishDate.Format "January _2 2006" }}
     {{ $published_dt := .PublishDate.Format "2006-01-02" }}
     <li><a href="{{ .Permalink }}">{{ .Title }}</a>{{ if or .Description $show_dates}}&nbsp;-{{ end }}{{ if .Description }}&nbsp;{{ .Description }}{{ end }}{{ if $show_dates }}&nbsp;<time class="small" datetime="{{ $published_dt }}">({{ $published }})</time>{{ end }}</li>
     {{ end }}

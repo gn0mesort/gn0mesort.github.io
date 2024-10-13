@@ -34,6 +34,7 @@
       {{ partial "css/highlight.css" . | safeCSS }}
       {{ end }}
     </style>
+    {{ block "structured-data" . }}{{ end }}
     {{ block "head" . }}{{ end }}
   </head>
   <body>
