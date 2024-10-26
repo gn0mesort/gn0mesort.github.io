@@ -1,4 +1,96 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Megatech</title><link>https://megate.ch/</link><description>Recent content on Megatech</description><generator>Hugo -- gohugo.io</generator><language>en-US</language><managingEditor>gnomesort@megate.ch (Alexander Rothman)</managingEditor><webMaster>gnomesort@megate.ch (Alexander Rothman)</webMaster><copyright>© Alexander Rothman</copyright><lastBuildDate>Sat, 12 Oct 2024 21:49:13 -0700</lastBuildDate><atom:link href="https://megate.ch/index.xml" rel="self" type="application/rss+xml"/><item><title>Megatech Assertions</title><author>gnomesort@megate.ch</author><category>projects</category><link>https://megate.ch/projects/megatech_assertions/</link><pubDate>Sat, 12 Oct 2024</pubDate><guid>https://megate.ch/projects/megatech_assertions/</guid><description>&lt;h2 id="introduction">Introduction&lt;/h2>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Megatech</title><link>https://megate.ch/</link><description>Recent content on Megatech</description><generator>Hugo -- gohugo.io</generator><language>en-US</language><managingEditor>gnomesort@megate.ch (Alexander Rothman)</managingEditor><webMaster>gnomesort@megate.ch (Alexander Rothman)</webMaster><copyright>© Alexander Rothman</copyright><lastBuildDate>Fri, 25 Oct 2024 23:43:54 -0700</lastBuildDate><atom:link href="https://megate.ch/index.xml" rel="self" type="application/rss+xml"/><item><title>Mandelbrot Set</title><author>gnomesort@megate.ch</author><category>projects</category><link>https://megate.ch/projects/mandelbrot_set/</link><pubDate>Fri, 25 Oct 2024</pubDate><guid>https://megate.ch/projects/mandelbrot_set/</guid><description>&lt;h2 id="introduction">Introduction&lt;/h2>
+&lt;p>I didn&amp;rsquo;t think I&amp;rsquo;d be writing anything this soon after my last post. I was starting to brainstorm some game ideas,
+because that&amp;rsquo;s what I wanted to do. Then outside forces kind of led me astray. At first, I just wanted to get back
+to rendering something. Then, I had a pretty bad day on Sunday (&lt;span class="nowrap">October 20, 2024&lt;/span>). I
+guess, I was just in a weird mood and I decided to work it out by staying up all night (I didn&amp;rsquo;t go to sleep until
+around 10:00 the next day). I spent most of the night writing &lt;a href="https://github.com/gn0mesort/mandelbrot-set">a program&lt;/a>
+that draws the &lt;a href="https://en.wikipedia.org/wiki/Mandelbrot_set">Mandelbrot set&lt;/a> fractal. The result worked acceptably,
+but I decided I could do a bit better if I gave it a few more days of work. That&amp;rsquo;s what I ended up doing, and here we
+are.&lt;/p>
+&lt;a href="https://megate.ch/img/mandelbrot_1_1920x1080.png">
+&lt;picture class="framed">
+&lt;img alt="An image of a fractal." class="aspect-16-9" src="https://megate.ch/img/mandelbrot_1_640x360.avif" />
+&lt;/picture>
+&lt;/a>
+&lt;h2 id="the-problem">The Problem&lt;/h2>
+&lt;p>I wasn&amp;rsquo;t really in the frame of mind to think about, like, software requirements when I started this project. Here&amp;rsquo;s
+the basic idea though.&lt;/p>
+&lt;p>First off, the goal was to write a hardware accelerated version of one of the basic
+&lt;a href="https://en.wikipedia.org/wiki/Plotting_algorithms_for_the_Mandelbrot_set">plotting algorithms for the Mandelbrot set&lt;/a>.
+I&amp;rsquo;ve always thought of this kind of thing as being a sort of elite high math topic, perhaps only accessible to some
+sort of math elves, but the computation isn&amp;rsquo;t actually that complex. Secondly, I wanted to do this with
+&lt;a href="https://www.opengl.org/">OpenGL&lt;/a> and &lt;a href="https://www.libsdl.org/">SDL&lt;/a> instead of having a weird obsessive need to
+maximize my burden with &lt;a href="https://www.vulkan.org/">Vulkan&lt;/a> (and maybe &lt;a href="https://www.x.org/wiki/">X11&lt;/a>). Finally, after
+completing my all-night session I wanted to ensure the resulting software was presentable and polished enough that I
+could call it complete.&lt;/p>
+&lt;a href="https://megate.ch/img/mandelbrot_2_1920x1080.png">
+&lt;picture class="framed">
+&lt;img title="Be wary of Elden Ring" alt="An image of a fractal." class="aspect-16-9" src="https://megate.ch/img/mandelbrot_2_640x360.avif" />
+&lt;/picture>
+&lt;/a>
+&lt;h2 id="the-solution">The Solution&lt;/h2>
+&lt;p>Ok, I&amp;rsquo;m going to go point by point here too.&lt;/p>
+&lt;p>To get the actual image drawn, I implemented a screen-space approach. The computation happens in the fragment shader
+and it&amp;rsquo;s a two-step process. First, the shader computes a recursive series defined as
+&lt;code>z&lt;sub>0&lt;/sub> = (0, 0), z&lt;sub>n&lt;/sub> = z&lt;sub>n-1&lt;/sub>&lt;sup>2&lt;/sup> + c&lt;/code>.
+Here, &lt;code>c&lt;/code> is the two-dimensional coordinate of the fragment on the screen. The shader does some preprocessing to map
+the discrete coordinate into range and to adjust for the camera&amp;rsquo;s position too. If the series diverges to infinity
+(i.e., &lt;code>|z&lt;sub>n&lt;/sub>| &amp;gt; 2&lt;sup>16&lt;/sup>&lt;/code>) or the shader reaches the 1000&lt;sup>th&lt;/sup> term, the
+first step ends. The second step is simpler. Using the last computed term, the shader maps the term&amp;rsquo;s index to a
+color in a 256-color palette. The specific palette I chose is called
+&lt;a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0199239">Cividis&lt;/a>. There&amp;rsquo;s also a black and white
+variant where coordinates that diverge to infinite are black and finite coordinates are white.&lt;/p>
+&lt;p>Despite my initial view that this was some real MIT/Berkeley/Stanford-level stuff, it isn&amp;rsquo;t really that much math. I
+won&amp;rsquo;t pretend I get it, but the implementation is straight-forward.&lt;/p>
+&lt;a href="https://megate.ch/img/mandelbrot_3_1920x1080.png">
+&lt;picture class="framed">
+&lt;img alt="An image of a fractal." class="aspect-16-9" src="https://megate.ch/img/mandelbrot_3_640x360.avif" />
+&lt;/picture>
+&lt;/a>
+&lt;p>On the CPU-side of the application, I used SDL2 and OpenGL 4.5 (loaded via &lt;a href="https://github.com/Dav1dde/glad">Glad&lt;/a>). I
+have plenty of complaints about this, but it really was the right choice. If I had gone with Vulkan and directly
+fiddling with X11 it would have taken me a month or more to finish. As usual, with C APIs like these, a lot of the
+program is just about handling their inconsistent error mechanisms. Initially, I wrote the application with no error
+handling at all. Instead of checking info logs to determine why my shader didn&amp;rsquo;t work, at various points, I just ran
+&lt;a href="https://renderdoc.org/">Renderdoc&lt;/a> (compiling this from source was tricky) and prayed. After my all-night jam
+session, I went back and added all the error handling. It&amp;rsquo;s nothing special. If any call to SDL or OpenGL fails, the
+application just bails out.&lt;/p>
+&lt;a href="https://megate.ch/img/mandelbrot_4_1920x1080.png">
+&lt;picture class="framed">
+&lt;img alt="An image of a fractal." class="aspect-16-9" src="https://megate.ch/img/mandelbrot_4_640x360.avif" />
+&lt;/picture>
+&lt;/a>
+&lt;p>As far as structure, the program is pretty normal. It starts with initializing SDL and creating an OpenGL context.
+Next, I prepare my shaders, a vertex array, and vertex and index buffers. This is all just to draw a rectangle to the
+entire drawable area. This first phase of the program also sets up some miscellaneous OpenGL stuff (e.g., setting the
+clear color to gray, enabling &lt;a href="https://en.wikipedia.org/wiki/Multisample_anti-aliasing">MSAA&lt;/a>, and enabling
+&lt;a href="https://en.wikipedia.org/wiki/SRGB">sRGB&lt;/a> conversion). Next, the application enters its main loop. Again, the loop is
+pretty standard stuff. I (stack) allocate a bunch of variables for various controls and conditions. At the top of the
+loop I compute the delta-time of the frame and render the current frame from scratch. After that, I collect input from
+SDL, and update my control state. The loop ends by updating the camera&amp;rsquo;s position. When the loop is broken, the
+program ends with tear down.&lt;/p>
+&lt;p>The last bit of any real interest is the code that updates the camera based on the state of the controls. My initial
+implementation didn&amp;rsquo;t have controls at all. Instead, the view would just zoom in and out based on the program&amp;rsquo;s run
+time. That kind of sucked though because a user couldn&amp;rsquo;t zoom in on all the fine details of the fractal. To improve
+things I added simple controls which were triggered directly by SDL events. It was a serviceable implementation, but
+it wasn&amp;rsquo;t smooth because it wasn&amp;rsquo;t delta-timed. Instead, the camera just teleported around. To smooth things out, I
+created a little extra state for the keyboard controls, added proper delta-timing, and ensured zoom changes were
+linearly interpolated. I think the results are pretty smooth.&lt;/p>
+&lt;h2 id="thoughts">Thoughts&lt;/h2>
+&lt;p>Based on what I said in the introduction, it should be obvious that this project didn&amp;rsquo;t really come from a good
+place. I was really feeling down on myself and I needed a win to get back in the right mindset. Now, I&amp;rsquo;m feeling
+alright, so the project did its job. I still want to do something more significant, but it&amp;rsquo;s really hard to focus
+on all the boilerplate for Vulkan when I&amp;rsquo;m struggling in other ways. Game design is like that for me too. I don&amp;rsquo;t want
+to just cowboy another little terminal game. I want to make something half-way decent, but even a thin slice of a
+half-way decent game requires a lot of design work.&lt;/p>
+&lt;p>I&amp;rsquo;m happy that I made something that I think is beautiful for once, but it&amp;rsquo;s still not good enough for me. A lot of
+the time I wonder, are the barriers really self-imposed? Is pizza, Diet Coke, and a cheap PC really all I need to make
+it? It sure feels like millions of dollars of capitalization would make things easier.&lt;/p>
+&lt;a href="https://megate.ch/img/mandelbrot_5_1920x1080.png">
+&lt;picture class="framed">
+&lt;img alt="An image of a fractal." class="aspect-16-9" src="https://megate.ch/img/mandelbrot_5_640x360.avif" />
+&lt;/picture>
+&lt;/a></description></item><item><title>Megatech Assertions</title><author>gnomesort@megate.ch</author><category>projects</category><link>https://megate.ch/projects/megatech_assertions/</link><pubDate>Sat, 12 Oct 2024</pubDate><guid>https://megate.ch/projects/megatech_assertions/</guid><description>&lt;h2 id="introduction">Introduction&lt;/h2>
 &lt;p>Debug assertions are something I go back and forth on. In general, I&amp;rsquo;ve always tended towards what others might call
 cowboy coding. Lately, I&amp;rsquo;ve been trying to move away from that a bit. That means that I&amp;rsquo;ve been writing more tests,
 and I&amp;rsquo;d like to leverage assertions more too. Unfortunately for me, &lt;span class="nowrap">C++&amp;rsquo;s&lt;/span> assertion
