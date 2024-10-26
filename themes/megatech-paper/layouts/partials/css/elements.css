@@ -178,11 +178,11 @@ picture.framed img {
 }
 
 picture img.aspect-16-9 {
-  aspect-ratio 16 / 9;
+  aspect-ratio: 16 / 9;
 }
 
 picture img.aspect-4-3 {
-  aspect-ration 4 / 3;
+  aspect-ratio: 4 / 3;
 }
 
 canvas#cube-context {
