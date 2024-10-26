@@ -168,6 +168,23 @@ img.icon {
   aspect-ratio: 1 / 1;
 }
 
+picture.framed img {
+  color: inherit;
+  display: block;
+  border: outset;
+  border-color: var(--main-fg);
+  margin: auto;
+  max-width: 100%;
+}
+
+picture img.aspect-16-9 {
+  aspect-ratio 16 / 9;
+}
+
+picture img.aspect-4-3 {
+  aspect-ration 4 / 3;
+}
+
 canvas#cube-context {
   display: block;
   margin: auto;
