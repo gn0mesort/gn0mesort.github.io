@@ -1,0 +1,91 @@
+{{ define "head" }}
+<style>
+  div.portfolio-grid {
+    display: grid;
+    column-gap: 1rem;
+    margin-bottom: 1rem;
+  }
+  @media screen and (min-width: 525px)
+  {
+    div.portfolio-grid {
+      grid-template-areas: 'head links'
+                           'main skills';
+    }
+  }
+  @media screen and (max-width: 525px)
+  {
+    div.portfolio-grid {
+      grid-template-areas: 'head'
+                           'links'
+                           'main'
+                           'skills';
+      row-gap: 0.25rem;
+    }
+  }
+  div.portfolio-grid .head {
+    grid-area: head;
+    margin: 0;
+  }
+  @media screen and (min-width: 525px)
+  {
+    div.portfolio-grid .head {
+      white-space: nowrap;
+    }
+  }
+  div.portfolio-grid .links {
+    grid-area: links;
+    margin: auto 0 auto 0;
+  }
+  @media screen and (max-width: 525px)
+  {
+    div.portfolio-grid .links {
+      white-space: nowrap;
+    }
+  }
+  div.portfolio-grid .skills {
+    grid-area: skills;
+    margin: auto 0 auto 0;
+  }
+  div.portfolio-grid .main {
+    grid-area: main;
+  }
+  dl.inner-grid {
+    display: grid;
+    column-gap: 1rem;
+    grid-template-columns: auto auto;
+  }
+  dl.inner-grid dt {
+    font-weight: bold;
+    grid-column-start: 1;
+  }
+  dl.inner-grid dd {
+    grid-column-start: 2;
+    margin: 0;
+  }
+  dl.widen-rows {
+    row-gap: 0.5rem;
+  }
+</style>
+{{ end }}
+{{ define "structured-data" }}
+{{ $m := dict
+  "@context" "https://schema.org"
+  "@type" "ProfilePage"
+  "headline" .Params.Title
+  "dateModified" .PublishDate
+  "mainEntity" (slice
+    (dict
+      "@type" "Person"
+      "name" .Site.Params.Author.Name
+      "alternateName" .Site.Params.Author.AlternateName
+      "url" .Site.Home.Permalink
+      "email" .Site.Params.Author.Email
+    ))
+}}
+<script type="application/ld+json">
+{{ encoding.Jsonify $m | safe.JS }}
+</script>
+{{ end }}
+{{ define "main" }}
+  {{ .Content }}
+{{ end }}

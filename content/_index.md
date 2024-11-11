@@ -32,6 +32,8 @@ provide [code snippets](/code) (usually written in <span class="nowrap">C++</spa
   <dd><a href="mailto:gnomesort@megate.ch">gnomesort@megate.ch</a></dd>
   <dt>github:</dt>
   <dd><a href="https://github.com/gn0mesort/">gn0mesort</a></dd>
+  <dt>linkedin:</dt>
+  <dd><a href="https://www.linkedin.com/in/alexander-rothman-363485330/">Alexander Rothman</a></dd>
   <dt>discord:</dt>
   <dd>gnomesort</dd>
 </dl>
