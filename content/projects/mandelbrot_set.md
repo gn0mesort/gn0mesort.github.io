@@ -70,7 +70,7 @@ the discrete coordinate into range and to adjust for the camera's position too. 
 first step ends. The  second step is simpler. Using the last computed term, the shader maps the term's index to a
 color in a 256-color  palette. The specific palette I chose is called
 [Cividis](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0199239). There's also a black and white
-variant where coordinates that diverge to infinite are black and finite coordinates are white.
+variant where coordinates that diverge to infinity are black and finite coordinates are white.
 
 Despite my initial view that this was some real MIT/Berkeley/Stanford-level stuff, it isn't really that much math. I
 won't pretend I get it, but the implementation is straight-forward.
