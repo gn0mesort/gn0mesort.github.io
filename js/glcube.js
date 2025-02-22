@@ -39,6 +39,18 @@ in vec3 frg_color;
 
 out vec4 final_color;
 
+float gamma(float channel) {
+  if (channel <= 0.0031308)
+  {
+    return 12.92 * channel;
+  }
+  return pow(channel, 1.0 / 2.4) - 0.055;
+}
+
+vec3 gamma(vec3 color) {
+  return vec3(gamma(color.r), gamma(color.g), gamma(color.b));
+}
+
 void main() {
   vec3 ambient = 0.1 * light_color;
   vec3 light_direction = normalize(light_position - frg_position);
@@ -50,7 +62,7 @@ void main() {
                   light_color;
   vec3 result = specular + diffuse + ambient;
 
-  final_color = vec4(result * frg_color, 1.0);
+  final_color = vec4(gamma(result * frg_color), 1.0);
 }
 `;
 
@@ -137,7 +149,7 @@ void main() {
     const cameraUp = glm.vec3([0, 1, 0]);
     const view = glm.lookAt(cameraPos, glm.vec3(), cameraUp).elements;
     let model = glm.mat4();
-    let last = Date.now();
+    let last = performance.now();
     let dt = 0;
 
     const drawScene = () => {
@@ -151,8 +163,8 @@ void main() {
         gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
         gl.drawArrays(gl.TRIANGLES, 0, vertices.length / 9);
         requestAnimationFrame(drawScene);
-        dt = (Date.now() - last) / 1000;
-        last = Date.now();
+        dt = (performance.now() - last) / 1000;
+        last = performance.now();
     };
     requestAnimationFrame(drawScene);
 }

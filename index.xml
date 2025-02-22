@@ -1,4 +1,292 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Megatech</title><link>https://megate.ch/</link><description>Recent content on Megatech</description><generator>Hugo -- gohugo.io</generator><language>en-US</language><managingEditor>gnomesort@megate.ch (Alexander Rothman)</managingEditor><webMaster>gnomesort@megate.ch (Alexander Rothman)</webMaster><copyright>© Alexander Rothman</copyright><lastBuildDate>Sun, 10 Nov 2024 21:20:23 -0800</lastBuildDate><atom:link href="https://megate.ch/index.xml" rel="self" type="application/rss+xml"/><item><title>Mandelbrot Set</title><author>gnomesort@megate.ch</author><category>projects</category><link>https://megate.ch/projects/mandelbrot_set/</link><pubDate>Fri, 25 Oct 2024</pubDate><guid>https://megate.ch/projects/mandelbrot_set/</guid><description>&lt;h2 id="introduction">Introduction&lt;/h2>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Megatech</title><link>https://megate.ch/</link><description>Recent content on Megatech</description><generator>Hugo -- gohugo.io</generator><language>en-US</language><managingEditor>gnomesort@megate.ch (Alexander Rothman)</managingEditor><webMaster>gnomesort@megate.ch (Alexander Rothman)</webMaster><copyright>© Alexander Rothman</copyright><lastBuildDate>Sat, 22 Feb 2025 11:12:39 -0800</lastBuildDate><atom:link href="https://megate.ch/index.xml" rel="self" type="application/rss+xml"/><item><title>Julia Sets and the Burning Ship</title><author>gnomesort@megate.ch</author><category>projects</category><link>https://megate.ch/projects/julia_sets_and_the_burning_ship/</link><pubDate>Sat, 22 Feb 2025</pubDate><guid>https://megate.ch/projects/julia_sets_and_the_burning_ship/</guid><description>&lt;div>
+&lt;canvas id="julia-set-context" class="hide centered framed" alt="An animation of a variety of Julia sets" width="640" height="360">&lt;/canvas>
+&lt;script src="https://megate.ch/js/julia_set.js">&lt;/script>
+&lt;/div>
+&lt;h2 id="introduction">Introduction&lt;/h2>
+&lt;p>Lately, I&amp;rsquo;ve been working with a student interested in computer graphics. Right now, we&amp;rsquo;re stuck in terminal land
+(i.e., the land of &lt;a href="https://megate.ch/code/toy_sorter/">bullshit std::cin-based menus&lt;/a>), so drawing anything is kind of out of the
+question. Nonetheless, I thought converting my &lt;a href="https://en.wikipedia.org/wiki/Mandelbrot_set">Mandelbrot set&lt;/a> program
+into a standard I/O-based program would be pretty easy. I was right about this and started thinking about other
+fractals I could render this way.&lt;/p>
+&lt;p>This led me back to Wikipedia to look at other escape-time fractals. In particular, I picked out the
+&lt;a href="https://en.wikipedia.org/wiki/Burning_Ship_fractal">Burning Ship&lt;/a> fractal and an animation of various
+&lt;a href="https://en.wikipedia.org/wiki/Julia_set">Julia sets&lt;/a> to work on. Besides standard I/O implementations
+(which lack animation), I also wanted to implement these in &lt;a href="https://www.khronos.org/opengl/">OpenGL&lt;/a> by forking my
+&lt;a href="https://megate.ch/projects/mandelbrot_set/">Mandelbrot set program&lt;/a>.&lt;/p>
+&lt;p>Getting these new fractals working was pretty simple.&lt;/p>
+&lt;h2 id="the-problem">The Problem&lt;/h2>
+&lt;p>The Burning Ship fractal is much simpler than the animated Julia sets, so I&amp;rsquo;ll cover that first. If you recall, the
+series &lt;code>z&lt;sub>0&lt;/sub> = 0&lt;/code>, &lt;code>z&lt;sub>n&lt;/sub> = z&lt;sub>n-1&lt;/sub>&lt;sup>2&lt;/sup> + c&lt;/code> defines the
+Mandelbrot set. A complex coordinate &lt;code>c&lt;/code> is in the Mandelbrot set when the &lt;code>z&lt;/code>&amp;rsquo;s magnitude does not diverge to
+infinity for that complex coordinate. The Burning Ship fractal is the same. However, the series is
+&lt;code>z&lt;sub>0&lt;/sub> = 0&lt;/code>,
+&lt;code>z&lt;sub>n&lt;/sub> = (|Re(z&lt;sub>n-1&lt;/sub>)| + |Im(z&lt;sub>n-1&lt;/sub>)| * i)&lt;sup>2&lt;/sup> + c&lt;/code>. In
+&lt;a href="https://en.wikipedia.org/wiki/OpenGL_Shading_Language">GLSL&lt;/a>, you can implement this version by simply applying the
+&lt;code>abs&lt;/code> function to the &lt;code>z&lt;/code> vector. No biggie.&lt;/p>
+&lt;a href="https://megate.ch/img/burning_ship_1_1920x1080.png">
+&lt;picture class="framed">
+&lt;img class="aspect-16-9" alt="An image of the Burning Ship fractal." src="https://megate.ch/img/burning_ship_1_640x360.avif" />
+&lt;/picture>
+&lt;/a>
+&lt;p>The Julia sets are a little harder to get working. Here, the defining series is still
+&lt;code>z&lt;sub>n&lt;/sub> = z&lt;sub>n-1&lt;/sub>&lt;sup>2&lt;/sup> + c&lt;/code>. However, &lt;code>z&lt;sub>0&lt;/sub>&lt;/code> is now the varying
+complex coordinate, and &lt;code>c&lt;/code> is a complex constant. Selecting the constant &lt;code>c&lt;/code> is crucial to getting any interesting
+output. In my case, I&amp;rsquo;ve chosen &lt;code>0.7885 * e&lt;sup>A * i&lt;/sup>&lt;/code>, where &lt;code>A&lt;/code> varies between &lt;code>0&lt;/code> and &lt;code>2π&lt;/code>. Yes, I
+did select this based on Wikipedia. I&amp;rsquo;m a programmer, so I&amp;rsquo;m not a serious engineer. Please don&amp;rsquo;t trust me to build a
+bridge. You&amp;rsquo;ll die! Implementing this requires new software on the host side, so a simple shader change won&amp;rsquo;t cut it
+like with the Burning Ship.&lt;/p>
+&lt;a href="https://megate.ch/img/julia_set_1_1920x1080.png">
+&lt;picture class="framed">
+&lt;img class="aspect-16-9" alt="An image of a bunny Julia set fractal." src="https://megate.ch/img/julia_set_1_640x360.avif" />
+&lt;/picture>
+&lt;/a>
+&lt;h2 id="the-solution">The Solution&lt;/h2>
+&lt;p>For the &lt;a href="https://github.com/gn0mesort/burning-ship/">Burning Ship&lt;/a>, my solution is nearly identical to my
+&lt;a href="https://github.com/gn0mesort/mandelbrot-set/">Mandelbrot set implementation&lt;/a>. It&amp;rsquo;s really as simple as a
+small shader edit changing:&lt;/p>
+&lt;pre>&lt;code class="language-glsl">for (i = 0; length(z) &amp;lt;= 65536 &amp;amp;&amp;amp; i &amp;lt; max_iterations; ++i)
+{
+  z = cx_multiply(z, z) + c;
+}
+&lt;/code>&lt;/pre>
+&lt;p>to&lt;/p>
+&lt;pre>&lt;code class="language-glsl">for (i = 0; length(z) &amp;lt;= 65536 &amp;amp;&amp;amp; i &amp;lt; max_iterations; ++i)
+{
+  z = cx_multiply(abs(z), abs(z)) + c;
+}
+&lt;/code>&lt;/pre>
+&lt;p>That&amp;rsquo;s really it.&lt;/p>
+&lt;a href="https://megate.ch/img/burning_ship_2_1920x1080.png">
+&lt;picture class="framed">
+&lt;img class="aspect-16-9" alt="An image of the Burning Ship fractal." src="https://megate.ch/img/burning_ship_2_640x360.avif" />
+&lt;/picture>
+&lt;/a>
+&lt;p>There are changes in the shader and host programs for the &lt;a href="https://github.com/gn0mesort/julia-set/">Julia sets&lt;/a>. On
+the shader side, I first had to introduce a new uniform for the value &lt;code>c&lt;/code>. I also had to modify the initial
+definition of &lt;code>z&lt;/code>. In the Mandelbrot program, &lt;code>z&lt;/code> starts as &lt;code>vec2(0, 0)&lt;/code>. However, for the Julia sets, it&amp;rsquo;s
+initialized to the fragment coordinate scaled between &lt;code>-2&lt;/code> and &lt;code>2&lt;/code> on both axes. On the host side, I&amp;rsquo;m computing and
+supplying the value of &lt;code>c&lt;/code>.&lt;/p>
+&lt;p>I&amp;rsquo;ve introduced a few constants (&lt;code>A_MIN&lt;/code>, &lt;code>A_MAX&lt;/code>, and &lt;code>ANIMATION_SPEED&lt;/code>) to do this. &lt;code>A_MIN&lt;/code> (a/k/a &lt;code>0&lt;/code>) and &lt;code>A_MAX&lt;/code>
+(a/k/a &lt;code>2π&lt;/code>) represent the range of values to compute &lt;code>c&lt;/code> from. &lt;code>c&lt;/code> itself is computed assuming
+&lt;code>B * e&lt;sup>A * i&lt;/sup> = B * cos(A) + B * sin(A) * i&lt;/code>. Once per frame, this is computed for &lt;code>B = 0.7885&lt;/code>.
+The value of &lt;code>A&lt;/code> varies in steps of &lt;code>0.01&lt;/code> multiplied by &lt;code>ANIMATION_SPEED&lt;/code> and scaled by the frame&amp;rsquo;s delta time. It
+always starts at &lt;code>0&lt;/code>. This behavior reflects when &lt;code>A&lt;/code> reaches &lt;code>A_MAX&lt;/code> or &lt;code>A_MIN&lt;/code> (i.e.,
+&lt;code>A&lt;sub>n&lt;/sub> = A&lt;sub>n-1&lt;/sub> + 0.01&lt;/code>, &lt;code>A&lt;sub>0&lt;/sub> = 0&lt;/code> until
+&lt;code>A&lt;sub>n&lt;/sub> = 2π&lt;/code>. After that point &lt;code>A&lt;sub>n&lt;/sub> = A&lt;sub>n-1&lt;/sub> - 0.01&lt;/code>,
+&lt;code>A&lt;sub>0&lt;/sub> = 2π&lt;/code> until &lt;code>A&lt;sub>n&lt;/sub> = 0&lt;/code>). The result is a smooth transition from &lt;code>0&lt;/code> to
+&lt;code>2π&lt;/code>.&lt;/p>
+&lt;a href="https://megate.ch/img/julia_set_2_1920x1080.png">
+&lt;picture class="framed">
+&lt;img class="aspect-16-9" alt="An image of a Julia set fractal." src="https://megate.ch/img/julia_set_2_640x360.avif" />
+&lt;/picture>
+&lt;/a>
+&lt;p>Since the Julia sets are not a single fractal but an animated transition through a series of fractals, I&amp;rsquo;ve also
+added a pause function. This allows users to stop the animation at any point and inspect any part of a particular
+frame. Getting this to work was a little finicky because pausing is a boolean, whereas the other controls are
+continuous.&lt;/p>
+&lt;p>In both cases, the result is a nice rendering of the respective fractals with the same parallel computation as my
+Mandelbrot program.&lt;/p>
+&lt;a href="https://megate.ch/img/julia_set_3_1920x1080.png">
+&lt;picture class="framed">
+&lt;img class="aspect-16-9" alt="An image of a Julia set fractal." src="https://megate.ch/img/julia_set_3_640x360.avif" />
+&lt;/picture>
+&lt;/a>
+&lt;h2 id="thoughts">Thoughts&lt;/h2>
+&lt;p>I&amp;rsquo;m writing this immediately after finishing the previous &lt;a href="https://megate.ch/projects/megatech_vulkan_0_1_0/">Megatech-Vulkan article&lt;/a>,
+so I don&amp;rsquo;t have much new on my mind. These programs mainly show how much you can get done without a solid
+mathematical foundation. I&amp;rsquo;m not mathematically skilled enough to explain why these programs generate the interesting
+images they do. On the other hand, I clearly am clever enough to make them work. I guess there&amp;rsquo;s a long tradition of
+this in the software world. Dijkstra is probably rolling in his grave.&lt;/p></description></item><item><title>Megatech-Vulkan 0.1.0</title><author>gnomesort@megate.ch</author><category>projects</category><link>https://megate.ch/projects/megatech_vulkan_0_1_0/</link><pubDate>Sat, 22 Feb 2025</pubDate><guid>https://megate.ch/projects/megatech_vulkan_0_1_0/</guid><description>&lt;h2 id="introduction">Introduction&lt;/h2>
+&lt;p>Last September, &lt;a href="https://megate.ch/projects/megatech_vulkan_dispatch/">I wrote about Megatech-Vulkan Dispatch&lt;/a>. That was my
+&lt;a href="https://www.vulkan.org/">Vulkan&lt;/a> dispatch table project. At the time, I said, &amp;ldquo;I thought it would be fun to return to
+writing my own Vulkan API toolkit.&amp;rdquo; However, the dispatch stuff was just a foundation. This project,
+&lt;a href="https://github.com/gn0mesort/megatech-vulkan/">Megatech-Vulkan&lt;/a>, is the broader toolkit.&lt;/p>
+&lt;p>Specifically, my goal isn&amp;rsquo;t just a vague Vulkan toolkit library. I&amp;rsquo;m interested in providing a directed acyclic
+graph-based scheduling solution for Vulkan operations. My thinking is that, with the correct architecture, I can
+obviate many of Vulkan&amp;rsquo;s more annoying aspects. At the same time, I want to keep much of the low-level flexibility
+that I would lose with &lt;a href="https://www.khronos.org/opengl/">OpenGL&lt;/a>. Anyway, this release is just a tiny part of that.&lt;/p>
+&lt;p>This release, which is not a completed project but a partial release, covers one facet of that problem. How do I make
+bootstrapping Vulkan simple? Generally, the more dynamism you need, the more complex things get with Vulkan.
+Managing that flexibility is a significant pain point for a library because you can&amp;rsquo;t make too many predictions about
+how a client application would like to leverage your software.&lt;/p>
+&lt;h2 id="the-problem">The Problem&lt;/h2>
+&lt;p>The problem is this: Vulkan needs to know what features an application wants to use during initialization. Vulkan has
+many components that can all be considered features. First and most obviously, there are core API versions and
+extensions. Next, the properties of physical devices can be regarded as features. This includes anything in a
+&lt;code>VkPhysicalDevice*Properties*&lt;/code> structure (e.g.,
+&lt;a href="https://registry.khronos.org/vulkan/specs/latest/man/html/VkPhysicalDeviceVulkan11Properties.html">&lt;code>VkPhysicalDeviceVulkan11Properties::maxMemoryAllocationSize&lt;/code>&lt;/a>).
+It also includes other physical device properties like queue family descriptions (i.e.,
+&lt;a href="https://registry.khronos.org/vulkan/specs/latest/man/html/VkQueueFamilyProperties.html">&lt;code>VkQueueFamilyProperties&lt;/code>&lt;/a>)
+and memory details (i.e.,
+&lt;a href="https://registry.khronos.org/vulkan/specs/latest/man/html/VkPhysicalDeviceMemoryProperties.html">&lt;code>VkPhysicalDeviceMemoryProperties&lt;/code>&lt;/a>).
+There&amp;rsquo;s more than that, too. Physical devices can also have boolean features. Anything in a
+&lt;code>VkPhysicalDevice*Features*&lt;/code> structure is fair game. Managing all of this is tedious but doable. What&amp;rsquo;s complex is
+how it all interacts.&lt;/p>
+&lt;p>One example of such an interaction comes
+&lt;a href="https://registry.khronos.org/vulkan/specs/latest/man/html/VkPhysicalDeviceProperties.html#_description">directly from the specification&lt;/a>:&lt;/p>
+&lt;blockquote>
+&lt;p>The value of &lt;code>apiVersion&lt;/code> may be different than the version returned by &lt;code>vkEnumerateInstanceVersion&lt;/code>; either higher
+or lower. In such cases, the application must not use functionality that exceeds the version of Vulkan associated
+with a given object. The &lt;code>pApiVersion&lt;/code> parameter returned by &lt;code>vkEnumerateInstanceVersion&lt;/code> is the version associated
+with a &lt;code>VkInstance&lt;/code> and its children, except for a &lt;code>VkPhysicalDevice&lt;/code> and its children.
+&lt;code>VkPhysicalDeviceProperties::apiVersion&lt;/code> is the version associated with a &lt;code>VkPhysicalDevice&lt;/code> and its children.&lt;/p>
+&lt;/blockquote>
+&lt;p>The specification means this: it is valid for a Vulkan instance to support one version of the core functionality and
+each of its physical devices to support other versions. The direction of this is arbitrary, so you have to ensure your
+application doesn&amp;rsquo;t use the wrong version with the wrong objects. This is just one of the issues.&lt;/p>
+&lt;p>There can be interactions between extensions in the same way. There are some naive cases here. For example,
+&lt;a href="https://registry.khronos.org/vulkan/specs/latest/man/html/VK_KHR_swapchain.html">&lt;code>VK_KHR_swapchain&lt;/code>&lt;/a> depends upon
+&lt;a href="https://registry.khronos.org/vulkan/specs/latest/man/html/VK_KHR_surface.html">&lt;code>VK_KHR_surface&lt;/code>&lt;/a>. It doesn&amp;rsquo;t make
+sense to enable swapchains without the surfaces. Other cases can be much more complex. For example, using input
+attachments with dynamic rendering requires either
+&lt;a href="https://registry.khronos.org/vulkan/specs/latest/man/html/VK_KHR_dynamic_rendering.html">&lt;code>VK_KHR_dynamic_rendering&lt;/code>&lt;/a>
+or Vulkan 1.3 at a minimum. It also requires that the dynamic rendering feature is available and enabled (i.e., either
+&lt;a href="https://registry.khronos.org/vulkan/specs/latest/man/html/VkPhysicalDeviceDynamicRenderingFeaturesKHR.html">&lt;code>VkPhysicalDeviceDynamicRenderingFeaturesKHR::dynamicRendering&lt;/code>&lt;/a>
+must be true or
+&lt;a href="https://registry.khronos.org/vulkan/specs/latest/man/html/VkPhysicalDeviceVulkan11Features.html">&lt;code>VkPhysicalDeviceVulkan11Features::dynamicRendering&lt;/code>&lt;/a>
+must be true depending on the path you&amp;rsquo;re taking). After that, you also need the
+&lt;a href="https://registry.khronos.org/vulkan/specs/latest/man/html/VK_KHR_dynamic_rendering_local_read.html">&lt;code>VK_KHR_dynamic_rendering_local_read&lt;/code>&lt;/a>
+extension or Vulkan 1.4. If you&amp;rsquo;re using &lt;code>VK_KHR_dynamic_rendering_local_read&lt;/code>, you also need to check
+&lt;a href="https://registry.khronos.org/vulkan/specs/latest/man/html/VkPhysicalDeviceDynamicRenderingLocalReadFeaturesKHR.html">&lt;code>VkPhysicalDeviceDynamicRenderingLocalReadFeaturesKHR::dynamicRenderingLocalRead&lt;/code>&lt;/a>
+or
+&lt;a href="https://registry.khronos.org/vulkan/specs/latest/man/html/VkPhysicalDeviceVulkan14Features.html">&lt;code>VkPhysicalDeviceVulkan14Features::dynamicRenderingLocalRead&lt;/code>&lt;/a>.
+If you have Vulkan 1.4, you need to additionally check
+&lt;a href="https://registry.khronos.org/vulkan/specs/latest/man/html/VkPhysicalDeviceVulkan14Properties.html">&lt;code>VkPhysicalDeviceVulkan14Properties::dynamicRenderingLocalReadDepthStencilAttachments&lt;/code>&lt;/a>
+and &lt;code>VkPhysicalDeviceVulkan14Properties::dynamicRenderingLocalReadMultisampledAttachments&lt;/code> to check for depth/stencil
+and multisampled image support. To my knowledge, there are no equivalent properties to check with the extension alone.
+This is still just the most trivial type of interaction.&lt;/p>
+&lt;p>There can also be interactions between otherwise independent extensions. For example,
+&lt;a href="https://registry.khronos.org/vulkan/specs/latest/man/html/VK_EXT_pipeline_robustness.html">&lt;code>VK_EXT_pipeline_robustness&lt;/code>&lt;/a>
+only depends on
+&lt;a href="https://registry.khronos.org/vulkan/specs/latest/man/html/VK_KHR_get_physical_device_properties2.html">&lt;code>VK_KHR_get_physical_device_properties2&lt;/code>&lt;/a>
+or Vulkan 1.1 being present. However, it has a list of interactions with other extensions that may or may not be
+enabled alongside it. There can also be interactions or dependencies with shading language (i.e.,
+&lt;a href="https://www.khronos.org/spirv/">SPIR-V&lt;/a> and &lt;a href="https://en.wikipedia.org/wiki/OpenGL_Shading_Language">GLSL&lt;/a>) extensions.&lt;/p>
+&lt;p>I&amp;rsquo;m probably glossing over some complexity here, but there is still another way all of these features can interact.
+Vulkan layers can introduce their own versions of instance and device extensions. On my system, the only layer that
+does this is
+&lt;a href="https://vulkan.lunarg.com/doc/view/latest/linux/khronos_validation_layer.html">&lt;code>VK_LAYER_KHRONOS_validation&lt;/code>&lt;/a>.
+Regardless, this means you might have features only available in certain configurations or features with slightly
+different behavior in certain configurations (e.g., my driver provides
+&lt;a href="https://registry.khronos.org/vulkan/specs/latest/man/html/VK_EXT_debug_utils.html">&lt;code>VK_EXT_debug_utils&lt;/code>&lt;/a> revision 2,
+but my validation layer only provides revision 1). I can&amp;rsquo;t imagine many cases where this is a big deal, but it&amp;rsquo;s
+another thing to worry about.&lt;/p>
+&lt;p>From my perspective, this makes writing a library that uses Vulkan a colossal pain. If library clients can configure
+even a minimal amount of Vulkan&amp;rsquo;s behavior, it can become impossible to predict precisely how the API will behave. In
+my opinion, there are basically two options. Either you create a thin wrapper around Vulkan and require the client to
+manage all of this, or you decide what Vulkan can and cannot do for the client.&lt;/p>
+&lt;p>If you go the latter route, there are still problems. For one, there&amp;rsquo;s no good way to know how Vulkan should be loaded.
+A library might shake its head and link &lt;a href="https://github.com/KhronosGroup/Vulkan-Loader">libvulkan&lt;/a> regardless, but
+this constrains it to systems where libvulkan is available. Similarly, there&amp;rsquo;s no good way to know when or how to
+integrate window systems. A library can always require
+&lt;a href="https://registry.khronos.org/vulkan/specs/latest/man/html/VK_KHR_win32_surface.html">&lt;code>VK_KHR_win32_surface&lt;/code>&lt;/a> for
+Windows systems, and it&amp;rsquo;s probably safe. On other systems, like the Linux system I&amp;rsquo;m writing this article on, there
+can be several different window systems. There are also platform independent frameworks to consider. Ideally, you
+would select only the features you need. Were it so easy.&lt;/p>
+&lt;p>In my opinion, anyone wanting to write a library that isn&amp;rsquo;t a wrapper faces two conflicting concerns here. First, the
+library author needs to control as much of the Vulkan configuration as is reasonable. Doing anything else makes it
+impossible to know what correct operation looks like. Second, the library author needs to allow configuration by client
+applications wherever platform specifics come into play (e.g., loading and window systems). In short, a library needs
+to be configurable, but it can&amp;rsquo;t be too configurable.&lt;/p>
+&lt;h2 id="the-solution">The Solution&lt;/h2>
+&lt;p>My solution to this is straightforward. First, I&amp;rsquo;ve done my best to minimize how much configuration can be done
+through the public API. Applications of my API can make three decisions: whether to initialize debugging tools, which
+Vulkan layers the application explicitly enables, and which devices the application selects for initialization.
+Anything outside of this is off-limits to the public.&lt;/p>
+&lt;p>My approach requires using what I&amp;rsquo;m calling an adaptor to handle the platform-specific stuff. Adaptors are separate
+libraries that implement loading and, potentially, window system integration. Right now, I&amp;rsquo;ve only written a basic
+adaptor for libvulkan. This adaptor loads Vulkan by linking directly to libvulkan and pulls everything else out of
+&lt;a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetInstanceProcAddr.html">&lt;code>vkGetInstanceProcAddr&lt;/code>&lt;/a>. Since
+there&amp;rsquo;s no standard window system integration, the libvulkan adaptor doesn&amp;rsquo;t provide any.&lt;/p>
+&lt;p>I&amp;rsquo;m using a pointer to implementation approach to keep applications out of the library&amp;rsquo;s internals. A few objects in my
+library don&amp;rsquo;t do this (e.g.,
+&lt;a href="https://github.com/gn0mesort/megatech-vulkan/blob/v0.1.0/include/megatech/vulkan/physical_devices.hpp">&lt;code>megatech::vulkan::physical_device_list&lt;/code>&lt;/a>),
+but all the core objects hold pointers to their implementation. This provides a couple of benefits. The most important
+benefit is that it separates my API into two levels: public and internal. Secondarily, it ensures that Vulkan is
+safely encapsulated in the internal API. There&amp;rsquo;s no need for client applications to know about or have any Vulkan
+header files. For the implementation pointers, I&amp;rsquo;ve gone with
+&lt;a href="https://en.cppreference.com/w/cpp/memory/shared_ptr">&lt;code>std::shared_ptr&lt;/code>&lt;/a> for now. This enforces a correct destruction
+order for dependent implementations (i.e., an instance implementation won&amp;rsquo;t be destroyed until the application destroys
+all of its devices) and reduces boilerplate (i.e., I don&amp;rsquo;t have to provide destruction functors for opaque types as I
+would with &lt;a href="https://en.cppreference.com/w/cpp/memory/unique_ptr">&lt;code>std::unique_ptr&lt;/code>&lt;/a>). I
+may need to change this later, though.&lt;/p>
+&lt;p>My intention is that only adaptors will need to access the internal API. Right now, I&amp;rsquo;ve set the library up to require
+adaptors to do this via inheritance. This means that an adaptor needs to extend at least the
+&lt;a href="https://github.com/gn0mesort/megatech-vulkan/blob/v0.1.0/include/megatech/vulkan/loader.hpp">&lt;code>megatech::vulkan::loader&lt;/code>&lt;/a>
+and
+&lt;a href="https://github.com/gn0mesort/megatech-vulkan/blob/v0.1.0/include/megatech/vulkan/internal/base/loader_impl.hpp">&lt;code>megatech::vulkan::internal::base::loader_impl&lt;/code>&lt;/a>
+types. However, it can also extend the implementation types for
+&lt;a href="https://github.com/gn0mesort/megatech-vulkan/blob/v0.1.0/include/megatech/vulkan/instance.hpp">&lt;code>megatech::vulkan::instance&lt;/code>&lt;/a>
+and &lt;code>megatech::vulkan::physical_device_description&lt;/code>. At the moment, this is very powerful. Adaptors can change around
+which queues get allocated to which tasks, add extensions, and enable extra device features. In the future, I&amp;rsquo;ll
+probably remove most of this flexibility.&lt;/p>
+&lt;p>This architecture leads to a somewhat annoying drawback. Selecting the correct implementations of the various core
+objects requires a set of methods in the &lt;code>megatech::vulkan::loader&lt;/code> and &lt;code>megatech::vulkan::instance&lt;/code> implementations. I
+dislike this because it&amp;rsquo;s relatively brittle. It relies on adaptors to figure out which implementations they want. The
+default behavior, of course, is to use the implementations provided by the core library. Ideally, I&amp;rsquo;d like to identify
+the correct implementation at compile time. Even more ideally, there would only need to be one implementation.&lt;/p>
+&lt;p>The rest of the library is about organizing and validating the Vulkan initialization process. Right now, I&amp;rsquo;ve kept
+this minimal. I&amp;rsquo;m requiring Vulkan 1.3, dynamic rendering, and debug utils (for debug instances). I&amp;rsquo;ve also implemented
+a method to determine if each device supports compute and transfer operations asynchronously from the main queue. I
+don&amp;rsquo;t intend to use this immediately, but it&amp;rsquo;s a feature I want to have later on.&lt;/p>
+&lt;p>That&amp;rsquo;s about all there is to say about this implementation right now. It&amp;rsquo;s all about initialization and validation.
+I&amp;rsquo;ve tried to keep it simple while also keeping client applications from having to understand too much about the
+structure of Vulkan. I think the architecture is a bit rough around the edges, and I&amp;rsquo;ll hopefully have it evened out
+more in the future.&lt;/p>
+&lt;p>&lt;strong>tl;dr&lt;/strong>&lt;/p>
+&lt;pre>&lt;code class="language-cpp">#include &amp;lt;megatech/vulkan.hpp&amp;gt;
+#include &amp;lt;megatech/vulkan/adaptors/libvulkan.hpp&amp;gt;
+namespace mv = megatech::vulkan;
+// An adaptor is needed to ensure the correct features and extensions are enabled.
+// The libvulkan adaptor dynamically links libvulkan and enables only the core features required by Megatech-Vulkan.
+// It doesn't support any window system integration.
+namespace adaptor = mv::adaptors::libvulkan;
+int main() {
+// Initialize a Vulkan instance.
+auto instance = mv::instance{ adaptor::loader{ }, { &amp;quot;My application&amp;quot;, { 0, 1, 0, 0 } } };
+// Enumerate physical devices and ensure that there is a valid device
+auto physical_devices = mv::physical_device_list{ instance };
+if (physical_devices.empty())
+{
+return 1;
+}
+// Initialize the first valid Vulkan device.
+auto device = mv::device{ physical_devices.front() };
+return 0;
+}
+&lt;/code>&lt;/pre>
+&lt;h2 id="thoughts">Thoughts&lt;/h2>
+&lt;p>Writing these articles always takes me a really long time because I&amp;rsquo;m so anxious about the particulars of what I say.
+I felt confident in my architectural approach when I started writing this article. As I&amp;rsquo;ve written it, though, I&amp;rsquo;ve
+become less and less confident.&lt;/p>
+&lt;p>Right now, I think the monolithic adaptor library isn&amp;rsquo;t quite the correct approach. I&amp;rsquo;d like to separate this idea
+into two separate types of libraries. Instead of having one library to handle loading and window system integration,
+there would be one of each. I think this approach would let me tame the internal fiddliness of the current API.
+When I initially envisioned the adaptor approach, I had &lt;a href="https://wiki.libsdl.org/SDL2/FrontPage">SDL2&lt;/a> in mind. SDL2
+exposes Vulkan through its &lt;a href="https://wiki.libsdl.org/SDL2/SDL_Vulkan_LoadLibrary">&lt;code>SDL_Vulkan_LoadLibrary&lt;/code>&lt;/a> and
+&lt;a href="https://wiki.libsdl.org/SDL2/SDL_Vulkan_GetVkGetInstanceProcAddr">&lt;code>SDL_Vulkan_GetVkGetInstanceProcAddr&lt;/code>&lt;/a> functions.
+To do window system integration, it also exposes
+&lt;a href="https://wiki.libsdl.org/SDL2/SDL_Vulkan_GetInstanceExtensions">&lt;code>SDL_Vulkan_GetInstanceExtensions&lt;/code>&lt;/a>, and
+&lt;a href="https://wiki.libsdl.org/SDL3/SDL_Vulkan_CreateSurface">&lt;code>SDL_Vulkan_CreateSurface&lt;/code>&lt;/a>. My worry was about how to replace
+the less generic Vulkan API calls with these platform-independent ones. My vision was there would be a
+libmegatech-vulkan-adaptor-sdl2 that handled all of this.&lt;/p>
+&lt;p>Now, I think it makes more sense to split these. Instead of one library, there would be libmegatech-vulkan-loader-sdl2
+and libmegatech-vulkan-wsi-sdl2. The loader library would be responsible for implementing a &lt;code>loader&lt;/code> object (a required
+parameter to &lt;code>megatech::vulkan::instance&lt;/code>&amp;rsquo;s constructor) that handles &lt;code>SDL_Vulkan_LoadLibrary&lt;/code>,
+&lt;code>SDL_Vulkan_GetVkGetInstanceProcAddr&lt;/code>, and &lt;code>SDL_Vulkan_GetInstanceExtensions&lt;/code>. On the other hand,
+libmegatech-vulkan-wsi-sdl2 would implement a &lt;code>window_system&lt;/code> object (an optional parameter to
+&lt;code>megatech::vulkan::instance&lt;/code>&amp;rsquo;s constructor) that describes the window systems requirements. It would also be
+responsible for implementing a &lt;code>megatech::vulkan::surface&lt;/code> object.&lt;/p>
+&lt;p>Initially, I was hyped to get into my graph scheduling stuff once I published this article. Now, I think I&amp;rsquo;ll go back
+and work on the initialization architecture a bit first. At least, I don&amp;rsquo;t anticipate the change I&amp;rsquo;m describing here
+to take much time (maybe a weekend at most).&lt;/p>
+&lt;p>Outside of Vulkan stuff, I&amp;rsquo;ve got a new job. I&amp;rsquo;m not making much money, but it&amp;rsquo;s helped my mood a bit. I&amp;rsquo;ve been moody
+overall since December, so that&amp;rsquo;s a good sign. The holidays always get to me, though. There&amp;rsquo;s just no way for it not
+to be a stressful situation.&lt;/p>
+&lt;p>While writing this, I&amp;rsquo;ve taken the time to write a couple more OpenGL fractal programs. I&amp;rsquo;ve been working with a
+student interested in computer graphics, so I felt inspired to return to the Mandelbrot set. I&amp;rsquo;ll do a brief write-up
+about those programs soon (they&amp;rsquo;re just forks of the program from last October). After that, I&amp;rsquo;m returning to Vulkan
+to see how much progress I can make.&lt;/p></description></item><item><title>Mandelbrot Set</title><author>gnomesort@megate.ch</author><category>projects</category><link>https://megate.ch/projects/mandelbrot_set/</link><pubDate>Fri, 25 Oct 2024</pubDate><guid>https://megate.ch/projects/mandelbrot_set/</guid><description>&lt;h2 id="introduction">Introduction&lt;/h2>
 &lt;p>I didn&amp;rsquo;t think I&amp;rsquo;d be writing anything this soon after my last post. I was starting to brainstorm some game ideas,
 because that&amp;rsquo;s what I wanted to do. Then outside forces kind of led me astray. At first, I just wanted to get back
 to rendering something. Then, I had a pretty bad day on Sunday (&lt;span class="nowrap">October 20, 2024&lt;/span>). I
@@ -39,7 +327,7 @@ the discrete coordinate into range and to adjust for the camera&amp;rsquo;s posi
 first step ends. The second step is simpler. Using the last computed term, the shader maps the term&amp;rsquo;s index to a
 color in a 256-color palette. The specific palette I chose is called
 &lt;a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0199239">Cividis&lt;/a>. There&amp;rsquo;s also a black and white
-variant where coordinates that diverge to infinite are black and finite coordinates are white.&lt;/p>
+variant where coordinates that diverge to infinity are black and finite coordinates are white.&lt;/p>
 &lt;p>Despite my initial view that this was some real MIT/Berkeley/Stanford-level stuff, it isn&amp;rsquo;t really that much math. I
 won&amp;rsquo;t pretend I get it, but the implementation is straight-forward.&lt;/p>
 &lt;a href="https://megate.ch/img/mandelbrot_3_1920x1080.png">
