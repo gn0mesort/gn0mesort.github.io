@@ -26,6 +26,30 @@ layout: single
 ---
 
 <div class="portfolio-grid">
+  <h2 class="head">Julia Set and Burning Ship Fractal Rendering</h2>
+  <div class="links block">
+    [<a href="https://github.com/gn0mesort/julia-set">Julia Sets</a>]&nbsp;<br />[<a href="https://github.com/gn0mesort/burning-ship">Burning Ship</a>]&nbsp;[<a href="/projects/julia_sets_and_the_burning_ship/">Blog</a>]
+  </div>
+  <dl class="skills inner-grid">
+    <dt>Operating System</dt>
+    <dd>Linux</dd>
+    <dt>Languages</dt>
+    <dd>C++20, GLSL</dd>
+    <dt>APIs</dt>
+    <dd>OpenGL 4.5, SDL2</dd>
+    <dt>Tools</dt>
+    <dd>Meson, Git</dd>
+  </dl>
+  <dl class="main inner-grid widen-rows">
+    <dt>Problem</dt>
+    <dd>After completing my Mandelbrot set rendering program, I wanted to render more fractals. I especially wanted an animated fractal.</dd>
+    <dt>Solution</dt>
+    <dd>I modified my previous program to render the Burning Ship fractal, and then modified it further to render an animation of Julia sets.</dd>
+    <dt>Outcome</dt>
+    <dd>The resulting programs render their respective fractals in real time with smooth controls. The animated Julia sets also introduce a pause function for detailed inspection of the various fractals.</dd>
+  </dl>
+</div>
+<div class="portfolio-grid">
   <h2 class="head">Mandelbrot Set Rendering</h2>
   <div class="links block">
     [<a href="https://github.com/gn0mesort/mandelbrot-set">Application</a>]&nbsp;[<a href="/projects/mandelbrot_set">Blog</a>]
@@ -42,7 +66,7 @@ layout: single
   </dl>
   <dl class="main inner-grid widen-rows">
     <dt>Problem</dt>
-    <dd>The challenge was to create a hardware accelerated program that renders the Mandelbrot set fractal using OpenGL 4.5 in real time.</dd>
+    <dd>For this project, the challenge was to create a hardware accelerated program that renders the Mandelbrot set fractal using OpenGL 4.5 in real time.</dd>
     <dt>Solution</dt>
     <dd>I developed a custom Mandelbrot Set rendering program using SDL2 and OpenGL 4.5. I implemented a screen-space approach that offloads all of the rendering onto a dedicated GPU.</dd>
     <dt>Outcome</dt>
