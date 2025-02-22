@@ -18,6 +18,10 @@
   font-family: "Fira Sans", sans-serif;
 }
 
+.hide {
+  display: none !important;
+}
+
 body {
   font-size: 12pt;
 }
@@ -185,11 +189,15 @@ picture img.aspect-4-3 {
   aspect-ratio: 4 / 3;
 }
 
-canvas#cube-context {
+canvas.centered {
   display: block;
   margin: auto;
   max-width: 100%;
   height: auto;
+}
+
+canvas.framed {
+  border: outset;
 }
 
 pre {
