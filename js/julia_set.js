@@ -5,7 +5,6 @@ function main() {
         return;
     }
     canvas.classList.remove('hide');
-
     const vertexShaderSrc = `#version 300 es
 in vec2 i_position;
 void main() {
@@ -362,7 +361,7 @@ void main() {
     let a_factor = -0.01 * ANIMATION_SPEED;
     let req = 0;
 
-    const drawScene = () => {
+    const drawScene = (timestamp, firstFrame = false) => {
         gl.bindVertexArray(vao);
         gl.useProgram(graphicsProgram);
         gl.uniform1ui(widthUni, 640);
@@ -371,7 +370,10 @@ void main() {
         gl.uniform2fv(cUni, new Float32Array([0.7885 * Math.cos(a), 0.7885 * Math.sin(a)]));
         gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
         gl.drawElements(gl.TRIANGLES, 6, gl.UNSIGNED_INT, 0);
-        req = requestAnimationFrame(drawScene);
+        if (!firstFrame)
+        {
+          req = requestAnimationFrame(drawScene);
+        }
         if (a <= A_MIN || a >= A_MAX)
         {
           a_factor *= -1.0;
@@ -399,7 +401,11 @@ void main() {
     };
     window.addEventListener('blur', onBlur);
     window.addEventListener('focus', onFocus);
-    req = requestAnimationFrame(drawScene);
+    drawScene(0, true);
+    if (document.hasFocus())
+    {
+      req = requestAnimationFrame(drawScene);
+    }
 }
 
 main();
