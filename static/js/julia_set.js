@@ -5,6 +5,7 @@ function main() {
         return;
     }
     canvas.classList.remove('hide');
+
     const vertexShaderSrc = `#version 300 es
 in vec2 i_position;
 void main() {
@@ -357,7 +358,9 @@ void main() {
     const A_MAX = 2 * Math.PI;
     const A_MIN = 0;
     const ANIMATION_SPEED = 5.0;
-    let state = { a: 0, a_factor: -0.01 * ANIMATION_SPEED };
+    let a = 0;
+    let a_factor = -0.01 * ANIMATION_SPEED;
+    let req = 0;
 
     const drawScene = () => {
         gl.bindVertexArray(vao);
@@ -365,19 +368,38 @@ void main() {
         gl.uniform1ui(widthUni, 640);
         gl.uniform1ui(heightUni, 360);
         gl.uniform1ui(maxIterationsUni, 1000);
-        gl.uniform2fv(cUni, new Float32Array([0.7885 * Math.cos(state.a), 0.7885 * Math.sin(state.a)]));
+        gl.uniform2fv(cUni, new Float32Array([0.7885 * Math.cos(a), 0.7885 * Math.sin(a)]));
         gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
         gl.drawElements(gl.TRIANGLES, 6, gl.UNSIGNED_INT, 0);
-        requestAnimationFrame(drawScene);
-        if (state.a <= A_MIN || state.a >= A_MAX)
+        req = requestAnimationFrame(drawScene);
+        if (a <= A_MIN || a >= A_MAX)
         {
-          state.a_factor *= -1.0;
+          a_factor *= -1.0;
         }
-        state.a += state.a_factor * dt;
+        a += a_factor * dt;
         dt = (performance.now() - last) / 1000;
         last = performance.now();
     };
-    requestAnimationFrame(drawScene);
+    const onBlur = () => {
+      if (req)
+      {
+        cancelAnimationFrame(req);
+        console.log(`Animation Paused. Frame ${req} canceled.`);
+        req = 0;
+      }
+    };
+    const onFocus = () => {
+      if (!req)
+      {
+        last = performance.now();
+        dt = 0;
+        req = requestAnimationFrame(drawScene);
+        console.log(`Animation Resumed. Frame ${req} requested.`);
+      }
+    };
+    window.addEventListener('blur', onBlur);
+    window.addEventListener('focus', onFocus);
+    req = requestAnimationFrame(drawScene);
 }
 
 main();
