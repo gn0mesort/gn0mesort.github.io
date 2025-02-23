@@ -151,6 +151,7 @@ void main() {
     let model = glm.mat4();
     let last = performance.now();
     let dt = 0;
+    let req = null;
 
     const drawScene = () => {
         gl.bindVertexArray(vao);
@@ -162,11 +163,30 @@ void main() {
         gl.uniformMatrix4fv(modelUni, false, model.elements);
         gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
         gl.drawArrays(gl.TRIANGLES, 0, vertices.length / 9);
-        requestAnimationFrame(drawScene);
+        req = requestAnimationFrame(drawScene);
         dt = (performance.now() - last) / 1000;
         last = performance.now();
     };
-    requestAnimationFrame(drawScene);
+    const onBlur = () => {
+      if (req)
+      {
+        cancelAnimationFrame(req);
+        console.log(`Animation Paused. Frame ${req} canceled.`);
+        req = null;
+      }
+    };
+    const onFocus = () => {
+      if (req === null)
+      {
+        last = performance.now();
+        dt = 0;
+        req = requestAnimationFrame(drawScene);
+        console.log(`Animation Resumed. Frame ${req} requested.`);
+      }
+    };
+    window.addEventListener('blur', onBlur);
+    window.addEventListener('focus', onFocus);
+    req = requestAnimationFrame(drawScene);
 }
 
 main();
