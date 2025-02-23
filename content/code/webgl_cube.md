@@ -179,7 +179,10 @@ void main() {
         gl.uniformMatrix4fv(modelUni, false, model.elements);
         gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
         gl.drawArrays(gl.TRIANGLES, 0, vertices.length / 9);
-        req = requestAnimationFrame(drawScene);
+        if (!firstFrame)
+        {
+          req = requestAnimationFrame(drawScene);
+        }
         dt = (performance.now() - last) / 1000;
         last = performance.now();
     };
@@ -202,7 +205,11 @@ void main() {
     };
     window.addEventListener('blur', onBlur);
     window.addEventListener('focus', onFocus);
-    req = requestAnimationFrame(drawScene);
+    drawScene(0, true);
+    if (document.hasFocus())
+    {
+      req = requestAnimationFrame(drawScene);
+    }
 }
 
 main();
