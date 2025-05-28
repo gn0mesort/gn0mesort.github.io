@@ -27,7 +27,7 @@
 #                 ||     ||
 #
 #
-#What should I say? Python is powerful... and fast;plays well with others;runs everywhere;is friendly & easy to learn;is Open.
+# What should I say? Python is powerful... and fast;plays well with others;runs everywhere;is friendly & easy to learn;is Open.
 #  -----------------------------------------------------------------------------------------------------------
 # *                                                                                                             *
 # | Python is powerful... and fast;plays well with others;runs everywhere;is friendly & easy to learn;is Open.  |
