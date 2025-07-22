@@ -208,6 +208,12 @@ def __gamma(l):
     else:
         return (1.099 * (l ** 0.45)) - 0.099
 
+def __srgb_gamma(l):
+    if __flt(l, 0.0031308):
+        return 12.92 * l
+    else:
+        return 1.055 * l ** (1 / 2.4) - 0.055
+
 def __load_ppm_data(file):
     magic = file.readline().decode("ascii").strip()
     if magic != "P6":
@@ -383,5 +389,9 @@ def display(image):
     for i in range(image.height()):
         for j in range(image.width()):
             pixel = image.get(j, i).to_tuple()
+            # sRGB encode for screen output.
+            pixel = (__remap(0, 255, 0, 1, pixel[0]), __remap(0, 255, 0, 1, pixel[1]), __remap(0, 255, 0, 1, pixel[2]))
+            pixel = (__srgb_gamma(pixel[0]), __srgb_gamma(pixel[1]), __srgb_gamma(pixel[2]))
+            pixel = (int(__remap(0, 1, 0, 255, pixel[0])), int(__remap(0, 1, 0, 255, pixel[1])), int(__remap(0, 1, 0, 255, pixel[2])))
             print(begin_rgb_color_sequence((0, 0, 0), pixel) + " " + end_color_sequence(), end="")
         print("")
