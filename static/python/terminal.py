@@ -201,6 +201,13 @@ def __degamma(v):
     else:
         return ((v + 0.099) / 1.099) ** (1.0 / 0.45)
 
+# ITU-R BT.709 Gamma Encode Function
+def __gamma(l):
+    if __flt(l, 0.018):
+        return 4.5 * l
+    else:
+        return (1.099 * (l ** 0.45)) - 0.099
+
 def __load_ppm_data(file):
     magic = file.readline().decode("ascii").strip()
     if magic != "P6":
@@ -224,6 +231,34 @@ def __load_ppm_data(file):
             res.set(j, i, Pixel(red, green, blue))
             res.set(j + 1, i, Pixel(red, green, blue))
     return res
+
+def __save_ppm_data(file, image):
+    file.write("P6\n# Written by terminal.py\n".encode("ascii"))
+    file.write((str(int(image.width() / 2)) + " " + str(image.height()) + "\n").encode("ascii"))
+    file.write("255\n".encode("ascii"))
+    for i in range(image.height()):
+        for j in range(0, image.width(), 2):
+            red = int(__remap(0, 1, 0, 255, __gamma(__remap(0, 255, 0, 1, image.get(j, i).red()))))
+            green = int(__remap(0, 1, 0, 255, __gamma(__remap(0, 255, 0, 1, image.get(j, i).green()))))
+            blue = int(__remap(0, 1, 0, 255, __gamma(__remap(0, 255, 0, 1, image.get(j, i).blue()))))
+            file.write(red.to_bytes(1, byteorder="big"))
+            file.write(green.to_bytes(1, byteorder="big"))
+            file.write(blue.to_bytes(1, byteorder="big"))
+
+def save_ppm(path, image):
+    """
+    Save a PPM file from an Image.
+
+    @param path: The path to the desired file to write.
+    @type image: Image
+    @param image: The image containing the pixel data to write. The image is written using the ITU-R BT.709 gamma
+                  transfer function.
+    """
+    file = open(path, "wb")
+    try:
+        __save_ppm_data(file, image)
+    finally:
+        file.close()
 
 def load_ppm(path):
     """
