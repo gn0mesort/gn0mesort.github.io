@@ -7,6 +7,7 @@
 #include &lt;concepts&gt;
 #include &lt;limits&gt;
 
+// Taken from https://floating-point-gui.de/errors/comparison/
 template &lt;std::floating_point Type&gt;
 constexpr bool fequal(const Type a, const Type b, const Type epsilon) {
     const Type abs_a = std::fabs(a);
