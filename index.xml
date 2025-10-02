@@ -1,240 +1,239 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Megatech</title><link>https://megate.ch/</link><description>Recent content on Megatech</description><generator>Hugo -- gohugo.io</generator><language>en-US</language><managingEditor>gnomesort@megate.ch (Alexander Rothman)</managingEditor><webMaster>gnomesort@megate.ch (Alexander Rothman)</webMaster><copyright>© Alexander Rothman</copyright><lastBuildDate>Fri, 26 Sep 2025 11:56:35 -0700</lastBuildDate><atom:link href="https://megate.ch/index.xml" rel="self" type="application/rss+xml"/><item><title>Julia Sets and the Burning Ship</title><author>gnomesort@megate.ch</author><category>projects</category><link>https://megate.ch/projects/julia_sets_and_the_burning_ship/</link><pubDate>Sat, 22 Feb 2025</pubDate><guid>https://megate.ch/projects/julia_sets_and_the_burning_ship/</guid><description>&lt;div>
-&lt;canvas id="julia-set-context" class="hide centered framed" alt="An animation of a variety of Julia sets" width="640" height="360">&lt;/canvas>
-&lt;script src="https://megate.ch/js/julia_set.js">&lt;/script>
-&lt;/div>
-&lt;h2 id="introduction">Introduction&lt;/h2>
-&lt;p>Lately, I&amp;rsquo;ve been working with a student interested in computer graphics. Right now, we&amp;rsquo;re stuck in terminal land
-(i.e., the land of &lt;a href="https://megate.ch/code/toy_sorter/">bullshit std::cin-based menus&lt;/a>), so drawing anything is kind of out of the
-question. Nonetheless, I thought converting my &lt;a href="https://en.wikipedia.org/wiki/Mandelbrot_set">Mandelbrot set&lt;/a> program
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Megatech</title><link>https://megate.ch/</link><description>Recent content on Megatech</description><generator>Hugo -- gohugo.io</generator><language>en-US</language><managingEditor>gnomesort@megate.ch (Alexander Rothman)</managingEditor><webMaster>gnomesort@megate.ch (Alexander Rothman)</webMaster><copyright>© Alexander Rothman</copyright><lastBuildDate>Thu, 02 Oct 2025 11:13:03 -0700</lastBuildDate><atom:link href="https://megate.ch/index.xml" rel="self" type="application/rss+xml"/><item><title>Julia Sets and the Burning Ship</title><author>gnomesort@megate.ch</author><category>projects</category><link>https://megate.ch/projects/julia_sets_and_the_burning_ship/</link><pubDate>Sat, 22 Feb 2025</pubDate><guid>https://megate.ch/projects/julia_sets_and_the_burning_ship/</guid><description>&lt;div&gt;
+&lt;canvas id="julia-set-context" class="hide centered framed" alt="An animation of a variety of Julia sets" width="640" height="360"&gt;&lt;/canvas&gt;
+&lt;script src="https://megate.ch/js/julia_set.js"&gt;&lt;/script&gt;
+&lt;/div&gt;
+&lt;h2 id="introduction"&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;Lately, I&amp;rsquo;ve been working with a student interested in computer graphics. Right now, we&amp;rsquo;re stuck in terminal land
+(i.e., the land of &lt;a href="https://megate.ch/code/toy_sorter/"&gt;bullshit std::cin-based menus&lt;/a&gt;), so drawing anything is kind of out of the
+question. Nonetheless, I thought converting my &lt;a href="https://en.wikipedia.org/wiki/Mandelbrot_set"&gt;Mandelbrot set&lt;/a&gt; program
 into a standard I/O-based program would be pretty easy. I was right about this and started thinking about other
-fractals I could render this way.&lt;/p>
-&lt;p>This led me back to Wikipedia to look at other escape-time fractals. In particular, I picked out the
-&lt;a href="https://en.wikipedia.org/wiki/Burning_Ship_fractal">Burning Ship&lt;/a> fractal and an animation of various
-&lt;a href="https://en.wikipedia.org/wiki/Julia_set">Julia sets&lt;/a> to work on. Besides standard I/O implementations
-(which lack animation), I also wanted to implement these in &lt;a href="https://www.khronos.org/opengl/">OpenGL&lt;/a> by forking my
-&lt;a href="https://megate.ch/projects/mandelbrot_set/">Mandelbrot set program&lt;/a>.&lt;/p>
-&lt;p>Getting these new fractals working was pretty simple.&lt;/p>
-&lt;h2 id="the-problem">The Problem&lt;/h2>
-&lt;p>The Burning Ship fractal is much simpler than the animated Julia sets, so I&amp;rsquo;ll cover that first. If you recall, the
-series &lt;code>z&lt;sub>0&lt;/sub> = 0&lt;/code>, &lt;code>z&lt;sub>n&lt;/sub> = z&lt;sub>n-1&lt;/sub>&lt;sup>2&lt;/sup> + c&lt;/code> defines the
-Mandelbrot set. A complex coordinate &lt;code>c&lt;/code> is in the Mandelbrot set when the &lt;code>z&lt;/code>&amp;rsquo;s magnitude does not diverge to
+fractals I could render this way.&lt;/p&gt;
+&lt;p&gt;This led me back to Wikipedia to look at other escape-time fractals. In particular, I picked out the
+&lt;a href="https://en.wikipedia.org/wiki/Burning_Ship_fractal"&gt;Burning Ship&lt;/a&gt; fractal and an animation of various
+&lt;a href="https://en.wikipedia.org/wiki/Julia_set"&gt;Julia sets&lt;/a&gt; to work on. Besides standard I/O implementations
+(which lack animation), I also wanted to implement these in &lt;a href="https://www.khronos.org/opengl/"&gt;OpenGL&lt;/a&gt; by forking my
+&lt;a href="https://megate.ch/projects/mandelbrot_set/"&gt;Mandelbrot set program&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Getting these new fractals working was pretty simple.&lt;/p&gt;
+&lt;h2 id="the-problem"&gt;The Problem&lt;/h2&gt;
+&lt;p&gt;The Burning Ship fractal is much simpler than the animated Julia sets, so I&amp;rsquo;ll cover that first. If you recall, the
+series &lt;code&gt;z&lt;sub&gt;0&lt;/sub&gt; = 0&lt;/code&gt;, &lt;code&gt;z&lt;sub&gt;n&lt;/sub&gt; = z&lt;sub&gt;n-1&lt;/sub&gt;&lt;sup&gt;2&lt;/sup&gt; + c&lt;/code&gt; defines the
+Mandelbrot set. A complex coordinate &lt;code&gt;c&lt;/code&gt; is in the Mandelbrot set when the &lt;code&gt;z&lt;/code&gt;&amp;rsquo;s magnitude does not diverge to
 infinity for that complex coordinate. The Burning Ship fractal is the same. However, the series is
-&lt;code>z&lt;sub>0&lt;/sub> = 0&lt;/code>,
-&lt;code>z&lt;sub>n&lt;/sub> = (|Re(z&lt;sub>n-1&lt;/sub>)| + |Im(z&lt;sub>n-1&lt;/sub>)| * i)&lt;sup>2&lt;/sup> + c&lt;/code>. In
-&lt;a href="https://en.wikipedia.org/wiki/OpenGL_Shading_Language">GLSL&lt;/a>, you can implement this version by simply applying the
-&lt;code>abs&lt;/code> function to the &lt;code>z&lt;/code> vector. No biggie.&lt;/p>
-&lt;a href="https://megate.ch/img/burning_ship_1_1920x1080.png">
-&lt;picture class="framed">
-&lt;img class="aspect-16-9" alt="An image of the Burning Ship fractal." src="https://megate.ch/img/burning_ship_1_640x360.avif" />
-&lt;/picture>
-&lt;/a>
-&lt;p>The Julia sets are a little harder to get working. Here, the defining series is still
-&lt;code>z&lt;sub>n&lt;/sub> = z&lt;sub>n-1&lt;/sub>&lt;sup>2&lt;/sup> + c&lt;/code>. However, &lt;code>z&lt;sub>0&lt;/sub>&lt;/code> is now the varying
-complex coordinate, and &lt;code>c&lt;/code> is a complex constant. Selecting the constant &lt;code>c&lt;/code> is crucial to getting any interesting
-output. In my case, I&amp;rsquo;ve chosen &lt;code>0.7885 * e&lt;sup>A * i&lt;/sup>&lt;/code>, where &lt;code>A&lt;/code> varies between &lt;code>0&lt;/code> and &lt;code>2π&lt;/code>. Yes, I
+&lt;code&gt;z&lt;sub&gt;0&lt;/sub&gt; = 0&lt;/code&gt;,
+&lt;code&gt;z&lt;sub&gt;n&lt;/sub&gt; = (|Re(z&lt;sub&gt;n-1&lt;/sub&gt;)| + |Im(z&lt;sub&gt;n-1&lt;/sub&gt;)| * i)&lt;sup&gt;2&lt;/sup&gt; + c&lt;/code&gt;. In
+&lt;a href="https://en.wikipedia.org/wiki/OpenGL_Shading_Language"&gt;GLSL&lt;/a&gt;, you can implement this version by simply applying the
+&lt;code&gt;abs&lt;/code&gt; function to the &lt;code&gt;z&lt;/code&gt; vector. No biggie.&lt;/p&gt;
+&lt;a href="https://megate.ch/img/burning_ship_1_1920x1080.png"&gt;
+&lt;picture class="framed"&gt;
+&lt;img class="aspect-16-9" alt="An image of the Burning Ship fractal." src="https://megate.ch/img/burning_ship_1_640x360.avif" /&gt;
+&lt;/picture&gt;
+&lt;/a&gt;
+&lt;p&gt;The Julia sets are a little harder to get working. Here, the defining series is still
+&lt;code&gt;z&lt;sub&gt;n&lt;/sub&gt; = z&lt;sub&gt;n-1&lt;/sub&gt;&lt;sup&gt;2&lt;/sup&gt; + c&lt;/code&gt;. However, &lt;code&gt;z&lt;sub&gt;0&lt;/sub&gt;&lt;/code&gt; is now the varying
+complex coordinate, and &lt;code&gt;c&lt;/code&gt; is a complex constant. Selecting the constant &lt;code&gt;c&lt;/code&gt; is crucial to getting any interesting
+output. In my case, I&amp;rsquo;ve chosen &lt;code&gt;0.7885 * e&lt;sup&gt;A * i&lt;/sup&gt;&lt;/code&gt;, where &lt;code&gt;A&lt;/code&gt; varies between &lt;code&gt;0&lt;/code&gt; and &lt;code&gt;2π&lt;/code&gt;. Yes, I
 did select this based on Wikipedia. I&amp;rsquo;m a programmer, so I&amp;rsquo;m not a serious engineer. Please don&amp;rsquo;t trust me to build a
 bridge. You&amp;rsquo;ll die! Implementing this requires new software on the host side, so a simple shader change won&amp;rsquo;t cut it
-like with the Burning Ship.&lt;/p>
-&lt;a href="https://megate.ch/img/julia_set_1_1920x1080.png">
-&lt;picture class="framed">
-&lt;img class="aspect-16-9" alt="An image of a bunny Julia set fractal." src="https://megate.ch/img/julia_set_1_640x360.avif" />
-&lt;/picture>
-&lt;/a>
-&lt;h2 id="the-solution">The Solution&lt;/h2>
-&lt;p>For the &lt;a href="https://github.com/gn0mesort/burning-ship/">Burning Ship&lt;/a>, my solution is nearly identical to my
-&lt;a href="https://github.com/gn0mesort/mandelbrot-set/">Mandelbrot set implementation&lt;/a>. It&amp;rsquo;s really as simple as a
-small shader edit changing:&lt;/p>
-&lt;pre>&lt;code class="language-glsl">for (i = 0; length(z) &amp;lt;= 65536 &amp;amp;&amp;amp; i &amp;lt; max_iterations; ++i)
+like with the Burning Ship.&lt;/p&gt;
+&lt;a href="https://megate.ch/img/julia_set_1_1920x1080.png"&gt;
+&lt;picture class="framed"&gt;
+&lt;img class="aspect-16-9" alt="An image of a bunny Julia set fractal." src="https://megate.ch/img/julia_set_1_640x360.avif" /&gt;
+&lt;/picture&gt;
+&lt;/a&gt;
+&lt;h2 id="the-solution"&gt;The Solution&lt;/h2&gt;
+&lt;p&gt;For the &lt;a href="https://github.com/gn0mesort/burning-ship/"&gt;Burning Ship&lt;/a&gt;, my solution is nearly identical to my
+&lt;a href="https://github.com/gn0mesort/mandelbrot-set/"&gt;Mandelbrot set implementation&lt;/a&gt;. It&amp;rsquo;s really as simple as a
+small shader edit changing:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-glsl"&gt;for (i = 0; length(z) &amp;lt;= 65536 &amp;amp;&amp;amp; i &amp;lt; max_iterations; ++i)
 {
   z = cx_multiply(z, z) + c;
 }
-&lt;/code>&lt;/pre>
-&lt;p>to&lt;/p>
-&lt;pre>&lt;code class="language-glsl">for (i = 0; length(z) &amp;lt;= 65536 &amp;amp;&amp;amp; i &amp;lt; max_iterations; ++i)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;to&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-glsl"&gt;for (i = 0; length(z) &amp;lt;= 65536 &amp;amp;&amp;amp; i &amp;lt; max_iterations; ++i)
 {
   z = cx_multiply(abs(z), abs(z)) + c;
 }
-&lt;/code>&lt;/pre>
-&lt;p>That&amp;rsquo;s really it.&lt;/p>
-&lt;a href="https://megate.ch/img/burning_ship_2_1920x1080.png">
-&lt;picture class="framed">
-&lt;img class="aspect-16-9" alt="An image of the Burning Ship fractal." src="https://megate.ch/img/burning_ship_2_640x360.avif" />
-&lt;/picture>
-&lt;/a>
-&lt;p>There are changes in the shader and host programs for the &lt;a href="https://github.com/gn0mesort/julia-set/">Julia sets&lt;/a>. On
-the shader side, I first had to introduce a new uniform for the value &lt;code>c&lt;/code>. I also had to modify the initial
-definition of &lt;code>z&lt;/code>. In the Mandelbrot program, &lt;code>z&lt;/code> starts as &lt;code>vec2(0, 0)&lt;/code>. However, for the Julia sets, it&amp;rsquo;s
-initialized to the fragment coordinate scaled between &lt;code>-2&lt;/code> and &lt;code>2&lt;/code> on both axes. On the host side, I&amp;rsquo;m computing and
-supplying the value of &lt;code>c&lt;/code>.&lt;/p>
-&lt;p>I&amp;rsquo;ve introduced a few constants (&lt;code>A_MIN&lt;/code>, &lt;code>A_MAX&lt;/code>, and &lt;code>ANIMATION_SPEED&lt;/code>) to do this. &lt;code>A_MIN&lt;/code> (a/k/a &lt;code>0&lt;/code>) and &lt;code>A_MAX&lt;/code>
-(a/k/a &lt;code>2π&lt;/code>) represent the range of values to compute &lt;code>c&lt;/code> from. &lt;code>c&lt;/code> itself is computed assuming
-&lt;code>B * e&lt;sup>A * i&lt;/sup> = B * cos(A) + B * sin(A) * i&lt;/code>. Once per frame, this is computed for &lt;code>B = 0.7885&lt;/code>.
-The value of &lt;code>A&lt;/code> varies in steps of &lt;code>0.01&lt;/code> multiplied by &lt;code>ANIMATION_SPEED&lt;/code> and scaled by the frame&amp;rsquo;s delta time. It
-always starts at &lt;code>0&lt;/code>. This behavior reflects when &lt;code>A&lt;/code> reaches &lt;code>A_MAX&lt;/code> or &lt;code>A_MIN&lt;/code> (i.e.,
-&lt;code>A&lt;sub>n&lt;/sub> = A&lt;sub>n-1&lt;/sub> + 0.01&lt;/code>, &lt;code>A&lt;sub>0&lt;/sub> = 0&lt;/code> until
-&lt;code>A&lt;sub>n&lt;/sub> = 2π&lt;/code>. After that point &lt;code>A&lt;sub>n&lt;/sub> = A&lt;sub>n-1&lt;/sub> - 0.01&lt;/code>,
-&lt;code>A&lt;sub>0&lt;/sub> = 2π&lt;/code> until &lt;code>A&lt;sub>n&lt;/sub> = 0&lt;/code>). The result is a smooth transition from &lt;code>0&lt;/code> to
-&lt;code>2π&lt;/code>.&lt;/p>
-&lt;a href="https://megate.ch/img/julia_set_2_1920x1080.png">
-&lt;picture class="framed">
-&lt;img class="aspect-16-9" alt="An image of a Julia set fractal." src="https://megate.ch/img/julia_set_2_640x360.avif" />
-&lt;/picture>
-&lt;/a>
-&lt;p>Since the Julia sets are not a single fractal but an animated transition through a series of fractals, I&amp;rsquo;ve also
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;That&amp;rsquo;s really it.&lt;/p&gt;
+&lt;a href="https://megate.ch/img/burning_ship_2_1920x1080.png"&gt;
+&lt;picture class="framed"&gt;
+&lt;img class="aspect-16-9" alt="An image of the Burning Ship fractal." src="https://megate.ch/img/burning_ship_2_640x360.avif" /&gt;
+&lt;/picture&gt;
+&lt;/a&gt;
+&lt;p&gt;There are changes in the shader and host programs for the &lt;a href="https://github.com/gn0mesort/julia-set/"&gt;Julia sets&lt;/a&gt;. On
+the shader side, I first had to introduce a new uniform for the value &lt;code&gt;c&lt;/code&gt;. I also had to modify the initial
+definition of &lt;code&gt;z&lt;/code&gt;. In the Mandelbrot program, &lt;code&gt;z&lt;/code&gt; starts as &lt;code&gt;vec2(0, 0)&lt;/code&gt;. However, for the Julia sets, it&amp;rsquo;s
+initialized to the fragment coordinate scaled between &lt;code&gt;-2&lt;/code&gt; and &lt;code&gt;2&lt;/code&gt; on both axes. On the host side, I&amp;rsquo;m computing and
+supplying the value of &lt;code&gt;c&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;ve introduced a few constants (&lt;code&gt;A_MIN&lt;/code&gt;, &lt;code&gt;A_MAX&lt;/code&gt;, and &lt;code&gt;ANIMATION_SPEED&lt;/code&gt;) to do this. &lt;code&gt;A_MIN&lt;/code&gt; (a/k/a &lt;code&gt;0&lt;/code&gt;) and &lt;code&gt;A_MAX&lt;/code&gt;
+(a/k/a &lt;code&gt;2π&lt;/code&gt;) represent the range of values to compute &lt;code&gt;c&lt;/code&gt; from. &lt;code&gt;c&lt;/code&gt; itself is computed assuming
+&lt;code&gt;B * e&lt;sup&gt;A * i&lt;/sup&gt; = B * cos(A) + B * sin(A) * i&lt;/code&gt;. Once per frame, this is computed for &lt;code&gt;B = 0.7885&lt;/code&gt;.
+The value of &lt;code&gt;A&lt;/code&gt; varies in steps of &lt;code&gt;0.01&lt;/code&gt; multiplied by &lt;code&gt;ANIMATION_SPEED&lt;/code&gt; and scaled by the frame&amp;rsquo;s delta time. It
+always starts at &lt;code&gt;0&lt;/code&gt;. This behavior reflects when &lt;code&gt;A&lt;/code&gt; reaches &lt;code&gt;A_MAX&lt;/code&gt; or &lt;code&gt;A_MIN&lt;/code&gt; (i.e.,
+&lt;code&gt;A&lt;sub&gt;n&lt;/sub&gt; = A&lt;sub&gt;n-1&lt;/sub&gt; + 0.01&lt;/code&gt;, &lt;code&gt;A&lt;sub&gt;0&lt;/sub&gt; = 0&lt;/code&gt; until
+&lt;code&gt;A&lt;sub&gt;n&lt;/sub&gt; = 2π&lt;/code&gt;. After that point &lt;code&gt;A&lt;sub&gt;n&lt;/sub&gt; = A&lt;sub&gt;n-1&lt;/sub&gt; - 0.01&lt;/code&gt;,
+&lt;code&gt;A&lt;sub&gt;0&lt;/sub&gt; = 2π&lt;/code&gt; until &lt;code&gt;A&lt;sub&gt;n&lt;/sub&gt; = 0&lt;/code&gt;). The result is a smooth transition from &lt;code&gt;0&lt;/code&gt; to
+&lt;code&gt;2π&lt;/code&gt;.&lt;/p&gt;
+&lt;a href="https://megate.ch/img/julia_set_2_1920x1080.png"&gt;
+&lt;picture class="framed"&gt;
+&lt;img class="aspect-16-9" alt="An image of a Julia set fractal." src="https://megate.ch/img/julia_set_2_640x360.avif" /&gt;
+&lt;/picture&gt;
+&lt;/a&gt;
+&lt;p&gt;Since the Julia sets are not a single fractal but an animated transition through a series of fractals, I&amp;rsquo;ve also
 added a pause function. This allows users to stop the animation at any point and inspect any part of a particular
 frame. Getting this to work was a little finicky because pausing is a boolean, whereas the other controls are
-continuous.&lt;/p>
-&lt;p>In both cases, the result is a nice rendering of the respective fractals with the same parallel computation as my
-Mandelbrot program.&lt;/p>
-&lt;a href="https://megate.ch/img/julia_set_3_1920x1080.png">
-&lt;picture class="framed">
-&lt;img class="aspect-16-9" alt="An image of a Julia set fractal." src="https://megate.ch/img/julia_set_3_640x360.avif" />
-&lt;/picture>
-&lt;/a>
-&lt;h2 id="thoughts">Thoughts&lt;/h2>
-&lt;p>I&amp;rsquo;m writing this immediately after finishing the previous &lt;a href="https://megate.ch/projects/megatech_vulkan_0_1_0/">Megatech-Vulkan article&lt;/a>,
+continuous.&lt;/p&gt;
+&lt;p&gt;In both cases, the result is a nice rendering of the respective fractals with the same parallel computation as my
+Mandelbrot program.&lt;/p&gt;
+&lt;a href="https://megate.ch/img/julia_set_3_1920x1080.png"&gt;
+&lt;picture class="framed"&gt;
+&lt;img class="aspect-16-9" alt="An image of a Julia set fractal." src="https://megate.ch/img/julia_set_3_640x360.avif" /&gt;
+&lt;/picture&gt;
+&lt;/a&gt;
+&lt;h2 id="thoughts"&gt;Thoughts&lt;/h2&gt;
+&lt;p&gt;I&amp;rsquo;m writing this immediately after finishing the previous &lt;a href="https://megate.ch/projects/megatech_vulkan_0_1_0/"&gt;Megatech-Vulkan article&lt;/a&gt;,
 so I don&amp;rsquo;t have much new on my mind. These programs mainly show how much you can get done without a solid
 mathematical foundation. I&amp;rsquo;m not mathematically skilled enough to explain why these programs generate the interesting
 images they do. On the other hand, I clearly am clever enough to make them work. I guess there&amp;rsquo;s a long tradition of
-this in the software world. Dijkstra is probably rolling in his grave.&lt;/p></description></item><item><title>Megatech-Vulkan 0.1.0</title><author>gnomesort@megate.ch</author><category>projects</category><link>https://megate.ch/projects/megatech_vulkan_0_1_0/</link><pubDate>Sat, 22 Feb 2025</pubDate><guid>https://megate.ch/projects/megatech_vulkan_0_1_0/</guid><description>&lt;h2 id="introduction">Introduction&lt;/h2>
-&lt;p>Last September, &lt;a href="https://megate.ch/projects/megatech_vulkan_dispatch/">I wrote about Megatech-Vulkan Dispatch&lt;/a>. That was my
-&lt;a href="https://www.vulkan.org/">Vulkan&lt;/a> dispatch table project. At the time, I said, &amp;ldquo;I thought it would be fun to return to
+this in the software world. Dijkstra is probably rolling in his grave.&lt;/p&gt;</description></item><item><title>Megatech-Vulkan 0.1.0</title><author>gnomesort@megate.ch</author><category>projects</category><link>https://megate.ch/projects/megatech_vulkan_0_1_0/</link><pubDate>Sat, 22 Feb 2025</pubDate><guid>https://megate.ch/projects/megatech_vulkan_0_1_0/</guid><description>&lt;h2 id="introduction"&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;Last September, &lt;a href="https://megate.ch/projects/megatech_vulkan_dispatch/"&gt;I wrote about Megatech-Vulkan Dispatch&lt;/a&gt;. That was my
+&lt;a href="https://www.vulkan.org/"&gt;Vulkan&lt;/a&gt; dispatch table project. At the time, I said, &amp;ldquo;I thought it would be fun to return to
 writing my own Vulkan API toolkit.&amp;rdquo; However, the dispatch stuff was just a foundation. This project,
-&lt;a href="https://github.com/gn0mesort/megatech-vulkan/">Megatech-Vulkan&lt;/a>, is the broader toolkit.&lt;/p>
-&lt;p>Specifically, my goal isn&amp;rsquo;t just a vague Vulkan toolkit library. I&amp;rsquo;m interested in providing a directed acyclic
+&lt;a href="https://github.com/gn0mesort/megatech-vulkan/"&gt;Megatech-Vulkan&lt;/a&gt;, is the broader toolkit.&lt;/p&gt;
+&lt;p&gt;Specifically, my goal isn&amp;rsquo;t just a vague Vulkan toolkit library. I&amp;rsquo;m interested in providing a directed acyclic
 graph-based scheduling solution for Vulkan operations. My thinking is that, with the correct architecture, I can
 obviate many of Vulkan&amp;rsquo;s more annoying aspects. At the same time, I want to keep much of the low-level flexibility
-that I would lose with &lt;a href="https://www.khronos.org/opengl/">OpenGL&lt;/a>. Anyway, this release is just a tiny part of that.&lt;/p>
-&lt;p>This release, which is not a completed project but a partial release, covers one facet of that problem. How do I make
+that I would lose with &lt;a href="https://www.khronos.org/opengl/"&gt;OpenGL&lt;/a&gt;. Anyway, this release is just a tiny part of that.&lt;/p&gt;
+&lt;p&gt;This release, which is not a completed project but a partial release, covers one facet of that problem. How do I make
 bootstrapping Vulkan simple? Generally, the more dynamism you need, the more complex things get with Vulkan.
 Managing that flexibility is a significant pain point for a library because you can&amp;rsquo;t make too many predictions about
-how a client application would like to leverage your software.&lt;/p>
-&lt;h2 id="the-problem">The Problem&lt;/h2>
-&lt;p>The problem is this: Vulkan needs to know what features an application wants to use during initialization. Vulkan has
+how a client application would like to leverage your software.&lt;/p&gt;
+&lt;h2 id="the-problem"&gt;The Problem&lt;/h2&gt;
+&lt;p&gt;The problem is this: Vulkan needs to know what features an application wants to use during initialization. Vulkan has
 many components that can all be considered features. First and most obviously, there are core API versions and
 extensions. Next, the properties of physical devices can be regarded as features. This includes anything in a
-&lt;code>VkPhysicalDevice*Properties*&lt;/code> structure (e.g.,
-&lt;a href="https://registry.khronos.org/vulkan/specs/latest/man/html/VkPhysicalDeviceVulkan11Properties.html">&lt;code>VkPhysicalDeviceVulkan11Properties::maxMemoryAllocationSize&lt;/code>&lt;/a>).
+&lt;code&gt;VkPhysicalDevice*Properties*&lt;/code&gt; structure (e.g.,
+&lt;a href="https://registry.khronos.org/vulkan/specs/latest/man/html/VkPhysicalDeviceVulkan11Properties.html"&gt;&lt;code&gt;VkPhysicalDeviceVulkan11Properties::maxMemoryAllocationSize&lt;/code&gt;&lt;/a&gt;).
 It also includes other physical device properties like queue family descriptions (i.e.,
-&lt;a href="https://registry.khronos.org/vulkan/specs/latest/man/html/VkQueueFamilyProperties.html">&lt;code>VkQueueFamilyProperties&lt;/code>&lt;/a>)
+&lt;a href="https://registry.khronos.org/vulkan/specs/latest/man/html/VkQueueFamilyProperties.html"&gt;&lt;code&gt;VkQueueFamilyProperties&lt;/code&gt;&lt;/a&gt;)
 and memory details (i.e.,
-&lt;a href="https://registry.khronos.org/vulkan/specs/latest/man/html/VkPhysicalDeviceMemoryProperties.html">&lt;code>VkPhysicalDeviceMemoryProperties&lt;/code>&lt;/a>).
+&lt;a href="https://registry.khronos.org/vulkan/specs/latest/man/html/VkPhysicalDeviceMemoryProperties.html"&gt;&lt;code&gt;VkPhysicalDeviceMemoryProperties&lt;/code&gt;&lt;/a&gt;).
 There&amp;rsquo;s more than that, too. Physical devices can also have boolean features. Anything in a
-&lt;code>VkPhysicalDevice*Features*&lt;/code> structure is fair game. Managing all of this is tedious but doable. What&amp;rsquo;s complex is
-how it all interacts.&lt;/p>
-&lt;p>One example of such an interaction comes
-&lt;a href="https://registry.khronos.org/vulkan/specs/latest/man/html/VkPhysicalDeviceProperties.html#_description">directly from the specification&lt;/a>:&lt;/p>
-&lt;blockquote>
-&lt;p>The value of &lt;code>apiVersion&lt;/code> may be different than the version returned by &lt;code>vkEnumerateInstanceVersion&lt;/code>; either higher
+&lt;code&gt;VkPhysicalDevice*Features*&lt;/code&gt; structure is fair game. Managing all of this is tedious but doable. What&amp;rsquo;s complex is
+how it all interacts.&lt;/p&gt;
+&lt;p&gt;One example of such an interaction comes
+&lt;a href="https://registry.khronos.org/vulkan/specs/latest/man/html/VkPhysicalDeviceProperties.html#_description"&gt;directly from the specification&lt;/a&gt;:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The value of &lt;code&gt;apiVersion&lt;/code&gt; may be different than the version returned by &lt;code&gt;vkEnumerateInstanceVersion&lt;/code&gt;; either higher
 or lower. In such cases, the application must not use functionality that exceeds the version of Vulkan associated
-with a given object. The &lt;code>pApiVersion&lt;/code> parameter returned by &lt;code>vkEnumerateInstanceVersion&lt;/code> is the version associated
-with a &lt;code>VkInstance&lt;/code> and its children, except for a &lt;code>VkPhysicalDevice&lt;/code> and its children.
-&lt;code>VkPhysicalDeviceProperties::apiVersion&lt;/code> is the version associated with a &lt;code>VkPhysicalDevice&lt;/code> and its children.&lt;/p>
-&lt;/blockquote>
-&lt;p>The specification means this: it is valid for a Vulkan instance to support one version of the core functionality and
+with a given object. The &lt;code&gt;pApiVersion&lt;/code&gt; parameter returned by &lt;code&gt;vkEnumerateInstanceVersion&lt;/code&gt; is the version associated
+with a &lt;code&gt;VkInstance&lt;/code&gt; and its children, except for a &lt;code&gt;VkPhysicalDevice&lt;/code&gt; and its children.
+&lt;code&gt;VkPhysicalDeviceProperties::apiVersion&lt;/code&gt; is the version associated with a &lt;code&gt;VkPhysicalDevice&lt;/code&gt; and its children.&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;The specification means this: it is valid for a Vulkan instance to support one version of the core functionality and
 each of its physical devices to support other versions. The direction of this is arbitrary, so you have to ensure your
-application doesn&amp;rsquo;t use the wrong version with the wrong objects. This is just one of the issues.&lt;/p>
-&lt;p>There can be interactions between extensions in the same way. There are some naive cases here. For example,
-&lt;a href="https://registry.khronos.org/vulkan/specs/latest/man/html/VK_KHR_swapchain.html">&lt;code>VK_KHR_swapchain&lt;/code>&lt;/a> depends upon
-&lt;a href="https://registry.khronos.org/vulkan/specs/latest/man/html/VK_KHR_surface.html">&lt;code>VK_KHR_surface&lt;/code>&lt;/a>. It doesn&amp;rsquo;t make
+application doesn&amp;rsquo;t use the wrong version with the wrong objects. This is just one of the issues.&lt;/p&gt;
+&lt;p&gt;There can be interactions between extensions in the same way. There are some naive cases here. For example,
+&lt;a href="https://registry.khronos.org/vulkan/specs/latest/man/html/VK_KHR_swapchain.html"&gt;&lt;code&gt;VK_KHR_swapchain&lt;/code&gt;&lt;/a&gt; depends upon
+&lt;a href="https://registry.khronos.org/vulkan/specs/latest/man/html/VK_KHR_surface.html"&gt;&lt;code&gt;VK_KHR_surface&lt;/code&gt;&lt;/a&gt;. It doesn&amp;rsquo;t make
 sense to enable swapchains without the surfaces. Other cases can be much more complex. For example, using input
 attachments with dynamic rendering requires either
-&lt;a href="https://registry.khronos.org/vulkan/specs/latest/man/html/VK_KHR_dynamic_rendering.html">&lt;code>VK_KHR_dynamic_rendering&lt;/code>&lt;/a>
+&lt;a href="https://registry.khronos.org/vulkan/specs/latest/man/html/VK_KHR_dynamic_rendering.html"&gt;&lt;code&gt;VK_KHR_dynamic_rendering&lt;/code&gt;&lt;/a&gt;
 or Vulkan 1.3 at a minimum. It also requires that the dynamic rendering feature is available and enabled (i.e., either
-&lt;a href="https://registry.khronos.org/vulkan/specs/latest/man/html/VkPhysicalDeviceDynamicRenderingFeaturesKHR.html">&lt;code>VkPhysicalDeviceDynamicRenderingFeaturesKHR::dynamicRendering&lt;/code>&lt;/a>
+&lt;a href="https://registry.khronos.org/vulkan/specs/latest/man/html/VkPhysicalDeviceDynamicRenderingFeaturesKHR.html"&gt;&lt;code&gt;VkPhysicalDeviceDynamicRenderingFeaturesKHR::dynamicRendering&lt;/code&gt;&lt;/a&gt;
 must be true or
-&lt;a href="https://registry.khronos.org/vulkan/specs/latest/man/html/VkPhysicalDeviceVulkan11Features.html">&lt;code>VkPhysicalDeviceVulkan11Features::dynamicRendering&lt;/code>&lt;/a>
+&lt;a href="https://registry.khronos.org/vulkan/specs/latest/man/html/VkPhysicalDeviceVulkan11Features.html"&gt;&lt;code&gt;VkPhysicalDeviceVulkan11Features::dynamicRendering&lt;/code&gt;&lt;/a&gt;
 must be true depending on the path you&amp;rsquo;re taking). After that, you also need the
-&lt;a href="https://registry.khronos.org/vulkan/specs/latest/man/html/VK_KHR_dynamic_rendering_local_read.html">&lt;code>VK_KHR_dynamic_rendering_local_read&lt;/code>&lt;/a>
-extension or Vulkan 1.4. If you&amp;rsquo;re using &lt;code>VK_KHR_dynamic_rendering_local_read&lt;/code>, you also need to check
-&lt;a href="https://registry.khronos.org/vulkan/specs/latest/man/html/VkPhysicalDeviceDynamicRenderingLocalReadFeaturesKHR.html">&lt;code>VkPhysicalDeviceDynamicRenderingLocalReadFeaturesKHR::dynamicRenderingLocalRead&lt;/code>&lt;/a>
+&lt;a href="https://registry.khronos.org/vulkan/specs/latest/man/html/VK_KHR_dynamic_rendering_local_read.html"&gt;&lt;code&gt;VK_KHR_dynamic_rendering_local_read&lt;/code&gt;&lt;/a&gt;
+extension or Vulkan 1.4. If you&amp;rsquo;re using &lt;code&gt;VK_KHR_dynamic_rendering_local_read&lt;/code&gt;, you also need to check
+&lt;a href="https://registry.khronos.org/vulkan/specs/latest/man/html/VkPhysicalDeviceDynamicRenderingLocalReadFeaturesKHR.html"&gt;&lt;code&gt;VkPhysicalDeviceDynamicRenderingLocalReadFeaturesKHR::dynamicRenderingLocalRead&lt;/code&gt;&lt;/a&gt;
 or
-&lt;a href="https://registry.khronos.org/vulkan/specs/latest/man/html/VkPhysicalDeviceVulkan14Features.html">&lt;code>VkPhysicalDeviceVulkan14Features::dynamicRenderingLocalRead&lt;/code>&lt;/a>.
+&lt;a href="https://registry.khronos.org/vulkan/specs/latest/man/html/VkPhysicalDeviceVulkan14Features.html"&gt;&lt;code&gt;VkPhysicalDeviceVulkan14Features::dynamicRenderingLocalRead&lt;/code&gt;&lt;/a&gt;.
 If you have Vulkan 1.4, you need to additionally check
-&lt;a href="https://registry.khronos.org/vulkan/specs/latest/man/html/VkPhysicalDeviceVulkan14Properties.html">&lt;code>VkPhysicalDeviceVulkan14Properties::dynamicRenderingLocalReadDepthStencilAttachments&lt;/code>&lt;/a>
-and &lt;code>VkPhysicalDeviceVulkan14Properties::dynamicRenderingLocalReadMultisampledAttachments&lt;/code> to check for depth/stencil
+&lt;a href="https://registry.khronos.org/vulkan/specs/latest/man/html/VkPhysicalDeviceVulkan14Properties.html"&gt;&lt;code&gt;VkPhysicalDeviceVulkan14Properties::dynamicRenderingLocalReadDepthStencilAttachments&lt;/code&gt;&lt;/a&gt;
+and &lt;code&gt;VkPhysicalDeviceVulkan14Properties::dynamicRenderingLocalReadMultisampledAttachments&lt;/code&gt; to check for depth/stencil
 and multisampled image support. To my knowledge, there are no equivalent properties to check with the extension alone.
-This is still just the most trivial type of interaction.&lt;/p>
-&lt;p>There can also be interactions between otherwise independent extensions. For example,
-&lt;a href="https://registry.khronos.org/vulkan/specs/latest/man/html/VK_EXT_pipeline_robustness.html">&lt;code>VK_EXT_pipeline_robustness&lt;/code>&lt;/a>
+This is still just the most trivial type of interaction.&lt;/p&gt;
+&lt;p&gt;There can also be interactions between otherwise independent extensions. For example,
+&lt;a href="https://registry.khronos.org/vulkan/specs/latest/man/html/VK_EXT_pipeline_robustness.html"&gt;&lt;code&gt;VK_EXT_pipeline_robustness&lt;/code&gt;&lt;/a&gt;
 only depends on
-&lt;a href="https://registry.khronos.org/vulkan/specs/latest/man/html/VK_KHR_get_physical_device_properties2.html">&lt;code>VK_KHR_get_physical_device_properties2&lt;/code>&lt;/a>
+&lt;a href="https://registry.khronos.org/vulkan/specs/latest/man/html/VK_KHR_get_physical_device_properties2.html"&gt;&lt;code&gt;VK_KHR_get_physical_device_properties2&lt;/code&gt;&lt;/a&gt;
 or Vulkan 1.1 being present. However, it has a list of interactions with other extensions that may or may not be
 enabled alongside it. There can also be interactions or dependencies with shading language (i.e.,
-&lt;a href="https://www.khronos.org/spirv/">SPIR-V&lt;/a> and &lt;a href="https://en.wikipedia.org/wiki/OpenGL_Shading_Language">GLSL&lt;/a>) extensions.&lt;/p>
-&lt;p>I&amp;rsquo;m probably glossing over some complexity here, but there is still another way all of these features can interact.
+&lt;a href="https://www.khronos.org/spirv/"&gt;SPIR-V&lt;/a&gt; and &lt;a href="https://en.wikipedia.org/wiki/OpenGL_Shading_Language"&gt;GLSL&lt;/a&gt;) extensions.&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;m probably glossing over some complexity here, but there is still another way all of these features can interact.
 Vulkan layers can introduce their own versions of instance and device extensions. On my system, the only layer that
 does this is
-&lt;a href="https://vulkan.lunarg.com/doc/view/latest/linux/khronos_validation_layer.html">&lt;code>VK_LAYER_KHRONOS_validation&lt;/code>&lt;/a>.
+&lt;a href="https://vulkan.lunarg.com/doc/view/latest/linux/khronos_validation_layer.html"&gt;&lt;code&gt;VK_LAYER_KHRONOS_validation&lt;/code&gt;&lt;/a&gt;.
 Regardless, this means you might have features only available in certain configurations or features with slightly
 different behavior in certain configurations (e.g., my driver provides
-&lt;a href="https://registry.khronos.org/vulkan/specs/latest/man/html/VK_EXT_debug_utils.html">&lt;code>VK_EXT_debug_utils&lt;/code>&lt;/a> revision 2,
+&lt;a href="https://registry.khronos.org/vulkan/specs/latest/man/html/VK_EXT_debug_utils.html"&gt;&lt;code&gt;VK_EXT_debug_utils&lt;/code&gt;&lt;/a&gt; revision 2,
 but my validation layer only provides revision 1). I can&amp;rsquo;t imagine many cases where this is a big deal, but it&amp;rsquo;s
-another thing to worry about.&lt;/p>
-&lt;p>From my perspective, this makes writing a library that uses Vulkan a colossal pain. If library clients can configure
+another thing to worry about.&lt;/p&gt;
+&lt;p&gt;From my perspective, this makes writing a library that uses Vulkan a colossal pain. If library clients can configure
 even a minimal amount of Vulkan&amp;rsquo;s behavior, it can become impossible to predict precisely how the API will behave. In
 my opinion, there are basically two options. Either you create a thin wrapper around Vulkan and require the client to
-manage all of this, or you decide what Vulkan can and cannot do for the client.&lt;/p>
-&lt;p>If you go the latter route, there are still problems. For one, there&amp;rsquo;s no good way to know how Vulkan should be loaded.
-A library might shake its head and link &lt;a href="https://github.com/KhronosGroup/Vulkan-Loader">libvulkan&lt;/a> regardless, but
+manage all of this, or you decide what Vulkan can and cannot do for the client.&lt;/p&gt;
+&lt;p&gt;If you go the latter route, there are still problems. For one, there&amp;rsquo;s no good way to know how Vulkan should be loaded.
+A library might shake its head and link &lt;a href="https://github.com/KhronosGroup/Vulkan-Loader"&gt;libvulkan&lt;/a&gt; regardless, but
 this constrains it to systems where libvulkan is available. Similarly, there&amp;rsquo;s no good way to know when or how to
 integrate window systems. A library can always require
-&lt;a href="https://registry.khronos.org/vulkan/specs/latest/man/html/VK_KHR_win32_surface.html">&lt;code>VK_KHR_win32_surface&lt;/code>&lt;/a> for
+&lt;a href="https://registry.khronos.org/vulkan/specs/latest/man/html/VK_KHR_win32_surface.html"&gt;&lt;code&gt;VK_KHR_win32_surface&lt;/code&gt;&lt;/a&gt; for
 Windows systems, and it&amp;rsquo;s probably safe. On other systems, like the Linux system I&amp;rsquo;m writing this article on, there
 can be several different window systems. There are also platform independent frameworks to consider. Ideally, you
-would select only the features you need. Were it so easy.&lt;/p>
-&lt;p>In my opinion, anyone wanting to write a library that isn&amp;rsquo;t a wrapper faces two conflicting concerns here. First, the
+would select only the features you need. Were it so easy.&lt;/p&gt;
+&lt;p&gt;In my opinion, anyone wanting to write a library that isn&amp;rsquo;t a wrapper faces two conflicting concerns here. First, the
 library author needs to control as much of the Vulkan configuration as is reasonable. Doing anything else makes it
 impossible to know what correct operation looks like. Second, the library author needs to allow configuration by client
 applications wherever platform specifics come into play (e.g., loading and window systems). In short, a library needs
-to be configurable, but it can&amp;rsquo;t be too configurable.&lt;/p>
-&lt;h2 id="the-solution">The Solution&lt;/h2>
-&lt;p>My solution to this is straightforward. First, I&amp;rsquo;ve done my best to minimize how much configuration can be done
+to be configurable, but it can&amp;rsquo;t be too configurable.&lt;/p&gt;
+&lt;h2 id="the-solution"&gt;The Solution&lt;/h2&gt;
+&lt;p&gt;My solution to this is straightforward. First, I&amp;rsquo;ve done my best to minimize how much configuration can be done
 through the public API. Applications of my API can make three decisions: whether to initialize debugging tools, which
 Vulkan layers the application explicitly enables, and which devices the application selects for initialization.
-Anything outside of this is off-limits to the public.&lt;/p>
-&lt;p>My approach requires using what I&amp;rsquo;m calling an adaptor to handle the platform-specific stuff. Adaptors are separate
+Anything outside of this is off-limits to the public.&lt;/p&gt;
+&lt;p&gt;My approach requires using what I&amp;rsquo;m calling an adaptor to handle the platform-specific stuff. Adaptors are separate
 libraries that implement loading and, potentially, window system integration. Right now, I&amp;rsquo;ve only written a basic
 adaptor for libvulkan. This adaptor loads Vulkan by linking directly to libvulkan and pulls everything else out of
-&lt;a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetInstanceProcAddr.html">&lt;code>vkGetInstanceProcAddr&lt;/code>&lt;/a>. Since
-there&amp;rsquo;s no standard window system integration, the libvulkan adaptor doesn&amp;rsquo;t provide any.&lt;/p>
-&lt;p>I&amp;rsquo;m using a pointer to implementation approach to keep applications out of the library&amp;rsquo;s internals. A few objects in my
+&lt;a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetInstanceProcAddr.html"&gt;&lt;code&gt;vkGetInstanceProcAddr&lt;/code&gt;&lt;/a&gt;. Since
+there&amp;rsquo;s no standard window system integration, the libvulkan adaptor doesn&amp;rsquo;t provide any.&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;m using a pointer to implementation approach to keep applications out of the library&amp;rsquo;s internals. A few objects in my
 library don&amp;rsquo;t do this (e.g.,
-&lt;a href="https://github.com/gn0mesort/megatech-vulkan/blob/v0.1.0/include/megatech/vulkan/physical_devices.hpp">&lt;code>megatech::vulkan::physical_device_list&lt;/code>&lt;/a>),
+&lt;a href="https://github.com/gn0mesort/megatech-vulkan/blob/v0.1.0/include/megatech/vulkan/physical_devices.hpp"&gt;&lt;code&gt;megatech::vulkan::physical_device_list&lt;/code&gt;&lt;/a&gt;),
 but all the core objects hold pointers to their implementation. This provides a couple of benefits. The most important
 benefit is that it separates my API into two levels: public and internal. Secondarily, it ensures that Vulkan is
 safely encapsulated in the internal API. There&amp;rsquo;s no need for client applications to know about or have any Vulkan
 header files. For the implementation pointers, I&amp;rsquo;ve gone with
-&lt;a href="https://en.cppreference.com/w/cpp/memory/shared_ptr">&lt;code>std::shared_ptr&lt;/code>&lt;/a> for now. This enforces a correct destruction
+&lt;a href="https://en.cppreference.com/w/cpp/memory/shared_ptr"&gt;&lt;code&gt;std::shared_ptr&lt;/code&gt;&lt;/a&gt; for now. This enforces a correct destruction
 order for dependent implementations (i.e., an instance implementation won&amp;rsquo;t be destroyed until the application destroys
 all of its devices) and reduces boilerplate (i.e., I don&amp;rsquo;t have to provide destruction functors for opaque types as I
-would with &lt;a href="https://en.cppreference.com/w/cpp/memory/unique_ptr">&lt;code>std::unique_ptr&lt;/code>&lt;/a>). I
-may need to change this later, though.&lt;/p>
-&lt;p>My intention is that only adaptors will need to access the internal API. Right now, I&amp;rsquo;ve set the library up to require
+would with &lt;a href="https://en.cppreference.com/w/cpp/memory/unique_ptr"&gt;&lt;code&gt;std::unique_ptr&lt;/code&gt;&lt;/a&gt;). I
+may need to change this later, though.&lt;/p&gt;
+&lt;p&gt;My intention is that only adaptors will need to access the internal API. Right now, I&amp;rsquo;ve set the library up to require
 adaptors to do this via inheritance. This means that an adaptor needs to extend at least the
-&lt;a href="https://github.com/gn0mesort/megatech-vulkan/blob/v0.1.0/include/megatech/vulkan/loader.hpp">&lt;code>megatech::vulkan::loader&lt;/code>&lt;/a>
+&lt;a href="https://github.com/gn0mesort/megatech-vulkan/blob/v0.1.0/include/megatech/vulkan/loader.hpp"&gt;&lt;code&gt;megatech::vulkan::loader&lt;/code&gt;&lt;/a&gt;
 and
-&lt;a href="https://github.com/gn0mesort/megatech-vulkan/blob/v0.1.0/include/megatech/vulkan/internal/base/loader_impl.hpp">&lt;code>megatech::vulkan::internal::base::loader_impl&lt;/code>&lt;/a>
+&lt;a href="https://github.com/gn0mesort/megatech-vulkan/blob/v0.1.0/include/megatech/vulkan/internal/base/loader_impl.hpp"&gt;&lt;code&gt;megatech::vulkan::internal::base::loader_impl&lt;/code&gt;&lt;/a&gt;
 types. However, it can also extend the implementation types for
-&lt;a href="https://github.com/gn0mesort/megatech-vulkan/blob/v0.1.0/include/megatech/vulkan/instance.hpp">&lt;code>megatech::vulkan::instance&lt;/code>&lt;/a>
-and &lt;code>megatech::vulkan::physical_device_description&lt;/code>. At the moment, this is very powerful. Adaptors can change around
+&lt;a href="https://github.com/gn0mesort/megatech-vulkan/blob/v0.1.0/include/megatech/vulkan/instance.hpp"&gt;&lt;code&gt;megatech::vulkan::instance&lt;/code&gt;&lt;/a&gt;
+and &lt;code&gt;megatech::vulkan::physical_device_description&lt;/code&gt;. At the moment, this is very powerful. Adaptors can change around
 which queues get allocated to which tasks, add extensions, and enable extra device features. In the future, I&amp;rsquo;ll
-probably remove most of this flexibility.&lt;/p>
-&lt;p>This architecture leads to a somewhat annoying drawback. Selecting the correct implementations of the various core
-objects requires a set of methods in the &lt;code>megatech::vulkan::loader&lt;/code> and &lt;code>megatech::vulkan::instance&lt;/code> implementations. I
+probably remove most of this flexibility.&lt;/p&gt;
+&lt;p&gt;This architecture leads to a somewhat annoying drawback. Selecting the correct implementations of the various core
+objects requires a set of methods in the &lt;code&gt;megatech::vulkan::loader&lt;/code&gt; and &lt;code&gt;megatech::vulkan::instance&lt;/code&gt; implementations. I
 dislike this because it&amp;rsquo;s relatively brittle. It relies on adaptors to figure out which implementations they want. The
 default behavior, of course, is to use the implementations provided by the core library. Ideally, I&amp;rsquo;d like to identify
-the correct implementation at compile time. Even more ideally, there would only need to be one implementation.&lt;/p>
-&lt;p>The rest of the library is about organizing and validating the Vulkan initialization process. Right now, I&amp;rsquo;ve kept
+the correct implementation at compile time. Even more ideally, there would only need to be one implementation.&lt;/p&gt;
+&lt;p&gt;The rest of the library is about organizing and validating the Vulkan initialization process. Right now, I&amp;rsquo;ve kept
 this minimal. I&amp;rsquo;m requiring Vulkan 1.3, dynamic rendering, and debug utils (for debug instances). I&amp;rsquo;ve also implemented
 a method to determine if each device supports compute and transfer operations asynchronously from the main queue. I
-don&amp;rsquo;t intend to use this immediately, but it&amp;rsquo;s a feature I want to have later on.&lt;/p>
-&lt;p>That&amp;rsquo;s about all there is to say about this implementation right now. It&amp;rsquo;s all about initialization and validation.
+don&amp;rsquo;t intend to use this immediately, but it&amp;rsquo;s a feature I want to have later on.&lt;/p&gt;
+&lt;p&gt;That&amp;rsquo;s about all there is to say about this implementation right now. It&amp;rsquo;s all about initialization and validation.
 I&amp;rsquo;ve tried to keep it simple while also keeping client applications from having to understand too much about the
 structure of Vulkan. I think the architecture is a bit rough around the edges, and I&amp;rsquo;ll hopefully have it evened out
-more in the future.&lt;/p>
-&lt;p>&lt;strong>tl;dr&lt;/strong>&lt;/p>
-&lt;pre>&lt;code class="language-cpp">#include &amp;lt;megatech/vulkan.hpp&amp;gt;
+more in the future.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;tl;dr&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-cpp"&gt;#include &amp;lt;megatech/vulkan.hpp&amp;gt;
 #include &amp;lt;megatech/vulkan/adaptors/libvulkan.hpp&amp;gt;
 namespace mv = megatech::vulkan;
 // An adaptor is needed to ensure the correct features and extensions are enabled.
@@ -254,322 +253,319 @@ return 1;
 auto device = mv::device{ physical_devices.front() };
 return 0;
 }
-&lt;/code>&lt;/pre>
-&lt;h2 id="thoughts">Thoughts&lt;/h2>
-&lt;p>Writing these articles always takes me a really long time because I&amp;rsquo;m so anxious about the particulars of what I say.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id="thoughts"&gt;Thoughts&lt;/h2&gt;
+&lt;p&gt;Writing these articles always takes me a really long time because I&amp;rsquo;m so anxious about the particulars of what I say.
 I felt confident in my architectural approach when I started writing this article. As I&amp;rsquo;ve written it, though, I&amp;rsquo;ve
-become less and less confident.&lt;/p>
-&lt;p>Right now, I think the monolithic adaptor library isn&amp;rsquo;t quite the correct approach. I&amp;rsquo;d like to separate this idea
+become less and less confident.&lt;/p&gt;
+&lt;p&gt;Right now, I think the monolithic adaptor library isn&amp;rsquo;t quite the correct approach. I&amp;rsquo;d like to separate this idea
 into two separate types of libraries. Instead of having one library to handle loading and window system integration,
 there would be one of each. I think this approach would let me tame the internal fiddliness of the current API.
-When I initially envisioned the adaptor approach, I had &lt;a href="https://wiki.libsdl.org/SDL2/FrontPage">SDL2&lt;/a> in mind. SDL2
-exposes Vulkan through its &lt;a href="https://wiki.libsdl.org/SDL2/SDL_Vulkan_LoadLibrary">&lt;code>SDL_Vulkan_LoadLibrary&lt;/code>&lt;/a> and
-&lt;a href="https://wiki.libsdl.org/SDL2/SDL_Vulkan_GetVkGetInstanceProcAddr">&lt;code>SDL_Vulkan_GetVkGetInstanceProcAddr&lt;/code>&lt;/a> functions.
+When I initially envisioned the adaptor approach, I had &lt;a href="https://wiki.libsdl.org/SDL2/FrontPage"&gt;SDL2&lt;/a&gt; in mind. SDL2
+exposes Vulkan through its &lt;a href="https://wiki.libsdl.org/SDL2/SDL_Vulkan_LoadLibrary"&gt;&lt;code&gt;SDL_Vulkan_LoadLibrary&lt;/code&gt;&lt;/a&gt; and
+&lt;a href="https://wiki.libsdl.org/SDL2/SDL_Vulkan_GetVkGetInstanceProcAddr"&gt;&lt;code&gt;SDL_Vulkan_GetVkGetInstanceProcAddr&lt;/code&gt;&lt;/a&gt; functions.
 To do window system integration, it also exposes
-&lt;a href="https://wiki.libsdl.org/SDL2/SDL_Vulkan_GetInstanceExtensions">&lt;code>SDL_Vulkan_GetInstanceExtensions&lt;/code>&lt;/a>, and
-&lt;a href="https://wiki.libsdl.org/SDL3/SDL_Vulkan_CreateSurface">&lt;code>SDL_Vulkan_CreateSurface&lt;/code>&lt;/a>. My worry was about how to replace
+&lt;a href="https://wiki.libsdl.org/SDL2/SDL_Vulkan_GetInstanceExtensions"&gt;&lt;code&gt;SDL_Vulkan_GetInstanceExtensions&lt;/code&gt;&lt;/a&gt;, and
+&lt;a href="https://wiki.libsdl.org/SDL3/SDL_Vulkan_CreateSurface"&gt;&lt;code&gt;SDL_Vulkan_CreateSurface&lt;/code&gt;&lt;/a&gt;. My worry was about how to replace
 the less generic Vulkan API calls with these platform-independent ones. My vision was there would be a
-libmegatech-vulkan-adaptor-sdl2 that handled all of this.&lt;/p>
-&lt;p>Now, I think it makes more sense to split these. Instead of one library, there would be libmegatech-vulkan-loader-sdl2
-and libmegatech-vulkan-wsi-sdl2. The loader library would be responsible for implementing a &lt;code>loader&lt;/code> object (a required
-parameter to &lt;code>megatech::vulkan::instance&lt;/code>&amp;rsquo;s constructor) that handles &lt;code>SDL_Vulkan_LoadLibrary&lt;/code>,
-&lt;code>SDL_Vulkan_GetVkGetInstanceProcAddr&lt;/code>, and &lt;code>SDL_Vulkan_GetInstanceExtensions&lt;/code>. On the other hand,
-libmegatech-vulkan-wsi-sdl2 would implement a &lt;code>window_system&lt;/code> object (an optional parameter to
-&lt;code>megatech::vulkan::instance&lt;/code>&amp;rsquo;s constructor) that describes the window systems requirements. It would also be
-responsible for implementing a &lt;code>megatech::vulkan::surface&lt;/code> object.&lt;/p>
-&lt;p>Initially, I was hyped to get into my graph scheduling stuff once I published this article. Now, I think I&amp;rsquo;ll go back
+libmegatech-vulkan-adaptor-sdl2 that handled all of this.&lt;/p&gt;
+&lt;p&gt;Now, I think it makes more sense to split these. Instead of one library, there would be libmegatech-vulkan-loader-sdl2
+and libmegatech-vulkan-wsi-sdl2. The loader library would be responsible for implementing a &lt;code&gt;loader&lt;/code&gt; object (a required
+parameter to &lt;code&gt;megatech::vulkan::instance&lt;/code&gt;&amp;rsquo;s constructor) that handles &lt;code&gt;SDL_Vulkan_LoadLibrary&lt;/code&gt;,
+&lt;code&gt;SDL_Vulkan_GetVkGetInstanceProcAddr&lt;/code&gt;, and &lt;code&gt;SDL_Vulkan_GetInstanceExtensions&lt;/code&gt;. On the other hand,
+libmegatech-vulkan-wsi-sdl2 would implement a &lt;code&gt;window_system&lt;/code&gt; object (an optional parameter to
+&lt;code&gt;megatech::vulkan::instance&lt;/code&gt;&amp;rsquo;s constructor) that describes the window systems requirements. It would also be
+responsible for implementing a &lt;code&gt;megatech::vulkan::surface&lt;/code&gt; object.&lt;/p&gt;
+&lt;p&gt;Initially, I was hyped to get into my graph scheduling stuff once I published this article. Now, I think I&amp;rsquo;ll go back
 and work on the initialization architecture a bit first. At least, I don&amp;rsquo;t anticipate the change I&amp;rsquo;m describing here
-to take much time (maybe a weekend at most).&lt;/p>
-&lt;p>Outside of Vulkan stuff, I&amp;rsquo;ve got a new job. I&amp;rsquo;m not making much money, but it&amp;rsquo;s helped my mood a bit. I&amp;rsquo;ve been moody
+to take much time (maybe a weekend at most).&lt;/p&gt;
+&lt;p&gt;Outside of Vulkan stuff, I&amp;rsquo;ve got a new job. I&amp;rsquo;m not making much money, but it&amp;rsquo;s helped my mood a bit. I&amp;rsquo;ve been moody
 overall since December, so that&amp;rsquo;s a good sign. The holidays always get to me, though. There&amp;rsquo;s just no way for it not
-to be a stressful situation.&lt;/p>
-&lt;p>While writing this, I&amp;rsquo;ve taken the time to write a couple more OpenGL fractal programs. I&amp;rsquo;ve been working with a
+to be a stressful situation.&lt;/p&gt;
+&lt;p&gt;While writing this, I&amp;rsquo;ve taken the time to write a couple more OpenGL fractal programs. I&amp;rsquo;ve been working with a
 student interested in computer graphics, so I felt inspired to return to the Mandelbrot set. I&amp;rsquo;ll do a brief write-up
 about those programs soon (they&amp;rsquo;re just forks of the program from last October). After that, I&amp;rsquo;m returning to Vulkan
-to see how much progress I can make.&lt;/p></description></item><item><title>Mandelbrot Set</title><author>gnomesort@megate.ch</author><category>projects</category><link>https://megate.ch/projects/mandelbrot_set/</link><pubDate>Fri, 25 Oct 2024</pubDate><guid>https://megate.ch/projects/mandelbrot_set/</guid><description>&lt;h2 id="introduction">Introduction&lt;/h2>
-&lt;p>I didn&amp;rsquo;t think I&amp;rsquo;d be writing anything this soon after my last post. I was starting to brainstorm some game ideas,
+to see how much progress I can make.&lt;/p&gt;</description></item><item><title>Mandelbrot Set</title><author>gnomesort@megate.ch</author><category>projects</category><link>https://megate.ch/projects/mandelbrot_set/</link><pubDate>Fri, 25 Oct 2024</pubDate><guid>https://megate.ch/projects/mandelbrot_set/</guid><description>&lt;h2 id="introduction"&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;I didn&amp;rsquo;t think I&amp;rsquo;d be writing anything this soon after my last post. I was starting to brainstorm some game ideas,
 because that&amp;rsquo;s what I wanted to do. Then outside forces kind of led me astray. At first, I just wanted to get back
-to rendering something. Then, I had a pretty bad day on Sunday (&lt;span class="nowrap">October 20, 2024&lt;/span>). I
+to rendering something. Then, I had a pretty bad day on Sunday (&lt;span class="nowrap"&gt;October 20, 2024&lt;/span&gt;). I
 guess, I was just in a weird mood and I decided to work it out by staying up all night (I didn&amp;rsquo;t go to sleep until
-around 10:00 the next day). I spent most of the night writing &lt;a href="https://github.com/gn0mesort/mandelbrot-set">a program&lt;/a>
-that draws the &lt;a href="https://en.wikipedia.org/wiki/Mandelbrot_set">Mandelbrot set&lt;/a> fractal. The result worked acceptably,
+around 10:00 the next day). I spent most of the night writing &lt;a href="https://github.com/gn0mesort/mandelbrot-set"&gt;a program&lt;/a&gt;
+that draws the &lt;a href="https://en.wikipedia.org/wiki/Mandelbrot_set"&gt;Mandelbrot set&lt;/a&gt; fractal. The result worked acceptably,
 but I decided I could do a bit better if I gave it a few more days of work. That&amp;rsquo;s what I ended up doing, and here we
-are.&lt;/p>
-&lt;a href="https://megate.ch/img/mandelbrot_1_1920x1080.png">
-&lt;picture class="framed">
-&lt;img alt="An image of a fractal." class="aspect-16-9" src="https://megate.ch/img/mandelbrot_1_640x360.avif" />
-&lt;/picture>
-&lt;/a>
-&lt;h2 id="the-problem">The Problem&lt;/h2>
-&lt;p>I wasn&amp;rsquo;t really in the frame of mind to think about, like, software requirements when I started this project. Here&amp;rsquo;s
-the basic idea though.&lt;/p>
-&lt;p>First off, the goal was to write a hardware accelerated version of one of the basic
-&lt;a href="https://en.wikipedia.org/wiki/Plotting_algorithms_for_the_Mandelbrot_set">plotting algorithms for the Mandelbrot set&lt;/a>.
+are.&lt;/p&gt;
+&lt;a href="https://megate.ch/img/mandelbrot_1_1920x1080.png"&gt;
+&lt;picture class="framed"&gt;
+&lt;img alt="An image of a fractal." class="aspect-16-9" src="https://megate.ch/img/mandelbrot_1_640x360.avif" /&gt;
+&lt;/picture&gt;
+&lt;/a&gt;
+&lt;h2 id="the-problem"&gt;The Problem&lt;/h2&gt;
+&lt;p&gt;I wasn&amp;rsquo;t really in the frame of mind to think about, like, software requirements when I started this project. Here&amp;rsquo;s
+the basic idea though.&lt;/p&gt;
+&lt;p&gt;First off, the goal was to write a hardware accelerated version of one of the basic
+&lt;a href="https://en.wikipedia.org/wiki/Plotting_algorithms_for_the_Mandelbrot_set"&gt;plotting algorithms for the Mandelbrot set&lt;/a&gt;.
 I&amp;rsquo;ve always thought of this kind of thing as being a sort of elite high math topic, perhaps only accessible to some
 sort of math elves, but the computation isn&amp;rsquo;t actually that complex. Secondly, I wanted to do this with
-&lt;a href="https://www.opengl.org/">OpenGL&lt;/a> and &lt;a href="https://www.libsdl.org/">SDL&lt;/a> instead of having a weird obsessive need to
-maximize my burden with &lt;a href="https://www.vulkan.org/">Vulkan&lt;/a> (and maybe &lt;a href="https://www.x.org/wiki/">X11&lt;/a>). Finally, after
+&lt;a href="https://www.opengl.org/"&gt;OpenGL&lt;/a&gt; and &lt;a href="https://www.libsdl.org/"&gt;SDL&lt;/a&gt; instead of having a weird obsessive need to
+maximize my burden with &lt;a href="https://www.vulkan.org/"&gt;Vulkan&lt;/a&gt; (and maybe &lt;a href="https://www.x.org/wiki/"&gt;X11&lt;/a&gt;). Finally, after
 completing my all-night session I wanted to ensure the resulting software was presentable and polished enough that I
-could call it complete.&lt;/p>
-&lt;a href="https://megate.ch/img/mandelbrot_2_1920x1080.png">
-&lt;picture class="framed">
-&lt;img title="Be wary of Elden Ring" alt="An image of a fractal." class="aspect-16-9" src="https://megate.ch/img/mandelbrot_2_640x360.avif" />
-&lt;/picture>
-&lt;/a>
-&lt;h2 id="the-solution">The Solution&lt;/h2>
-&lt;p>Ok, I&amp;rsquo;m going to go point by point here too.&lt;/p>
-&lt;p>To get the actual image drawn, I implemented a screen-space approach. The computation happens in the fragment shader
+could call it complete.&lt;/p&gt;
+&lt;a href="https://megate.ch/img/mandelbrot_2_1920x1080.png"&gt;
+&lt;picture class="framed"&gt;
+&lt;img title="Be wary of Elden Ring" alt="An image of a fractal." class="aspect-16-9" src="https://megate.ch/img/mandelbrot_2_640x360.avif" /&gt;
+&lt;/picture&gt;
+&lt;/a&gt;
+&lt;h2 id="the-solution"&gt;The Solution&lt;/h2&gt;
+&lt;p&gt;Ok, I&amp;rsquo;m going to go point by point here too.&lt;/p&gt;
+&lt;p&gt;To get the actual image drawn, I implemented a screen-space approach. The computation happens in the fragment shader
 and it&amp;rsquo;s a two-step process. First, the shader computes a recursive series defined as
-&lt;code>z&lt;sub>0&lt;/sub> = (0, 0), z&lt;sub>n&lt;/sub> = z&lt;sub>n-1&lt;/sub>&lt;sup>2&lt;/sup> + c&lt;/code>.
-Here, &lt;code>c&lt;/code> is the two-dimensional coordinate of the fragment on the screen. The shader does some preprocessing to map
+&lt;code&gt;z&lt;sub&gt;0&lt;/sub&gt; = (0, 0), z&lt;sub&gt;n&lt;/sub&gt; = z&lt;sub&gt;n-1&lt;/sub&gt;&lt;sup&gt;2&lt;/sup&gt; + c&lt;/code&gt;.
+Here, &lt;code&gt;c&lt;/code&gt; is the two-dimensional coordinate of the fragment on the screen. The shader does some preprocessing to map
 the discrete coordinate into range and to adjust for the camera&amp;rsquo;s position too. If the series diverges to infinity
-(i.e., &lt;code>|z&lt;sub>n&lt;/sub>| &amp;gt; 2&lt;sup>16&lt;/sup>&lt;/code>) or the shader reaches the 1000&lt;sup>th&lt;/sup> term, the
+(i.e., &lt;code&gt;|z&lt;sub&gt;n&lt;/sub&gt;| &amp;gt; 2&lt;sup&gt;16&lt;/sup&gt;&lt;/code&gt;) or the shader reaches the 1000&lt;sup&gt;th&lt;/sup&gt; term, the
 first step ends. The second step is simpler. Using the last computed term, the shader maps the term&amp;rsquo;s index to a
 color in a 256-color palette. The specific palette I chose is called
-&lt;a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0199239">Cividis&lt;/a>. There&amp;rsquo;s also a black and white
-variant where coordinates that diverge to infinity are black and finite coordinates are white.&lt;/p>
-&lt;p>Despite my initial view that this was some real MIT/Berkeley/Stanford-level stuff, it isn&amp;rsquo;t really that much math. I
-won&amp;rsquo;t pretend I get it, but the implementation is straight-forward.&lt;/p>
-&lt;a href="https://megate.ch/img/mandelbrot_3_1920x1080.png">
-&lt;picture class="framed">
-&lt;img alt="An image of a fractal." class="aspect-16-9" src="https://megate.ch/img/mandelbrot_3_640x360.avif" />
-&lt;/picture>
-&lt;/a>
-&lt;p>On the CPU-side of the application, I used SDL2 and OpenGL 4.5 (loaded via &lt;a href="https://github.com/Dav1dde/glad">Glad&lt;/a>). I
+&lt;a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0199239"&gt;Cividis&lt;/a&gt;. There&amp;rsquo;s also a black and white
+variant where coordinates that diverge to infinity are black and finite coordinates are white.&lt;/p&gt;
+&lt;p&gt;Despite my initial view that this was some real MIT/Berkeley/Stanford-level stuff, it isn&amp;rsquo;t really that much math. I
+won&amp;rsquo;t pretend I get it, but the implementation is straight-forward.&lt;/p&gt;
+&lt;a href="https://megate.ch/img/mandelbrot_3_1920x1080.png"&gt;
+&lt;picture class="framed"&gt;
+&lt;img alt="An image of a fractal." class="aspect-16-9" src="https://megate.ch/img/mandelbrot_3_640x360.avif" /&gt;
+&lt;/picture&gt;
+&lt;/a&gt;
+&lt;p&gt;On the CPU-side of the application, I used SDL2 and OpenGL 4.5 (loaded via &lt;a href="https://github.com/Dav1dde/glad"&gt;Glad&lt;/a&gt;). I
 have plenty of complaints about this, but it really was the right choice. If I had gone with Vulkan and directly
 fiddling with X11 it would have taken me a month or more to finish. As usual, with C APIs like these, a lot of the
 program is just about handling their inconsistent error mechanisms. Initially, I wrote the application with no error
 handling at all. Instead of checking info logs to determine why my shader didn&amp;rsquo;t work, at various points, I just ran
-&lt;a href="https://renderdoc.org/">Renderdoc&lt;/a> (compiling this from source was tricky) and prayed. After my all-night jam
+&lt;a href="https://renderdoc.org/"&gt;Renderdoc&lt;/a&gt; (compiling this from source was tricky) and prayed. After my all-night jam
 session, I went back and added all the error handling. It&amp;rsquo;s nothing special. If any call to SDL or OpenGL fails, the
-application just bails out.&lt;/p>
-&lt;a href="https://megate.ch/img/mandelbrot_4_1920x1080.png">
-&lt;picture class="framed">
-&lt;img alt="An image of a fractal." class="aspect-16-9" src="https://megate.ch/img/mandelbrot_4_640x360.avif" />
-&lt;/picture>
-&lt;/a>
-&lt;p>As far as structure, the program is pretty normal. It starts with initializing SDL and creating an OpenGL context.
+application just bails out.&lt;/p&gt;
+&lt;a href="https://megate.ch/img/mandelbrot_4_1920x1080.png"&gt;
+&lt;picture class="framed"&gt;
+&lt;img alt="An image of a fractal." class="aspect-16-9" src="https://megate.ch/img/mandelbrot_4_640x360.avif" /&gt;
+&lt;/picture&gt;
+&lt;/a&gt;
+&lt;p&gt;As far as structure, the program is pretty normal. It starts with initializing SDL and creating an OpenGL context.
 Next, I prepare my shaders, a vertex array, and vertex and index buffers. This is all just to draw a rectangle to the
 entire drawable area. This first phase of the program also sets up some miscellaneous OpenGL stuff (e.g., setting the
-clear color to gray, enabling &lt;a href="https://en.wikipedia.org/wiki/Multisample_anti-aliasing">MSAA&lt;/a>, and enabling
-&lt;a href="https://en.wikipedia.org/wiki/SRGB">sRGB&lt;/a> conversion). Next, the application enters its main loop. Again, the loop is
+clear color to gray, enabling &lt;a href="https://en.wikipedia.org/wiki/Multisample_anti-aliasing"&gt;MSAA&lt;/a&gt;, and enabling
+&lt;a href="https://en.wikipedia.org/wiki/SRGB"&gt;sRGB&lt;/a&gt; conversion). Next, the application enters its main loop. Again, the loop is
 pretty standard stuff. I (stack) allocate a bunch of variables for various controls and conditions. At the top of the
 loop I compute the delta-time of the frame and render the current frame from scratch. After that, I collect input from
 SDL, and update my control state. The loop ends by updating the camera&amp;rsquo;s position. When the loop is broken, the
-program ends with tear down.&lt;/p>
-&lt;p>The last bit of any real interest is the code that updates the camera based on the state of the controls. My initial
+program ends with tear down.&lt;/p&gt;
+&lt;p&gt;The last bit of any real interest is the code that updates the camera based on the state of the controls. My initial
 implementation didn&amp;rsquo;t have controls at all. Instead, the view would just zoom in and out based on the program&amp;rsquo;s run
 time. That kind of sucked though because a user couldn&amp;rsquo;t zoom in on all the fine details of the fractal. To improve
 things I added simple controls which were triggered directly by SDL events. It was a serviceable implementation, but
 it wasn&amp;rsquo;t smooth because it wasn&amp;rsquo;t delta-timed. Instead, the camera just teleported around. To smooth things out, I
 created a little extra state for the keyboard controls, added proper delta-timing, and ensured zoom changes were
-linearly interpolated. I think the results are pretty smooth.&lt;/p>
-&lt;h2 id="thoughts">Thoughts&lt;/h2>
-&lt;p>Based on what I said in the introduction, it should be obvious that this project didn&amp;rsquo;t really come from a good
+linearly interpolated. I think the results are pretty smooth.&lt;/p&gt;
+&lt;h2 id="thoughts"&gt;Thoughts&lt;/h2&gt;
+&lt;p&gt;Based on what I said in the introduction, it should be obvious that this project didn&amp;rsquo;t really come from a good
 place. I was really feeling down on myself and I needed a win to get back in the right mindset. Now, I&amp;rsquo;m feeling
 alright, so the project did its job. I still want to do something more significant, but it&amp;rsquo;s really hard to focus
 on all the boilerplate for Vulkan when I&amp;rsquo;m struggling in other ways. Game design is like that for me too. I don&amp;rsquo;t want
 to just cowboy another little terminal game. I want to make something half-way decent, but even a thin slice of a
-half-way decent game requires a lot of design work.&lt;/p>
-&lt;p>I&amp;rsquo;m happy that I made something that I think is beautiful for once, but it&amp;rsquo;s still not good enough for me. A lot of
+half-way decent game requires a lot of design work.&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;m happy that I made something that I think is beautiful for once, but it&amp;rsquo;s still not good enough for me. A lot of
 the time I wonder, are the barriers really self-imposed? Is pizza, Diet Coke, and a cheap PC really all I need to make
-it? It sure feels like millions of dollars of capitalization would make things easier.&lt;/p>
-&lt;a href="https://megate.ch/img/mandelbrot_5_1920x1080.png">
-&lt;picture class="framed">
-&lt;img alt="An image of a fractal." class="aspect-16-9" src="https://megate.ch/img/mandelbrot_5_640x360.avif" />
-&lt;/picture>
-&lt;/a></description></item><item><title>Megatech Assertions</title><author>gnomesort@megate.ch</author><category>projects</category><link>https://megate.ch/projects/megatech_assertions/</link><pubDate>Sat, 12 Oct 2024</pubDate><guid>https://megate.ch/projects/megatech_assertions/</guid><description>&lt;h2 id="introduction">Introduction&lt;/h2>
-&lt;p>Debug assertions are something I go back and forth on. In general, I&amp;rsquo;ve always tended towards what others might call
+it? It sure feels like millions of dollars of capitalization would make things easier.&lt;/p&gt;
+&lt;a href="https://megate.ch/img/mandelbrot_5_1920x1080.png"&gt;
+&lt;picture class="framed"&gt;
+&lt;img alt="An image of a fractal." class="aspect-16-9" src="https://megate.ch/img/mandelbrot_5_640x360.avif" /&gt;
+&lt;/picture&gt;
+&lt;/a&gt;</description></item><item><title>Megatech Assertions</title><author>gnomesort@megate.ch</author><category>projects</category><link>https://megate.ch/projects/megatech_assertions/</link><pubDate>Sat, 12 Oct 2024</pubDate><guid>https://megate.ch/projects/megatech_assertions/</guid><description>&lt;h2 id="introduction"&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;Debug assertions are something I go back and forth on. In general, I&amp;rsquo;ve always tended towards what others might call
 cowboy coding. Lately, I&amp;rsquo;ve been trying to move away from that a bit. That means that I&amp;rsquo;ve been writing more tests,
-and I&amp;rsquo;d like to leverage assertions more too. Unfortunately for me, &lt;span class="nowrap">C++&amp;rsquo;s&lt;/span> assertion
-functionality kind of sucks.&lt;/p>
-&lt;p>On its own, &lt;span class="nowrap">C++20&lt;/span> provides two types of assertions. First, there are compile-time
-assertions with &lt;code>static_assert&lt;/code>. These are mostly fine for what they are. Plus, with concepts a lot of what I&amp;rsquo;d like
-to be able to enforce at compile-time is now enforceable. On the other hand, &lt;span class="nowrap">C++&amp;rsquo;s&lt;/span>
+and I&amp;rsquo;d like to leverage assertions more too. Unfortunately for me, &lt;span class="nowrap"&gt;C++&amp;rsquo;s&lt;/span&gt; assertion
+functionality kind of sucks.&lt;/p&gt;
+&lt;p&gt;On its own, &lt;span class="nowrap"&gt;C++20&lt;/span&gt; provides two types of assertions. First, there are compile-time
+assertions with &lt;code&gt;static_assert&lt;/code&gt;. These are mostly fine for what they are. Plus, with concepts a lot of what I&amp;rsquo;d like
+to be able to enforce at compile-time is now enforceable. On the other hand, &lt;span class="nowrap"&gt;C++&amp;rsquo;s&lt;/span&gt;
 run-time assert macro (that it inherited from C) sucks. It lacks any really useful debugging features and is
-confusingly controlled by the &lt;code>NDEBUG&lt;/code> macro (you disable debugging by enabling no debugging). That&amp;rsquo;s why I&amp;rsquo;ve
-usually provided my own implementation for run-time assertions.&lt;/p>
-&lt;p>In the past, when I&amp;rsquo;ve provided my own assertion implementation it was just part of the project I was working on.
+confusingly controlled by the &lt;code&gt;NDEBUG&lt;/code&gt; macro (you disable debugging by enabling no debugging). That&amp;rsquo;s why I&amp;rsquo;ve
+usually provided my own implementation for run-time assertions.&lt;/p&gt;
+&lt;p&gt;In the past, when I&amp;rsquo;ve provided my own assertion implementation it was just part of the project I was working on.
 I didn&amp;rsquo;t want to do that this time around because I&amp;rsquo;m pretty sure I&amp;rsquo;d just be reimplementing the same stuff over and
-over. I also think it&amp;rsquo;s probably less useful to others. So, here&amp;rsquo;s another little library.&lt;/p>
-&lt;h2 id="the-problem">The Problem&lt;/h2>
-&lt;p>Standard &lt;span class="nowrap">C++&lt;/span> run-time assertions provide a very minimal interface. You can check that an
-expression is true. If the expression isn&amp;rsquo;t true, the program writes a diagnostic message and calls &lt;code>std::abort&lt;/code>. If
-you need more functionality than that, for example custom diagnostics, you need to resort to hacks like:&lt;/p>
-&lt;pre>&lt;code class="language-cpp">assert(i &amp;lt; 12 &amp;amp;&amp;amp; &amp;quot;If i is out of range you probably passed the wrong value to foo().&amp;quot;);
-&lt;/code>&lt;/pre>
-&lt;p>It would be better to have an interface that allows developers to provide an explicit message (like &lt;code>static_assert&lt;/code>
+over. I also think it&amp;rsquo;s probably less useful to others. So, here&amp;rsquo;s another little library.&lt;/p&gt;
+&lt;h2 id="the-problem"&gt;The Problem&lt;/h2&gt;
+&lt;p&gt;Standard &lt;span class="nowrap"&gt;C++&lt;/span&gt; run-time assertions provide a very minimal interface. You can check that an
+expression is true. If the expression isn&amp;rsquo;t true, the program writes a diagnostic message and calls &lt;code&gt;std::abort&lt;/code&gt;. If
+you need more functionality than that, for example custom diagnostics, you need to resort to hacks like:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-cpp"&gt;assert(i &amp;lt; 12 &amp;amp;&amp;amp; &amp;quot;If i is out of range you probably passed the wrong value to foo().&amp;quot;);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;It would be better to have an interface that allows developers to provide an explicit message (like &lt;code&gt;static_assert&lt;/code&gt;
 does). It would be even better if that interface allowed for formatted messages, so that they can communicate run-time
 context. At least for me, sometimes being able to see the value that triggered a failure saves one or more round-trips
-with &lt;a href="https://sourceware.org/gdb/">GDB&lt;/a>.&lt;/p>
-&lt;p>In addition to lacking custom messages, I think the macro that controls standard assertions is confusing. When
-&lt;code>NDEBUG&lt;/code> is enabled (i.e., defined) debugging is disabled. Often, &lt;code>NDEBUG&lt;/code> will be defined whenever you build a
+with &lt;a href="https://sourceware.org/gdb/"&gt;GDB&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;In addition to lacking custom messages, I think the macro that controls standard assertions is confusing. When
+&lt;code&gt;NDEBUG&lt;/code&gt; is enabled (i.e., defined) debugging is disabled. Often, &lt;code&gt;NDEBUG&lt;/code&gt; will be defined whenever you build a
 program in a &amp;ldquo;release&amp;rdquo; configuration. It&amp;rsquo;s important to keep this behavior because lots of people expect it. However,
-it would be better to have an option to clearly enable or disable assertions regardless of &lt;code>NDEBUG&lt;/code>.&lt;/p>
-&lt;p>Finally, it&amp;rsquo;s critical that assertions work even in cases where you&amp;rsquo;ve totally screwed your program. I think, that&amp;rsquo;s
+it would be better to have an option to clearly enable or disable assertions regardless of &lt;code&gt;NDEBUG&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Finally, it&amp;rsquo;s critical that assertions work even in cases where you&amp;rsquo;ve totally screwed your program. I think, that&amp;rsquo;s
 probably why the standard macro is so limited. It can be written in a way that provides, basically, one point of
 failure (i.e., writing to standard error). Anything more complex either needs that same property, or it needs to have
-all of its fancy features be optional.&lt;/p>
-&lt;p>Outside the assertion problem itself, there&amp;rsquo;s also the problem of testing any module whose purpose is to abort a
+all of its fancy features be optional.&lt;/p&gt;
+&lt;p&gt;Outside the assertion problem itself, there&amp;rsquo;s also the problem of testing any module whose purpose is to abort a
 program with an error. Obviously, you can&amp;rsquo;t test programs of that type by checking for whether they exit with an
-error. So, these difficulties require some extra infrastructure to solve in a testable way.&lt;/p>
-&lt;h2 id="the-solution">The Solution&lt;/h2>
-&lt;p>My solution is a library that I&amp;rsquo;ve called &lt;a href="https://github.com/gn0mesort/megatech-assertions">Megatech Assertions&lt;/a>.
+error. So, these difficulties require some extra infrastructure to solve in a testable way.&lt;/p&gt;
+&lt;h2 id="the-solution"&gt;The Solution&lt;/h2&gt;
+&lt;p&gt;My solution is a library that I&amp;rsquo;ve called &lt;a href="https://github.com/gn0mesort/megatech-assertions"&gt;Megatech Assertions&lt;/a&gt;.
 Unsurprisingly, the primary interface is a set of function-like macros. Three of these macros
-(&lt;code>MEGATECH_ASSERT&lt;/code>, &lt;code>MEGATECH_PRECONDITION&lt;/code>, and &lt;code>MEGATECH_POSTCONDITION&lt;/code>) behave more or less like the standard
+(&lt;code&gt;MEGATECH_ASSERT&lt;/code&gt;, &lt;code&gt;MEGATECH_PRECONDITION&lt;/code&gt;, and &lt;code&gt;MEGATECH_POSTCONDITION&lt;/code&gt;) behave more or less like the standard
 assertion macro. There are three more macros that provide access to a formatted message assertion
-(&lt;code>MEGATECH_ASSERT_MSG&lt;/code>, &lt;code>MEGATECH_PRECONDITION_MSG&lt;/code>, and &lt;code>MEGATECH_POSTCONDITION_MSG&lt;/code>). These behave like the standard
+(&lt;code&gt;MEGATECH_ASSERT_MSG&lt;/code&gt;, &lt;code&gt;MEGATECH_PRECONDITION_MSG&lt;/code&gt;, and &lt;code&gt;MEGATECH_POSTCONDITION_MSG&lt;/code&gt;). These behave like the standard
 assertion, but they accept a format string and a variadic set of parameters. The exact type of format string is
 dependent on the features available at compile-time. By default, Megatech Assertions prefers the standard format
 library. This allows for type-safe formatting. If that isn&amp;rsquo;t available, for whatever reason, the library falls back
-to &lt;code>printf&lt;/code>-style syntax. This is more portable, but requires more care. Since this changing default behavior might be
+to &lt;code&gt;printf&lt;/code&gt;-style syntax. This is more portable, but requires more care. Since this changing default behavior might be
 undesirable, applications can explicitly define which formatter to use at compile-time or leverage a set of explicit
-macros for each syntax (&lt;code>MEGATECH_*_MSG_FORMAT&lt;/code> and &lt;code>MEGATECH_*_MSG_PRINTF&lt;/code>). The standard format based functionality
-is always dependent on its availability at compile-time, so in the case that it isn&amp;rsquo;t available it is always disabled.&lt;/p>
-&lt;p>Underneath these macros is a pretty simple procedural interface. &lt;code>megatech::debug_assertion&lt;/code> provides the
-implementation for standard-like assertions. Meanwhile, &lt;code>megatech::debug_assertion_printf&lt;/code> (always available) and
-&lt;code>megatech::debug_assertion_format&lt;/code> (available when standard format is available and enabled) provide the extended
-message-based functionality.&lt;/p>
-&lt;p>Introducing the formatted message functionality creates some room for failures. For example, what should a program do
+macros for each syntax (&lt;code&gt;MEGATECH_*_MSG_FORMAT&lt;/code&gt; and &lt;code&gt;MEGATECH_*_MSG_PRINTF&lt;/code&gt;). The standard format based functionality
+is always dependent on its availability at compile-time, so in the case that it isn&amp;rsquo;t available it is always disabled.&lt;/p&gt;
+&lt;p&gt;Underneath these macros is a pretty simple procedural interface. &lt;code&gt;megatech::debug_assertion&lt;/code&gt; provides the
+implementation for standard-like assertions. Meanwhile, &lt;code&gt;megatech::debug_assertion_printf&lt;/code&gt; (always available) and
+&lt;code&gt;megatech::debug_assertion_format&lt;/code&gt; (available when standard format is available and enabled) provide the extended
+message-based functionality.&lt;/p&gt;
+&lt;p&gt;Introducing the formatted message functionality creates some room for failures. For example, what should a program do
 when a formatter fails? You can&amp;rsquo;t throw an error back to the application after an assertion fails because the program
 is definitionally in an undefined state. The way I&amp;rsquo;ve handled this is by reporting an error message rather than the
 desired developer message. The error messages are compile-time constants and don&amp;rsquo;t require any formatting before
 output. Another issue is what happens if the system is out of memory? This is a somewhat unlikely case, but consider
-the following scenario:&lt;/p>
-&lt;pre>&lt;code class="language-cpp">auto p = reinterpret_cast&amp;lt;int*&amp;gt;(std::malloc(size * sizeof(int)));
+the following scenario:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-cpp"&gt;auto p = reinterpret_cast&amp;lt;int*&amp;gt;(std::malloc(size * sizeof(int)));
 MEGATECH_ASSERT_MSG(p != nullptr, &amp;quot;Tried to allocate {} ints, but failed.&amp;quot;, size);
-&lt;/code>&lt;/pre>
-&lt;p>If this assertion fails, it isn&amp;rsquo;t safe to allocate further memory for a formatted message. We have to do something
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;If this assertion fails, it isn&amp;rsquo;t safe to allocate further memory for a formatted message. We have to do something
 else. My implementation solves this by using a static buffer for formatted messages. Instead of allocating, the
-library truncates messages to the buffer&amp;rsquo;s size. Truncating for the &lt;code>printf&lt;/code>-style formatter is trivial. It calls
-&lt;code>std::vsnprintf&lt;/code>, which truncates all by itself. The standard format implementation uses &lt;code>std::vformat_to&lt;/code> instead.
-&lt;code>std::vformat_to&lt;/code> has no idea about buffer lengths, so I had to write a truncating iterator type which discards any
+library truncates messages to the buffer&amp;rsquo;s size. Truncating for the &lt;code&gt;printf&lt;/code&gt;-style formatter is trivial. It calls
+&lt;code&gt;std::vsnprintf&lt;/code&gt;, which truncates all by itself. The standard format implementation uses &lt;code&gt;std::vformat_to&lt;/code&gt; instead.
+&lt;code&gt;std::vformat_to&lt;/code&gt; has no idea about buffer lengths, so I had to write a truncating iterator type which discards any
 extra output. The build configuration controls the exact buffer size. The default is 4001 bytes (i.e., enough for a
 minimum of 1000
-&lt;a href="https://en.wikipedia.org/wiki/Universal_Character_Set_characters#Characters_vs_code_points">UTF-8 &amp;ldquo;characters&amp;rdquo;&lt;/a> and a
-&lt;code>NUL&lt;/code>-terminator), but it can be reduced or fully disabled. When the build disables the message buffer, formatted
-message assertions behave identically to the standard-style assertions.&lt;/p>
-&lt;p>In terms of enabling and disabling assertions entirely, Megatech Assertions uses two macros. Applications can define
-&lt;code>MEGATECH_ASSERTIONS_DISABLED&lt;/code> to totally disable assertions after that point. The inverse,
-&lt;code>MEGATECH_ASSERTIONS_ENABLED&lt;/code> can be defined explicitly too. It has the obvious effect of enabling assertions. When
-an application leaves both macros undefined, &lt;code>MEGATECH_ASSERTIONS_ENABLED&lt;/code> is conditionally defined based on &lt;code>NDEBUG&lt;/code>.
-Disabled assertions all resolve to &lt;code>((void) 0)&lt;/code>.&lt;/p>
-&lt;p>That pretty much covers my problems, but there is another issue that came up while I was working on this library.
+&lt;a href="https://en.wikipedia.org/wiki/Universal_Character_Set_characters#Characters_vs_code_points"&gt;UTF-8 &amp;ldquo;characters&amp;rdquo;&lt;/a&gt; and a
+&lt;code&gt;NUL&lt;/code&gt;-terminator), but it can be reduced or fully disabled. When the build disables the message buffer, formatted
+message assertions behave identically to the standard-style assertions.&lt;/p&gt;
+&lt;p&gt;In terms of enabling and disabling assertions entirely, Megatech Assertions uses two macros. Applications can define
+&lt;code&gt;MEGATECH_ASSERTIONS_DISABLED&lt;/code&gt; to totally disable assertions after that point. The inverse,
+&lt;code&gt;MEGATECH_ASSERTIONS_ENABLED&lt;/code&gt; can be defined explicitly too. It has the obvious effect of enabling assertions. When
+an application leaves both macros undefined, &lt;code&gt;MEGATECH_ASSERTIONS_ENABLED&lt;/code&gt; is conditionally defined based on &lt;code&gt;NDEBUG&lt;/code&gt;.
+Disabled assertions all resolve to &lt;code&gt;((void) 0)&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;That pretty much covers my problems, but there is another issue that came up while I was working on this library.
 What happens if multiple assertions fail, at roughly the same time, in parallel? The answer (at least with
-&lt;a href="https://www.gnu.org/software/libc/">GNU implementations&lt;/a>) seems to be that sometimes you get one message, and
+&lt;a href="https://www.gnu.org/software/libc/"&gt;GNU implementations&lt;/a&gt;) seems to be that sometimes you get one message, and
 sometimes you get multiple. Usually, you don&amp;rsquo;t get more than two. This is mostly a personal choice, but I&amp;rsquo;d prefer to
-see as many messages as I can collect.&lt;/p>
-&lt;p>To enable more defined behavior in parallel programs, I&amp;rsquo;ve added some synchronization to make assertions thread-safe
+see as many messages as I can collect.&lt;/p&gt;
+&lt;p&gt;To enable more defined behavior in parallel programs, I&amp;rsquo;ve added some synchronization to make assertions thread-safe
 by default. When this is enabled, it changes a couple of things. First, it makes the message buffer thread-local. The
 exact consequences of this are hard for me to estimate, but it definitely expands the memory requirement for
 assertions (roughly 4 KiB per thread that fails an assertion rather than roughly 4 KiB for the entire library).
-Second, it adds a few synchronization primitives (i.e., &lt;code>std::mutex&lt;/code> and &lt;code>std::condition_variable&lt;/code>) to keep assertion
+Second, it adds a few synchronization primitives (i.e., &lt;code&gt;std::mutex&lt;/code&gt; and &lt;code&gt;std::condition_variable&lt;/code&gt;) to keep assertion
 failures on multiple threads from interfering with each other. The result is, as long as parallel failures happen
-roughly at the same time, multiple diagnostics will be collected before the program aborts.&lt;/p>
-&lt;p>Obviously, for some users this a huge over-complication. It introduces more points of failure, expands the memory
+roughly at the same time, multiple diagnostics will be collected before the program aborts.&lt;/p&gt;
+&lt;p&gt;Obviously, for some users this a huge over-complication. It introduces more points of failure, expands the memory
 cost of the library, and can slow things down. To fix that, I&amp;rsquo;ve made the thread-safety feature optional, but it&amp;rsquo;s
-enabled by default.&lt;/p>
-&lt;p>Lastly, to test all of this I&amp;rsquo;ve written a small Python script that implements the various test conditions I&amp;rsquo;m
+enabled by default.&lt;/p&gt;
+&lt;p&gt;Lastly, to test all of this I&amp;rsquo;ve written a small Python script that implements the various test conditions I&amp;rsquo;m
 checking for. Basically, the script looks at standard error and checks for the messages it expects. Then the script
-converts the result into an exit code so that &lt;a href="https://mesonbuild.com/">Meson&lt;/a> can report the test result correctly.
-It&amp;rsquo;s nothing fancy, but how else are you going to test a feature that requires a program to fail?&lt;/p>
-&lt;h2 id="thoughts">Thoughts&lt;/h2>
-&lt;p>To me, this was a pretty boring little thing. You can probably tell, that I needed to over-complicate it a little
+converts the result into an exit code so that &lt;a href="https://mesonbuild.com/"&gt;Meson&lt;/a&gt; can report the test result correctly.
+It&amp;rsquo;s nothing fancy, but how else are you going to test a feature that requires a program to fail?&lt;/p&gt;
+&lt;h2 id="thoughts"&gt;Thoughts&lt;/h2&gt;
+&lt;p&gt;To me, this was a pretty boring little thing. You can probably tell, that I needed to over-complicate it a little
 just to keep myself interested. I actually started this because I felt that I should add assertions to a couple of
-places in &lt;a href="https://github.com/gn0mesort/megatech-vulkan-dispatch">Megatech-Vulkan Dispatch&lt;/a>. I mostly based the
+places in &lt;a href="https://github.com/gn0mesort/megatech-vulkan-dispatch"&gt;Megatech-Vulkan Dispatch&lt;/a&gt;. I mostly based the
 implementation on things that I had written before, but with greater attention to detail this time. For me, the
-functionality is satisfactory. I hope that it is useful for others too.&lt;/p>
-&lt;p>With this project behind me, I&amp;rsquo;m planning to do quick update to Megatech-Vulkan Dispatch. I probably won&amp;rsquo;t write
+functionality is satisfactory. I hope that it is useful for others too.&lt;/p&gt;
+&lt;p&gt;With this project behind me, I&amp;rsquo;m planning to do quick update to Megatech-Vulkan Dispatch. I probably won&amp;rsquo;t write
 about it because it&amp;rsquo;s just a small change. After that, I&amp;rsquo;m going back to
-&lt;a href="https://megate.ch/projects/megatech_vulkan_dispatch/#thoughts">my previous plans&lt;/a>. Either I&amp;rsquo;ll work on something
-&lt;a href="https://vulkan.org">Vulkan&lt;/a> related, or maybe I&amp;rsquo;ll revisit writing a text-mode game.&lt;/p>
-&lt;p>I&amp;rsquo;m actually leaning towards a game at the moment. I guess, I&amp;rsquo;m just fickle in that way. I like to write libraries
+&lt;a href="https://megate.ch/projects/megatech_vulkan_dispatch/#thoughts"&gt;my previous plans&lt;/a&gt;. Either I&amp;rsquo;ll work on something
+&lt;a href="https://vulkan.org"&gt;Vulkan&lt;/a&gt; related, or maybe I&amp;rsquo;ll revisit writing a text-mode game.&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;m actually leaning towards a game at the moment. I guess, I&amp;rsquo;m just fickle in that way. I like to write libraries
 like this one because they make me feel like I&amp;rsquo;m doing something generally useful (at least to all my future selves).
-Complete applications, on the other hand make me feel more like a, &amp;ldquo;real programmer&amp;rdquo;.&lt;/p>
-&lt;p>Lately, I&amp;rsquo;ve been really struggling. I&amp;rsquo;ve been looking for work, and it just hasn&amp;rsquo;t gone anywhere yet. The whole
+Complete applications, on the other hand make me feel more like a, &amp;ldquo;real programmer&amp;rdquo;.&lt;/p&gt;
+&lt;p&gt;Lately, I&amp;rsquo;ve been really struggling. I&amp;rsquo;ve been looking for work, and it just hasn&amp;rsquo;t gone anywhere yet. The whole
 process makes me feel like a total reject. Obviously, getting summarily rejected by some business&amp;rsquo;s HR department or
-&lt;a href="https://en.wikipedia.org/wiki/Applicant_tracking_system">ATS&lt;/a> isn&amp;rsquo;t a huge personal indictment. It sure feels that
+&lt;a href="https://en.wikipedia.org/wiki/Applicant_tracking_system"&gt;ATS&lt;/a&gt; isn&amp;rsquo;t a huge personal indictment. It sure feels that
 way to me though. Whatever I do next, I want it to really build me up rather than make me feel like I&amp;rsquo;m a reject.
 That&amp;rsquo;s why I&amp;rsquo;ve been thinking about doing a less structured game project. None of the, &amp;ldquo;only standard
-&lt;span class="nowrap">C++&lt;/span>,&amp;rdquo; stuff or fixation on rigorous personal expectations I usually bring to my projects.&lt;/p>
-&lt;p>Regardless, I&amp;rsquo;m never going to give up. That&amp;rsquo;s just how I am.&lt;/p></description></item><item><title>Megatech-Vulkan Dispatch</title><author>gnomesort@megate.ch</author><category>projects</category><link>https://megate.ch/projects/megatech_vulkan_dispatch/</link><pubDate>Mon, 09 Sep 2024</pubDate><guid>https://megate.ch/projects/megatech_vulkan_dispatch/</guid><description>&lt;h2 id="introduction">Introduction&lt;/h2>
-&lt;p>All the way &lt;a href="https://megate.ch/projects/standard_cxx_tic_tac_toe/">back in March&lt;/a>, I wrote that I thought a text-mode game would be a
+&lt;span class="nowrap"&gt;C++&lt;/span&gt;,&amp;rdquo; stuff or fixation on rigorous personal expectations I usually bring to my projects.&lt;/p&gt;
+&lt;p&gt;Regardless, I&amp;rsquo;m never going to give up. That&amp;rsquo;s just how I am.&lt;/p&gt;</description></item><item><title>Megatech-Vulkan Dispatch</title><author>gnomesort@megate.ch</author><category>projects</category><link>https://megate.ch/projects/megatech_vulkan_dispatch/</link><pubDate>Mon, 09 Sep 2024</pubDate><guid>https://megate.ch/projects/megatech_vulkan_dispatch/</guid><description>&lt;h2 id="introduction"&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;All the way &lt;a href="https://megate.ch/projects/standard_cxx_tic_tac_toe/"&gt;back in March&lt;/a&gt;, I wrote that I thought a text-mode game would be a
 good next step after my little Tic-Tac-Toe project. When it came time to decide on something to work on, I actually
-did attempt this. I wanted to write a little &lt;a href="https://invisible-island.net/ncurses/announce.html">NCURSES&lt;/a>
+did attempt this. I wanted to write a little &lt;a href="https://invisible-island.net/ncurses/announce.html"&gt;NCURSES&lt;/a&gt;
 role-playing game. Unfortunately, I quickly lost interest. The big problem was that there simply isn&amp;rsquo;t a reliable why
 to retrieve keyboard input from the NCURSES interface. I tried using a different library
-(&lt;a href="https://github.com/dankamongmen/notcurses">notcurses&lt;/a>) to resolve this, but I was left feeling that my needs just
-didn&amp;rsquo;t map to the capabilities that were actually available.&lt;/p>
-&lt;p>In the same post where I wrote about wanting to write a text-mode game, I also wrote that I was tempted to go back to
-&lt;a href="https://www.khronos.org/opengl/">OpenGL&lt;/a> or &lt;a href="https://www.vulkan.org/">Vulkan&lt;/a>. Well, obviously, that&amp;rsquo;s what I ended
+(&lt;a href="https://github.com/dankamongmen/notcurses"&gt;notcurses&lt;/a&gt;) to resolve this, but I was left feeling that my needs just
+didn&amp;rsquo;t map to the capabilities that were actually available.&lt;/p&gt;
+&lt;p&gt;In the same post where I wrote about wanting to write a text-mode game, I also wrote that I was tempted to go back to
+&lt;a href="https://www.khronos.org/opengl/"&gt;OpenGL&lt;/a&gt; or &lt;a href="https://www.vulkan.org/"&gt;Vulkan&lt;/a&gt;. Well, obviously, that&amp;rsquo;s what I ended
 up doing. After becoming frustrated with NCURSES, I decided to simply return to a topic I find interesting. I thought
-it would be fun to return to writing my own Vulkan API tool-kit.&lt;/p>
-&lt;p>Previously, when I&amp;rsquo;ve attempted this type of project, my eyes have been bigger than my stomach. To help keep
+it would be fun to return to writing my own Vulkan API tool-kit.&lt;/p&gt;
+&lt;p&gt;Previously, when I&amp;rsquo;ve attempted this type of project, my eyes have been bigger than my stomach. To help keep
 everything grounded in reality, I decided to focus exclusively on Vulkan and start at the most basic level. In my
-opinion, the most basic level of Vulkan functionality is just preparing to access the API.&lt;/p>
-&lt;h2 id="the-problem">The Problem&lt;/h2>
-&lt;p>Before a Vulkan program can do anything interesting, it needs to discover function pointers to the commands that it&amp;rsquo;s
+opinion, the most basic level of Vulkan functionality is just preparing to access the API.&lt;/p&gt;
+&lt;h2 id="the-problem"&gt;The Problem&lt;/h2&gt;
+&lt;p&gt;Before a Vulkan program can do anything interesting, it needs to discover function pointers to the commands that it&amp;rsquo;s
 going to use. Usually, a program can just link the Vulkan loader library and let the operating system&amp;rsquo;s run-time
 linker resolve the core Vulkan commands. Unfortunately, the
-&lt;a href="https://registry.khronos.org/vulkan/specs/1.3-extensions/html/vkspec.html#initialization-functionpointers">Vulkan specification&lt;/a>
-says this:&lt;/p>
-&lt;blockquote>
-&lt;p>Vulkan commands are not necessarily exposed by static linking on a platform.&lt;/p>
-&lt;/blockquote>
-&lt;p>This means that, with only one exception, applications might be required to resolve Vulkan commands using
-&lt;a href="https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkGetInstanceProcAddr.html">&lt;code>vkGetInstanceProcAddr&lt;/code>&lt;/a>.
-The singular exception is, of course, &lt;code>vkGetInstanceProcAddr&lt;/code> itself. On this, the
-specification provides some clarification:&lt;/p>
-&lt;blockquote>
-&lt;p>&lt;code>vkGetInstanceProcAddr&lt;/code> itself is obtained in a platform- and loader- specific manner. Typically, the loader library
-will export this command as a function symbol, so applications &lt;strong>can&lt;/strong> link against the loader library, or load it
-dynamically and look up the symbol using platform-specific APIs.&lt;/p>
-&lt;/blockquote>
-&lt;p>There is actually a second issue though. In addition to the above bits, the Vulkan specification says:&lt;/p>
-&lt;blockquote>
-&lt;p>In order to support systems with multiple Vulkan implementations, the function pointers returned by
-&lt;code>vkGetInstanceProcAddr&lt;/code> &lt;strong>may&lt;/strong> point to dispatch code that calls a different real implementation for different
-&lt;a href="https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkDevice.html">&lt;code>VkDevice&lt;/code>&lt;/a> objects or their child
-objects. The overhead of the internal dispatch for &lt;code>VkDevice&lt;/code> objects can be avoided by obtaining device-specific
+&lt;a href="https://registry.khronos.org/vulkan/specs/1.3-extensions/html/vkspec.html#initialization-functionpointers"&gt;Vulkan specification&lt;/a&gt;
+says this:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Vulkan commands are not necessarily exposed by static linking on a platform.&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;This means that, with only one exception, applications might be required to resolve Vulkan commands using
+&lt;a href="https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkGetInstanceProcAddr.html"&gt;&lt;code&gt;vkGetInstanceProcAddr&lt;/code&gt;&lt;/a&gt;.
+The singular exception is, of course, &lt;code&gt;vkGetInstanceProcAddr&lt;/code&gt; itself. On this, the
+specification provides some clarification:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;vkGetInstanceProcAddr&lt;/code&gt; itself is obtained in a platform- and loader- specific manner. Typically, the loader library
+will export this command as a function symbol, so applications &lt;strong&gt;can&lt;/strong&gt; link against the loader library, or load it
+dynamically and look up the symbol using platform-specific APIs.&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;There is actually a second issue though. In addition to the above bits, the Vulkan specification says:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;In order to support systems with multiple Vulkan implementations, the function pointers returned by
+&lt;code&gt;vkGetInstanceProcAddr&lt;/code&gt; &lt;strong&gt;may&lt;/strong&gt; point to dispatch code that calls a different real implementation for different
+&lt;a href="https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkDevice.html"&gt;&lt;code&gt;VkDevice&lt;/code&gt;&lt;/a&gt; objects or their child
+objects. The overhead of the internal dispatch for &lt;code&gt;VkDevice&lt;/code&gt; objects can be avoided by obtaining device-specific
 function pointers for any commands that use a device or device-child object as
-their dispatchable object.&lt;/p>
-&lt;/blockquote>
-&lt;p>To summarize all of this, a Vulkan application should do two things in the name of portability and performance. First,
-it should always resolve Vulkan commands using one of the two available resolvers (i.e., &lt;code>vkGetInstanceProcAddr&lt;/code> or
-&lt;a href="https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkGetDeviceProcAddr.html">&lt;code>vkGetDeviceProcAddr&lt;/code>&lt;/a>).
+their dispatchable object.&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;To summarize all of this, a Vulkan application should do two things in the name of portability and performance. First,
+it should always resolve Vulkan commands using one of the two available resolvers (i.e., &lt;code&gt;vkGetInstanceProcAddr&lt;/code&gt; or
+&lt;a href="https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkGetDeviceProcAddr.html"&gt;&lt;code&gt;vkGetDeviceProcAddr&lt;/code&gt;&lt;/a&gt;).
 Any other method of accessing Vulkan is not guaranteed. Second, it should avoid resolving device-level functionality
-with &lt;code>vkGetInstanceProcAddr&lt;/code>. Using &lt;code>vkGetDeviceProcAddr&lt;/code> is better because it allows the application to avoid
-additional dispatch work each time it invokes a device-level command.&lt;/p>
-&lt;p>So, here&amp;rsquo;s the problem: how does a Vulkan application manage this in a way that doesn&amp;rsquo;t suck?&lt;/p>
-&lt;h2 id="the-solution">The Solution&lt;/h2>
-&lt;p>My solution is a two-parter. First, there&amp;rsquo;s the
-&lt;a href="https://github.com/gn0mesort/megatech-vulkan-dispatch">Megatech-Vulkan Dispatch&lt;/a> library. It&amp;rsquo;s a pretty simple
-&lt;span class="nowrap">C++20&lt;/span> library that stores Vulkan function pointers in arrays. Second, there&amp;rsquo;s a Python
-script that generates the actual lists of Vulkan commands used in the &lt;span class="nowrap">C++&lt;/span> library. This
-script is actually where a lot of the magic is happening.&lt;/p>
-&lt;p>The script, which is a part of the
-&lt;a href="https://github.com/gn0mesort/megatech-vulkan-dispatch-tools">Megatech-Vulkan Dispatch Tools&lt;/a> package, is used to
+with &lt;code&gt;vkGetInstanceProcAddr&lt;/code&gt;. Using &lt;code&gt;vkGetDeviceProcAddr&lt;/code&gt; is better because it allows the application to avoid
+additional dispatch work each time it invokes a device-level command.&lt;/p&gt;
+&lt;p&gt;So, here&amp;rsquo;s the problem: how does a Vulkan application manage this in a way that doesn&amp;rsquo;t suck?&lt;/p&gt;
+&lt;h2 id="the-solution"&gt;The Solution&lt;/h2&gt;
+&lt;p&gt;My solution is a two-parter. First, there&amp;rsquo;s the
+&lt;a href="https://github.com/gn0mesort/megatech-vulkan-dispatch"&gt;Megatech-Vulkan Dispatch&lt;/a&gt; library. It&amp;rsquo;s a pretty simple
+&lt;span class="nowrap"&gt;C++20&lt;/span&gt; library that stores Vulkan function pointers in arrays. Second, there&amp;rsquo;s a Python
+script that generates the actual lists of Vulkan commands used in the &lt;span class="nowrap"&gt;C++&lt;/span&gt; library. This
+script is actually where a lot of the magic is happening.&lt;/p&gt;
+&lt;p&gt;The script, which is a part of the
+&lt;a href="https://github.com/gn0mesort/megatech-vulkan-dispatch-tools"&gt;Megatech-Vulkan Dispatch Tools&lt;/a&gt; package, is used to
 extract information from the XML representation of Vulkan. The script reads the XML specification, parses it, and
-extracts the bits relevant to commands. At that point it reads and renders a &lt;a href="https://www.makotemplates.org/">Mako&lt;/a>
+extracts the bits relevant to commands. At that point it reads and renders a &lt;a href="https://www.makotemplates.org/"&gt;Mako&lt;/a&gt;
 template to generate its output. The trick, in so far as any of this is a trick, is that the script understands enough
 of the Vulkan specification to provide the input template with very specific lists of commands. A user could, for
-example, ask it to only provide commands that are available in Vulkan 1.0, &lt;code>VK_KHR_surface&lt;/code>, &lt;code>VK_KHR_xcb_surface&lt;/code>, and
-&lt;code>VK_KHR_swapchain&lt;/code>. The script also understands dependencies between Vulkan features. This means that if a user
-requests a feature but doesn&amp;rsquo;t request the feature&amp;rsquo;s dependencies, the script will report an error.&lt;/p>
-&lt;p>The library is all about keeping things simple. As I already said, its main job is to store function pointers in
+example, ask it to only provide commands that are available in Vulkan 1.0, &lt;code&gt;VK_KHR_surface&lt;/code&gt;, &lt;code&gt;VK_KHR_xcb_surface&lt;/code&gt;, and
+&lt;code&gt;VK_KHR_swapchain&lt;/code&gt;. The script also understands dependencies between Vulkan features. This means that if a user
+requests a feature but doesn&amp;rsquo;t request the feature&amp;rsquo;s dependencies, the script will report an error.&lt;/p&gt;
+&lt;p&gt;The library is all about keeping things simple. As I already said, its main job is to store function pointers in
 arrays. It&amp;rsquo;s not exactly rocket science. The library provides three dispatch table objects (one for each level of
 Vulkan functionality). When an application initializes a dispatch table, the library loads the function pointers for
 the corresponding level of functionality. To retrieve a function pointer the application queries the dispatch table
 using either an index (in the form of a scoped enumeration value) or a hash value (computed using the 64-bit
-&lt;a href="https://en.wikipedia.org/wiki/Fowler%E2%80%93Noll%E2%80%93Vo_hash_function">FNV-1a&lt;/a> hash function). In either case,
+&lt;a href="https://en.wikipedia.org/wiki/Fowler%E2%80%93Noll%E2%80%93Vo_hash_function"&gt;FNV-1a&lt;/a&gt; hash function). In either case,
 the library prefers to resolve these operations at compile-time. Basically, the strategy is to pay for loading Vulkan
-commands up front so that applications don&amp;rsquo;t have to call &lt;code>vkGetInstanceProcAddr&lt;/code> or &lt;code>vkGetDeviceProcAddr&lt;/code> in their
-main loop.&lt;/p>
-&lt;h2 id="thoughts">Thoughts&lt;/h2>
-&lt;p>Something I&amp;rsquo;ve been coping with a lot lately is realizing how obsessive I can be. I have a terrible time letting go of
+commands up front so that applications don&amp;rsquo;t have to call &lt;code&gt;vkGetInstanceProcAddr&lt;/code&gt; or &lt;code&gt;vkGetDeviceProcAddr&lt;/code&gt; in their
+main loop.&lt;/p&gt;
+&lt;h2 id="thoughts"&gt;Thoughts&lt;/h2&gt;
+&lt;p&gt;Something I&amp;rsquo;ve been coping with a lot lately is realizing how obsessive I can be. I have a terrible time letting go of
 things, and it&amp;rsquo;s even worse when I&amp;rsquo;m being told I can&amp;rsquo;t do something. Vulkan is quickly becoming one of my obsessions.
-I simply can&amp;rsquo;t stand the idea that mastering it is too hard for me.&lt;/p>
-&lt;p>The dispatch problem is one I&amp;rsquo;ve tackled before (my previous project is &lt;a href="https://github.com/gn0mesort/vkfl">VKFL&lt;/a>),
+I simply can&amp;rsquo;t stand the idea that mastering it is too hard for me.&lt;/p&gt;
+&lt;p&gt;The dispatch problem is one I&amp;rsquo;ve tackled before (my previous project is &lt;a href="https://github.com/gn0mesort/vkfl"&gt;VKFL&lt;/a&gt;),
 but I think this implementation is better considered than my previous work. Previously, I had used indexing as the
 exclusive method for accessing Vulkan commands. Since the library can be compiled with different sets of available
 commands, this could lead to an issue where an application would need to be recompiled any time the library changed.
@@ -578,266 +574,266 @@ case. I think splitting the dispatch table up by level is a much better approach
 table type that would be updated to use new functionality as it became available. This is fine for a Vulkan
 application with a single instance and device, but for multiple devices it permits some kind of weird behavior. The
 implementation I&amp;rsquo;ve used for this project, I think, is much clearer about what a client application should do (i.e.,
-give each device its own table).&lt;/p>
-&lt;p>I&amp;rsquo;m not super enthusiastic about this Vulkan dispatch thing to be clear. To me this is just a good way to get back to
+give each device its own table).&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;m not super enthusiastic about this Vulkan dispatch thing to be clear. To me this is just a good way to get back to
 thinking about Vulkan. Dispatch tables aren&amp;rsquo;t a huge technical achievement, but they are something I need to build
-further Vulkan tools. My actual interest is in building a highly configurable graph-based 3D renderer.&lt;/p>
-&lt;p>That isn&amp;rsquo;t to say I think this is bad work though. There are other solutions to this floating around out there. The
-two I&amp;rsquo;m familiar with most, &lt;a href="https://github.com/zeux/volk">Volk&lt;/a> and
-&lt;a href="https://github.com/KhronosGroup/Vulkan-Hpp">vulkan.hpp&lt;/a>&amp;rsquo;s &lt;code>DispatchLoaderDynamic&lt;/code>, both have features I think are
+further Vulkan tools. My actual interest is in building a highly configurable graph-based 3D renderer.&lt;/p&gt;
+&lt;p&gt;That isn&amp;rsquo;t to say I think this is bad work though. There are other solutions to this floating around out there. The
+two I&amp;rsquo;m familiar with most, &lt;a href="https://github.com/zeux/volk"&gt;Volk&lt;/a&gt; and
+&lt;a href="https://github.com/KhronosGroup/Vulkan-Hpp"&gt;vulkan.hpp&lt;/a&gt;&amp;rsquo;s &lt;code&gt;DispatchLoaderDynamic&lt;/code&gt;, both have features I think are
 undesirable. Hopefully, Megatech-Vulkan Dispatch is useful to anyone who feels the more mainstream approaches don&amp;rsquo;t
 fit into their application. Even if my library doesn&amp;rsquo;t fit, I hope the generator script is at least instructive to
-some degree.&lt;/p>
-&lt;p>On a more personal note, I&amp;rsquo;ve been pretty up and down lately. Some days I&amp;rsquo;m feeling very positive and can get a lot
+some degree.&lt;/p&gt;
+&lt;p&gt;On a more personal note, I&amp;rsquo;ve been pretty up and down lately. Some days I&amp;rsquo;m feeling very positive and can get a lot
 done. Other days, I just end up sleeping. The killer heat here hasn&amp;rsquo;t helped in that regard. I&amp;rsquo;ll just keep drinking
-water and pushing forward though.&lt;/p>
-&lt;p>Writing these posts is always a struggle and I don&amp;rsquo;t get much done around them. Once, this is published though, I can
+water and pushing forward though.&lt;/p&gt;
+&lt;p&gt;Writing these posts is always a struggle and I don&amp;rsquo;t get much done around them. Once, this is published though, I can
 get started on my next thing. Right now, I&amp;rsquo;m thinking of continuing on with Vulkan. If I get bored, I might switch
 gears to another game project instead. That&amp;rsquo;s just life, I try to focus on one thing but end up focusing on something
-else entirely.&lt;/p></description></item><item><title>Sunset 76</title><author>gnomesort@megate.ch</author><category>projects</category><link>https://megate.ch/projects/sunset_76/</link><pubDate>Thu, 11 Apr 2024</pubDate><guid>https://megate.ch/projects/sunset_76/</guid><description>&lt;h2 id="introduction">Introduction&lt;/h2>
-&lt;p>In January, a friend of mine approached me about creating a web page for his small business. The business,
-&lt;a href="https://sunset76.com">Sunset 76&lt;/a>, had a domain name and some kind of shared web hosting package, but the previous
+else entirely.&lt;/p&gt;</description></item><item><title>Sunset 76</title><author>gnomesort@megate.ch</author><category>projects</category><link>https://megate.ch/projects/sunset_76/</link><pubDate>Thu, 11 Apr 2024</pubDate><guid>https://megate.ch/projects/sunset_76/</guid><description>&lt;h2 id="introduction"&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;In January, a friend of mine approached me about creating a web page for his small business. The business,
+&lt;a href="https://sunset76.com"&gt;Sunset 76&lt;/a&gt;, had a domain name and some kind of shared web hosting package, but the previous
 operator had essentially abandoned it. The result was
-&lt;a href="https://megate.ch/img/sunset_76_original_desktop.png">a largely blank page with some blurry JPEG images&lt;/a>
-(&lt;a href="https://megate.ch/img/sunset_76_original_mobile.png">mobile&lt;/a>) that reflected poorly on Sunset 76.&lt;/p>
-&lt;p>I&amp;rsquo;m not a huge web guy, but I agreed to help. After all, the needs of a small business generally don&amp;rsquo;t involve vast
+&lt;a href="https://megate.ch/img/sunset_76_original_desktop.png"&gt;a largely blank page with some blurry JPEG images&lt;/a&gt;
+(&lt;a href="https://megate.ch/img/sunset_76_original_mobile.png"&gt;mobile&lt;/a&gt;) that reflected poorly on Sunset 76.&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;m not a huge web guy, but I agreed to help. After all, the needs of a small business generally don&amp;rsquo;t involve vast
 web applications or services. Really, the only thing the business required was a single static web page answering its
-customer&amp;rsquo;s most common questions.&lt;/p>
-&lt;h2 id="the-problem">The Problem&lt;/h2>
-&lt;p>Basically, there were two problems involved in building a web page for Sunset 76. First, I needed to write the page
+customer&amp;rsquo;s most common questions.&lt;/p&gt;
+&lt;h2 id="the-problem"&gt;The Problem&lt;/h2&gt;
+&lt;p&gt;Basically, there were two problems involved in building a web page for Sunset 76. First, I needed to write the page
 itself, write the stylesheet, and create any images that the page required. Second, I needed to wrangle the hosting
-service, &lt;a href="https://www.turbify.com/">Turbify&lt;/a>, and convince it to display the page rather than one made through its
-builder.&lt;/p>
-&lt;p>Sunset 76&amp;rsquo;s new page needed to meet only the most basic requirement. It needed to look more or less professional. That
-meant &lt;a href="https://megate.ch/img/sunset_76_new_desktop.png">no blurry JPEG images&lt;/a> and a
-&lt;a href="https://megate.ch/img/sunset_76_new_mobile.png">responsive layout that would look presentable across devices&lt;/a>. Additionally, I needed
-to acquire any resource files myself.&lt;/p>
-&lt;p>Handling Turbify shouldn&amp;rsquo;t have been an issue. Uploading a file to a web server and configuring it to serve that same
+service, &lt;a href="https://www.turbify.com/"&gt;Turbify&lt;/a&gt;, and convince it to display the page rather than one made through its
+builder.&lt;/p&gt;
+&lt;p&gt;Sunset 76&amp;rsquo;s new page needed to meet only the most basic requirement. It needed to look more or less professional. That
+meant &lt;a href="https://megate.ch/img/sunset_76_new_desktop.png"&gt;no blurry JPEG images&lt;/a&gt; and a
+&lt;a href="https://megate.ch/img/sunset_76_new_mobile.png"&gt;responsive layout that would look presentable across devices&lt;/a&gt;. Additionally, I needed
+to acquire any resource files myself.&lt;/p&gt;
+&lt;p&gt;Handling Turbify shouldn&amp;rsquo;t have been an issue. Uploading a file to a web server and configuring it to serve that same
 file should be easy. Unfortunately, Turbify&amp;rsquo;s web interface has some issues. At least on my end, pages that should
-exist don&amp;rsquo;t (e.g., their &lt;a href="https://www.cpanel.net/">cPanel&lt;/a> interface is intermittently inaccessible), links in
+exist don&amp;rsquo;t (e.g., their &lt;a href="https://www.cpanel.net/"&gt;cPanel&lt;/a&gt; interface is intermittently inaccessible), links in
 documentation go to missing pages, and there&amp;rsquo;s no clear way to disable a web site created through the builder
-application.&lt;/p>
-&lt;h2 id="the-solution">The Solution&lt;/h2>
-&lt;p>Writing a static web page isn&amp;rsquo;t an especially complicated task. The hardest part is writing a stylesheet that looks
+application.&lt;/p&gt;
+&lt;h2 id="the-solution"&gt;The Solution&lt;/h2&gt;
+&lt;p&gt;Writing a static web page isn&amp;rsquo;t an especially complicated task. The hardest part is writing a stylesheet that looks
 good independent of the device displaying it. Even then, writing a sufficient stylesheet is mostly just time-consuming
 rather than cognitively challenging. In addition to HTML and CSS, I prepared images and typefaces for Sunset 76. I
-prepared the logo, under advisement from the client, using &lt;a href="https://inkscape.org/">Inkscape&lt;/a> and chose
-&lt;a href="http://mozilla.github.io/Fira/">Fira Sans&lt;/a> for the type. I also prepared additional images by rendering PDFs provided
-by the California Bureau of Automotive Repair into appropriately sized PNG images.&lt;/p>
-&lt;p>Getting Turbify to behave was a bigger issue than writing the web page. When I&amp;rsquo;ve dealt with web hosting in the past,
+prepared the logo, under advisement from the client, using &lt;a href="https://inkscape.org/"&gt;Inkscape&lt;/a&gt; and chose
+&lt;a href="http://mozilla.github.io/Fira/"&gt;Fira Sans&lt;/a&gt; for the type. I also prepared additional images by rendering PDFs provided
+by the California Bureau of Automotive Repair into appropriately sized PNG images.&lt;/p&gt;
+&lt;p&gt;Getting Turbify to behave was a bigger issue than writing the web page. When I&amp;rsquo;ve dealt with web hosting in the past,
 it&amp;rsquo;s always been using a dedicated server that I could access using SSH. Unsurprisingly, in a shared hosting
 environment this is a no-go. Instead, I needed to do everything through Turbify&amp;rsquo;s cPanel. I don&amp;rsquo;t think this would
 have been so bad except that it was only accessible occasionally. Uploading the files wasn&amp;rsquo;t enough though. I still
-had to rewrite an &lt;code>.htaccess&lt;/code> file to make the page visible. I&amp;rsquo;m not big on &lt;a href="https://httpd.apache.org/">Apache&lt;/a>
-(Turbify seems to actually be using &lt;a href="https://www.litespeedtech.com/products/litespeed-web-server">LiteSpeed&lt;/a>) so I had
-to learn to do that.&lt;/p>
-&lt;h2 id="thoughts">Thoughts&lt;/h2>
-&lt;p>This was a pretty simple project and, for me, the real lesson was about technical debt. Sunset 76&amp;rsquo;s biggest problem
+had to rewrite an &lt;code&gt;.htaccess&lt;/code&gt; file to make the page visible. I&amp;rsquo;m not big on &lt;a href="https://httpd.apache.org/"&gt;Apache&lt;/a&gt;
+(Turbify seems to actually be using &lt;a href="https://www.litespeedtech.com/products/litespeed-web-server"&gt;LiteSpeed&lt;/a&gt;) so I had
+to learn to do that.&lt;/p&gt;
+&lt;h2 id="thoughts"&gt;Thoughts&lt;/h2&gt;
+&lt;p&gt;This was a pretty simple project and, for me, the real lesson was about technical debt. Sunset 76&amp;rsquo;s biggest problem
 wasn&amp;rsquo;t creating a functional static web page. Rather, its biggest difficulty was working around past decisions. I&amp;rsquo;m
 sure that, in the past, Turbify made sense. It probably didn&amp;rsquo;t require paying someone like me, and I&amp;rsquo;m sure that was
 a big plus in a world where most small businesses had a minimal web presence. Now, in a time when a web presence is
-more crucial the consequences of that previous decision need to be paid off.&lt;/p>
-&lt;p>In an ideal world, I think Sunset 76 would have ditched Turbify completely. It&amp;rsquo;s better to pay off all of that debt if
+more crucial the consequences of that previous decision need to be paid off.&lt;/p&gt;
+&lt;p&gt;In an ideal world, I think Sunset 76 would have ditched Turbify completely. It&amp;rsquo;s better to pay off all of that debt if
 possible. Realistically though, business needs to go on as usual, and I wasn&amp;rsquo;t contracted to reimagine Sunset 76&amp;rsquo;s IT
 situation. That&amp;rsquo;s just how commercial projects are. It&amp;rsquo;s that way even between friends. It would be nice to return to
-this some day and go for broke. Right now though, I&amp;rsquo;m content with the result.&lt;/p>
-&lt;p>This project started in January but, for various reasons, had a long hiatus until recently. I don&amp;rsquo;t mind, especially
+this some day and go for broke. Right now though, I&amp;rsquo;m content with the result.&lt;/p&gt;
+&lt;p&gt;This project started in January but, for various reasons, had a long hiatus until recently. I don&amp;rsquo;t mind, especially
 to help a friend, but I feel like this project somewhat interrupted my flow. Prior to returning to this, I had started
-on a &lt;a href="https://invisible-island.net/ncurses/">NCURSES&lt;/a> based game project. Hopefully, in the near term I can focus on
-that project. I&amp;rsquo;d like to get at least a demo completed and available before moving on to anything else.&lt;/p></description></item><item><title>Standard C++ Tic-Tac-Toe</title><author>gnomesort@megate.ch</author><category>projects</category><link>https://megate.ch/projects/standard_cxx_tic_tac_toe/</link><pubDate>Thu, 21 Mar 2024</pubDate><guid>https://megate.ch/projects/standard_cxx_tic_tac_toe/</guid><description>&lt;h2 id="introduction">Introduction&lt;/h2>
-&lt;p>Early in 2016, I really started to pick up &lt;span class="nowrap">C++&lt;/span>. I was taking an introductory level city
+on a &lt;a href="https://invisible-island.net/ncurses/"&gt;NCURSES&lt;/a&gt; based game project. Hopefully, in the near term I can focus on
+that project. I&amp;rsquo;d like to get at least a demo completed and available before moving on to anything else.&lt;/p&gt;</description></item><item><title>Standard C++ Tic-Tac-Toe</title><author>gnomesort@megate.ch</author><category>projects</category><link>https://megate.ch/projects/standard_cxx_tic_tac_toe/</link><pubDate>Thu, 21 Mar 2024</pubDate><guid>https://megate.ch/projects/standard_cxx_tic_tac_toe/</guid><description>&lt;h2 id="introduction"&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;Early in 2016, I really started to pick up &lt;span class="nowrap"&gt;C++&lt;/span&gt;. I was taking an introductory level city
 college course that was a little too easy for me because I had taken a similar course several years prior. It was
 pretty standard, in my opinion, for a basic computer programming course. Most of the assignments involved writing
-&lt;a href="https://megate.ch/code/toy_sorter/">toy applications&lt;/a>, which is something I&amp;rsquo;ve always hated doing. On the other hand, I was also
+&lt;a href="https://megate.ch/code/toy_sorter/"&gt;toy applications&lt;/a&gt;, which is something I&amp;rsquo;ve always hated doing. On the other hand, I was also
 assigned a project for the duration of the course, which I ended up greatly enjoying. Essentially, the project was to
 be a demonstration of the course&amp;rsquo;s material. The project would be graded twice, once at the half-way mark of the
 course alongside the midterm exam and once again at the end of the course. More importantly, the project needed to be
 creative and impressive. It wasn&amp;rsquo;t a requirement, but the professor&amp;rsquo;s expectation was that each student would write a
-game in more or less standard &lt;span class="nowrap">C++&lt;/span> (e.g., &lt;span class="nowrap">C++11&lt;/span> or
-&lt;span class="nowrap">C++14&lt;/span> at the time).&lt;/p>
-&lt;p>Technically the professor allocated the entire duration of the course to the project. However, the reality was that I
+game in more or less standard &lt;span class="nowrap"&gt;C++&lt;/span&gt; (e.g., &lt;span class="nowrap"&gt;C++11&lt;/span&gt; or
+&lt;span class="nowrap"&gt;C++14&lt;/span&gt; at the time).&lt;/p&gt;
+&lt;p&gt;Technically the professor allocated the entire duration of the course to the project. However, the reality was that I
 had closer to two weeks to develop each version. Two weeks were available to develop the first version in time for the
 midterm exam. Two more weeks were available to improve it in time for the final. Despite being pulled in many
 directions at the time, I found the experience of writing a whole game that quickly enjoyable. The result is a small
-&lt;a href="https://github.com/gn0mesort/RothmanAlexander_CSC5_41202/tree/master/Projects/Project%202/Desperado_V1">hangman game with some RPG styling on top&lt;/a>.
+&lt;a href="https://github.com/gn0mesort/RothmanAlexander_CSC5_41202/tree/master/Projects/Project%202/Desperado_V1"&gt;hangman game with some RPG styling on top&lt;/a&gt;.
 I think I was being a bit conservative about what I could and couldn&amp;rsquo;t do in the available time, so I wasn&amp;rsquo;t
-especially satisfied with the result.&lt;/p>
-&lt;p>Luckily, I ended up taking another &lt;span class="nowrap">C++&lt;/span> course with the same professor that fall. Once
+especially satisfied with the result.&lt;/p&gt;
+&lt;p&gt;Luckily, I ended up taking another &lt;span class="nowrap"&gt;C++&lt;/span&gt; course with the same professor that fall. Once
 again, I got to write a game in about four weeks total. For the second game, I ended up writing a simplistic roguelike.
 I called it
-&lt;a href="https://github.com/gn0mesort/RothmanAlexander_CSC17A_48096/tree/master/proj/Project_2/Overflow_2">Overflow&lt;/a> and,
-somewhat embarrassingly, I&amp;rsquo;m still fairly proud of it. After completing it though, I never really revisited the idea.&lt;/p>
-&lt;p>In December of last year, I started to think about these little game projects again. Unlike the games I wrote in the
-past though, I wanted to really consider what a game written in only standard &lt;span class="nowrap">C++&lt;/span> (i.e.,
-&lt;span class="nowrap">C++20&lt;/span>) would look like. To
-keep things simple, I decided to implement &lt;a href="https://github.com/gn0mesort/ttt">Tic-Tac-Toe&lt;/a>. Besides being simple to
+&lt;a href="https://github.com/gn0mesort/RothmanAlexander_CSC17A_48096/tree/master/proj/Project_2/Overflow_2"&gt;Overflow&lt;/a&gt; and,
+somewhat embarrassingly, I&amp;rsquo;m still fairly proud of it. After completing it though, I never really revisited the idea.&lt;/p&gt;
+&lt;p&gt;In December of last year, I started to think about these little game projects again. Unlike the games I wrote in the
+past though, I wanted to really consider what a game written in only standard &lt;span class="nowrap"&gt;C++&lt;/span&gt; (i.e.,
+&lt;span class="nowrap"&gt;C++20&lt;/span&gt;) would look like. To
+keep things simple, I decided to implement &lt;a href="https://github.com/gn0mesort/ttt"&gt;Tic-Tac-Toe&lt;/a&gt;. Besides being simple to
 implement, my hope is that anyone else who is interested in writing these kinds of games can use the source code as an
-example.&lt;/p>
-&lt;h2 id="the-problem">The Problem&lt;/h2>
-&lt;p>When I sat down to actually implement this game the first thing I considered was what I absolutely needed. The common
+example.&lt;/p&gt;
+&lt;h2 id="the-problem"&gt;The Problem&lt;/h2&gt;
+&lt;p&gt;When I sat down to actually implement this game the first thing I considered was what I absolutely needed. The common
 types of computer games (i.e., games written for hardware 3D APIs and graphical user interface systems) have a whole
-variety of tools at their disposal that aren&amp;rsquo;t available in any version of the &lt;span class="nowrap">C++&lt;/span>
+variety of tools at their disposal that aren&amp;rsquo;t available in any version of the &lt;span class="nowrap"&gt;C++&lt;/span&gt;
 standard. The most problematic deficiencies are the lack of any interactive input and a lack of any inter-process
-communication.&lt;/p>
-&lt;p>In general, computer games are basically looping programs that read input from one set of devices and write output to
+communication.&lt;/p&gt;
+&lt;p&gt;In general, computer games are basically looping programs that read input from one set of devices and write output to
 another. Once per loop iteration, the program reads its input, integrates the input into its state, and writes output.
 These games are interactive because the devices they read input from and write output to are handled separately from
 the game loop itself. That is to say, the game can begin its next loop before the user has actually seen the output,
-and it can continue even when there is no input at all.&lt;/p>
-&lt;p>Unfortunately, &lt;span class="nowrap">C++20&lt;/span> lacks any concept of this type of interactivity. The closest that
+and it can continue even when there is no input at all.&lt;/p&gt;
+&lt;p&gt;Unfortunately, &lt;span class="nowrap"&gt;C++20&lt;/span&gt; lacks any concept of this type of interactivity. The closest that
 you can get, as far as I know, is to rely upon a hosted environment connecting standard input to an interactive
 terminal. If it does, then you can rely on reads blocking until a user writes input into the terminal, and you can
 rely on never reaching an end-of-file state. This is basically what Overflow and other student applications do. It&amp;rsquo;s
 doubly unfortunate then that this can&amp;rsquo;t be relied upon either. If standard input is not an interactive terminal then
 there&amp;rsquo;s no reliable way to receive input interactively. As I understand it, there&amp;rsquo;s no standard way to detect this
-behavior either.&lt;/p>
-&lt;p>To make things more difficult, there&amp;rsquo;s no standard way to send messages to other processes or receive responses.
-&lt;span class="nowrap">C++20&lt;/span> has plenty of ways to do this within a single process (e.g.,
-&lt;a href="https://en.cppreference.com/w/cpp/utility/program/raise">&lt;code>std::raise&lt;/code>&lt;/a> or
-&lt;a href="https://en.cppreference.com/w/cpp/thread/counting_semaphore">&lt;code>std::binary_semaphore&lt;/code>&lt;/a>) but no way to communicate
+behavior either.&lt;/p&gt;
+&lt;p&gt;To make things more difficult, there&amp;rsquo;s no standard way to send messages to other processes or receive responses.
+&lt;span class="nowrap"&gt;C++20&lt;/span&gt; has plenty of ways to do this within a single process (e.g.,
+&lt;a href="https://en.cppreference.com/w/cpp/utility/program/raise"&gt;&lt;code&gt;std::raise&lt;/code&gt;&lt;/a&gt; or
+&lt;a href="https://en.cppreference.com/w/cpp/thread/counting_semaphore"&gt;&lt;code&gt;std::binary_semaphore&lt;/code&gt;&lt;/a&gt;) but no way to communicate
 outside without extensions to the standard library. This effectively rules out most naive strategies for
-interactivity, but it also causes another problem.&lt;/p>
-&lt;p>Since there&amp;rsquo;s no standard way to communicate between processes its impossible for a standard
-&lt;span class="nowrap">C++&lt;/span> program to synchronize access to resources that it might require. For example, if a
+interactivity, but it also causes another problem.&lt;/p&gt;
+&lt;p&gt;Since there&amp;rsquo;s no standard way to communicate between processes its impossible for a standard
+&lt;span class="nowrap"&gt;C++&lt;/span&gt; program to synchronize access to resources that it might require. For example, if a
 user spawned two or more instances of a game process, they might end up corrupting any files that the processes write
 to. In a non-standard setting multiple instances of a single program could communicate and decide how to handle this
-issue. A standard program needs to find its own solution though.&lt;/p>
-&lt;h2 id="the-solution">The Solution&lt;/h2>
-&lt;p>For my implementation of Tic-Tac-Toe, I ended up solving both problems by leveraging the standard I/O library and the
+issue. A standard program needs to find its own solution though.&lt;/p&gt;
+&lt;h2 id="the-solution"&gt;The Solution&lt;/h2&gt;
+&lt;p&gt;For my implementation of Tic-Tac-Toe, I ended up solving both problems by leveraging the standard I/O library and the
 standard file system library. Instead of relying on a single looping process, my implementation is actually four
 separate applications. Each application reads, potentially modifies, and writes a shared data file. Of course, issues
 would still arise if multiple applications could access the data file at the same time. To synchronize access to the
 shared data file, my implementation provides a
-&lt;a href="https://github.com/gn0mesort/ttt/blob/master/include/megatech/ttt/details/lockfile.hpp">&lt;code>lockfile&lt;/code>&lt;/a> type using only
-standard components.&lt;/p>
-&lt;p>Although it requires some finesse, controlling file access is possible using &lt;span class="nowrap">C++20&lt;/span>. The
-way it works is that an application passes each &lt;code>lockfile&lt;/code> object a
-&lt;a href="https://en.cppreference.com/w/cpp/filesystem/path">&lt;code>std::filesystem::path&lt;/code>&lt;/a> that addresses the file to lock. During
-the locking procedure, the &lt;code>lockfile&lt;/code> attempts to create another file by prepending &lt;code>&amp;quot;.~lock&amp;quot;&lt;/code> to the file name. To do
-this, the &lt;code>lockfile&lt;/code> object calls &lt;a href="https://en.cppreference.com/w/cpp/io/c/fopen">&lt;code>std::fopen&lt;/code>&lt;/a> with the special &lt;code>&amp;quot;wx&amp;quot;&lt;/code>
-mode. This mode ensures that &lt;code>std::fopen&lt;/code> only creates a new file if a file with the same name doesn&amp;rsquo;t exist.
-Unfortunately, the equivalent behavior for &lt;a href="https://en.cppreference.com/w/cpp/io/basic_fstream">&lt;code>std::fstream&lt;/code>&lt;/a>
-isn&amp;rsquo;t available until &lt;span class="nowrap">C++23&lt;/span>. The &lt;code>lockfile&lt;/code> then stores the resulting pointer. This
-procedure fails if the &lt;code>lockfile&lt;/code> already owns a pointer or if the call to &lt;code>std::fopen&lt;/code> fails. As long as the
-applications used to implement the game obey these locks then they can effectively synchronize file access.&lt;/p>
-&lt;p>To make the game interactive, each application accesses a single binary file. This file, which is described in detail
-in the &lt;a href="https://github.com/gn0mesort/ttt/blob/master/README.md">&lt;code>README&lt;/code>&lt;/a>, is 17 bytes long and contains the entire
+&lt;a href="https://github.com/gn0mesort/ttt/blob/master/include/megatech/ttt/details/lockfile.hpp"&gt;&lt;code&gt;lockfile&lt;/code&gt;&lt;/a&gt; type using only
+standard components.&lt;/p&gt;
+&lt;p&gt;Although it requires some finesse, controlling file access is possible using &lt;span class="nowrap"&gt;C++20&lt;/span&gt;. The
+way it works is that an application passes each &lt;code&gt;lockfile&lt;/code&gt; object a
+&lt;a href="https://en.cppreference.com/w/cpp/filesystem/path"&gt;&lt;code&gt;std::filesystem::path&lt;/code&gt;&lt;/a&gt; that addresses the file to lock. During
+the locking procedure, the &lt;code&gt;lockfile&lt;/code&gt; attempts to create another file by prepending &lt;code&gt;&amp;quot;.~lock&amp;quot;&lt;/code&gt; to the file name. To do
+this, the &lt;code&gt;lockfile&lt;/code&gt; object calls &lt;a href="https://en.cppreference.com/w/cpp/io/c/fopen"&gt;&lt;code&gt;std::fopen&lt;/code&gt;&lt;/a&gt; with the special &lt;code&gt;&amp;quot;wx&amp;quot;&lt;/code&gt;
+mode. This mode ensures that &lt;code&gt;std::fopen&lt;/code&gt; only creates a new file if a file with the same name doesn&amp;rsquo;t exist.
+Unfortunately, the equivalent behavior for &lt;a href="https://en.cppreference.com/w/cpp/io/basic_fstream"&gt;&lt;code&gt;std::fstream&lt;/code&gt;&lt;/a&gt;
+isn&amp;rsquo;t available until &lt;span class="nowrap"&gt;C++23&lt;/span&gt;. The &lt;code&gt;lockfile&lt;/code&gt; then stores the resulting pointer. This
+procedure fails if the &lt;code&gt;lockfile&lt;/code&gt; already owns a pointer or if the call to &lt;code&gt;std::fopen&lt;/code&gt; fails. As long as the
+applications used to implement the game obey these locks then they can effectively synchronize file access.&lt;/p&gt;
+&lt;p&gt;To make the game interactive, each application accesses a single binary file. This file, which is described in detail
+in the &lt;a href="https://github.com/gn0mesort/ttt/blob/master/README.md"&gt;&lt;code&gt;README&lt;/code&gt;&lt;/a&gt;, is 17 bytes long and contains the entire
 state of a Tic-Tac-Toe game. Actually, the game state only requires 22 bits. The rest of the file is metadata. The
 applications are completely serial programs that implement one major game function each. To play interactively then,
 a player executes a sequence of programs. First, he or she creates a game by executing
-&lt;a href="https://github.com/gn0mesort/ttt/blob/master/src/new_game.cpp">&lt;code>ttt-new-game&lt;/code>&lt;/a>. Next, he or she executes
-&lt;a href="https://github.com/gn0mesort/ttt/blob/master/src/take_turn.cpp">&lt;code>ttt-take-turn&lt;/code>&lt;/a> to take a turn. In the single player
-mode, &lt;code>ttt-take-turn&lt;/code> will also handle the computer player&amp;rsquo;s turn. In the multiplayer mode, the second player needs to
-invoke &lt;code>ttt-take-turn&lt;/code> with his or her selection. Finally, the player can delete the game data by executing
-&lt;a href="https://github.com/gn0mesort/ttt/blob/master/src/delete_game.cpp">&lt;code>ttt-delete-game&lt;/code>&lt;/a>. The fourth application,
-&lt;a href="https://github.com/gn0mesort/ttt/blob/master/src/display_game.cpp">&lt;code>ttt-display-game&lt;/code>&lt;/a>, will output the current game
-state on command without modifying it.&lt;/p>
-&lt;p>Of the four applications, only two applications expect any user input. The applications handle user input through
-program arguments passed to &lt;code>main()&lt;/code> (i.e., values stored in &lt;code>argv&lt;/code>). &lt;code>ttt-new-game&lt;/code> accepts a game mode which is
-completely optional. On the other hand, &lt;code>ttt-take-turn&lt;/code> requires the user to provide the column and row index of a
-location on the game board that he or she wants to mark.&lt;/p>
-&lt;h2 id="thoughts">Thoughts&lt;/h2>
-&lt;p>I&amp;rsquo;m more or less content with the resulting approach to standard &lt;span class="nowrap">C++&lt;/span> games. Obviously,
+&lt;a href="https://github.com/gn0mesort/ttt/blob/master/src/new_game.cpp"&gt;&lt;code&gt;ttt-new-game&lt;/code&gt;&lt;/a&gt;. Next, he or she executes
+&lt;a href="https://github.com/gn0mesort/ttt/blob/master/src/take_turn.cpp"&gt;&lt;code&gt;ttt-take-turn&lt;/code&gt;&lt;/a&gt; to take a turn. In the single player
+mode, &lt;code&gt;ttt-take-turn&lt;/code&gt; will also handle the computer player&amp;rsquo;s turn. In the multiplayer mode, the second player needs to
+invoke &lt;code&gt;ttt-take-turn&lt;/code&gt; with his or her selection. Finally, the player can delete the game data by executing
+&lt;a href="https://github.com/gn0mesort/ttt/blob/master/src/delete_game.cpp"&gt;&lt;code&gt;ttt-delete-game&lt;/code&gt;&lt;/a&gt;. The fourth application,
+&lt;a href="https://github.com/gn0mesort/ttt/blob/master/src/display_game.cpp"&gt;&lt;code&gt;ttt-display-game&lt;/code&gt;&lt;/a&gt;, will output the current game
+state on command without modifying it.&lt;/p&gt;
+&lt;p&gt;Of the four applications, only two applications expect any user input. The applications handle user input through
+program arguments passed to &lt;code&gt;main()&lt;/code&gt; (i.e., values stored in &lt;code&gt;argv&lt;/code&gt;). &lt;code&gt;ttt-new-game&lt;/code&gt; accepts a game mode which is
+completely optional. On the other hand, &lt;code&gt;ttt-take-turn&lt;/code&gt; requires the user to provide the column and row index of a
+location on the game board that he or she wants to mark.&lt;/p&gt;
+&lt;h2 id="thoughts"&gt;Thoughts&lt;/h2&gt;
+&lt;p&gt;I&amp;rsquo;m more or less content with the resulting approach to standard &lt;span class="nowrap"&gt;C++&lt;/span&gt; games. Obviously,
 Tic-Tac-Toe is the least exciting game imaginable, but I think the approach could be extended to much more complex
 games. Eventually, I&amp;rsquo;d like to try another roguelike or some other kind of role-playing game written this way.
 My solution, in particular, suffers from the lack of any advanced argument parsing functionality. That&amp;rsquo;s a conscious
 choice on my part. If I had a module similar to the GNU
-&lt;a href="https://www.gnu.org/software/libc/manual/html_node/Getopt-Long-Options.html">&lt;code>getopt_long&lt;/code>&lt;/a> available then I would
-have wrapped the entire game in a single application. The implementation of &lt;code>getopt_long&lt;/code> doesn&amp;rsquo;t require any
+&lt;a href="https://www.gnu.org/software/libc/manual/html_node/Getopt-Long-Options.html"&gt;&lt;code&gt;getopt_long&lt;/code&gt;&lt;/a&gt; available then I would
+have wrapped the entire game in a single application. The implementation of &lt;code&gt;getopt_long&lt;/code&gt; doesn&amp;rsquo;t require any
 nonstandard functionality, but I felt it was beyond the scope of a Tic-Tac-Toe game. For a more complex game, I think
-argument parsing is an absolute requirement.&lt;/p>
-&lt;p>Another deficiency is the &lt;code>lockfile&lt;/code> mechanism. Unfortunately, I don&amp;rsquo;t think there&amp;rsquo;s a fix for this that only requires
-standard &lt;span class="nowrap">C++&lt;/span> code. The &lt;code>lockfile&lt;/code> implementation is sufficient if every process on a
+argument parsing is an absolute requirement.&lt;/p&gt;
+&lt;p&gt;Another deficiency is the &lt;code&gt;lockfile&lt;/code&gt; mechanism. Unfortunately, I don&amp;rsquo;t think there&amp;rsquo;s a fix for this that only requires
+standard &lt;span class="nowrap"&gt;C++&lt;/span&gt; code. The &lt;code&gt;lockfile&lt;/code&gt; implementation is sufficient if every process on a
 system obeys it, but that&amp;rsquo;s not much of a guarantee. It also exhibits all the fun problems that the POSIX
-&lt;a href="https://pubs.opengroup.org/onlinepubs/9699919799/functions/open.html">&lt;code>openat()&lt;/code>&lt;/a> function resolves. Actually, being
-able to use the POSIX interface makes implementing text-mode games much simpler.&lt;/p>
-&lt;p>Right now, I think the next step for me will be something more complex. This project was a fun exercise, but I want to
+&lt;a href="https://pubs.opengroup.org/onlinepubs/9699919799/functions/open.html"&gt;&lt;code&gt;openat()&lt;/code&gt;&lt;/a&gt; function resolves. Actually, being
+able to use the POSIX interface makes implementing text-mode games much simpler.&lt;/p&gt;
+&lt;p&gt;Right now, I think the next step for me will be something more complex. This project was a fun exercise, but I want to
 keep busy for a longer period of time. It&amp;rsquo;s tempting to jump back to doing something with
-&lt;a href="https://www.opengl.org/">OpenGL&lt;/a> or &lt;a href="https://www.vulkan.org/">Vulkan&lt;/a>. On the other hand, a game with a better
+&lt;a href="https://www.opengl.org/"&gt;OpenGL&lt;/a&gt; or &lt;a href="https://www.vulkan.org/"&gt;Vulkan&lt;/a&gt;. On the other hand, a game with a better
 text-mode interface feels like a more logical next step. In any case, whatever I do next will be more interesting to
-me than Tic-Tac-Toe.&lt;/p>
-&lt;p>By the way, there are a couple of secrets included in this game. For a while now, I&amp;rsquo;ve been lingering on what
-William Gibson says about cyberspace in &lt;em>Neuromancer&lt;/em>. Which is to say that cyberspace is a consensual hallucination.
+me than Tic-Tac-Toe.&lt;/p&gt;
+&lt;p&gt;By the way, there are a couple of secrets included in this game. For a while now, I&amp;rsquo;ve been lingering on what
+William Gibson says about cyberspace in &lt;em&gt;Neuromancer&lt;/em&gt;. Which is to say that cyberspace is a consensual hallucination.
 Lately, I feel too many games try to be wholly realistic. I think the best games are a bit dream-like. They should
 have a quality, separate from any design, that is just slightly unreal. Clocks should have five hands. People should
 speak in a way that sounds like a language but isn&amp;rsquo;t one. The same road should sometimes lead to different locations.
 In a dream, things are just coherent enough to tell the story and no more coherent than that. Anyway, this is all to
 say that I think it&amp;rsquo;s important for games to have their own curious little behaviors. A good game always needs a
-secret or two.&lt;/p></description></item><item><title>Godot 3.x Patch for Doomsday Paradise</title><author>gnomesort@megate.ch</author><category>projects</category><link>https://megate.ch/projects/godot_3_x_patch_for_doomsday_paradise/</link><pubDate>Wed, 28 Feb 2024</pubDate><guid>https://megate.ch/projects/godot_3_x_patch_for_doomsday_paradise/</guid><description>&lt;h2 id="introduction">Introduction&lt;/h2>
-&lt;p>Last summer (the summer of 2023), I was contracted by &lt;a href="https://www.lemonadeflashbang.com/">Lemonade Flashbang&lt;/a> to
-write a patch for the &lt;a href="https://godotengine.org/">Godot&lt;/a> game engine. The patch fixes text display issues in the
+secret or two.&lt;/p&gt;</description></item><item><title>Godot 3.x Patch for Doomsday Paradise</title><author>gnomesort@megate.ch</author><category>projects</category><link>https://megate.ch/projects/godot_3_x_patch_for_doomsday_paradise/</link><pubDate>Wed, 28 Feb 2024</pubDate><guid>https://megate.ch/projects/godot_3_x_patch_for_doomsday_paradise/</guid><description>&lt;h2 id="introduction"&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;Last summer (the summer of 2023), I was contracted by &lt;a href="https://www.lemonadeflashbang.com/"&gt;Lemonade Flashbang&lt;/a&gt; to
+write a patch for the &lt;a href="https://godotengine.org/"&gt;Godot&lt;/a&gt; game engine. The patch fixes text display issues in the
 simplified Chinese, traditional Chinese, and Japanese localizations of
-&lt;a href="https://store.steampowered.com/app/1603420/Doomsday_Paradise/">Doomsday Paradise&lt;/a>. By patching Godot, Lemonade
-Flashbang could present its game at &lt;a href="https://bitsummit.org/en/">Bitsummit&lt;/a> last July and launch it on
-&lt;a href="https://store.steampowered.com/">Steam&lt;/a> last November.&lt;/p>
-&lt;h2 id="the-problem">The Problem&lt;/h2>
-&lt;p>Before version 4.0, Godot produced inappropriate line-breaking behavior for CJK text. The inappropriate behavior was
-observable using both the &lt;a href="https://docs.godotengine.org/en/3.5/classes/class_label.html">&lt;code>Label&lt;/code>&lt;/a> and
-&lt;a href="https://docs.godotengine.org/en/3.5/classes/class_richtextlabel.html">&lt;code>RichTextLabel&lt;/code>&lt;/a> nodes. Unfortunately, in
-Godot 3.x, automatic line-breaking is handled differently in &lt;code>Label&lt;/code> and &lt;code>RichTextLabel&lt;/code> nodes. Each node requires a
-separate solution (or a large-scale change to its functionality, such as the changes included in 4.0). &lt;code>Label&lt;/code> nodes
+&lt;a href="https://store.steampowered.com/app/1603420/Doomsday_Paradise/"&gt;Doomsday Paradise&lt;/a&gt;. By patching Godot, Lemonade
+Flashbang could present its game at &lt;a href="https://bitsummit.org/en/"&gt;Bitsummit&lt;/a&gt; last July and launch it on
+&lt;a href="https://store.steampowered.com/"&gt;Steam&lt;/a&gt; last November.&lt;/p&gt;
+&lt;h2 id="the-problem"&gt;The Problem&lt;/h2&gt;
+&lt;p&gt;Before version 4.0, Godot produced inappropriate line-breaking behavior for CJK text. The inappropriate behavior was
+observable using both the &lt;a href="https://docs.godotengine.org/en/3.5/classes/class_label.html"&gt;&lt;code&gt;Label&lt;/code&gt;&lt;/a&gt; and
+&lt;a href="https://docs.godotengine.org/en/3.5/classes/class_richtextlabel.html"&gt;&lt;code&gt;RichTextLabel&lt;/code&gt;&lt;/a&gt; nodes. Unfortunately, in
+Godot 3.x, automatic line-breaking is handled differently in &lt;code&gt;Label&lt;/code&gt; and &lt;code&gt;RichTextLabel&lt;/code&gt; nodes. Each node requires a
+separate solution (or a large-scale change to its functionality, such as the changes included in 4.0). &lt;code&gt;Label&lt;/code&gt; nodes
 break the entire text into a linked list of separable strings. When inserting more text into the list would overflow a
 line, Godot inserts a specialized
-&lt;a href="https://github.com/gn0mesort/godot/blob/3.5-stable/scene/gui/label.h#L72">&lt;code>WRAPLINE&lt;/code>&lt;/a> element. &lt;code>RichTextLabel&lt;/code> nodes,
-on the other hand, use a more complex approach. A Godot 3.x &lt;code>RichTextLabel&lt;/code> node contains a linked list of
-&lt;a href="https://github.com/gn0mesort/godot/blob/3.5-stable/scene/gui/rich_text_label.h#L112">&lt;code>RichTextLabel::Item&lt;/code>&lt;/a> objects.
-Each &lt;code>Item&lt;/code> represents a formatted segment of the &lt;code>RichTextLabel&lt;/code> node&amp;rsquo;s content. However, not all of the content of a
-&lt;code>RichTextLabel&lt;/code> needs to be text. The result is that each &lt;code>Item&lt;/code> may represent the entire text (the simplest case), a
-portion of the text, or no text at all. When automatically inserting line breaks into a &lt;code>RichTextLabel&lt;/code>, Godot 3.x
-only considers whether or not the text in the current &lt;code>Item&lt;/code> would overflow the current line. This approach works fine
-for English text but is a source of many errors for languages using CJK characters.&lt;/p>
-&lt;p>To make matters more complex, Godot 3.x&amp;rsquo;s source code exhibits some common issues often found in lower-quality
-&lt;span class="nowrap">C++&lt;/span> source code. In both &lt;code>Label&lt;/code> and &lt;code>RichTextLabel&lt;/code> nodes, the method that handles the
+&lt;a href="https://github.com/gn0mesort/godot/blob/3.5-stable/scene/gui/label.h#L72"&gt;&lt;code&gt;WRAPLINE&lt;/code&gt;&lt;/a&gt; element. &lt;code&gt;RichTextLabel&lt;/code&gt; nodes,
+on the other hand, use a more complex approach. A Godot 3.x &lt;code&gt;RichTextLabel&lt;/code&gt; node contains a linked list of
+&lt;a href="https://github.com/gn0mesort/godot/blob/3.5-stable/scene/gui/rich_text_label.h#L112"&gt;&lt;code&gt;RichTextLabel::Item&lt;/code&gt;&lt;/a&gt; objects.
+Each &lt;code&gt;Item&lt;/code&gt; represents a formatted segment of the &lt;code&gt;RichTextLabel&lt;/code&gt; node&amp;rsquo;s content. However, not all of the content of a
+&lt;code&gt;RichTextLabel&lt;/code&gt; needs to be text. The result is that each &lt;code&gt;Item&lt;/code&gt; may represent the entire text (the simplest case), a
+portion of the text, or no text at all. When automatically inserting line breaks into a &lt;code&gt;RichTextLabel&lt;/code&gt;, Godot 3.x
+only considers whether or not the text in the current &lt;code&gt;Item&lt;/code&gt; would overflow the current line. This approach works fine
+for English text but is a source of many errors for languages using CJK characters.&lt;/p&gt;
+&lt;p&gt;To make matters more complex, Godot 3.x&amp;rsquo;s source code exhibits some common issues often found in lower-quality
+&lt;span class="nowrap"&gt;C++&lt;/span&gt; source code. In both &lt;code&gt;Label&lt;/code&gt; and &lt;code&gt;RichTextLabel&lt;/code&gt; nodes, the method that handles the
 automatic line-breaking process is quite long.
-&lt;a href="https://github.com/gn0mesort/godot/blob/3.5-stable/scene/gui/rich_text_label.cpp#L143">&lt;code>RichTextLabel::_process_line&lt;/code>&lt;/a>
-(the method responsible for automatic line-breaking in &lt;code>RichTextLabel&lt;/code> nodes) is over 700 lines long.
-&lt;code>RichTextLabel::_process_line&lt;/code> (the primary offender) also includes several extensive macro definitions. These macros,
-such as &lt;a href="https://github.com/gn0mesort/godot/blob/3.5-stable/scene/gui/rich_text_label.cpp#L211">&lt;code>NEW_LINE&lt;/code>&lt;/a>, reduce
+&lt;a href="https://github.com/gn0mesort/godot/blob/3.5-stable/scene/gui/rich_text_label.cpp#L143"&gt;&lt;code&gt;RichTextLabel::_process_line&lt;/code&gt;&lt;/a&gt;
+(the method responsible for automatic line-breaking in &lt;code&gt;RichTextLabel&lt;/code&gt; nodes) is over 700 lines long.
+&lt;code&gt;RichTextLabel::_process_line&lt;/code&gt; (the primary offender) also includes several extensive macro definitions. These macros,
+such as &lt;a href="https://github.com/gn0mesort/godot/blob/3.5-stable/scene/gui/rich_text_label.cpp#L211"&gt;&lt;code&gt;NEW_LINE&lt;/code&gt;&lt;/a&gt;, reduce
 the size and redundancy of an already giant method implementation. However, they also defy convenient debugging with
-my debugger (&lt;a href="https://www.gnu.org/software/gdb/">GDB&lt;/a>). As a result, I had to trace these sections by hand when
+my debugger (&lt;a href="https://www.gnu.org/software/gdb/"&gt;GDB&lt;/a&gt;). As a result, I had to trace these sections by hand when
 necessary. The source code also contains many short (often one or two-character) symbol names. There&amp;rsquo;s a lot of
-&lt;span class="nowrap">C++&lt;/span> source code with inappropriately vague symbol names, so this isn&amp;rsquo;t a shocker. Just
+&lt;span class="nowrap"&gt;C++&lt;/span&gt; source code with inappropriately vague symbol names, so this isn&amp;rsquo;t a shocker. Just
 like everything else I&amp;rsquo;ve mentioned, though, this makes the source code more difficult to read and, ultimately, to
-debug.&lt;/p>
-&lt;h2 id="the-solution">The Solution&lt;/h2>
-&lt;p>To solve these problems, &lt;a href="https://github.com/gn0mesort/godot/tree/3.5">the patched version of Godot&lt;/a>
-had to change both the &lt;code>Label&lt;/code> and &lt;code>RichTextLabel&lt;/code> nodes. The core of both nodes&amp;rsquo; new CJK line-breaking functionality
-is the &lt;a href="https://github.com/gn0mesort/godot/blob/3.5/scene/gui/gs_cjk.h">&lt;code>gnomesort::is_cjk_x_char&lt;/code>&lt;/a> family of
+debug.&lt;/p&gt;
+&lt;h2 id="the-solution"&gt;The Solution&lt;/h2&gt;
+&lt;p&gt;To solve these problems, &lt;a href="https://github.com/gn0mesort/godot/tree/3.5"&gt;the patched version of Godot&lt;/a&gt;
+had to change both the &lt;code&gt;Label&lt;/code&gt; and &lt;code&gt;RichTextLabel&lt;/code&gt; nodes. The core of both nodes&amp;rsquo; new CJK line-breaking functionality
+is the &lt;a href="https://github.com/gn0mesort/godot/blob/3.5/scene/gui/gs_cjk.h"&gt;&lt;code&gt;gnomesort::is_cjk_x_char&lt;/code&gt;&lt;/a&gt; family of
 functions. These functions provide a modular way for Godot scene nodes to classify CJK text. This functionality
 includes simple detection (i.e., is the text CJK or not), detection of whether or not a character may end a line,
 detection of whether or not a character may begin a line, and detection of whether or not a character is separable
-from its neighbors.&lt;/p>
-&lt;p>The separability question is particularly complex because it requires analyzing the characters before and after the
-current character (if they exist). Determining separability is no big deal for &lt;code>Label&lt;/code> nodes because they always hold
-their entire text. &lt;code>RichTextLabel&lt;/code> nodes are another story. For &lt;code>RichTextLabel&lt;/code> nodes, Godot needs to traverse the
-internal &lt;code>Item&lt;/code> list. Besides the additional complexity of linked list traversal, which is minimal, &lt;code>RichTextLabel&lt;/code>
+from its neighbors.&lt;/p&gt;
+&lt;p&gt;The separability question is particularly complex because it requires analyzing the characters before and after the
+current character (if they exist). Determining separability is no big deal for &lt;code&gt;Label&lt;/code&gt; nodes because they always hold
+their entire text. &lt;code&gt;RichTextLabel&lt;/code&gt; nodes are another story. For &lt;code&gt;RichTextLabel&lt;/code&gt; nodes, Godot needs to traverse the
+internal &lt;code&gt;Item&lt;/code&gt; list. Besides the additional complexity of linked list traversal, which is minimal, &lt;code&gt;RichTextLabel&lt;/code&gt;
 nodes require analyzing several characters ahead of the current character to determine the locations of safe breaking
-points. This extra complexity is owed, in no small part, to the generally messier way that &lt;code>RichTextLabel&lt;/code> nodes are
-processed. Even with additional context, there are still cases where &lt;code>RichTextLabel&lt;/code> nodes can produce incorrect
-results.&lt;/p>
-&lt;p>The final major issue arises when a &lt;code>RichTextLabel&lt;/code> mixes CJK text with Latin text. For example, this can occur when
+points. This extra complexity is owed, in no small part, to the generally messier way that &lt;code&gt;RichTextLabel&lt;/code&gt; nodes are
+processed. Even with additional context, there are still cases where &lt;code&gt;RichTextLabel&lt;/code&gt; nodes can produce incorrect
+results.&lt;/p&gt;
+&lt;p&gt;The final major issue arises when a &lt;code&gt;RichTextLabel&lt;/code&gt; mixes CJK text with Latin text. For example, this can occur when
 text is written in Japanese but switches to Latin characters for a name (likely from user input). Initially, I chose
-to detect which rules applied to a given text &lt;code>Item&lt;/code> within a &lt;code>RichTextLabel&lt;/code> by scanning the &lt;code>Item&lt;/code> entirely. This
+to detect which rules applied to a given text &lt;code&gt;Item&lt;/code&gt; within a &lt;code&gt;RichTextLabel&lt;/code&gt; by scanning the &lt;code&gt;Item&lt;/code&gt; entirely. This
 strategy often works because the entire segment should use the CJK rules if there is CJK text. Problems arise when a
 switch occurs across a formatting boundary. This issue can occur when text, like the name in the previous example, is
 colored or has some other special formatting (e.g., bold, italics, underlining, etc.). In the name of expediency, I
-ultimately chose to implement a toggleable setting that controls whether a &lt;code>RichTextLabel&lt;/code> should apply the CJK rules
-to all text.&lt;/p>
-&lt;h2 id="thoughts">Thoughts&lt;/h2>
-&lt;p>At the end of the day, I stand by the admittedly expedient solution I arrived at. It&amp;rsquo;s rougher around the edges than I
+ultimately chose to implement a toggleable setting that controls whether a &lt;code&gt;RichTextLabel&lt;/code&gt; should apply the CJK rules
+to all text.&lt;/p&gt;
+&lt;h2 id="thoughts"&gt;Thoughts&lt;/h2&gt;
+&lt;p&gt;At the end of the day, I stand by the admittedly expedient solution I arrived at. It&amp;rsquo;s rougher around the edges than I
 would like, but that kept time and costs to a minimum. Better solutions exist; switching to Godot 4.0 and relying on
-&lt;a href="https://docs.godotengine.org/en/stable/classes/class_textserver.html">&lt;code>TextServer&lt;/code>&lt;/a> is the most obvious example, but
+&lt;a href="https://docs.godotengine.org/en/stable/classes/class_textserver.html"&gt;&lt;code&gt;TextServer&lt;/code&gt;&lt;/a&gt; is the most obvious example, but
 it wouldn&amp;rsquo;t have been the correct answer for the client. Still, the time-constrained nature of these types of
-contracts frustrates my perfectionist tendencies.&lt;/p>
-&lt;p>Besides that, I wonder how using a framework like Godot impacts the economics of a project like Doomsday Paradise. The
+contracts frustrates my perfectionist tendencies.&lt;/p&gt;
+&lt;p&gt;Besides that, I wonder how using a framework like Godot impacts the economics of a project like Doomsday Paradise. The
 simple analysis says it saves time and money, but this project indicates that the simple analysis of large software
 frameworks is only sometimes correct. Other times, when the framework doesn&amp;rsquo;t cover all of a developer&amp;rsquo;s needs
 perfectly, developers will have to expend resources on workarounds. How often is that the case, and how much do these
 workarounds cost? Unfortunately, I don&amp;rsquo;t have an answer, and I haven&amp;rsquo;t been able to find much rigorous data on the
-subject. My intuition is that the costs will likely be higher than they initially seem.&lt;/p>
-&lt;p>The only way for me to find out is to pursue more of this type of work in the future. Working with Lemonade Flashbang
+subject. My intuition is that the costs will likely be higher than they initially seem.&lt;/p&gt;
+&lt;p&gt;The only way for me to find out is to pursue more of this type of work in the future. Working with Lemonade Flashbang
 was my first experience with a commercial game project. It felt like a big step for me despite my relatively small
 contribution. Before this, I had tried to work on a few of what I would describe as amateur game projects.
 Unfortunately, those never really went anywhere. I still want to try for more amateur projects. However, I enjoyed
-getting into Godot&amp;rsquo;s guts, and I know amateurs tend to flee the moment anyone mentions &lt;span class="nowrap">C++&lt;/span>.
-Either way, I&amp;rsquo;d like to take on more work like this sooner than later.&lt;/p></description></item></channel></rss>
+getting into Godot&amp;rsquo;s guts, and I know amateurs tend to flee the moment anyone mentions &lt;span class="nowrap"&gt;C++&lt;/span&gt;.
+Either way, I&amp;rsquo;d like to take on more work like this sooner than later.&lt;/p&gt;</description></item></channel></rss>
