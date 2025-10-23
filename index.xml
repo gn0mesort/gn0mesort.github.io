@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Megatech</title><link>https://megate.ch/</link><description>Recent content on Megatech</description><generator>Hugo -- gohugo.io</generator><language>en-US</language><managingEditor>gnomesort@megate.ch (Alexander Rothman)</managingEditor><webMaster>gnomesort@megate.ch (Alexander Rothman)</webMaster><copyright>© Alexander Rothman</copyright><lastBuildDate>Thu, 16 Oct 2025 11:54:25 -0700</lastBuildDate><atom:link href="https://megate.ch/index.xml" rel="self" type="application/rss+xml"/><item><title>Julia Sets and the Burning Ship</title><author>gnomesort@megate.ch</author><category>projects</category><link>https://megate.ch/projects/julia_sets_and_the_burning_ship/</link><pubDate>Sat, 22 Feb 2025</pubDate><guid>https://megate.ch/projects/julia_sets_and_the_burning_ship/</guid><description>&lt;div&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Megatech</title><link>https://megate.ch/</link><description>Recent content on Megatech</description><generator>Hugo -- gohugo.io</generator><language>en-US</language><managingEditor>gnomesort@megate.ch (Alexander Rothman)</managingEditor><webMaster>gnomesort@megate.ch (Alexander Rothman)</webMaster><copyright>© Alexander Rothman</copyright><lastBuildDate>Thu, 23 Oct 2025 09:57:33 -0700</lastBuildDate><atom:link href="https://megate.ch/index.xml" rel="self" type="application/rss+xml"/><item><title>Julia Sets and the Burning Ship</title><author>gnomesort@megate.ch</author><category>projects</category><link>https://megate.ch/projects/julia_sets_and_the_burning_ship/</link><pubDate>Sat, 22 Feb 2025</pubDate><guid>https://megate.ch/projects/julia_sets_and_the_burning_ship/</guid><description>&lt;div&gt;
 &lt;canvas id="julia-set-context" class="hide centered framed" alt="An animation of a variety of Julia sets" width="640" height="360"&gt;&lt;/canvas&gt;
 &lt;script src="https://megate.ch/js/julia_set.js"&gt;&lt;/script&gt;
 &lt;/div&gt;
@@ -129,7 +129,8 @@ how it all interacts.&lt;/p&gt;
 or lower. In such cases, the application must not use functionality that exceeds the version of Vulkan associated
 with a given object. The &lt;code&gt;pApiVersion&lt;/code&gt; parameter returned by &lt;code&gt;vkEnumerateInstanceVersion&lt;/code&gt; is the version associated
 with a &lt;code&gt;VkInstance&lt;/code&gt; and its children, except for a &lt;code&gt;VkPhysicalDevice&lt;/code&gt; and its children.
-&lt;code&gt;VkPhysicalDeviceProperties::apiVersion&lt;/code&gt; is the version associated with a &lt;code&gt;VkPhysicalDevice&lt;/code&gt; and its children.&lt;/p&gt;&lt;/blockquote&gt;
+&lt;code&gt;VkPhysicalDeviceProperties::apiVersion&lt;/code&gt; is the version associated with a &lt;code&gt;VkPhysicalDevice&lt;/code&gt; and its children.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;The specification means this: it is valid for a Vulkan instance to support one version of the core functionality and
 each of its physical devices to support other versions. The direction of this is arbitrary, so you have to ensure your
 application doesn&amp;rsquo;t use the wrong version with the wrong objects. This is just one of the issues.&lt;/p&gt;
@@ -513,7 +514,8 @@ linker resolve the core Vulkan commands. Unfortunately, the
 &lt;a href="https://registry.khronos.org/vulkan/specs/1.3-extensions/html/vkspec.html#initialization-functionpointers"&gt;Vulkan specification&lt;/a&gt;
 says this:&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Vulkan commands are not necessarily exposed by static linking on a platform.&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;Vulkan commands are not necessarily exposed by static linking on a platform.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;This means that, with only one exception, applications might be required to resolve Vulkan commands using
 &lt;a href="https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkGetInstanceProcAddr.html"&gt;&lt;code&gt;vkGetInstanceProcAddr&lt;/code&gt;&lt;/a&gt;.
 The singular exception is, of course, &lt;code&gt;vkGetInstanceProcAddr&lt;/code&gt; itself. On this, the
@@ -521,7 +523,8 @@ specification provides some clarification:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;code&gt;vkGetInstanceProcAddr&lt;/code&gt; itself is obtained in a platform- and loader- specific manner. Typically, the loader library
 will export this command as a function symbol, so applications &lt;strong&gt;can&lt;/strong&gt; link against the loader library, or load it
-dynamically and look up the symbol using platform-specific APIs.&lt;/p&gt;&lt;/blockquote&gt;
+dynamically and look up the symbol using platform-specific APIs.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;There is actually a second issue though. In addition to the above bits, the Vulkan specification says:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;In order to support systems with multiple Vulkan implementations, the function pointers returned by
@@ -529,7 +532,8 @@ dynamically and look up the symbol using platform-specific APIs.&lt;/p&gt;&lt;/b
 &lt;a href="https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkDevice.html"&gt;&lt;code&gt;VkDevice&lt;/code&gt;&lt;/a&gt; objects or their child
 objects. The overhead of the internal dispatch for &lt;code&gt;VkDevice&lt;/code&gt; objects can be avoided by obtaining device-specific
 function pointers for any commands that use a device or device-child object as
-their dispatchable object.&lt;/p&gt;&lt;/blockquote&gt;
+their dispatchable object.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;To summarize all of this, a Vulkan application should do two things in the name of portability and performance. First,
 it should always resolve Vulkan commands using one of the two available resolvers (i.e., &lt;code&gt;vkGetInstanceProcAddr&lt;/code&gt; or
 &lt;a href="https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkGetDeviceProcAddr.html"&gt;&lt;code&gt;vkGetDeviceProcAddr&lt;/code&gt;&lt;/a&gt;).
