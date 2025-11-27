@@ -13,50 +13,54 @@ draft: false
 #include <cmath>
 
 #include <concepts>
-#include <limits>
 
-// Taken from https://floating-point-gui.de/errors/comparison/
 template <std::floating_point Type>
-constexpr bool fequal(const Type a, const Type b, const Type epsilon) {
-    const Type abs_a = std::fabs(a);
-    const Type abs_b = std::fabs(b);
-    const Type difference = std::fabs(a - b);
-    if (a == b)
-    {
-        return true;
-    }
-    else if (a == Type{ 0 } || b == Type{ 0 } || (abs_a + abs_b < std::numeric_limits<Type>::min()))
-    {
-        return difference < (epsilon * std::numeric_limits<Type>::min());
-    }
-    else
-    {
-        return difference / std::min(abs_a + abs_b, std::numeric_limits<Type>::max()) < epsilon;
-    }
+struct tolerances final {
+    static constexpr Type absolute_tolerance{ 0 };
+    static constexpr Type relative_tolerance{ 1e-9 };
+};
+
+template <std::floating_point Type>
+constexpr bool is_close(const Type a, const Type b, const Type absolute_tolerance, const Type relative_tolerance) {
+  if (a == b)
+  {
+    return true;
+  }
+  if (std::isinf(a) || std::isinf(b))
+  {
+    return false;
+  }
+  const auto difference = std::fabs(b - a);
+  return difference <= std::fabs(relative_tolerance * b) ||
+         difference <= std::fabs(relative_tolerance * a) ||
+         difference <= absolute_tolerance;
 }
 
 template <std::floating_point Type>
-constexpr bool fequal(const Type a, const Type b) {
-    return fequal(a, b, std::numeric_limits<Type>::epsilon());
+constexpr bool is_close(const Type a, const Type b, const Type absolute_tolerance) {
+  return is_close(a, b, absolute_tolerance, tolerances<Type>::relative_tolerance);
 }
 
 template <std::floating_point Type>
-constexpr bool flessthan(const Type a, const Type b, const Type epsilon) {
-    return a < b && !fequal(a, b, epsilon);
+constexpr bool is_close(const Type a, const Type b) {
+  return is_close(a, b, tolerances<Type>::absolute_tolerance, tolerances<Type>::relative_tolerance);
 }
 
 template <std::floating_point Type>
-constexpr bool flessthan(const Type a, const Type b) {
-    return a < b && !fequal(a, b, std::numeric_limits<Type>::epsilon());
+constexpr bool is_almost_equal(const Type a, const Type b, const Type absolute_tolerance) {
+  if (a == b)
+  {
+    return true;
+  }
+  if (std::isinf(a) || std::isinf(b))
+  {
+    return false;
+  }
+  return std::fabs(b - a) <= absolute_tolerance;
 }
 
 template <std::floating_point Type>
-constexpr bool fgreaterthan(const Type a, const Type b, const Type epsilon) {
-    return a > b && !fequal(a, b, epsilon);
-}
-
-template <std::floating_point Type>
-constexpr bool fgreaterthan(const Type a, const Type b) {
-    return a > b && !fequal(a, b, std::numeric_limits<Type>::epsilon());
+constexpr bool is_almost_zero(const Type a, const Type absolute_tolerance) {
+  return is_almost_equal(a, Type{ 0 }, absolute_tolerance);
 }
 ```
