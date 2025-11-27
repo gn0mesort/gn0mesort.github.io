@@ -5,50 +5,54 @@
 </picture></a><a class=icon href=https://megate.ch/index.xml><picture><img class=icon alt="RSS Feed" aria-label="RSS Feed" src=/img/svg/rss.svg></picture></a></nav></div><hr></header><main><h1 class=center-text>fcmp</h1><article><pre><code class=language-cpp>#include &lt;cmath&gt;
 
 #include &lt;concepts&gt;
-#include &lt;limits&gt;
 
-// Taken from https://floating-point-gui.de/errors/comparison/
 template &lt;std::floating_point Type&gt;
-constexpr bool fequal(const Type a, const Type b, const Type epsilon) {
-    const Type abs_a = std::fabs(a);
-    const Type abs_b = std::fabs(b);
-    const Type difference = std::fabs(a - b);
-    if (a == b)
-    {
-        return true;
-    }
-    else if (a == Type{ 0 } || b == Type{ 0 } || (abs_a + abs_b &lt; std::numeric_limits&lt;Type&gt;::min()))
-    {
-        return difference &lt; (epsilon * std::numeric_limits&lt;Type&gt;::min());
-    }
-    else
-    {
-        return difference / std::min(abs_a + abs_b, std::numeric_limits&lt;Type&gt;::max()) &lt; epsilon;
-    }
+struct tolerances final {
+    static constexpr Type absolute_tolerance{ 0 };
+    static constexpr Type relative_tolerance{ 1e-9 };
+};
+
+template &lt;std::floating_point Type&gt;
+constexpr bool is_close(const Type a, const Type b, const Type absolute_tolerance, const Type relative_tolerance) {
+  if (a == b)
+  {
+    return true;
+  }
+  if (std::isinf(a) || std::isinf(b))
+  {
+    return false;
+  }
+  const auto difference = std::fabs(b - a);
+  return difference &lt;= std::fabs(relative_tolerance * b) ||
+         difference &lt;= std::fabs(relative_tolerance * a) ||
+         difference &lt;= absolute_tolerance;
 }
 
 template &lt;std::floating_point Type&gt;
-constexpr bool fequal(const Type a, const Type b) {
-    return fequal(a, b, std::numeric_limits&lt;Type&gt;::epsilon());
+constexpr bool is_close(const Type a, const Type b, const Type absolute_tolerance) {
+  return is_close(a, b, absolute_tolerance, tolerances&lt;Type&gt;::relative_tolerance);
 }
 
 template &lt;std::floating_point Type&gt;
-constexpr bool flessthan(const Type a, const Type b, const Type epsilon) {
-    return a &lt; b &amp;&amp; !fequal(a, b, epsilon);
+constexpr bool is_close(const Type a, const Type b) {
+  return is_close(a, b, tolerances&lt;Type&gt;::absolute_tolerance, tolerances&lt;Type&gt;::relative_tolerance);
 }
 
 template &lt;std::floating_point Type&gt;
-constexpr bool flessthan(const Type a, const Type b) {
-    return a &lt; b &amp;&amp; !fequal(a, b, std::numeric_limits&lt;Type&gt;::epsilon());
+constexpr bool is_almost_equal(const Type a, const Type b, const Type absolute_tolerance) {
+  if (a == b)
+  {
+    return true;
+  }
+  if (std::isinf(a) || std::isinf(b))
+  {
+    return false;
+  }
+  return std::fabs(b - a) &lt;= absolute_tolerance;
 }
 
 template &lt;std::floating_point Type&gt;
-constexpr bool fgreaterthan(const Type a, const Type b, const Type epsilon) {
-    return a &gt; b &amp;&amp; !fequal(a, b, epsilon);
-}
-
-template &lt;std::floating_point Type&gt;
-constexpr bool fgreaterthan(const Type a, const Type b) {
-    return a &gt; b &amp;&amp; !fequal(a, b, std::numeric_limits&lt;Type&gt;::epsilon());
+constexpr bool is_almost_zero(const Type a, const Type absolute_tolerance) {
+  return is_almost_equal(a, Type{ 0 }, absolute_tolerance);
 }
 </code></pre></article></main><footer><hr><nav class=center-text><a href=#>top</a></nav><hr></footer></div><div class=right-column></div></div><script src=/js/highlight.min.js></script><script>window.addEventListener("load",hljs.highlightAll)</script></body></html>
