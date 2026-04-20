@@ -21,7 +21,7 @@ constexpr Type ulog2(const Type x) {
     throw std::domain_error{ "ulog2(0) is undefined." };
   }
   auto right = static_cast<std::size_t>(std::numeric_limits<Type>::digits - 1);
-  for (auto left = std::size_t{ 0 }, middle = (right + left) >> 1; left <= right; middle = (right + left) >> 1)
+  for (auto left = std::size_t{ 0 }, middle = left + ((right - left) >> 1); left <= right; middle = left + ((right - left) >> 1))
   {
     if (x >> middle != 0)
     {
